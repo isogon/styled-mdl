@@ -1,0 +1,273 @@
+{
+  "name": "material-components",
+  "version": "3.4.0",
+  "description": "Material Design components for React",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/isogon/material-components.git"
+  },
+  "engines": {
+    "npm": ">=3",
+    "node": ">=5"
+  },
+  "author": "David Weedon",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "yarn build:dll",
+    "prebuild": "yarn build:clean && yarn lint",
+    "build": "babel -s inline --ignore '**/tests' --source-root src/ -d build src/",
+    "build:clean": "yarn test:clean && rimraf ./build",
+    "build:dll": "node ./internals/scripts/dependencies.js",
+    "start": "cross-env NODE_ENV=development node demo/server",
+    "presetup": "yarn add global chalk shelljs",
+    "setup": "yarn install",
+    "postsetup": "yarn build:dll",
+    "clean": "shjs ./internals/scripts/clean.js",
+    "clean:all": "yarn test:clean && yarn build:clean",
+    "lint": "yarn lint:js",
+    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:js": "yarn lint:eslint -- . ",
+    "lint:staged": "lint-staged",
+    "pretest": "yarn test:clean && yarn lint",
+    "test:clean": "rimraf ./coverage",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
+  },
+  "lint-staged": {
+    "*.js": "lint:eslint"
+  },
+  "pre-commit": "lint:staged",
+  "babel": {
+    "presets": [
+      [
+        "latest"
+      ],
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ],
+    "env": {
+      "production": {
+        "only": [
+          "app"
+        ],
+        "plugins": [
+          "transform-react-remove-prop-types",
+          "transform-react-constant-elements",
+          "transform-react-inline-elements"
+        ]
+      },
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "es6": true
+    },
+    "plugins": [
+      "react",
+      "jsx-a11y"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "import/imports-first": 0,
+      "import/newline-after-import": 0,
+      "import/no-dynamic-require": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-named-as-default": 0,
+      "import/no-unresolved": 2,
+      "import/prefer-default-export": 0,
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "jsx-a11y/aria-props": 2,
+      "jsx-a11y/heading-has-content": 0,
+      "jsx-a11y/href-no-hash": 2,
+      "jsx-a11y/label-has-for": 2,
+      "jsx-a11y/mouse-events-have-key-events": 2,
+      "jsx-a11y/role-has-required-aria-props": 2,
+      "jsx-a11y/role-supports-aria-props": 2,
+      "max-len": 0,
+      "newline-per-chained-call": 0,
+      "no-confusing-arrow": 0,
+      "no-console": 1,
+      "no-use-before-define": 0,
+      "prefer-template": 2,
+      "class-methods-use-this": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-first-prop-new-line": [
+        2,
+        "multiline"
+      ],
+      "react/jsx-filename-extension": 0,
+      "react/jsx-no-target-blank": 0,
+      "react/require-extension": 0,
+      "react/self-closing-comp": 0,
+      "require-yield": 0,
+      "import/no-webpack-loader-syntax": 0
+    },
+    "settings": {
+      "import/core-modules": [
+        "material-components"
+      ],
+      "import/resolver": {
+        "webpack": {
+          "config": "./internals/webpack/webpack.prod.babel.js"
+        }
+      }
+    }
+  },
+  "dllPlugin": {
+    "path": "node_modules/material-components-dlls",
+    "exclude": [
+      "chalk",
+      "compression",
+      "cross-env",
+      "express",
+      "ip",
+      "minimist",
+      "sanitize.css"
+    ],
+    "include": [
+      "core-js",
+      "lodash",
+      "eventsource-polyfill"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.spec.js",
+      "!src/**/*.style.js",
+      "!src/theme/**/*.js",
+      "!src/globals/**/*.js",
+      "!src/index.js",
+      "!src/*/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 98,
+        "branches": 91,
+        "functions": 98,
+        "lines": 98
+      }
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "demo"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js",
+      "material-components": "<rootDir>/src"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
+    "testRegex": "tests/.*\\.spec\\.js$"
+  },
+  "dependencies": {
+    "babel-polyfill": "6.20.0",
+    "core-decorators": "^0.15.0",
+    "fontfaceobserver": "2.0.7",
+    "lodash": "4.17.2",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-icons": "^2.2.3",
+    "react-router": "^3.0.2",
+    "react-router-scroll": "0.4.1",
+    "sanitize.css": "4.1.0",
+    "styled-components": "1.1.2"
+  },
+  "devDependencies": {
+    "babel-cli": "6.18.0",
+    "babel-core": "6.21.0",
+    "babel-eslint": "7.1.1",
+    "babel-loader": "6.2.10",
+    "babel-plugin-dynamic-import-node": "1.0.0",
+    "babel-plugin-istanbul": "^3.1.2",
+    "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.18.0",
+    "babel-plugin-transform-react-constant-elements": "6.9.1",
+    "babel-plugin-transform-react-inline-elements": "6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.2.11",
+    "babel-preset-latest": "6.16.0",
+    "babel-preset-react": "6.16.0",
+    "babel-preset-react-hmre": "1.1.1",
+    "babel-preset-stage-0": "6.16.0",
+    "chalk": "^1.1.3",
+    "cheerio": "0.22.0",
+    "circular-dependency-plugin": "2.0.0",
+    "compression": "^1.6.2",
+    "coveralls": "2.11.15",
+    "cross-env": "^3.1.4",
+    "css-loader": "0.26.1",
+    "enzyme": "2.6.0",
+    "eslint": "3.11.1",
+    "eslint-config-airbnb": "13.0.0",
+    "eslint-config-airbnb-base": "10.0.1",
+    "eslint-import-resolver-webpack": "0.8.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.7.1",
+    "eventsource-polyfill": "0.9.6",
+    "exports-loader": "0.6.3",
+    "express": "^4.14.1",
+    "file-loader": "0.9.0",
+    "html-loader": "0.4.4",
+    "html-webpack-plugin": "2.24.1",
+    "image-webpack-loader": "2.0.0",
+    "imports-loader": "0.6.5",
+    "ip": "^1.1.4",
+    "jest-cli": "18.0.0",
+    "lint-staged": "3.2.1",
+    "minimist": "^1.2.0",
+    "node-plop": "0.5.4",
+    "null-loader": "0.1.1",
+    "plop": "1.7.3",
+    "pre-commit": "1.1.3",
+    "react-addons-test-utils": "15.4.1",
+    "rimraf": "2.5.4",
+    "shelljs": "0.7.5",
+    "sinon": "2.0.0-pre",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
+    "webpack": "2.2.0-rc.3",
+    "webpack-dev-middleware": "1.9.0",
+    "webpack-hot-middleware": "2.15.0"
+  }
+}
