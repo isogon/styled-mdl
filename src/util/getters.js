@@ -1,16 +1,13 @@
+import { mapValues } from 'lodash';
 import { defaultTheme } from '../theme';
+import { rgb, rgba } from './colors';
 
-const getters = Object.assign(...Object.keys(defaultTheme).map((key) => ({
-  [key]: ({ theme }) => theme[key],
-})));
+const getters = mapValues(defaultTheme, (v, k) => (p) => p.theme[k]);
 
-getters.boxShadow = (p) => {
-  const shadow = getters.shadow(p);
-  return `0 2px 2px 0 ${shadow}, 0 3px 1px -2px ${shadow}, 0 1px 5px 0 ${shadow}`;
-};
+getters.fg = (p) => p.theme.fg || p.theme.textColorPrimary;
+getters.bg = (p) => p.theme.bg || `rgb(${p.theme.white})`;
 
-getters.fg = (p) => p.theme.fg || getters.darkGray(p);
-
-getters.bg = (p) => p.theme.bg || getters.white(p);
+getters.rgb = (base, value) => (p) => rgb(p.theme[base][value]);
+getters.rgba = (base, value, alpha) => (p) => rgba(p.theme[base][value], alpha);
 
 export default getters;

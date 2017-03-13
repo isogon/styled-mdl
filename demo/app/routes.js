@@ -1,12 +1,15 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRedirect } from 'react-router';
 
 import App from 'containers/App';
-import HomePage from 'containers/HomePage';
+import Buttons from 'containers/Buttons';
+import Cards from 'containers/Cards';
 
 const routes = (
   <Route name="app" path="/" component={App}>
-    <IndexRoute component={HomePage} />
+    <IndexRedirect to="/cards" />
+    <Route path="/buttons" component={Buttons} />
+    <Route path="/cards" component={Cards} />
   </Route>
 );
 

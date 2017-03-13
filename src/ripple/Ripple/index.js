@@ -1,36 +1,52 @@
 import React from 'react';
 import { autobind } from 'core-decorators';
 
-import RippleEffect from './RippleEffect';
-import RippleWrap from './RippleWrap';
+import { getRippleSize, getRippleCoords } from './helpers';
+import RippleEffect from './RippleEffect.style';
+import RippleWrap from './RippleWrap.style';
 
 export default class Ripple extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      isAnimating: false,
+      opacity: 0,
+      transform: 'translate(-50%, -50%)',
     };
   }
 
-  @autobind
-  onMouseDown() {
-    this.setState({ isAnimating: true });
+  componentDidMount() {
+    this.size = getRippleSize(this.wrapper);
   }
 
   @autobind
-  onMouseUp() {
-    setTimeout(() => {
-      this.setState({ isAnimating: false });
-    }, 50);
+  handleMouseDown(e) {
+    const coords = getRippleCoords(e);
+    const translate = `translate(-50%, -50%) translate(${coords})`;
+    const initalScale = ' scale(0.0001, 0.0001)';
+    this.setState({
+      size: this.size,
+      shouldAnimate: false,
+      transform: translate + initalScale,
+      opacity: 0.3,
+    });
+    requestAnimationFrame(() => this.setState({
+      shouldAnimate: true,
+      transform: translate,
+    }));
+  }
+
+  @autobind
+  handleMouseUp() {
+    this.setState({ opacity: 0 });
   }
 
   render() {
     return (
       <RippleWrap
         {...this.props}
-        onMouseDown={this.onMouseDown}
-        onMouseUp={this.onMouseUp}
+        innerRef={(wrapper) => (this.wrapper = wrapper)}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
       >
         <RippleEffect {...this.state} />
       </RippleWrap>

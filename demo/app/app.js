@@ -8,16 +8,14 @@ import routes from './routes';
 
 // eslint-disable-next-line no-unused-expressions
 injectGlobal`
-  html,
-  body {
-    background-color: #eee;
+  html, body {
     height: 100%;
-    width: 100%;
+    background-color: #FAFAFA;
   }
 
   #app {
-    min-height: 100%;
-    min-width: 100%;
+    height: 100%;
+    width: 100%;
   }
 `;
 
