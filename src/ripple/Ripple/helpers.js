@@ -1,28 +1,29 @@
 import { round } from 'lodash';
-import { getRect, half, double, rectDiagonalLength, px } from '../../util';
+import { half, double, diagonalLength, px } from '../../util';
 
 function isKeyboardClick({ clientX, clientY }) {
-  return clientX === 0 && clientY === 0;
+  if (clientX === 0 && clientY === 0) {
+    return true;
+  }
+  return false;
 }
 
-function getX(e) {
-  return e.clientX !== undefined
-    ? e.clientX
-    : e.touches[0].clientX;
+function getX({ clientX, touches }) {
+  return clientX !== undefined ? clientX : touches[0].clientX;
 }
 
-function getY(e) {
-  return e.clientY !== undefined
-    ? e.clientY
-    : e.touches[0].clientY;
+function getY({ clientY, touches }) {
+  return clientY !== undefined ? clientY : touches[0].clientY;
 }
 
 export function getRippleSize(e) {
-  return px(double(rectDiagonalLength(getRect(e))) + 2);
+  const { width, height } = e.getBoundingClientRect();
+  return px(double(diagonalLength(width, height)) + 2);
 }
 
 export function getRippleCoords(e) {
-  const { height, width, left, top } = getRect(e.currentTarget);
+  const rect = e.currentTarget.getBoundingClientRect();
+  const { height, width, left, top } = rect;
   const coords = isKeyboardClick(e)
     ? [width, height].map(half)
     : [getX(e) - left, getY(e) - top];

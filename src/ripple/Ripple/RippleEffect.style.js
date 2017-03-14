@@ -6,7 +6,7 @@ export default styled.div`
   border-radius: 50%;
   height: ${({ size }) => size};
   width: ${({ size }) => size};
-  transform: ${({ transform }) => transform};
+  transform: ${({ transform }) => transform || 'none'};
   opacity: ${({ opacity }) => opacity};
   pointer-events: none;
   position: absolute;
@@ -14,9 +14,9 @@ export default styled.div`
   left: 0;
   overflow: hidden;
   ${({ shouldAnimate }) => shouldAnimate && css`
-    transition: transform .3s ${g.animationCurveLinearOutSlowIn},
-                width .3s ${g.animationCurveLinearOutSlowIn},
-                height .3s ${g.animationCurveLinearOutSlowIn},
-                opacity .6s ${g.animationCurveLinearOutSlowIn};
+    transition: transform .4s ${g.animationCurveLinearOutSlowIn},
+                width .4s ${g.animationCurveLinearOutSlowIn},
+                height .4s ${g.animationCurveLinearOutSlowIn},
+                opacity .8s ${g.animationCurveLinearOutSlowIn};
   `}
 `;
