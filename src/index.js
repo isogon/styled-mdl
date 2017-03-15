@@ -6,5 +6,6 @@ export * from './ripple';
 export * from './theme';
 export * from './mixins';
 export * from './layout';
+export * from './snackbar';
 
 export * as util from './util';
