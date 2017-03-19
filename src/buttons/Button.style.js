@@ -17,6 +17,7 @@ const base = css`
   margin: 0;
   min-width: ${g.buttonMinWidth}px;
   padding: 0 ${g.buttonPadding}px;
+  white-space: nowrap;
   display: inline-flex;
   ${typoButton()}
   overflow: hidden;

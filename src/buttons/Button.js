@@ -7,10 +7,10 @@ import StyledButton from './Button.style';
 const preventDefault = (e) => e.preventDefault();
 const shouldShowRipple = (props) => props.ripple && !props.disabled && !props.icon;
 
-export default function Button({ children, ...props }) {
+export default function Button({ children, text, ...props }) {
   return (
     <StyledButton {...props} onMouseDown={preventDefault}>
-      {children}
+      {children || text}
       {shouldShowRipple(props) ? <Ripple round={props.fab} /> : null}
     </StyledButton>
   );
@@ -21,6 +21,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+  text: PropTypes.string,
   children: PropTypes.node,
   ripple: PropTypes.bool,
   fab: PropTypes.bool,

@@ -25,6 +25,13 @@ describe('<Button />', () => {
     expect(e.preventDefault).toHaveBeenCalled();
   });
 
+  describe('when the [prop] text is defined and there are not children', () => {
+    it('renders text inside <button>', () => {
+      button.setProps({ children: null, text: 'text' });
+      expect(button.find('button')).toIncludeText('text');
+    });
+  });
+
   describe('ripples', () => {
     it('it defaults [prop] ripple to true', () => {
       expect(button).toHaveProp('ripple', true);
