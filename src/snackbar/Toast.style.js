@@ -16,13 +16,13 @@ export default styled.div`
   transform: translate(0, 80px);
   transition: transform 0.25s ${g.animationCurveFastOutLinearIn};
   pointer-events: none;
-  @media(max-width: ${g.snackbarTabletBreakpoint} - 1) {
+  @media(max-width: ${({ theme }) => theme.snackbarTabletBreakpoint - 1}px) {
     width: 100%;
     left: 0;
     min-height: 48px;
     max-height: 80px;
   }
-  @media(min-width: ${g.snackbarTabletBreakpoint}) {
+  @media(min-width: ${g.snackbarTabletBreakpoint}px) {
     min-width: 288px;
     max-width: 568px;
     border-radius: 2px;
@@ -33,7 +33,7 @@ export default styled.div`
     pointer-events: auto;
     transition: transform 0.25s ${g.animationCurveLinearOutSlowIn};
 
-    @media(min-width: ${g.snackbarTabletBreakpoint}) {
+    @media(min-width: ${g.snackbarTabletBreakpoint}px) {
       transform: translate(-50%, 0);
     }
   `}

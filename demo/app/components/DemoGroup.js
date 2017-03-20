@@ -72,8 +72,8 @@ const DemoGroup = ({ demos }) => (
     <DemoWrap>
       <Demos>
         <Padding />
-        {demos.map(({ demo }, i) => (
-          <Demo key={i}><AlignLeft>{demo}</AlignLeft></Demo>
+        {demos.map(({ demo: DemoComponent }, i) => (
+          <Demo key={i}><AlignLeft><DemoComponent /></AlignLeft></Demo>
         ))}
         <Padding />
       </Demos>

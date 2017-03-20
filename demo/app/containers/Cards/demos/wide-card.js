@@ -30,7 +30,7 @@ const DemoCardMenu = styled(CardMenu)`
 
 const caption = 'Wide Card';
 
-const demo = (
+const demo = () => (
   <DemoCardWide>
     <DemoCardTitle>
       <CardTitleText>Welcome</CardTitleText>

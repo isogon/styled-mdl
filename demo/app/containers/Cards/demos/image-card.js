@@ -29,7 +29,7 @@ const Filename = styled.span`
 
 const caption = 'Image Card';
 
-const demo = (
+const demo = () => (
   <ImageCard>
     <CardTitle expand />
     <Footer>

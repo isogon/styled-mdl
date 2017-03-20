@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'material-components';
 
-const demo = <Button raised>Action</Button>;
+const demo = () => <Button raised>Action</Button>;
 const caption = 'Raised Button';
 const code =
 `/*----- Raised button -----*/

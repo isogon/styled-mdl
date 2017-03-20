@@ -25,7 +25,7 @@ const DemoCardTitle = styled(CardTitle)`
 
 const caption = 'Square Card';
 
-const demo = (
+const demo = () => (
   <DemoCardSquare>
     <DemoCardTitle expand>
       <CardTitleText>Update</CardTitleText>

@@ -49,7 +49,7 @@ const WhiteButton = styled(Button)`
 
 const caption = 'Event Card';
 
-const demo = (
+const demo = () => (
   <EventCard>
     <CardTitle expand>
       <EventInfo>

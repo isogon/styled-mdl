@@ -5,5 +5,8 @@ export const sideNavLinks = [
   }, {
     to: '/buttons',
     label: 'Buttons',
+  }, {
+    to: '/snackbar',
+    label: 'Snackbar',
   },
 ];
