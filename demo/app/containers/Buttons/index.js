@@ -22,10 +22,10 @@ import iconAccent from './demos/icon-accent';
 const title = 'Buttons';
 const subtitle = 'Variations on Material Design buttons.';
 const demos = [
-  [fabPlain, fabColored, fabDisabled, fabMini],
-  [raisedDefault, raisedColored, raisedAccent],
-  [flatDefault, flatColored, flatAccent],
-  [iconDefault, iconColored, iconAccent],
+  { demos: [fabPlain, fabColored, fabDisabled, fabMini] },
+  { demos: [raisedDefault, raisedColored, raisedAccent] },
+  { demos: [flatDefault, flatColored, flatAccent] },
+  { demos: [iconDefault, iconColored, iconAccent] },
 ];
 
 // eslint-disable-next-line react/prefer-stateless-function

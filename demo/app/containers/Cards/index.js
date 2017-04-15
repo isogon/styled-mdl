@@ -10,9 +10,9 @@ import eventCard from './demos/event-card';
 const title = 'Cards';
 const subtitle = 'Self-contained pieces of paper with data.';
 const demos = [
-  [wideCard],
-  [squareCard],
-  [imageCard, eventCard],
+  { demos: [wideCard] },
+  { demos: [squareCard] },
+  { demos: [imageCard, eventCard] },
 ];
 
 // eslint-disable-next-line react/prefer-stateless-function

@@ -7,6 +7,7 @@ const DemoGroupLiteral = styled.div`
   margin-left: -16px;
   margin-right: -16px;
   margin-bottom: 96px;
+  color: rgba(0,0,0,.54);
 `;
 
 const DemoWrap = styled.div`
@@ -20,6 +21,14 @@ const Demos = styled.div`
 const AlignLeft = styled.span`
   text-align: left;
 
+`;
+
+const DemoLabel = styled.h1`
+  font-size: 16px;
+  color: rgba(0,0,0,.54);
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0 48px;
 `;
 
 const Demo = styled.div`
@@ -67,8 +76,9 @@ const Padding = styled.div`
   display: table-cell;
 `;
 
-const DemoGroup = ({ demos }) => (
+const DemoGroup = ({ demos, label }) => (
   <DemoGroupLiteral>
+    {label && <DemoLabel>{label}</DemoLabel>}
     <DemoWrap>
       <Demos>
         <Padding />
@@ -95,6 +105,7 @@ const DemoGroup = ({ demos }) => (
 
 DemoGroup.propTypes = {
   demos: React.PropTypes.array,
+  label: React.PropTypes.string,
 };
 
 export default DemoGroup;

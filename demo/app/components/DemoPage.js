@@ -7,7 +7,9 @@ import DemoGroup from './DemoGroup';
 const DemoPage = ({ title, subtitle, demoGroups, children }) => (
   <Wrap>
     <ComponentTitle title={title} subtitle={subtitle} />
-    {demoGroups.map((demos, i) => <DemoGroup key={i} demos={demos} />)}
+    {demoGroups.map(({ label, demos }, i) => (
+      <DemoGroup key={i} demos={demos} label={label} />
+    ))}
     {children}
   </Wrap>
 );

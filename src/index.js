@@ -7,5 +7,6 @@ export * from './theme';
 export * from './mixins';
 export * from './layout';
 export * from './snackbar';
+export * from './radio';
 
 export * as util from './util';
