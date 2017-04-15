@@ -9,5 +9,6 @@ export * from './layout';
 export * from './snackbar';
 export * from './radio';
 export * from './checkbox';
+export * from './switch';
 
 export * as util from './util';
