@@ -3,7 +3,6 @@ import { autobind } from 'core-decorators';
 import { without, concat } from 'lodash';
 import { SnackbarContainer, Button } from 'material-components';
 
-
 function createAlert(message, onRequestDismiss) {
   const alert = { message, actionText: 'Dismiss', timeout: 0 };
   alert.actionHandler = () => onRequestDismiss(alert);
@@ -18,21 +17,18 @@ class Demo extends Component {
     };
   }
 
-  @autobind
-  alert() {
+  @autobind alert() {
     const alert = createAlert('Example alert', this.clearAlert);
     this.addAlert(alert);
   }
 
-  @autobind
-  addAlert(alert) {
+  @autobind addAlert(alert) {
     this.setState({
       alerts: concat(this.state.alerts, alert),
     });
   }
 
-  @autobind
-  clearAlert(alert) {
+  @autobind clearAlert(alert) {
     this.setState({
       alerts: without(this.state.alerts, alert),
     });
@@ -49,8 +45,7 @@ class Demo extends Component {
 }
 
 const caption = 'Alert';
-const code =
-`function createAlert(message, onRequestDismiss) {
+const code = `function createAlert(message, onRequestDismiss) {
   const alert = { message, actionText: 'Dismiss', timeout: 0 };
   alert.actionHandler = () => onRequestDismiss(alert);
   return alert;

@@ -7,18 +7,20 @@ import Snackbar from './Snackbar';
 
 export default class SnackbarContainer extends Component {
   static propTypes = {
-    messages: uniqueArrayOf(PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      timeout: PropTypes.number.isRequired,
-    })).isRequired,
+    messages: uniqueArrayOf(
+      PropTypes.shape({
+        message: PropTypes.string.isRequired,
+        timeout: PropTypes.number.isRequired,
+      })
+    ).isRequired,
     onEnter: PropTypes.func,
     onRequestLeave: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     onEnter: noop,
     onRequestLeave: noop,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -44,19 +46,19 @@ export default class SnackbarContainer extends Component {
     });
 
     if (message && message.timeout) {
-      setTimeout(
-        () => this.props.onRequestLeave(message),
-        message.timeout,
-      );
+      setTimeout(() => this.props.onRequestLeave(message), message.timeout);
     }
   }
 
   applyNext(message) {
     const showNext = () => this.showMessage(message);
     if (this.state.active) {
-      this.setState({
-        isActive: false,
-      }, () => setTimeout(showNext, 300));
+      this.setState(
+        {
+          isActive: false,
+        },
+        () => setTimeout(showNext, 300)
+      );
     } else {
       showNext();
     }

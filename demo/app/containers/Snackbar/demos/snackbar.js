@@ -12,9 +12,8 @@ class Demo extends Component {
     };
   }
 
-  @autobind
-  changeButtonColor() {
-    const buttonColor = `#${Math.floor(Math.random() * 0xFFFFFF).toString(16)}`;
+  @autobind changeButtonColor() {
+    const buttonColor = `#${Math.floor(Math.random() * 0xffffff).toString(16)}`;
     this.setState({ buttonColor });
     this.addMessage({
       message: 'Button color changed',
@@ -24,15 +23,13 @@ class Demo extends Component {
     });
   }
 
-  @autobind
-  addMessage(message) {
+  @autobind addMessage(message) {
     this.setState({
       messages: concat(this.state.messages, message),
     });
   }
 
-  @autobind
-  clearMessage(message) {
+  @autobind clearMessage(message) {
     this.setState({
       messages: without(this.state.messages, message),
     });
@@ -57,8 +54,7 @@ class Demo extends Component {
 }
 
 const caption = 'Snacbkar';
-const code =
-`class Demo extends Component {
+const code = `class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
