@@ -8,5 +8,6 @@ export * from './mixins';
 export * from './layout';
 export * from './snackbar';
 export * from './radio';
+export * from './checkbox';
 
 export * as util from './util';
