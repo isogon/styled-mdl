@@ -15,4 +15,8 @@ export const sideNavLinks = [
     to: '/toggles',
     label: 'Toggles',
   },
+  {
+    to: '/loading',
+    label: 'Loading',
+  },
 ];

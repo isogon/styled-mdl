@@ -6,6 +6,7 @@ import Buttons from 'containers/Buttons';
 import Cards from 'containers/Cards';
 import Snackbar from 'containers/Snackbar';
 import Toggles from 'containers/Toggles';
+import Loading from 'containers/Loading';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -14,6 +15,7 @@ const routes = (
     <Route path="/cards" component={Cards} />
     <Route path="/snackbar" component={Snackbar} />
     <Route path="/toggles" component={Toggles} />
+    <Route path="/loading" component={Loading} />
   </Route>
 );
 

@@ -10,5 +10,7 @@ export * from './snackbar';
 export * from './radio';
 export * from './checkbox';
 export * from './switch';
+export * from './spinner';
+export * from './progress';
 
 export * as util from './util';
