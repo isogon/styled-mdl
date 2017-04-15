@@ -12,5 +12,6 @@ export * from './checkbox';
 export * from './switch';
 export * from './spinner';
 export * from './progress';
+export * from './textfield';
 
 export * as util from './util';

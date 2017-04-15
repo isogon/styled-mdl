@@ -19,4 +19,8 @@ export const sideNavLinks = [
     to: '/loading',
     label: 'Loading',
   },
+  {
+    to: '/textfields',
+    label: 'Text Fields',
+  },
 ];

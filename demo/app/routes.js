@@ -7,6 +7,7 @@ import Cards from 'containers/Cards';
 import Snackbar from 'containers/Snackbar';
 import Toggles from 'containers/Toggles';
 import Loading from 'containers/Loading';
+import TextFields from 'containers/TextFields';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -16,6 +17,7 @@ const routes = (
     <Route path="/snackbar" component={Snackbar} />
     <Route path="/toggles" component={Toggles} />
     <Route path="/loading" component={Loading} />
+    <Route path="/textfields" component={TextFields} />
   </Route>
 );
 
