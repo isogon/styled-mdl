@@ -8,6 +8,7 @@ import Snackbar from 'containers/Snackbar';
 import Toggles from 'containers/Toggles';
 import Loading from 'containers/Loading';
 import TextFields from 'containers/TextFields';
+import Chips from 'containers/Chips';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -18,6 +19,7 @@ const routes = (
     <Route path="/toggles" component={Toggles} />
     <Route path="/loading" component={Loading} />
     <Route path="/textfields" component={TextFields} />
+    <Route path="/chips" component={Chips} />
   </Route>
 );
 

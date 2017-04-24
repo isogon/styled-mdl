@@ -7,7 +7,6 @@ import {
   Textarea,
   Label,
   ErrorMessage,
-  ExpandableHolder,
 } from './Textfield.style';
 
 function ErrorHolder({ message }) {
@@ -30,6 +29,7 @@ export default class Textfield extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: props.value,
       focused: props.autoFocus,
     };
   }

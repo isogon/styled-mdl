@@ -13,5 +13,6 @@ export * from './switch';
 export * from './spinner';
 export * from './progress';
 export * from './textfield';
+export * from './chips';
 
 export * as util from './util';
