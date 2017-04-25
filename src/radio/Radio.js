@@ -10,7 +10,7 @@ import {
 export default function Radio({ name, value, label, disabled, ...props }) {
   return (
     <RadioStyle>
-      <RadioButton type="radio" name={name} value={value} {...props} />
+      <RadioButton type="radio" name={name} value={value} {...props} disabled={disabled} />
       {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
       <OuterCircle disabled={disabled} />
       <InnerCircle disabled={disabled} />

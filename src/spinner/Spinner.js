@@ -10,7 +10,7 @@ import {
   Circle,
 } from './Spinner.style';
 
-const Layer = ({ level: Level, ...props }) => (
+export const Layer = ({ level: Level, ...props }) => (
   <Level {...props}>
     <CircleClipper left>
       <Circle left clipper {...props} />

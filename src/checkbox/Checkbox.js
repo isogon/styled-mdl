@@ -10,7 +10,7 @@ import {
 export default function Checkbox({ name, value, label, disabled, ...props }) {
   return (
     <CheckboxStyle>
-      <CheckboxButton type="checkbox" name={name} value={value} {...props} />
+      <CheckboxButton type="checkbox" name={name} value={value} disabled={disabled} {...props} />
       {label && <CheckboxLabel disabled={disabled}>{label}</CheckboxLabel>}
       <BoxOutline disabled={disabled}>
         <TickOutline disabled={disabled} />

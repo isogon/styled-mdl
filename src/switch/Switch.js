@@ -12,7 +12,7 @@ export default function Switch({ name, value, label, disabled, ...props }) {
   return (
     <SwitchWrap>
       <SwitchStyle>
-        <SwitchButton type="checkbox" name={name} value={value} {...props} />
+        <SwitchButton type="checkbox" name={name} value={value} disabled={disabled} {...props} />
         {label && <SwitchLabel disabled={disabled}>{label}</SwitchLabel>}
         <Track disabled={disabled} />
         <Thumb disabled={disabled} />
