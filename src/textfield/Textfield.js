@@ -9,22 +9,20 @@ import {
   ErrorMessage,
 } from './Textfield.style';
 
-function ErrorHolder({ message }) {
-  return message ? <ErrorMessage>{message}</ErrorMessage> : null;
-}
-
-ErrorHolder.propTypes = {
-  message: PropTypes.string,
-};
-
 export default class Textfield extends Component {
   static propTypes = {
     error: PropTypes.string,
     autoFocus: PropTypes.bool,
-    handleChange: PropTypes.func,
+    onChange: PropTypes.func,
     value: PropTypes.string,
     label: PropTypes.string,
+    multiLine: PropTypes.bool,
   };
+
+  static defaultProps = {
+    type: 'text',
+    value: '',
+  }
 
   constructor(props) {
     super(props);
@@ -44,32 +42,32 @@ export default class Textfield extends Component {
 
   @autobind handleChange(e) {
     this.setState({ value: e.target.value });
-    if (this.props.handleChange) {
-      this.props.handleChange(e);
+    if (this.props.onChange) {
+      this.props.onChange(e);
     }
   }
 
   render() {
-    const { props, state } = this;
     return (
-      <TextfieldBase {...props}>
-        <Label {...props} {...state}>{this.props.label}</Label>
-        {props.multiLine
+      <TextfieldBase {...this.props}>
+        <Label {...this.props} {...this.state}>{this.props.label}</Label>
+        {this.props.multiLine
           ? <Textarea
-            {...props}
-            {...state}
+            {...this.props}
+            {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
           : <Input
-            {...props}
-            {...state}
+            {...this.props}
+            {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />}
-        <ErrorHolder message={this.props.error} />
+        {this.props.error &&
+          <ErrorMessage>{this.props.error}</ErrorMessage>}
       </TextfieldBase>
     );
   }

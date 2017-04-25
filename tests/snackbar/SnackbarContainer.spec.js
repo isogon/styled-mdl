@@ -84,6 +84,19 @@ describe('<SnackbarContainer />', () => {
       });
     });
 
+    describe('when the first message has not changed', () => {
+      let applyNext;
+
+      beforeEach(() => {
+        wrapper.setProps({ messages: [messages[0]] });
+        applyNext = wrapper.instance().applyNext = jest.fn();
+      });
+
+      it('does not call applyNext', () => {
+        expect(applyNext).not.toHaveBeenCalled();
+      });
+    });
+
     describe('when there are no more messages', () => {
       beforeEach(() => {
         wrapper.setProps({ messages: [] });

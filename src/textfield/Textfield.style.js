@@ -53,7 +53,7 @@ export const inputStyles = css`
     outline: none;
   `}
 
-  ${({ invalid }) => invalid && css`
+  ${({ invalid, error }) => invalid || error && css`
     border-color: ${g.inputTextErrorColor};
     box-shadow: none;
   `}
@@ -103,7 +103,7 @@ export const Label = styled.label`
       visibility: visible;
       width: 100%;
     `}
-    ${({ invalid }) => invalid && css`
+    ${({ invalid, error }) => invalid || error && css`
       background-color: ${g.inputTextErrorColor};
     `}
   }
@@ -126,7 +126,7 @@ export const Label = styled.label`
       visibility: visible;
     `}
 
-    ${({ invalid, theme }) => invalid && css`
+    ${({ invalid, error, theme }) => invalid || error && css`
       color: ${g.inputTextErrorColor};
       top: ${theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
       font-size: ${g.inputTextFloatingLabelFontsize}px;
