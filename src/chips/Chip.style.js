@@ -63,17 +63,6 @@ export const ChipAction = styled.button`
   }
 `;
 
-const getColor = ({ color }) => {
-  if (!color) {
-    return 'none';
-  }
-
-  const split = color.split('|');
-  const base = split[0];
-  const value = split[1] ? parseInt(split[1], 10) : 500;
-  return css`${g.rgb(base, value)}`;
-};
-
 const chipContactStyle = css`
   height: ${g.chipHeight}px;
   width: ${g.chipHeight}px;
@@ -85,7 +74,7 @@ const chipContactStyle = css`
   text-align: center;
   font-size: 18px;
   line-height: 32px;
-  background-color: ${getColor};
+  background-color: ${g.rgbFromProp('color', g.colorPrimary)};
   color: ${({ textColor }) => textColor || '#FFF'};
 `;
 

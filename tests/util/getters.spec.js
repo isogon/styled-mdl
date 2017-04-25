@@ -54,5 +54,33 @@ describe('getters', () => {
         ).toEqual(`rgba(${props.theme.grey[500]},${alpha})`);
       });
     });
+
+    describe('rgbFrom', () => {
+      it('returns the rgb wrapped value from the prop', () => {
+        expect(
+          get.rgbFromProp('myProp')({ ...props, myProp: 'grey|400' })
+        ).toEqual(`rgb(${props.theme.grey[400]})`);
+      });
+
+      it('defaults to 500 for the value', () => {
+        expect(
+          get.rgbFromProp('myProp')({ ...props, myProp: 'red' })
+        ).toEqual(`rgb(${props.theme.red[500]})`);
+      });
+
+      describe('when prop is undefined', () => {
+        it('uses fallback when it is defined', () => {
+          expect(
+            get.rgbFromProp('myProp', get.rgb('grey', 500))(props)
+          ).toEqual(`rgb(${props.theme.grey[500]})`);
+        });
+
+        it('returns \'none\' when no fallback is provided', () => {
+          expect(
+            get.rgbFromProp('myProp')(props)
+          ).toEqual('none');
+        });
+      });
+    });
   });
 });

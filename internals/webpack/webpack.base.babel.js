@@ -77,7 +77,7 @@ module.exports = (options) => ({
     new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
-    modules: ['demo/app', 'node_modules'],
+    modules: ['demo/app', 'node_modules', 'src'],
     extensions: [
       '.js',
       '.jsx',

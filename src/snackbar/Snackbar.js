@@ -8,7 +8,7 @@ export default function Snackbar({ message, actionText, actionHandler, active })
   return (
     <Toast active={active}>
       <Message>{message}</Message>
-      <Action onClick={actionHandler}>{actionText}</Action>
+      {actionText && <Action onClick={actionHandler}>{actionText}</Action>}
     </Toast>
   );
 }
