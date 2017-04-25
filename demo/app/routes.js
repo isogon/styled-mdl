@@ -9,6 +9,7 @@ import Toggles from 'containers/Toggles';
 import Loading from 'containers/Loading';
 import TextFields from 'containers/TextFields';
 import Chips from 'containers/Chips';
+import Badges from 'containers/Badges';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -20,6 +21,7 @@ const routes = (
     <Route path="/loading" component={Loading} />
     <Route path="/textfields" component={TextFields} />
     <Route path="/chips" component={Chips} />
+    <Route path="/badges" component={Badges} />
   </Route>
 );
 

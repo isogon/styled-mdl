@@ -1,5 +1,9 @@
 export const sideNavLinks = [
   {
+    to: '/badges',
+    label: 'Badges',
+  },
+  {
     to: '/cards',
     label: 'Cards',
   },
