@@ -10,6 +10,7 @@ import Loading from 'containers/Loading';
 import TextFields from 'containers/TextFields';
 import Chips from 'containers/Chips';
 import Badges from 'containers/Badges';
+import Dialog from 'containers/Dialog';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -22,6 +23,7 @@ const routes = (
     <Route path="/textfields" component={TextFields} />
     <Route path="/chips" component={Chips} />
     <Route path="/badges" component={Badges} />
+    <Route path="/dialogs" component={Dialog} />
   </Route>
 );
 

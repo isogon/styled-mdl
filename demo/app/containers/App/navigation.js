@@ -4,16 +4,20 @@ export const sideNavLinks = [
     label: 'Badges',
   },
   {
-    to: '/cards',
-    label: 'Cards',
-  },
-  {
     to: '/buttons',
     label: 'Buttons',
   },
   {
+    to: '/cards',
+    label: 'Cards',
+  },
+  {
     to: '/chips',
     label: 'Chips',
+  },
+  {
+    to: '/dialogs',
+    label: 'Dialogs',
   },
   {
     to: '/snackbar',
