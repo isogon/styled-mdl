@@ -1,8 +1,6 @@
-import { Ripple } from 'material-components';
+import { Ripple } from 'ripple';
+import { Effect, Wrap } from 'ripple/Ripple.style';
 import { each } from 'lodash';
-
-import RippleWrap from '../../src/ripple/Ripple/RippleWrap.style';
-import RippleEffect from '../../src/ripple/Ripple/RippleEffect.style';
 
 const renderRipple = mountComponent(Ripple);
 const createClickEvent = ({ target, clientX, clientY, isTouch }) => ({
@@ -24,26 +22,26 @@ describe('<Ripple />', () => {
     jest.useFakeTimers();
   });
 
-  it('renders a <RippleWrap />', () => {
-    expect(ripple.find(RippleWrap)).toBePresent();
+  it('renders a <Wrap />', () => {
+    expect(ripple.find(Wrap)).toBePresent();
   });
 
-  it('passes all props to <RippleWrap />', () => {
+  it('passes all props to <Wrap />', () => {
     const mockProps = { foo: Math.random(), bar: Math.random() };
     const expected = expect.objectContaining(mockProps);
     ripple.setProps(mockProps);
-    expect(ripple.find(RippleWrap).props()).toEqual(expected);
+    expect(ripple.find(Wrap).props()).toEqual(expected);
   });
 
-  it('renders a <RippleEffect />', () => {
-    expect(ripple.find(RippleEffect)).toBePresent();
+  it('renders a <Effect />', () => {
+    expect(ripple.find(Effect)).toBePresent();
   });
 
-  it('passes all state as props to <RippleEffect />', () => {
+  it('passes all state as props to <Effect />', () => {
     const mockState = { foo: Math.random(), bar: Math.random() };
     const expected = expect.objectContaining(mockState);
     ripple.setState(mockState);
-    expect(ripple.find(RippleEffect).props()).toEqual(expected);
+    expect(ripple.find(Effect).props()).toEqual(expected);
   });
 
   describe('init', () => {
@@ -70,8 +68,11 @@ describe('<Ripple />', () => {
   });
 
   describe('[method] handleMouseDown', () => {
-    it('is bound to RippleWrap [prop] onMouseDown', () => {
-      expect(ripple.find(RippleWrap)).toHaveProp('onMouseDown', instance.handleMouseDown);
+    it('is bound to Wrap [prop] onMouseDown', () => {
+      expect(ripple.find(Wrap)).toHaveProp(
+        'onMouseDown',
+        instance.handleMouseDown,
+      );
     });
 
     const testEvents = {
@@ -105,7 +106,11 @@ describe('<Ripple />', () => {
       },
     };
 
-    each(testEvents, ({ event, expectedBehavior, expectedTransform }, testName) => {
+    each(testEvents, ({
+      event,
+      expectedBehavior,
+      expectedTransform,
+    }, testName) => {
       describe(`when event is ${testName}`, () => {
         beforeEach(() => {
           instance.size = Math.random();
@@ -146,8 +151,8 @@ describe('<Ripple />', () => {
   });
 
   describe('[method] handleMouseUp', () => {
-    it('is bound to RippleWrap [prop] onMouseUp', () => {
-      expect(ripple.find(RippleWrap)).toHaveProp('onMouseUp', instance.handleMouseUp);
+    it('is bound to Wrap [prop] onMouseUp', () => {
+      expect(ripple.find(Wrap)).toHaveProp('onMouseUp', instance.handleMouseUp);
     });
 
     it('sets [state] opacity to 0', () => {

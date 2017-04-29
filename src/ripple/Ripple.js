@@ -2,8 +2,7 @@ import React from 'react';
 import { autobind } from 'core-decorators';
 
 import { getRippleSize, getRippleCoords } from './helpers';
-import RippleEffect from './RippleEffect.style';
-import RippleWrap from './RippleWrap.style';
+import { Effect, Wrap } from './Ripple.style';
 
 export default class Ripple extends React.Component {
   constructor(props) {
@@ -17,8 +16,7 @@ export default class Ripple extends React.Component {
     this.size = getRippleSize(this.wrapper);
   }
 
-  @autobind
-  handleMouseDown(e) {
+  @autobind handleMouseDown(e) {
     const coords = getRippleCoords(e);
     const translate = `translate(-50%, -50%) translate(${coords})`;
     const initalScale = ' scale3d(0.0001, 0.0001, 1)';
@@ -37,21 +35,26 @@ export default class Ripple extends React.Component {
     });
   }
 
-  @autobind
-  handleMouseUp() {
+  @autobind handleMouseUp() {
     this.setState({ opacity: 0 });
   }
 
   render() {
     return (
-      <RippleWrap
+      <Wrap
         {...this.props}
-        innerRef={(wrapper) => (this.wrapper = wrapper)}
+        toggle={this.state.toggle}
+        innerRef={(wrapper) => {
+          this.wrapper = wrapper;
+        }}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
+        onMouseOut={this.handleMouseUp}
+        onFocus={this.handleMouseDown}
+        onBlur={this.handleMouseUp}
       >
-        <RippleEffect {...this.state} />
-      </RippleWrap>
+        <Effect {...this.props} {...this.state} />
+      </Wrap>
     );
   }
 }

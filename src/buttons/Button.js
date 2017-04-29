@@ -5,13 +5,25 @@ import { Ripple } from '../ripple';
 import StyledButton from './Button.style';
 
 const preventDefault = (e) => e.preventDefault();
-const shouldShowRipple = (props) => props.ripple && !props.disabled && !props.icon;
+const shouldShowRipple = (props) =>
+  props.ripple && !props.disabled && !props.icon;
+
+const isDark = (props) => {
+  if (props.raised || props.fab) {
+    if (props.colored || props.accent || props.primary) {
+      return false;
+    }
+  }
+
+  return true;
+};
 
 export default function Button({ children, text, ...props }) {
   return (
     <StyledButton {...props} onMouseDown={preventDefault}>
       {children || text}
-      {shouldShowRipple(props) ? <Ripple round={props.fab} /> : null}
+      {shouldShowRipple(props) &&
+        <Ripple round={props.fab} dark={isDark(props)} />}
     </StyledButton>
   );
 }

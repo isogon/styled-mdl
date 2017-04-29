@@ -37,14 +37,23 @@ export const DialogBase = styled.div`
 `;
 
 export const DialogTitle = styled.h1`
-  padding: 32px 32px 0;
+  padding: 24px 24px 0;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+`;
+
+export const DialogContent = styled.div`
+  padding: 20px 24px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${g.dialogContentColor};
 `;
 
 export const DialogActions = styled.div`
-  padding: 24px 24px;
-  margin: 0 -8px 0 0;
+  padding: 8px 8px 8px 24px;
+  margin-right: -8px;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
@@ -54,6 +63,7 @@ export const DialogActions = styled.div`
   }
   ${({ fullWidth }) => fullWidth && css`
     padding: 0 0 8px 0;
+    margin-right: 0;
     > * {
       height: 48px;
       flex: 0 0 auto;
@@ -61,11 +71,7 @@ export const DialogActions = styled.div`
       padding-right: 16px;
       margin-right: 0;
       text-align: right;
+      justify-content: flex-end;
     }
   `}
-`;
-
-export const DialogContent = styled.div`
-  padding: 20px 32px 24px 32px;
-  color: ${g.dialogContentColor};
 `;

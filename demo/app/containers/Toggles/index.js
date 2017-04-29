@@ -12,7 +12,7 @@ import switchOff from './demos/switchOff';
 const title = 'Toggles';
 const subtitle = 'Choose between states.';
 const demos = [
-  { label: 'Checkbox', demos: [checkboxOn, checkboxOff] },
+  { label: 'Checkbox', demos: [checkboxOff, checkboxOn] },
   { label: 'Radio Buttons', demos: [radioOn, radioOff] },
   { label: 'Switches', demos: [switchOn, switchOff] },
 ];

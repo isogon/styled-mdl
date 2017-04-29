@@ -1,5 +1,5 @@
 import { round } from 'lodash';
-import { half, double, diagonalLength, px } from '../../util';
+import { half, double, diagonalLength, px } from '../util';
 
 function isKeyboardClick({ clientX, clientY }) {
   if (clientX === 0 && clientY === 0) {

@@ -1,11 +1,6 @@
 import styled, { css } from 'styled-components';
 import { getters as g } from '../util';
-import {
-  typoButton,
-  shadow2dp,
-  shadow4dp,
-  focusShadow,
-} from '../mixins';
+import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../mixins';
 
 const base = css`
   background: transparent;
@@ -73,10 +68,6 @@ const mods = css`
       &:focus:not(:active) {
         background-color: ${g.buttonActiveColorAlt};
       }
-
-      ${({ ripple }) => ripple && css`
-        background: ${g.buttonRippleColorAlt};
-      `}
     `}
   `}
   ${({ fab }) => fab && css`
@@ -169,6 +160,9 @@ const mods = css`
     color: ${g.buttonSecondaryColorDisabled};
     cursor: default;
     background-color: transparent;
+    &:hover {
+      background-color: transparent;
+    }
     ${({ fab }) => fab && css`
       background-color: ${g.buttonPrimaryColorDisabled};
       color: ${g.buttonSecondaryColorDisabled};
