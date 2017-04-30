@@ -1,6 +1,7 @@
 import { Button, Ripple } from 'material-components';
+import StyledButton from 'buttons/Button.style';
 
-const renderButton = mountComponent(Button);
+const renderButton = shallowComponent(Button);
 
 describe('<Button />', () => {
   let button;
@@ -9,26 +10,16 @@ describe('<Button />', () => {
     button = renderButton();
   });
 
-  it('should render a <button> tag', () => {
-    expect(button.find('button')).toBePresent();
-  });
-
-  describe('inner <button>', () => {
-    it('should have a className attribute', () => {
-      expect(button.find('button')).toHaveProp('className');
-    });
-  });
-
   it('auto defocuses after click', () => {
     const e = { preventDefault: jest.fn() };
-    button.simulate('mouseDown', e);
+    button.find(StyledButton).simulate('mouseDown', e);
     expect(e.preventDefault).toHaveBeenCalled();
   });
 
   describe('when the [prop] text is defined and there are not children', () => {
     it('renders text inside <button>', () => {
       button.setProps({ children: null, text: 'text' });
-      expect(button.find('button')).toIncludeText('text');
+      expect(button.find(StyledButton).children().at(0).text()).toEqual('text');
     });
   });
 
@@ -54,6 +45,45 @@ describe('<Button />', () => {
     it('it hides ripples when [prop] icon is true', () => {
       button.setProps({ icon: true });
       expect(button.find(Ripple)).not.toBePresent();
+    });
+
+    const toProps = (props) =>
+      props.reduce((aggr, prop) => ({ ...aggr, [prop]: true }), {
+        ripple: true,
+      });
+
+    const lightRippleConditions = [
+      ['raised', 'colored'],
+      ['raised', 'primary'],
+      ['raised', 'accent'],
+      ['fab', 'colored'],
+      ['fab', 'primary'],
+      ['fab', 'accent'],
+    ];
+
+    const darkRippleConditions = [
+      [],
+      ['colored'],
+      ['primary'],
+      ['accent'],
+      ['fab'],
+      ['raised'],
+    ];
+
+    lightRippleConditions.forEach((props) => {
+      const condition = props.join(' and [prop] ');
+      it(`has a light ripple when [prop] ${condition} are true`, () => {
+        button.setProps(toProps(props));
+        expect(button.find(Ripple)).toHaveProp('dark', false);
+      });
+    });
+
+    darkRippleConditions.forEach((props) => {
+      const condition = props.join(' and [prop] ');
+      it(`has a dark ripple when [prop] ${condition} are true`, () => {
+        button.setProps(toProps(props));
+        expect(button.find(Ripple)).toHaveProp('dark', true);
+      });
     });
   });
 });
