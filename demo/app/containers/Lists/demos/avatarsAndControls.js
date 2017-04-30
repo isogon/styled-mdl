@@ -2,12 +2,13 @@ import React from 'react';
 import {
   List,
   ListItem,
-  LiPrimary,
   LiAction,
   LiSecondary,
+  LiPrimary,
   LiAvatar,
-  LiTitle,
   Checkbox,
+  Radio,
+  Switch,
 } from 'material-components';
 import Person from 'react-icons/lib/md/person';
 
@@ -16,11 +17,33 @@ const demo = () => (
     <ListItem>
       <LiPrimary>
         <LiAvatar><Person /></LiAvatar>
-        <LiTitle>Bryan Cranston</LiTitle>
+        Bryan Cranston
       </LiPrimary>
       <LiSecondary>
         <LiAction>
           <Checkbox defaultChecked />
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
+    <ListItem>
+      <LiPrimary>
+        <LiAvatar><Person /></LiAvatar>
+        Aaron Paul
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Radio />
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
+    <ListItem>
+      <LiPrimary>
+        <LiAvatar><Person /></LiAvatar>
+        Bob Odenkirk
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Switch defaultChecked />
         </LiAction>
       </LiSecondary>
     </ListItem>
@@ -29,31 +52,37 @@ const demo = () => (
 const caption = 'Avatars and controls';
 const code = `<List>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
       Bryan Cranston
-    </ListItemContent>
-    <ListItemAction>
-      <Checkbox checked />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Checkbox defaultChecked />
+      </LiAction>
+    </LiSecondary>
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
       Aaron Paul
-    </ListItemContent>
-    <ListItemAction>
-      <Radio />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Radio />
+      </LiAction>
+    </LiSecondary>
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
       Bob Odenkirk
-    </ListItemContent>
-    <ListItemAction>
-      <Switch checked />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Switch defaultChecked />
+      </LiAction>
+    </LiSecondary>
   </ListItem>
 </List>`;
 

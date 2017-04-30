@@ -10,7 +10,7 @@ const getPropsWithClassName = (props) => {
     return { ...props, className: 'threeLine' };
   }
 
-  return {};
+  return props;
 };
 
 export default function ListItem(props) {

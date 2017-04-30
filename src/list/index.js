@@ -2,6 +2,7 @@ export {
   List,
   LiAction,
   LiIcon,
+  LiAvatar,
   LiInfo,
   LiPrimary,
   LiSecondary,
@@ -10,4 +11,3 @@ export {
   LiTitle,
 } from './List.style';
 export ListItem from './ListItem';
-export LiAvatar from './LiAvatar';

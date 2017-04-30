@@ -137,6 +137,7 @@
       ],
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
+      "react/no-unescaped-entities": 0,
       "react/jsx-uses-react": 2,
       "react/react-in-jsx-scope": 2,
       "react/require-extension": 0,

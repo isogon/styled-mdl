@@ -6,18 +6,38 @@ import {
   LiAction,
   LiSecondary,
   LiAvatar,
-  LiTitle,
   Button,
 } from 'material-components';
-import Person from 'react-icons/lib/md/person';
 import Star from 'react-icons/lib/md/star';
 
 const demo = () => (
   <List>
     <ListItem>
       <LiPrimary>
-        <LiAvatar><Person /></LiAvatar>
-        <LiTitle>Bryan Cranston</LiTitle>
+        <LiAvatar src="http://bit.ly/2piVFMa" />
+        Bryan Cranston
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Button icon accent><Star /></Button>
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
+    <ListItem>
+      <LiPrimary>
+        <LiAvatar src="http://bit.ly/2qldLvM" />
+        Aaron Paul
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Button icon accent><Star /></Button>
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
+    <ListItem>
+      <LiPrimary>
+        <LiAvatar src="http://bit.ly/2qsbwpq" />
+        Bob Odenkirk
       </LiPrimary>
       <LiSecondary>
         <LiAction>
@@ -30,31 +50,37 @@ const demo = () => (
 const caption = 'Avatars and controls';
 const code = `<List>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar src="http://bit.ly/2piVFMa" />
       Bryan Cranston
-    </ListItemContent>
-    <ListItemAction>
-      <Checkbox checked />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar src="http://bit.ly/2qldLvM" />
       Aaron Paul
-    </ListItemContent>
-    <ListItemAction>
-      <Radio />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemAvatar icon={Person} />
+    <LiPrimary>
+      <LiAvatar src="http://bit.ly/2qsbwpq" />
       Bob Odenkirk
-    </ListItemContent>
-    <ListItemAction>
-      <Switch checked />
-    </ListItemAction>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
 </List>`;
 

@@ -8,7 +8,6 @@ import {
   LiAvatar,
   LiSubTitle,
   LiInfo,
-  LiTitle,
   Button,
 } from 'material-components';
 import Person from 'react-icons/lib/md/person';
@@ -19,7 +18,7 @@ const demo = () => (
     <ListItem twoLine>
       <LiPrimary>
         <LiAvatar><Person /></LiAvatar>
-        <LiTitle>Bryan Cranston</LiTitle>
+        Bryan Cranston
         <LiSubTitle>62 Episodes</LiSubTitle>
       </LiPrimary>
       <LiSecondary>
@@ -29,18 +28,70 @@ const demo = () => (
         </LiAction>
       </LiSecondary>
     </ListItem>
+    <ListItem twoLine>
+      <LiPrimary>
+        <LiAvatar><Person /></LiAvatar>
+        Aaron Paul
+        <LiSubTitle>62 Episodes</LiSubTitle>
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Button icon accent><Star /></Button>
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
+    <ListItem twoLine>
+      <LiPrimary>
+        <LiAvatar><Person /></LiAvatar>
+        Bob Odenkirk
+        <LiSubTitle>62 Episodes</LiSubTitle>
+      </LiPrimary>
+      <LiSecondary>
+        <LiAction>
+          <Button icon accent><Star /></Button>
+        </LiAction>
+      </LiSecondary>
+    </ListItem>
   </List>
 );
 const caption = 'Two line';
 const code = `<List>
-  <ListItem>
-    <ListItemPrimary>Bryan Cranston</ListItemPrimary>
+  <ListItem twoLine>
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
+      Bryan Cranston
+      <LiSubTitle>62 Episodes</LiSubTitle>
+    </LiPrimary>
+    <LiSecondary>
+      <LiInfo>Actor</LiInfo>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
-  <ListItem>
-    <ListItemPrimary>Aaron Paul</ListItemPrimary>
+  <ListItem twoLine>
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
+      Aaron Paul
+      <LiSubTitle>62 Episodes</LiSubTitle>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
-  <ListItem>
-    <ListItemPrimary>Bob Odenkirk</ListItemPrimary>
+  <ListItem twoLine>
+    <LiPrimary>
+      <LiAvatar><Person /></LiAvatar>
+      Bob Odenkirk
+      <LiSubTitle>62 Episodes</LiSubTitle>
+    </LiPrimary>
+    <LiSecondary>
+      <LiAction>
+        <Button icon accent><Star /></Button>
+      </LiAction>
+    </LiSecondary>
   </ListItem>
 </List>`;
 

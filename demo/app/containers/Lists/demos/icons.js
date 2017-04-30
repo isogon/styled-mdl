@@ -1,20 +1,20 @@
 import React from 'react';
-import {
-  List,
-  ListItem,
-  LiPrimary,
-  LiIcon,
-  LiTitle,
-} from 'material-components';
+import { List, ListItem, LiIcon } from 'material-components';
 import Person from 'react-icons/lib/md/person';
 
 const demo = () => (
   <List>
     <ListItem>
-      <LiPrimary>
-        <LiIcon><Person /></LiIcon>
-        <LiTitle>Bryan Cranston</LiTitle>
-      </LiPrimary>
+      <LiIcon><Person /></LiIcon>
+      Bryan Cranston
+    </ListItem>
+    <ListItem>
+      <LiIcon><Person /></LiIcon>
+      Aaron Paul
+    </ListItem>
+    <ListItem>
+      <LiIcon><Person /></LiIcon>
+      Bob Odenkirk
     </ListItem>
   </List>
 );
@@ -22,22 +22,16 @@ const demo = () => (
 const caption = 'Icons';
 const code = `<List>
   <ListItem>
-    <ListItemContent>
-      <ListItemIcon><Person /></ListItemIcon>
-      Bryan Cranston
-    </ListItemContent>
+    <LiIcon><Person /></LiIcon>
+    Bryan Cranston
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemIcon><Person /></ListItemIcon>
-      Aaron Paul
-    </ListItemContent>
+    <LiIcon><Person /></LiIcon>
+    Aaron Paul
   </ListItem>
   <ListItem>
-    <ListItemContent>
-      <ListItemIcon><Person /></ListItemIcon>
-      Bob Odenkirk
-    </ListItemContent>
+    <LiIcon><Person /></LiIcon>
+    Bob Odenkirk
   </ListItem>
 </List>`;
 

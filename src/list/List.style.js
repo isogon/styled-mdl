@@ -97,7 +97,7 @@ export const LiIcon = styled.i`
   }
 `;
 
-const avatarStyle = css`
+export const LiAvatar = styled.span`
   height: ${g.listAvatarSize}px;
   width: ${g.listAvatarSize}px;
   box-sizing: border-box;
@@ -106,6 +106,12 @@ const avatarStyle = css`
   background-color: ${g.listIconColor};
   // Set a font size and color in case the user provides a Material Icon.
   font-size: ${g.listAvatarSize}px;
+  ${({ src }) => src && css`
+    background-image: url(${src});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  `}
   color: ${g.listAvatarColor};
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listAvatarSize - theme.listMinPadding}px;
   .twoLine & {
@@ -128,6 +134,3 @@ export const LiTextBody = styled.div`
   display: block;
   padding: 0;
 `;
-
-export const ImgAvatar = styled.img`${avatarStyle}`;
-export const IconAvatar = styled.span`${avatarStyle}`;
