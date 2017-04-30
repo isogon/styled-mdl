@@ -11,6 +11,7 @@ import TextFields from 'containers/TextFields';
 import Chips from 'containers/Chips';
 import Badges from 'containers/Badges';
 import Dialog from 'containers/Dialog';
+import Lists from 'containers/Lists';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -24,6 +25,7 @@ const routes = (
     <Route path="/chips" component={Chips} />
     <Route path="/badges" component={Badges} />
     <Route path="/dialogs" component={Dialog} />
+    <Route path="/lists" component={Lists} />
   </Route>
 );
 

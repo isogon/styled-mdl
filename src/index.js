@@ -16,5 +16,6 @@ export * from './textfield';
 export * from './chips';
 export * from './badges';
 export * from './dialog';
+export * from './list';
 
 export * as util from './util';

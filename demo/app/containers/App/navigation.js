@@ -20,6 +20,10 @@ export const sideNavLinks = [
     label: 'Dialogs',
   },
   {
+    to: '/lists',
+    label: 'Lists',
+  },
+  {
     to: '/snackbar',
     label: 'Snackbar',
   },
