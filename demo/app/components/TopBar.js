@@ -8,26 +8,29 @@ const { getters: g } = util;
 
 const Header = styled.header`
   height: 64px;
-  background: ${g.textLinkColor};
-  padding: 0 32px;
+  background: #FAFAFA;
+  padding: 0 48px;
   display: flex;
   align-items: center;
+  color: black;
 `;
 
 const Title = styled.h1`
   margin: 0;
-  color: white;
   font-weight: normal;
   font-size: 16px;
+  position: relative;
+  top: 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: ${g.textLinkColor}
 `;
 
 const TopBarLink = styled.a`
   font-weight: 500;
   font-size: 13px;
   text-decoration: none;
-  color: white;
+  color: #888;
   opacity: 0.65;
   &:hover {
     opacity: 1;
@@ -42,13 +45,12 @@ const GitHub = styled(MdLink)`
 
 const TopBar = () => (
   <Header>
-    <Title>MDC</Title>
+    <Title>Material <br /> Design <br />Components</Title>
     <Spacer />
     <TopBarLink href="https://github.com/isogon/material-components">
       <GitHub /> GitHub
     </TopBarLink>
   </Header>
 );
-
 
 export default TopBar;

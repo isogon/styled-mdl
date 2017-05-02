@@ -17,5 +17,6 @@ export * from './chips';
 export * from './badges';
 export * from './dialog';
 export * from './list';
+export * from './menu';
 
 export * as util from './util';

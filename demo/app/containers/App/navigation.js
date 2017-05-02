@@ -24,16 +24,20 @@ export const sideNavLinks = [
     label: 'Lists',
   },
   {
+    to: '/loading',
+    label: 'Loading',
+  },
+  {
+    to: '/menus',
+    label: 'Menus',
+  },
+  {
     to: '/snackbar',
     label: 'Snackbar',
   },
   {
     to: '/toggles',
     label: 'Toggles',
-  },
-  {
-    to: '/loading',
-    label: 'Loading',
   },
   {
     to: '/textfields',

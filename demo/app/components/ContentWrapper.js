@@ -5,4 +5,5 @@ export default styled.div`
   flex-grow: 1;
   flex-direction: column;
   min-height: 100%;
+  padding-left: 200px
 `;

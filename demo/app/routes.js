@@ -12,6 +12,7 @@ import Chips from 'containers/Chips';
 import Badges from 'containers/Badges';
 import Dialog from 'containers/Dialog';
 import Lists from 'containers/Lists';
+import Menus from 'containers/Menus';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -26,6 +27,7 @@ const routes = (
     <Route path="/badges" component={Badges} />
     <Route path="/dialogs" component={Dialog} />
     <Route path="/lists" component={Lists} />
+    <Route path="/menus" component={Menus} />
   </Route>
 );
 

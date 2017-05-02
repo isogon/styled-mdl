@@ -8,17 +8,19 @@ const { getters: g } = util;
 
 const Nav = styled.aside`
   width: 200px;
-  min-height: 100%;
-  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
   background: #fff;
   padding: 32px 0;
-  position: relative;
   ${shadow4dp}
+  overflow: auto;
 `;
 
 const NavLink = styled(Link)`
   display: block;
-  height: 48px;
+  height: 40px;
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -33,11 +35,9 @@ const NavLink = styled(Link)`
 const SideNav = ({ links }) => (
   <Nav>
     {links.map((link, i) => (
-      <NavLink
-        key={i}
-        to={link.to}
-        activeClassName="active"
-      >{link.label}</NavLink>
+      <NavLink key={i} to={link.to} activeClassName="active">
+        {link.label}
+      </NavLink>
     ))}
   </Nav>
 );

@@ -11,16 +11,16 @@ import { sideNavLinks } from './navigation';
 export default class App extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
-  }
+  };
 
   render() {
     return (
       <Theme>
         <div>
-          <TopBar />
           <AppWrapper>
             <SideNav links={sideNavLinks} />
             <ContentWrapper>
+              <TopBar />
               {React.Children.toArray(this.props.children)}
             </ContentWrapper>
           </AppWrapper>
