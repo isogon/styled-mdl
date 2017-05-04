@@ -6,7 +6,6 @@ import { Ripple } from '../ripple';
 export default class MenuItem extends Component {
   static propTypes = {
     isVisible: PropTypes.bool,
-    fadeDown: PropTypes.bool,
     children: PropTypes.node,
   };
 
@@ -24,7 +23,7 @@ export default class MenuItem extends Component {
       } = this.menuItem.parentNode.parentNode.getBoundingClientRect();
       const offsetTop = this.menuItem.offsetTop;
       const { height: itemHeight } = this.menuItem.getBoundingClientRect();
-      const getTransitionDelay = this.props.fadeDown
+      const getTransitionDelay = nextProps.fadeDown
         ? (duration) => offsetTop / height * duration
         : (duration) => -(offsetTop + itemHeight - height) / height * duration;
 
