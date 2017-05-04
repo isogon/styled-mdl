@@ -23,13 +23,6 @@ export default class Menu extends Component {
     this.state = {
       isVisible: false,
     };
-
-    this.controlNode = cloneElement(props.control, {
-      onClick: this.handleClick,
-      innerRef: (ctrl) => {
-        this.control = ctrl;
-      },
-    });
   }
 
   componentWillUnmount() {
@@ -42,17 +35,17 @@ export default class Menu extends Component {
     const control = getRelativePosition(this.control);
     const position = {};
     if (this.props.bottomRight) {
-      position.left = control.left + control.width - this.state.width;
-      position.top = control.top + control.height;
+      position.left = control.right - this.state.width;
+      position.top = control.bottom;
     } else if (this.props.topLeft) {
       position.left = control.left;
       position.top = control.top - this.state.height;
     } else if (this.props.topRight) {
-      position.left = control.left + control.width - this.state.width;
+      position.left = control.right - this.state.width;
       position.top = control.top - this.state.height;
     } else {
       position.left = control.left;
-      position.top = control.top + control.height;
+      position.top = control.bottom;
     }
 
     this.setState({ ...position });
@@ -90,7 +83,7 @@ export default class Menu extends Component {
     const childrenWithProps = Children.map(this.props.children, (child) =>
       cloneElement(child, {
         isVisible: this.state.isVisible,
-        growUp: !this.props.topRight && !this.props.topLeft,
+        fadeDown: !this.props.topRight && !this.props.topLeft,
       }),
     );
 
@@ -114,7 +107,9 @@ export default class Menu extends Component {
           <MenuContainer
             {...this.state}
             {...this.props}
-            onClick={() => setTimeout(() => this.handleClose(), 100)}
+            onClick={() => {
+              setTimeout(() => this.handleClose(), 100);
+            }}
           >
             <MenuOutline {...this.state} {...this.props} />
             <MenuBase
