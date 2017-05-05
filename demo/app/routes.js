@@ -13,6 +13,7 @@ import Badges from 'containers/Badges';
 import Dialog from 'containers/Dialog';
 import Lists from 'containers/Lists';
 import Menus from 'containers/Menus';
+import Sliders from 'containers/Sliders';
 
 const routes = (
   <Route name="app" path="/" component={App}>
@@ -28,6 +29,7 @@ const routes = (
     <Route path="/dialogs" component={Dialog} />
     <Route path="/lists" component={Lists} />
     <Route path="/menus" component={Menus} />
+    <Route path="/sliders" component={Sliders} />
   </Route>
 );
 

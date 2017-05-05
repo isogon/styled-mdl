@@ -18,5 +18,6 @@ export * from './badges';
 export * from './dialog';
 export * from './list';
 export * from './menu';
+export * from './slider';
 
 export * as util from './util';

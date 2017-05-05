@@ -32,6 +32,10 @@ export const sideNavLinks = [
     label: 'Menus',
   },
   {
+    to: '/sliders',
+    label: 'Sliders',
+  },
+  {
     to: '/snackbar',
     label: 'Snackbar',
   },
