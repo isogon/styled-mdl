@@ -4,13 +4,13 @@ import MdAdd from 'react-icons/lib/md/add';
 import { Tooltip, Button } from 'material-components';
 
 const demo = () => (
-  <Tooltip message="Follow" below>
+  <Tooltip message="Follow" position="below">
     <Button icon><MdAdd /></Button>
   </Tooltip>
 );
 
 const caption = 'Below';
-const code = `<Tooltip text="Follow" below>
+const code = `<Tooltip text="Follow" position="below">
   <Button icon><MdAdd /></Button>
 </Tooltip>`;
 

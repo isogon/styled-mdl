@@ -3,47 +3,50 @@ import { getters as g } from '../util';
 import { arrowTop, arrowBottom, arrowLeft, arrowRight } from '../mixins';
 
 export const TooltipWrapper = styled.div`
-
-`;
-
-export const TooltipContent = styled.div`
   display: inline-block;
 `;
 
 export const TooltipPosition = styled.div`
   position: fixed;
-  top: ${({ y }) => y - 7}px;
-  left: ${({ x }) => x}px;
   transform: scale(0.6);
   opacity: 0;
-  transform-origin: bottom center;
   transition: opacity 0.2s ${g.animationCurveLinearOutSlowIn},
               transform 0.2s ${g.animationCurveLinearOutSlowIn};
   ${({ isVisible }) => isVisible && css`
     opacity: 1;
     transform: none;
   `}
-  ${({ below }) => below && css`
-    top: ${({ y }) => y + 7}px;
-    left: ${({ x }) => x}px;
-    transform-origin: top center;
-  `}
-  ${({ left }) => left && css`
-    top: ${({ y }) => y}px;
-    left: ${({ x }) => x - 7}px;
-    transform-origin: center right;
-  `}
-  ${({ right }) => right && css`
-    top: ${({ y }) => y}px;
-    left: ${({ x }) => x + 7}px;
-    transform-origin: center left;
-  `}
+  ${({ position, x, y }) => {
+    switch (position) {
+      case 'above':
+        return css`
+          top: ${y - 7}px;
+          left: ${x}px;
+          transform-origin: bottom center;
+        `;
+      case 'below':
+        return css`
+          top: ${y + 7}px;
+          left: ${x}px;
+          transform-origin: top center;
+        `;
+      case 'left':
+        return css`
+          top: ${y}px;
+          left: ${x - 7}px;
+          transform-origin: center right;
+        `;
+      case 'right':
+        return css`
+          top: ${y}px;
+          left: ${x + 7}px;
+          transform-origin: center left;
+      `;
+      default:
+        return null;
+    }
+  }}
 `;
-
-const tooltipPositionTop = 'translate(-50%, -100%)';
-const tooltipPositionBottom = 'translate(-50%, 0)';
-const tooltipPositionLeft = 'translate(-100%, -50%)';
-const tooltipPositionRight = 'translate(0%, -50%)';
 
 export const TooltipBase = styled.div`
   display: block;
@@ -62,20 +65,30 @@ export const TooltipBase = styled.div`
     font-size: ${g.tooltipFontSizeLarge}px;
     padding: 16px;
   `}
-  ${({ below, left, right }) => !below && !left && !right && css`
-    transform: ${tooltipPositionTop};
-    ${({ theme }) => arrowBottom('5px', theme.tooltipBackgroundColor)}
-  `}
-  ${({ below }) => below && css`
-    transform: ${tooltipPositionBottom};
-    ${({ theme }) => arrowTop('5px', theme.tooltipBackgroundColor)}
-  `}
-  ${({ left }) => left && css`
-    transform: ${tooltipPositionLeft};
-    ${({ theme }) => arrowRight('5px', theme.tooltipBackgroundColor)}
-  `}
-  ${({ right }) => right && css`
-    transform: ${tooltipPositionRight};
-    ${({ theme }) => arrowLeft('5px', theme.tooltipBackgroundColor)}
-  `}
+  ${({ position, theme }) => {
+    switch (position) {
+      case 'above':
+        return css`
+          transform: translate(-50%, -100%);
+          ${arrowBottom('5px', theme.tooltipBackgroundColor)}
+        `;
+      case 'below':
+        return css`
+          transform: translate(-50%, 0);
+          ${arrowTop('5px', theme.tooltipBackgroundColor)}
+        `;
+      case 'left':
+        return css`
+          transform: translate(-100%, -50%);
+          ${arrowRight('5px', theme.tooltipBackgroundColor)}
+        `;
+      case 'right':
+        return css`
+          transform: translate(0%, -50%);
+          ${arrowLeft('5px', theme.tooltipBackgroundColor)}
+      `;
+      default:
+        return null;
+    }
+  }}
 `;
