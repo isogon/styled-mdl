@@ -40,11 +40,15 @@ export const sideNavLinks = [
     label: 'Snackbar',
   },
   {
-    to: '/toggles',
-    label: 'Toggles',
+    to: '/tables',
+    label: 'Tables',
   },
   {
     to: '/textfields',
     label: 'Text Fields',
+  },
+  {
+    to: '/toggles',
+    label: 'Toggles',
   },
 ];

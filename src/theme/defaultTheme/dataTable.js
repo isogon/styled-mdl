@@ -10,7 +10,7 @@ export const dataTableDividerColor = 'rgba(0, 0, 0, 0.12)';
 export const dataTableHoverColor = '#eeeeee';
 export const dataTableSelectionColor = '#e0e0e0';
 
-export const dataTableDividers = '13 solid dataTableDividerColor';
+export const dataTableDividers = `1px solid ${dataTableDividerColor}`;
 
 export const dataTableRowHeight = 48;
 export const dataTableLastRowHeight = 56;

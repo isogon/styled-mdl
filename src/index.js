@@ -19,5 +19,7 @@ export * from './dialog';
 export * from './list';
 export * from './menu';
 export * from './slider';
+export * from './tables';
+export theme from 'util/getters';
 
 export * as util from './util';
