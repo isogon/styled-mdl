@@ -11,15 +11,6 @@ import { getters as g } from '../util';
 //   height: 32px;
 //   margin: 0;
 // }
-const percentFilled = ({ value, max, min }) => (value - min) / (max - min);
-const percentEmpty = (props) => 1 - percentFilled(props);
-const whenLowestValue = (styles) => ({ value, min }) => {
-  if (!value || value === min) {
-    return css`${styles}`;
-  }
-
-  return null;
-};
 
 export const SliderInput = styled.input`
   width: calc(100% - 40px);
@@ -171,7 +162,7 @@ export const SliderInput = styled.input`
     }
   `}
 
-  ${whenLowestValue(css`
+  ${({ isLowestValue }) => isLowestValue && css`
     &::-webkit-slider-thumb {
       border: 2px solid ${g.rangeBgColor};
       background: transparent;
@@ -270,7 +261,7 @@ export const SliderInput = styled.input`
         }
       `}
     `}
-  `)}
+  `}
   ${({ disabled }) => disabled && css`
     &::-webkit-slider-thumb {
       transform: scale(0.667);
@@ -324,7 +315,7 @@ export const SliderContainer = styled.div`
 
 // This one sets up a flex box for the styled upper and lower portions of the
 // the slider track.
-export const SliderBackgroundFlex = styled.div`
+export const SliderBackground = styled.div`
   background: transparent;
   position: absolute;
   height: 2px;
@@ -337,41 +328,33 @@ export const SliderBackgroundFlex = styled.div`
   border: 0;
   padding: 0;
   transform: translate(0, -1px);
-  ${whenLowestValue(css`
-  `)}
-`;
-
-// This one styles the lower part of the slider track.
-export const SliderBackgroundLower = styled.div`
-  background: ${g.rangeColor};
-  flex: ${percentFilled} 1 0%;
-  position: relative;
-  border: 0;
-  padding: 0;
-  ${({ disabled }) => disabled && css`
-    background-color: ${g.rangeBgColor};
-    left: -6px;
-  `}
-`;
-
-// This one styles the upper part of the slider track.
-export const SliderBackgroundUpper = styled.div`
-  background: ${g.rangeBgColor};
-  flex: ${percentEmpty} 1 0%;
-  position: relative;
-  border: 0;
-  padding: 0;
-  transition: left 0.18s ${g.animationCurveDefault}
-  ${whenLowestValue(css`
-    left: 6px;
-    ${({ active }) => active && css`
-      left: 9px;
-      ${({ disabled }) => disabled && css`
-        left: 6px;
+  &:before, &:after {
+    display: block;
+    content: "";
+    position: relative;
+    border: 0;
+    padding: 0;
+  }
+  &:before {
+    background: ${g.rangeColor};
+    flex: ${({ percentFilled }) => percentFilled} 1 0%;
+    ${({ disabled }) => disabled && css`
+      background-color: ${g.rangeBgColor};
+      left: -6px;
+    `}
+  }
+  &:after {
+    background: ${g.rangeBgColor};
+    flex: ${({ percentEmpty }) => percentEmpty} 1 0%;
+    transition: left 0.18s ${g.animationCurveDefault}
+    ${({ isLowestValue }) => isLowestValue && css`
+      left: 6px;
+      ${({ active, disabled }) => active && !disabled && css`
+        left: 9px;
       `}
     `}
-  `)}
-  ${({ disabled }) => disabled && css`
-    left: 6px;
-  `}
+    ${({ disabled }) => disabled && css`
+      left: 6px;
+    `}
+  }
 `;

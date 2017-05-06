@@ -1,13 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { autobind } from 'core-decorators';
-
-import {
-  SliderInput,
-  SliderContainer,
-  SliderBackgroundFlex,
-  SliderBackgroundLower,
-  SliderBackgroundUpper,
-} from './Slider.style';
+import isUndefined from 'lodash/isUndefined';
+import { SliderInput, SliderContainer, SliderBackground } from './Slider.style';
 
 export default class Slider extends Component {
   static propTypes = {
@@ -26,22 +20,21 @@ export default class Slider extends Component {
 
   constructor(props) {
     super(props);
-
-    this.controlled = {
-      focused: typeof props.focused !== 'undefined',
-      value: typeof props.value !== 'undefined',
-    };
+    const value = props.value || props.defaultValue;
 
     this.state = {
       focused: props.focused || props.autoFocus,
       active: props.active,
-      value: parseFloat(props.value || props.defaultValue || props.min, 10),
     };
+
+    if (value) {
+      this.state.value = value;
+    }
   }
 
   @autobind handleChange(e) {
-    if (!this.props.value) {
-      this.setState({ value: parseFloat(e.target.value, 10) });
+    if (isUndefined(this.props.value)) {
+      this.setState({ value: e.target.value });
     }
 
     if (this.props.onChange) {
@@ -50,9 +43,7 @@ export default class Slider extends Component {
   }
 
   @autobind handleFocus(e) {
-    if (!this.controlled.focus) {
-      this.setState({ focused: true });
-    }
+    this.setState({ focused: true });
 
     if (this.props.onFocus) {
       this.props.onFocus(e);
@@ -60,9 +51,7 @@ export default class Slider extends Component {
   }
 
   @autobind handleBlur(e) {
-    if (!this.controlled.focus) {
-      this.setState({ focused: false });
-    }
+    this.setState({ focused: false });
 
     if (this.props.onBlur) {
       this.props.onBlur(e);
@@ -81,52 +70,51 @@ export default class Slider extends Component {
   render() {
     const { disabled, max, min } = this.props;
     const { active } = this.state;
-    const maxF = parseFloat(max, 10);
-    const minF = parseFloat(min, 10);
 
-    const value = typeof this.props.value === 'undefined'
+    const value = isUndefined(this.props.value)
       ? this.state.value
       : this.props.value;
 
-    const focused = typeof this.props.focused === 'undefined'
+    const focused = isUndefined(this.props.focused)
       ? this.state.focused
       : this.props.focused;
+
+    const valueF = parseFloat(value, 10);
+    const maxF = parseFloat(max, 10);
+    const minF = parseFloat(min, 10);
+
+    const percentFilled = isUndefined(value)
+      ? 0
+      : (valueF - minF) / (maxF - minF);
+    const percentEmpty = 1 - percentFilled;
+    const isLowestValue = isUndefined(value) || valueF === minF;
 
     return (
       <SliderContainer>
         <SliderInput
           type="range"
-          disabled={disabled}
           max={maxF}
           min={minF}
           value={value}
+          disabled={disabled}
           focused={focused}
+          active={active}
+          isLowestValue={isLowestValue}
           onInput={this.handleChange}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          active={active}
         />
-        <SliderBackgroundFlex disabled={disabled}>
-          <SliderBackgroundLower
-            disabled={disabled}
-            active={active}
-            max={maxF}
-            min={minF}
-            value={value}
-            focused={focused}
-          />
-          <SliderBackgroundUpper
-            disabled={disabled}
-            active={active}
-            max={maxF}
-            min={minF}
-            value={value}
-            focused={focused}
-          />
-        </SliderBackgroundFlex>
+        <SliderBackground
+          disabled={disabled}
+          active={active}
+          focused={focused}
+          isLowestValue={isLowestValue}
+          percentFilled={percentFilled}
+          percentEmpty={percentEmpty}
+        />
       </SliderContainer>
     );
   }
