@@ -4,6 +4,8 @@ export default function getRelativePosition(element) {
   const sy = window.scrollY || window.pageYOffset;
 
   return {
+    height: rect.height,
+    width: rect.width,
     top: rect.top + sy,
     left: rect.left + sx,
     bottom: rect.bottom + sy,

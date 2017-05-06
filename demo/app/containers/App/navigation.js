@@ -51,4 +51,8 @@ export const sideNavLinks = [
     to: '/toggles',
     label: 'Toggles',
   },
+  {
+    to: '/tooltips',
+    label: 'Tooltips',
+  },
 ];
