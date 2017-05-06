@@ -8,11 +8,11 @@ export default class Slider extends Component {
     focused: PropTypes.bool,
     autoFocus: PropTypes.bool,
     active: PropTypes.bool,
-    value: PropTypes.string,
-    defaultValue: PropTypes.string,
+    value: PropTypes.number,
+    defaultValue: PropTypes.number,
     disabled: PropTypes.bool,
-    min: PropTypes.string,
-    max: PropTypes.string,
+    min: PropTypes.number,
+    max: PropTypes.number,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
@@ -20,16 +20,14 @@ export default class Slider extends Component {
 
   constructor(props) {
     super(props);
-    const value = props.value || props.defaultValue;
+
+    console.log('constructing');
 
     this.state = {
+      value: props.value || props.defaultValue || props.min,
       focused: props.focused || props.autoFocus,
       active: props.active,
     };
-
-    if (value) {
-      this.state.value = value;
-    }
   }
 
   @autobind handleChange(e) {
@@ -79,22 +77,20 @@ export default class Slider extends Component {
       ? this.state.focused
       : this.props.focused;
 
-    const valueF = parseFloat(value, 10);
-    const maxF = parseFloat(max, 10);
-    const minF = parseFloat(min, 10);
+    console.log('value', value);
+    console.log('min', min);
+    console.log('percent', (value - min) / (max - min));
 
-    const percentFilled = isUndefined(value)
-      ? 0
-      : (valueF - minF) / (maxF - minF);
+    const percentFilled = (value - min) / (max - min);
     const percentEmpty = 1 - percentFilled;
-    const isLowestValue = isUndefined(value) || valueF === minF;
+    const isLowestValue = value === min;
 
     return (
       <SliderContainer>
         <SliderInput
           type="range"
-          max={maxF}
-          min={minF}
+          max={max}
+          min={min}
           value={value}
           disabled={disabled}
           focused={focused}

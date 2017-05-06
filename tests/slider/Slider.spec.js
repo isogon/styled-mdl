@@ -1,7 +1,7 @@
 import Slider from 'slider/Slider';
 import { SliderInput, SliderBackground } from 'slider/Slider.style';
 
-const render = shallowComponent(Slider, { min: '0', max: '100' });
+const render = shallowComponent(Slider, { min: 0, max: 100 });
 
 describe('<Slider>', () => {
   let slider;
@@ -21,11 +21,11 @@ describe('<Slider>', () => {
 
   describe('when controlled', () => {
     beforeEach(() => {
-      slider = render({ value: '10', focused: true });
+      slider = render({ value: 10, focused: true });
     });
 
     it('sets value from prop [value]', () => {
-      expect(get.input).toHaveProp('value', '10');
+      expect(get.input).toHaveProp('value', 10);
     });
 
     it('sets focused from prop [value]', () => {
@@ -34,8 +34,8 @@ describe('<Slider>', () => {
     });
 
     it('does not use internal value state', () => {
-      get.input.simulate('change', { target: { value: '25' } });
-      expect(get.input).toHaveProp('value', '10');
+      get.input.simulate('change', { target: { value: 25 } });
+      expect(get.input).toHaveProp('value', 10);
     });
 
     it('does not use internal focused state', () => {
@@ -56,8 +56,8 @@ describe('<Slider>', () => {
 
     describe('when initial values are provided', () => {
       it('uses defaultValue', () => {
-        slider = render({ defaultValue: '15' });
-        expect(get.input).toHaveProp('value', '15');
+        slider = render({ defaultValue: 15 });
+        expect(get.input).toHaveProp('value', 15);
       });
 
       it('uses autoFocus', () => {
@@ -68,8 +68,8 @@ describe('<Slider>', () => {
     });
 
     it('sets value from internal state', () => {
-      get.input.simulate('change', { target: { value: '25' } });
-      expect(get.input).toHaveProp('value', '25');
+      get.input.simulate('change', { target: { value: 25 } });
+      expect(get.input).toHaveProp('value', 25);
     });
 
     it('sets focused from internal state', () => {
@@ -148,7 +148,7 @@ describe('<Slider>', () => {
   describe('when input is changed', () => {
     it('calls [prop] onChange when it is defined', () => {
       const onChange = jest.fn();
-      const event = { target: { value: '10' } };
+      const event = { target: { value: 10 } };
       slider.setProps({ onChange });
       get.input.simulate('change', event);
 
@@ -158,11 +158,11 @@ describe('<Slider>', () => {
 
   describe('calculations', () => {
     beforeEach(() => {
-      slider.setProps({ min: '100', max: '200' });
+      slider = render({ min: 100, max: 200 });
     });
 
     it('sets percent filled from value when it is defined', () => {
-      slider.setProps({ value: '110' });
+      slider.setProps({ value: 110 });
       expect(get.bg).toHaveProp('percentFilled', 0.1);
     });
 
@@ -171,7 +171,7 @@ describe('<Slider>', () => {
     });
 
     it('sets percent empty from value when it is defined', () => {
-      slider.setProps({ value: '130' });
+      slider.setProps({ value: 130 });
       expect(get.bg).toHaveProp('percentEmpty', 0.7);
     });
 
@@ -180,19 +180,18 @@ describe('<Slider>', () => {
     });
 
     it('sets isLowestValue flag when value equals the min', () => {
-      slider.setProps({ value: '15', min: '15' });
+      slider.setProps({ value: 15, min: 15 });
       expect(get.bg).toHaveProp('isLowestValue', true);
       expect(get.input).toHaveProp('isLowestValue', true);
     });
 
     it('sets isLowestValue flag when value is undefined', () => {
-      slider.setProps({ min: '15' });
       expect(get.bg).toHaveProp('isLowestValue', true);
       expect(get.input).toHaveProp('isLowestValue', true);
     });
 
     it('does not set isLowestValue flag when value does not equal the min', () => {
-      slider.setProps({ value: '16', min: '15' });
+      slider.setProps({ value: 16, min: 15 });
       expect(get.bg).toHaveProp('isLowestValue', false);
       expect(get.input).toHaveProp('isLowestValue', false);
     });
