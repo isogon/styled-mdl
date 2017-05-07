@@ -34,31 +34,6 @@ describe('<Textfield />', () => {
     it('renders a Textarea', () => {
       expect(textarea()).toBePresent();
     });
-
-    it('updates internal value state when textfield value changes', () => {
-      const event = { target: { value: 'newValue' } };
-      textarea().simulate('change', event);
-
-      expect(textarea()).toHaveProp('value', event.target.value);
-    });
-
-    it('calls prop [onChange] with event', () => {
-      const onChange = jest.fn();
-      textfield.setProps({ onChange });
-
-      const event = { target: { value: 'newValue' } };
-      textarea().simulate('change', event);
-
-      expect(onChange).toHaveBeenCalledWith(event);
-    });
-
-    it('updates internal focused state on focus/blur', () => {
-      textarea().simulate('focus');
-      expect(textarea()).toHaveProp('focused', true);
-
-      textarea().simulate('blur');
-      expect(textarea()).toHaveProp('focused', false);
-    });
   });
 
   describe('when [prop] multiline is false', () => {
@@ -70,31 +45,6 @@ describe('<Textfield />', () => {
 
     it('renders an input', () => {
       expect(input()).toBePresent();
-    });
-
-    it('updates internal value state when input value changes', () => {
-      const event = { target: { value: 'newValue' } };
-      input().simulate('change', event);
-
-      expect(input()).toHaveProp('value', event.target.value);
-    });
-
-    it('calls prop [onChange] with event', () => {
-      const onChange = jest.fn();
-      textfield.setProps({ onChange });
-
-      const event = { target: { value: 'newValue' } };
-      input().simulate('change', event);
-
-      expect(onChange).toHaveBeenCalledWith(event);
-    });
-
-    it('updates internal focused state on focus/blur', () => {
-      input().simulate('focus');
-      expect(input()).toHaveProp('focused', true);
-
-      input().simulate('blur');
-      expect(input()).toHaveProp('focused', false);
     });
   });
 

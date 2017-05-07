@@ -31,7 +31,6 @@ export const SliderInput = styled.input`
   z-index: 1;
   cursor: pointer;
 
-
   // Disable default focus on Firefox.
   &::-moz-focus-outer {
     border: 0;
@@ -41,7 +40,6 @@ export const SliderInput = styled.input`
   &::-ms-tooltip {
     display: none;
   }
-
 
   /**************************** Tracks ****************************/
   &::-webkit-slider-runnable-track {
@@ -83,7 +81,6 @@ export const SliderInput = styled.input`
     ${g.rangeBgColor} 0);
   }
 
-
   /**************************** Thumbs ****************************/
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -110,8 +107,6 @@ export const SliderInput = styled.input`
     border: none;
     // -moz-range-thumb doesn't currently support transitions.
   }
-
-
 
   &::-ms-thumb {
     width: 32px;
@@ -162,7 +157,7 @@ export const SliderInput = styled.input`
     }
   `}
 
-  ${({ isLowestValue }) => isLowestValue && css`
+  ${({ percent }) => percent === 0 && css`
     &::-webkit-slider-thumb {
       border: 2px solid ${g.rangeBgColor};
       background: transparent;
@@ -173,7 +168,6 @@ export const SliderInput = styled.input`
       background: transparent;
     }
 
-
     &::-ms-thumb {
       background: radial-gradient(circle closest-side,
       transparent 0%,
@@ -182,9 +176,7 @@ export const SliderInput = styled.input`
       ${g.rangeBgColor} 100%);
     }
 
-
     ${({ focused, active }) => focused && !active && css`
-
       &::-webkit-slider-thumb {
         box-shadow: 0 0 0 10px ${g.rangeBgFocusColor};
         background: ${g.rangeBgFocusColor};
@@ -205,6 +197,7 @@ export const SliderInput = styled.input`
         transform: scale(1);
       }
     `}
+
     ${({ active }) => active && css`
       &::-webkit-slider-thumb {
         border: 1.6px solid ${g.rangeBgColor};
@@ -224,6 +217,7 @@ export const SliderInput = styled.input`
         ${g.rangeBgColor} 100%);
       }
     `}
+
     &::-ms-fill-lower {
       background: transparent;
     }
@@ -335,26 +329,25 @@ export const SliderBackground = styled.div`
     border: 0;
     padding: 0;
   }
-  &:before {
-    background: ${g.rangeColor};
-    flex: ${({ percentFilled }) => percentFilled} 1 0%;
-    ${({ disabled }) => disabled && css`
-      background-color: ${g.rangeBgColor};
-      left: -6px;
-    `}
-  }
-  &:after {
-    background: ${g.rangeBgColor};
-    flex: ${({ percentEmpty }) => percentEmpty} 1 0%;
-    transition: left 0.18s ${g.animationCurveDefault}
-    ${({ isLowestValue }) => isLowestValue && css`
-      left: 6px;
-      ${({ active, disabled }) => active && !disabled && css`
+  ${({ percent, disabled, active }) => css`
+    &:before {
+      background: ${g.rangeColor};
+      flex: ${percent} 1 0%;
+      ${disabled && css`
+        background-color: ${g.rangeBgColor};
+        left: -6px;
+      `}
+    }
+    &:after {
+      background: ${g.rangeBgColor};
+      flex: ${1 - percent} 1 0%;
+      transition: left 0.18s ${g.animationCurveDefault}
+      ${(percent === 0 || disabled) && css`
+        left: 6px;
+      `}
+      ${percent === 0 && active && !disabled && css`
         left: 9px;
       `}
-    `}
-    ${({ disabled }) => disabled && css`
-      left: 6px;
-    `}
-  }
+    }
+  `}
 `;

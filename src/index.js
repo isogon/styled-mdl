@@ -21,6 +21,7 @@ export * from './menu';
 export * from './slider';
 export * from './tables';
 export * from './tooltips';
+export * from './input';
 export theme from 'util/getters';
 
 export * as util from './util';
