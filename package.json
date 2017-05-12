@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
   "main": "lib/index.js",
@@ -34,8 +34,7 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "manualPrepublish": "prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock",
-    "ci": "yarn test && yarn build"
+    "manualPrepublish": "yarn build && prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
