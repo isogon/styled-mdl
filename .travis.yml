@@ -2,17 +2,15 @@ language: node_js
 node_js:
 - '6'
 before_install:
-  # we want npm 4 for the prepublishOnly behavior
-  - "npm install -g npm@^4"
+- npm install -g npm@^4
 cache: yarn
 before_deploy:
-  - "yarn manualPrepublish"
+- yarn manualPrepublish
 deploy:
   provider: npm
   email: weedond@gmail.com
   api_key:
-    secure: U66ceXBSw0Jqt7wsImAR43CSMlDvUoYffhrtuRVgegppFrcXRGqI4xE3pG9k2/npxZYN51SIjB1oMSfrz0vQWJne6T1NngQpPKQIuR42qp4mp38zPWL0uNORMNK9q6LsGi/317QPqJWttcFjX4caa5bhl73sMv4rTccisrJm10CsHuTFFhHKlKZJ+CI1LLCSNju8ctmpfc3NimL5ukfhOk2Zv//CCIylczfxLb4BaeBBkNVXs4SWYHExd9pyAav8p7a0oNQh3obx61O0qisUh8KOuocXC+PGpaiZ9/EdK2NcyYCO/H7/zwdFOPbLse57JxUPYY5/5Tb5sQTyEDosYyzZYIDPwf2YFaD873XTSaHAh2L72jSfIHsDbaUdRb0TGO981SXQani/rcySAkXWFIj4tgODef9lvId+WoCPqQjtH7SysXK2Vsxql1r/kww8qw74oDligsg14OiDvu9z+huQ0X4LIpgkW8jh9BDvPOaPULHpMlj4oqHtvIYBTk5SWO9/zoEDX+ICv6e33+aeHFHZwBM2rQIYhP/v/+LzhWUux4IGvzZqZTxSLZs6j0uVFB2dM0gZ3zjJgkfHXNS/rsBy/nIkDPJX5PY6eFyR68+BFypfy8eUafprxub3buqGICsYZ+3EREjWlNelTJRXtjA7qkEBPGVXlv5ZicnywdQ=
-  skip_cleanup: true
+    secure: jyv5DkfafnJGzxqGQtlMHv+R+VzBSIwlsL4Yg0yLFeDfpMw1K1S9Vi3du1n5EfTYejgG72+DWBMwLiuhw0hdH3Co7prI9pf+tUY1wnWsEwcWnDSPCN3XXUGNH/zvXAmio3znq0IkDcB8b84f4yp/s11J5Y4SYC8oXs94eA4ETQ8uoW7edqkSzXoJ03Vvezosrs2h6/wvvT0Zzv8gS52QaWLoYDVo1sYyufbEcG09eq5cgeikpq2lXaSMDI41HFMKsy4IiJ7y7EZsrgUaHv6r42wsHZuJDCfkRqYC70OnycP9v0iftdfxbVPd+k8R2z1FBj8Om5TyWZwA13dMyi7Lm+tahsDX2yihCHFVeq98Pw2Ix5qW4QMU8GoLma5ge9idwY/+IHLLialSz79UBGzlqSIHL3NBp4hFWJM25kZCUCuiEJMcObDK3p3Oro421jhm/i4hh2iEY/hFmdgocWkkedF9bued/l2RmGeWGkdFx0hDfdCUM1YjYQsd38+X6mukprDN7FoEgHWDbT7o4vdgXiJe+MbkLXPNBFyORpYY/la1nabsEGSAtUQZv7Z3ZKz7DIGdWYXHcaiVDBowJPzjuMfEudWwoEtuyWuO4DixqjcOQ3OUDMH6Sxe2bc0atvQFp5n8k6REQeOMrG9WYdHVIUoeRhi730NZfT8aqDN59SA=
   on:
     tags: true
     repo: isogon/styled-mdl
