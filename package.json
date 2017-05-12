@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
   "main": "lib/index.js",
@@ -15,7 +15,6 @@
   "author": "David Weedon",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yarn build:dll",
     "prebuild": "yarn build:clean && yarn lint",
     "build": "babel -s inline --ignore '**/tests' --source-root src/ -d lib src/",
     "build:clean": "yarn test:clean && rimraf ./lib",
