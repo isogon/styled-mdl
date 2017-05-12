@@ -1,10 +1,11 @@
 {
-  "name": "material-components",
-  "version": "3.4.0",
-  "description": "Material Design components for React",
+  "name": "styled-mdl",
+  "version": "0.0.1",
+  "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "git://github.com/isogon/material-components.git"
+    "url": "git://github.com/isogon/styled-mdl.git"
   },
   "engines": {
     "npm": ">=3",
@@ -32,7 +33,9 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "manualPrepublish": "prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock",
+    "ci": "yarn lint && yarn test && yarn build"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
