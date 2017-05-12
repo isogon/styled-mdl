@@ -1,8 +1,9 @@
 {
   "name": "styled-mdl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/isogon/styled-mdl.git"
@@ -16,8 +17,8 @@
   "scripts": {
     "postinstall": "yarn build:dll",
     "prebuild": "yarn build:clean && yarn lint",
-    "build": "babel -s inline --ignore '**/tests' --source-root src/ -d build src/",
-    "build:clean": "yarn test:clean && rimraf ./build",
+    "build": "babel -s inline --ignore '**/tests' --source-root src/ -d lib src/",
+    "build:clean": "yarn test:clean && rimraf ./lib",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development node demo/server",
     "presetup": "yarn add global chalk shelljs",
@@ -35,7 +36,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "manualPrepublish": "prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock",
-    "ci": "yarn lint && yarn test && yarn build"
+    "ci": "yarn test && yarn build"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
