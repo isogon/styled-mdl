@@ -1,6 +1,18 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
+before_install:
+  # we want npm 4 for the prepublishOnly behavior
+  - "npm install -g npm@^4"
 cache: yarn
-script:
-  - yarn ci
+before_deploy:
+  - "yarn manualPrepublish"
+deploy:
+  provider: npm
+  email: weedond@gmail.com
+  api_key:
+    secure: U66ceXBSw0Jqt7wsImAR43CSMlDvUoYffhrtuRVgegppFrcXRGqI4xE3pG9k2/npxZYN51SIjB1oMSfrz0vQWJne6T1NngQpPKQIuR42qp4mp38zPWL0uNORMNK9q6LsGi/317QPqJWttcFjX4caa5bhl73sMv4rTccisrJm10CsHuTFFhHKlKZJ+CI1LLCSNju8ctmpfc3NimL5ukfhOk2Zv//CCIylczfxLb4BaeBBkNVXs4SWYHExd9pyAav8p7a0oNQh3obx61O0qisUh8KOuocXC+PGpaiZ9/EdK2NcyYCO/H7/zwdFOPbLse57JxUPYY5/5Tb5sQTyEDosYyzZYIDPwf2YFaD873XTSaHAh2L72jSfIHsDbaUdRb0TGO981SXQani/rcySAkXWFIj4tgODef9lvId+WoCPqQjtH7SysXK2Vsxql1r/kww8qw74oDligsg14OiDvu9z+huQ0X4LIpgkW8jh9BDvPOaPULHpMlj4oqHtvIYBTk5SWO9/zoEDX+ICv6e33+aeHFHZwBM2rQIYhP/v/+LzhWUux4IGvzZqZTxSLZs6j0uVFB2dM0gZ3zjJgkfHXNS/rsBy/nIkDPJX5PY6eFyR68+BFypfy8eUafprxub3buqGICsYZ+3EREjWlNelTJRXtjA7qkEBPGVXlv5ZicnywdQ=
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: isogon/styled-mdl
