@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@isogon/prepare-package@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@isogon/prepare-package/-/prepare-package-0.0.3.tgz#e96c15cad85f6f559137d90eca791a3b1a800df2"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"

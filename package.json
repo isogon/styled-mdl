@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
   "main": "lib/index.js",
@@ -231,6 +231,7 @@
     "styled-components": "1.1.2"
   },
   "devDependencies": {
+    "@isogon/prepare-package": "^0.0.3",
     "babel-cli": "6.18.0",
     "babel-core": "6.21.0",
     "babel-eslint": "7.1.1",
