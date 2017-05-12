@@ -3,7 +3,4 @@ export const switchLabelHeight = 24;
 export const switchTrackHeight = 14;
 export const switchTrackLength = 36;
 export const switchThumbSize = 20;
-export const switchTrackTop = (switchLabelHeight - switchTrackHeight) / 2;
-export const switchThumbTop = (switchLabelHeight - switchThumbSize) / 2;
-export const switchRippleSize = switchLabelHeight * 2;
 export const switchHelperSize = 8;

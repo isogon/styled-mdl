@@ -1,3 +1,4 @@
-import * as defaultTheme from './_combiner';
+import createTheme from './createTheme';
 
-export default defaultTheme;
+export const defaultTheme = createTheme();
+export { createTheme };

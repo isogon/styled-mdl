@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import defaultTheme from './defaultTheme';
+import { defaultTheme } from './defaultTheme';
 
 export default function Theme({ children, theme = defaultTheme }) {
   return (

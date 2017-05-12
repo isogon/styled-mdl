@@ -10,8 +10,8 @@ import {
   grey,
   darkContrast,
   lightContrast,
-} from './colorDefinitions';
-import { rgba, rgb } from '../../util/colors';
+} from '../colorDefinitions';
+import { rgba, rgb } from '../../../util/colors';
 
 
 /* ==========  General  ========== */
@@ -35,12 +35,6 @@ export const colorAccentContrast = darkContrast;
 export const textColorPrimary = rgba(black, 0.87);
 export const textLinkColor = rgb(pink[700]);
 
-// Define whether to target elements directly for typographic enhancements.
-// Turning this off means you need to use mdl-* classes more often.
-// Other components may also fail to adhere to MD without these rules.
-// It is strongly recommended you leave this as true.
-export const targetElementsDirectly = true;
-
 /* ==========  Components  ========== */
 
 /* ==========  Standard Buttons  ========== */
@@ -48,46 +42,23 @@ export const targetElementsDirectly = true;
 // Default button colors.
 export const buttonPrimaryColor = rgba(grey[500], 0.20);
 export const buttonSecondaryColor = rgb(black);
-export const buttonHoverColor = buttonPrimaryColor;
 export const buttonActiveColor = rgba(grey[500], 0.40);
 export const buttonFocusColor = rgba(black, 0.12);
-
-// Colored button colors.
-export const buttonPrimaryColorAlt = rgb(colorPrimary);
-export const buttonSecondaryColorAlt = rgb(colorPrimaryContrast);
-export const buttonHoverColorAlt = rgb(colorPrimary);
-export const buttonActiveColorAlt = rgb(colorPrimary);
-export const buttonFocusColorAlt = buttonFocusColor;
-
-// Ripple color for colored raised buttons.
-export const buttonRippleColorAlt = rgb(colorPrimaryContrast);
 
 // Disabled button colors.
 export const buttonPrimaryColorDisabled = rgba(black, 0.12);
 export const buttonSecondaryColorDisabled = rgba(black, 0.26);
 
-// FAB colors and sizes.
-export const buttonFabColorAlt = rgb(colorAccent);
-export const buttonFabHoverColorAlt = rgb(colorAccent);
-export const buttonFabActiveColorAlt = rgb(colorAccent);
-export const buttonFabTextColorAlt = rgb(colorAccentContrast);
-export const buttonFabRippleColorAlt = rgb(colorAccentContrast);
-
 // Icon button colors and sizes.
 export const buttonIconColor = rgb(grey[700]);
-export const buttonIconFocusColor = buttonFocusColor;
 
 /* ==========  Icon Toggles  ========== */
 
 export const iconToggleColor = rgb(grey[700]);
-export const iconToggleCocusColor = buttonFocusColor;
-export const iconToggleCheckedColor = rgb(colorPrimary);
-export const iconToggleCheckedFocusColor = rgba(colorPrimary, 0.26);
-export const iconToggleCisabledColor = rgba(black, 0.26);
+export const iconToggleDisabledColor = rgba(black, 0.26);
 
 /* ==========  Radio Buttons  ========== */
 
-export const radioColor = rgb(colorPrimary);
 export const radioOffColor = rgba(black, 0.54);
 export const radioDisabledColor = rgba(black, 0.26);
 
@@ -108,34 +79,22 @@ export const layoutDrawerNavigationLinkActiveBackground = rgb(grey[300]);
 export const layoutDrawerNavigationLinkActiveColor = rgb(lightContrast);
 
 // Header
-export const layoutHeaderBgColor = rgb(colorPrimary);
-export const layoutHeaderTextColor = rgb(colorPrimaryContrast);
 export const layoutHeaderNavHoverColor = rgba(grey[700], 0.6);
-export const layoutHeaderTabTextColor = rgba(colorPrimaryContrast, 0.6);
 
 // Tabs
-export const layoutHeaderTabHighlight = rgb(colorAccent);
 
 /* ==========  Content Tabs  ========== */
 
-export const tabHighlightColor = rgb(colorPrimary);
 export const tabTextColor = rgba(black, 0.54);
 export const tabActiveTextColor = rgba(black, 0.87);
 export const tabBorderColor = rgb(grey[300]);
 
 /* ==========  Checkboxes  ========== */
 
-export const checkboxColor = rgb(colorPrimary);
 export const checkboxOffColor = rgba(black, 0.54);
 export const checkboxDisabledColor = rgba(black, 0.26);
-export const checkboxFocusColor = rgba(colorPrimary, 0.26);
 
 /* ==========  Switches  ========== */
-
-export const switchColor = rgb(colorPrimary);
-export const switchFadedColor = rgba(colorPrimary, 0.26);
-export const switchThumbColor = switchColor;
-export const switchTrackColor = rgba(colorPrimary, 0.5);
 
 export const switchOffThumbColor = rgb(grey[50]);
 export const switchOffTrackColor = rgba(black, 0.26);
@@ -149,23 +108,17 @@ export const spinnerColor2 = rgb(red[500]);
 export const spinnerColor3 = rgb(yellow[600]);
 export const spinnerColor4 = rgb(green[500]);
 
-export const spinnerSingleColor = rgb(colorPrimary);
-
 /* ==========  Text fields  ========== */
 
 export const inputTextBackgroundColor = 'transparent';
 export const inputTextLabelColor = rgba(black, 0.26);
 export const inputTextBottomBorderColor = rgba(black, 0.12);
-export const inputTextHighlightColor = rgb(colorPrimary);
-export const inputTextDisabledColor = inputTextBottomBorderColor;
-export const inputTextDisabledTextColor = inputTextLabelColor;
 export const inputTextErrorColor = rgb(red[700]);
 
 /* ==========  Card  ========== */
 
 export const cardBackgroundColor = rgb(white);
 export const cardTextColor = rgb(black);
-export const cardImagePlaceholderColor = rgb(colorAccent);
 export const cardSupportingTextTextColor = rgba(black, 0.54);
 export const cardBorderColor = 'rgba(0,0,0,0.1)';
 export const cardSubtitleColor = rgba(black, 0.54);
@@ -173,14 +126,7 @@ export const cardSubtitleColor = rgba(black, 0.54);
 /* ==========  Sliders ========== */
 
 export const rangeBgColor = rgba(black, 0.26);
-export const rangeColor = rgb(colorPrimary);
-export const rangeFadedColor = rgba(colorPrimary, 0.26);
 export const rangeBgFocusColor = rgba(black, 0.12);
-
-/* ========== Progress ========== */
-export const progressMainColor = rgb(colorPrimary);
-export const progressSecondaryColor = rgba(colorPrimaryContrast, 0.7);
-export const progressFallbackBufferColor = rgba(colorPrimaryContrast, 0.9);
 
 /* ==========  List ========== */
 
@@ -216,5 +162,3 @@ export const tooltipBackgroundColor = rgba(grey[700], 0.9);
 export const footerBgColor = rgb(grey[800]);
 export const footerColor = rgb(grey[500]);
 export const footerHeadingColor = rgb(grey[300]);
-export const footerButtonFillColor = footerColor;
-export const footerUnderlineColor = footerColor;

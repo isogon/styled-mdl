@@ -1,6 +1,5 @@
 export const layoutDrawerNarrow = 240;
 export const layoutDrawerWide = 456;
-export const layoutDrawerWidth = layoutDrawerNarrow;
 
 export const layoutHeaderIconSize = 32;
 export const layoutScreenSizeThreshold = 1024;
@@ -9,9 +8,7 @@ export const layoutDrawerButtonMobileSize = 32;
 export const layoutDrawerButtonDesktopSize = 48;
 
 export const layoutHeaderMobileRowHeight = 56;
-export const layoutMobileHeaderHeight = layoutHeaderMobileRowHeight;
 export const layoutHeaderDesktopRowHeight = 64;
-export const layoutDesktopHeaderHeight = layoutHeaderDesktopRowHeight;
 
 export const layoutHeaderDesktopBaseline = 80;
 export const layoutHeaderMobileBaseline = 72;

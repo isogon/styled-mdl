@@ -7,5 +7,3 @@ export const spinnerArcSize = 270;
 export const spinnerArcTime = 1333;
 // How much the start location of the arc should rotate each time.
 export const spinnerArcStartRot = 216;
-
-export const spinnerDuration = (360 * (spinnerArcTime / spinnerArcStartRot)) + (360 - spinnerArcSize);
