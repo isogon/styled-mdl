@@ -1,11 +1,13 @@
 import React from 'react';
-import { Theme } from 'material-components';
+import { Theme, initGlobals } from 'material-components';
 import AppWrapper from 'components/AppWrapper';
 import SideNav from 'components/SideNav';
 import ContentWrapper from 'components/ContentWrapper';
 import TopBar from 'components/TopBar';
 
 import { sideNavLinks } from './navigation';
+
+initGlobals('Roboto');
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {

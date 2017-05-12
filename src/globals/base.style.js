@@ -1,47 +1,61 @@
+import FontFaceObserver from 'fontfaceobserver';
 import { injectGlobal } from 'styled-components';
+import isNode from 'detect-node';
+import h5pb from './h5pb.style';
 
-export default injectGlobal`
+export default (fontFamily) => {
+  if (!isNode) {
+    const fontLoaded = () => document.body.classList.add('fontLoaded');
+    const fontNotLoaded = () => document.body.classList.remove('fontLoaded');
 
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+    const robotoObserver = new FontFaceObserver(fontFamily, {});
+    robotoObserver.load().then(fontLoaded, fontNotLoaded);
+  }
 
-body.fontLoaded {
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+  // eslint-disable-next-line no-unused-expressions
+  injectGlobal`
+    ${h5pb}
 
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+    }
 
-html {
-  width: 100%;
-  height: 100%;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-}
+    body.fontLoaded {
+      font-family: '${fontFamily}', Helvetica, Arial, sans-serif;
+    }
 
-/*
-* Make body take up the entire screen
-* Remove body margin so layout containers don't cause extra overflow.
-*/
-body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-}
+    html {
+      width: 100%;
+      height: 100%;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
 
-/*
- * Main display reset for IE support.
- * Source: http://weblog.west-wind.com/posts/2015/Jan/12/main-HTML5-Tag-not-working-in-Internet-Explorer-91011
- */
-main {
-  display: block;
-}
+    /*
+    * Make body take up the entire screen
+    * Remove body margin so layout containers don't cause extra overflow.
+    */
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
 
-/*
-* Apply no display to elements with the hidden attribute.
-* IE 9 and 10 support.
-*/
-*[hidden] {
-  display: none !important;
-}
+    /*
+     * Main display reset for IE support.
+     * Source: http://weblog.west-wind.com/posts/2015/Jan/12/main-HTML5-Tag-not-working-in-Internet-Explorer-91011
+     */
+    main {
+      display: block;
+    }
 
-`;
+    /*
+    * Apply no display to elements with the hidden attribute.
+    * IE 9 and 10 support.
+    */
+    *[hidden] {
+      display: none !important;
+    }
+
+  `;
+};

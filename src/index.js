@@ -1,5 +1,4 @@
-import './globals';
-
+export * from './globals';
 export * from './buttons';
 export * from './cards';
 export * from './ripple';

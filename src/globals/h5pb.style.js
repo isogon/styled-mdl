@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components';
+import { css } from 'styled-components';
 import { getters as g } from '../util';
 
 /*
@@ -7,7 +7,7 @@ import { getters as g } from '../util';
  * Kroc Camen, and the H5BP dev community and team.
  */
 
-export default injectGlobal`
+export default css`
 
 html {
   color: ${g.textColorPrimary};
