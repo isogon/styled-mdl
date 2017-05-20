@@ -171,19 +171,19 @@ const mods = css`
         ${shadow2dp()}
       }
     `}
+    ${({ colored }) => colored && css`
+      color: ${g.buttonSecondaryColorDisabled};
+      &:hover, &:active, &:focus:not(:active) {
+        color: ${g.buttonSecondaryColorDisabled};
+      }
+    `}
     ${({ raised }) => raised && css`
       background-color: ${g.buttonPrimaryColorDisabled};
       color: ${g.buttonSecondaryColorDisabled};
       box-shadow: none;
       &:hover, &:active, &:focus:not(:active) {
         color: ${g.buttonSecondaryColorDisabled};
-        ${shadow2dp()}
-      }
-    `}
-    ${({ colored }) => colored && css`
-      color: ${g.buttonSecondaryColorDisabled};
-      &:hover, &:active, &:focus:not(:active) {
-        color: ${g.buttonSecondaryColorDisabled};
+        background-color: ${g.buttonPrimaryColorDisabled};
       }
     `}
   `}
