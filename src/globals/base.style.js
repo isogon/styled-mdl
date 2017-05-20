@@ -3,30 +3,37 @@ import { injectGlobal } from 'styled-components';
 import isNode from 'detect-node';
 import h5pb from './h5pb.style';
 
-export default (fontFamily) => {
-  if (!isNode) {
+export default ({ fontObserver } = {}, styles) => {
+  if (!isNode && fontObserver) {
     const fontLoaded = () => document.body.classList.add('fontLoaded');
     const fontNotLoaded = () => document.body.classList.remove('fontLoaded');
 
-    const robotoObserver = new FontFaceObserver(fontFamily, {});
-    robotoObserver.load().then(fontLoaded, fontNotLoaded);
+    const observer = new FontFaceObserver(fontObserver, {});
+    observer.load().then(fontLoaded, fontNotLoaded);
   }
 
   // eslint-disable-next-line no-unused-expressions
   injectGlobal`
     ${h5pb}
 
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Helvetica, Arial, sans-serif;
     }
 
-    body.fontLoaded {
-      font-family: '${fontFamily}', Helvetica, Arial, sans-serif;
-    }
+    ${fontObserver && `
+      body.fontLoaded {
+        font-family: '${fontObserver}', Helvetica, Arial, sans-serif;
+      }
+    `}
 
     html {
       width: 100%;
       height: 100%;
+      margin: 0;
       -ms-touch-action: manipulation;
       touch-action: manipulation;
     }
@@ -56,6 +63,8 @@ export default (fontFamily) => {
     *[hidden] {
       display: none !important;
     }
+
+    ${styles}
 
   `;
 };

@@ -1,2 +1,2 @@
 export Theme from './Theme';
-export { defaultTheme, createTheme } from './defaultTheme';
+export { defaultTheme, createTheme, colors } from './defaultTheme';

@@ -1,3 +1,6 @@
+import reduce from 'lodash/reduce';
+import assign from 'lodash/assign';
+
 import animation from './animation';
 import badge from './badge';
 import button from './button';
@@ -50,9 +53,9 @@ const themers = [
 ];
 
 export default function createTheme(overrides = {}) {
-  return themers.reduce((theme, themer) => ({
-    ...colorDefinitions,
-    ...theme,
-    ...themer(overrides),
-  }), {});
+  const compiled = reduce(themers, (theme, themer) =>
+    assign({}, theme, themer(overrides))
+  );
+
+  return assign({}, colorDefinitions, compiled, overrides);
 }
