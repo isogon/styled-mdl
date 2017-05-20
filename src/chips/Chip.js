@@ -14,7 +14,7 @@ export default function Chip({
   return (
     <ChipSpan deletable={deletable} contact={!!contact} {...props}>
       {contact && <ChipContact {...contact} />}
-      <ChipText>{children}</ChipText>
+      {children && <ChipText>{children}</ChipText>}
       {deletable &&
         <ChipAction onClick={onClickDelete}><MdCancel /></ChipAction>}
     </ChipSpan>
@@ -29,6 +29,6 @@ Chip.propTypes = {
     text: PropTypes.string,
     src: PropTypes.string,
   }),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onClickDelete: PropTypes.func,
 };
