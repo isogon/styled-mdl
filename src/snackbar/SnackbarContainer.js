@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { isEqual, noop } from 'lodash';
-import Portal from 'react-portal';
 import { uniqueArrayOf } from 'airbnb-prop-types';
 
 import Snackbar from './Snackbar';
@@ -57,7 +56,7 @@ export default class SnackbarContainer extends Component {
         {
           isActive: false,
         },
-        () => setTimeout(showNext, 300)
+        () => setTimeout(showNext, 350)
       );
     } else {
       showNext();
@@ -65,10 +64,6 @@ export default class SnackbarContainer extends Component {
   }
 
   render() {
-    return (
-      <Portal isOpened>
-        <Snackbar active={this.state.isActive} {...this.state.active} />
-      </Portal>
-    );
+    return <Snackbar active={this.state.isActive} {...this.state.active} />;
   }
 }
