@@ -5,7 +5,7 @@ import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../mixins';
 const base = css`
   background: transparent;
   border: none;
-  border-radius: ${g.buttonBorderRadius};
+  border-radius: ${g.buttonBorderRadius}px;
   color: ${g.buttonSecondaryColor};
   position: relative;
   height: ${g.buttonHeight}px;
