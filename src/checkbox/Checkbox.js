@@ -7,10 +7,10 @@ import {
   TickOutline,
 } from './Checkbox.style';
 
-export default function Checkbox({ name, value, label, disabled, ...props }) {
+export default function Checkbox({ label, disabled, ...props }) {
   return (
     <CheckboxStyle>
-      <CheckboxButton type="checkbox" name={name} value={value} disabled={disabled} {...props} />
+      <CheckboxButton type="checkbox" disabled={disabled} {...props} />
       {label && <CheckboxLabel disabled={disabled}>{label}</CheckboxLabel>}
       <BoxOutline disabled={disabled}>
         <TickOutline disabled={disabled} />
@@ -20,9 +20,6 @@ export default function Checkbox({ name, value, label, disabled, ...props }) {
 }
 
 Checkbox.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  defaultChecked: PropTypes.bool,
 };

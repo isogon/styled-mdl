@@ -7,10 +7,10 @@ import {
   InnerCircle,
 } from './Radio.style';
 
-export default function Radio({ name, value, label, disabled, ...props }) {
+export default function Radio({ label, disabled, ...props }) {
   return (
     <RadioStyle>
-      <RadioButton type="radio" name={name} value={value} {...props} disabled={disabled} />
+      <RadioButton type="radio" {...props} disabled={disabled} />
       {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
       <OuterCircle disabled={disabled} />
       <InnerCircle disabled={disabled} />
@@ -19,9 +19,6 @@ export default function Radio({ name, value, label, disabled, ...props }) {
 }
 
 Radio.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  defaultChecked: PropTypes.bool,
 };

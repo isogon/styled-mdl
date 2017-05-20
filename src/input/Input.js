@@ -1,6 +1,16 @@
 import React, { PropTypes } from 'react';
+import warning from 'warning';
+
 import { autobind } from 'core-decorators';
 import isUndefined from 'lodash/isUndefined';
+
+const MESSAGE =
+  'You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.';
+
+const warnIfReadOnly = (props) => {
+  const isImmutable = props.value && !props.onChange && !props.readOnly;
+  warning(!isImmutable, MESSAGE);
+};
 
 export default class Input extends React.Component {
   static propTypes = {
@@ -17,17 +27,22 @@ export default class Input extends React.Component {
     super(props);
 
     this.state = {
-      value: props.value || props.defaultValue,
-      focused: props.focused || props.autoFocus,
+      value: props.value || props.defaultValue || '',
+      focused: props.focused || props.autoFocus || false,
     };
+
+    warnIfReadOnly(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
+    if (!isUndefined(nextProps.value) && nextProps.value !== this.state.value) {
       this.setState({ value: nextProps.value });
     }
 
-    if (nextProps.focused !== this.state.focused) {
+    if (
+      !isUndefined(nextProps.focused) &&
+      nextProps.focused !== this.state.focused
+    ) {
       this.setState({ focused: nextProps.focused });
     }
   }

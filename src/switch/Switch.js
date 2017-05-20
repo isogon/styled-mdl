@@ -8,11 +8,11 @@ import {
   Thumb,
 } from './Switch.style';
 
-export default function Switch({ name, value, label, disabled, ...props }) {
+export default function Switch({ label, disabled, ...props }) {
   return (
     <SwitchWrap>
       <SwitchStyle>
-        <SwitchButton type="checkbox" name={name} value={value} disabled={disabled} {...props} />
+        <SwitchButton type="checkbox" disabled={disabled} {...props} />
         {label && <SwitchLabel disabled={disabled}>{label}</SwitchLabel>}
         <Track disabled={disabled} />
         <Thumb disabled={disabled} />
@@ -22,8 +22,6 @@ export default function Switch({ name, value, label, disabled, ...props }) {
 }
 
 Switch.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool,
 };

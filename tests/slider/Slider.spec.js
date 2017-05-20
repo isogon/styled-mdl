@@ -56,7 +56,7 @@ describe('<Slider>', () => {
 
   describe('when value is defined', () => {
     it('calculates percent from the value between min and max', () => {
-      slider = render({ min: 100, max: 200, value: 110 });
+      slider = render({ min: 100, max: 200, defaultValue: 110 });
       expect(get.bg).toHaveProp('percent', 0.1);
       expect(get.input).toHaveProp('percent', 0.1);
     });

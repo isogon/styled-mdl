@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import omit from 'lodash/omit';
 
 import { Input as BaseInput } from '../input';
 import {
@@ -21,7 +22,6 @@ export default class Textfield extends BaseInput {
 
   static defaultProps = {
     type: 'text',
-    value: '',
   };
 
   render() {
@@ -30,14 +30,14 @@ export default class Textfield extends BaseInput {
         <Label {...this.props} {...this.state}>{this.props.label}</Label>
         {this.props.multiLine
           ? <Textarea
-            {...this.props}
+            {...omit(this.props, ['defaultValue'])}
             {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
           : <Input
-            {...this.props}
+            {...omit(this.props, ['defaultValue'])}
             {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}

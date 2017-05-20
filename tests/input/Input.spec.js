@@ -11,7 +11,7 @@ describe('<Input>', () => {
 
   describe('when controlled', () => {
     beforeEach(() => {
-      input = render({ value: 10, focused: true });
+      input = render({ value: 10, focused: true, onChange: () => {} });
     });
 
     it('sets value from prop [value]', () => {

@@ -28,7 +28,13 @@ describe('<Textfield />', () => {
     const textarea = () => textfield.find(Textarea);
 
     beforeEach(() => {
-      textfield.setProps({ multiLine: true });
+      textfield = render({ defaultValue: 'foo', multiLine: true });
+    });
+
+    it('converts defaultValue into internal state', () => {
+      textfield.setProps({ defaultValue: 'foo' });
+      expect(textarea()).not.toHaveProp('defaultValue');
+      expect(textarea()).toHaveProp('value', 'foo');
     });
 
     it('renders a Textarea', () => {
@@ -40,7 +46,12 @@ describe('<Textfield />', () => {
     const input = () => textfield.find(Input);
 
     beforeEach(() => {
-      textfield.setProps({ multiLine: false });
+      textfield = render({ defaultValue: 'foo', multiLine: false });
+    });
+
+    it('converts defaultValue into internal state', () => {
+      expect(input()).not.toHaveProp('defaultValue');
+      expect(input()).toHaveProp('value', 'foo');
     });
 
     it('renders an input', () => {

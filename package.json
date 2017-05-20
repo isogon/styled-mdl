@@ -227,7 +227,8 @@
     "react-router-scroll": "0.4.1",
     "react-syntax-highlighter": "^5.0.0",
     "sanitize.css": "4.1.0",
-    "styled-components": "1.1.2"
+    "styled-components": "1.1.2",
+    "warning": "^3.0.0"
   },
   "devDependencies": {
     "@isogon/prepare-package": "^0.0.3",
