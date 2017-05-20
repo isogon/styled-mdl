@@ -53,10 +53,10 @@ export const inputStyles = css`
     outline: none;
   `}
 
-  ${({ invalid, error }) => invalid || error && css`
+  ${({ invalid, error }) => invalid || (error && css`
     border-color: ${g.inputTextErrorColor};
     box-shadow: none;
-  `}
+  `)}
 
   ${({ disabled }) => disabled && css`
     background-color: transparent;
@@ -103,9 +103,9 @@ export const Label = styled.label`
       visibility: visible;
       width: 100%;
     `}
-    ${({ invalid, error }) => invalid || error && css`
+    ${({ invalid, error }) => invalid || (error && css`
       background-color: ${g.inputTextErrorColor};
-    `}
+    `)}
   }
 
   ${({ value, placeholder }) => value || (placeholder && css`
@@ -126,11 +126,11 @@ export const Label = styled.label`
       visibility: visible;
     `}
 
-    ${({ invalid, error, theme }) => invalid || error && css`
+    ${({ invalid, error, theme }) => invalid || (error && css`
       color: ${g.inputTextErrorColor};
       top: ${theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
       font-size: ${g.inputTextFloatingLabelFontsize}px;
-    `}
+    `)}
   `}
 
   ${({ disabled }) => disabled && css`
@@ -142,6 +142,16 @@ export const Label = styled.label`
 export const ErrorMessage = styled.div`
   color: ${g.inputTextErrorColor};
   position: absolute;
+  font-size: ${g.inputTextFloatingLabelFontsize}px;
+  margin-top: 3px;
+  display: block;
+`;
+
+export const HelperText = styled.div`
+  color: ${g.inputTextLabelColor};
+  position: absolute;
+  right: 0;
+  text-align: right;
   font-size: ${g.inputTextFloatingLabelFontsize}px;
   margin-top: 3px;
   display: block;

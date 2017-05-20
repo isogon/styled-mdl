@@ -7,6 +7,7 @@ import {
   Textarea,
   Label,
   ErrorMessage,
+  HelperText,
 } from './Textfield.style';
 
 export default class Textfield extends BaseInput {
@@ -43,6 +44,8 @@ export default class Textfield extends BaseInput {
             onBlur={this.handleBlur}
           />}
         {this.props.error && <ErrorMessage>{this.props.error}</ErrorMessage>}
+        {this.props.helperText &&
+          <HelperText>{this.props.helperText}</HelperText>}
       </TextfieldBase>
     );
   }
