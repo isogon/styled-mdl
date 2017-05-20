@@ -9,6 +9,7 @@ const base = css`
   color: ${g.buttonSecondaryColor};
   position: relative;
   height: ${g.buttonHeight}px;
+  line-height: ${g.buttonHeight}px;
   margin: 0;
   min-width: ${g.buttonMinWidth}px;
   padding: 0 ${g.buttonPadding}px;
