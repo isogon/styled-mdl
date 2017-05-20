@@ -10,6 +10,7 @@ export const TooltipPosition = styled.div`
   position: fixed;
   transform: scale(0.6);
   opacity: 0;
+  z-index: 999999;
   transition: opacity 0.2s ${g.animationCurveLinearOutSlowIn},
               transform 0.2s ${g.animationCurveLinearOutSlowIn};
   ${({ isVisible }) => isVisible && css`
