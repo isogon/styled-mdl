@@ -1,3 +1,15 @@
+import styleSheet from 'styled-components/lib/models/StyleSheet';
+import React from 'react';
+
+export const SSRStyleSheet = () => {
+  const styles = {
+    __html: styleSheet.rules().map((rule) => rule.cssText).join('\n'),
+  };
+
+  // eslint-disable-next-line react/no-danger
+  return <style dangerouslySetInnerHTML={styles} />;
+};
+
 export * from './globals';
 export * from './buttons';
 export * from './cards';
