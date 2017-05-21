@@ -1,7 +1,7 @@
 import React from 'react';
 import { uniqueId, random, tail } from 'lodash';
 import { shallow } from 'enzyme';
-import { SnackbarContainer, Snackbar } from 'material-components';
+import { SnackbarContainer, Snackbar, Toast } from 'material-components';
 
 const render = (props) => shallow(<SnackbarContainer {...props} />);
 
@@ -37,13 +37,19 @@ describe('<SnackbarContainer />', () => {
     });
 
     it('animates in', () => {
-      expect(wrapper.find(Snackbar)).toHaveProp('active', true);
+      expect(wrapper.find(Toast)).toHaveProp('isActive', true);
     });
 
     it('displays the first message in its [prop] messages', () => {
       expect(wrapper.find(Snackbar)).toHaveProp('message', messages[0].message);
-      expect(wrapper.find(Snackbar)).toHaveProp('actionText', messages[0].actionText);
-      expect(wrapper.find(Snackbar)).toHaveProp('actionHandler', messages[0].actionHandler);
+      expect(wrapper.find(Snackbar)).toHaveProp(
+        'actionText',
+        messages[0].actionText
+      );
+      expect(wrapper.find(Snackbar)).toHaveProp(
+        'actionHandler',
+        messages[0].actionHandler
+      );
     });
 
     describe('when a message runs to the end of its timer', () => {
@@ -60,26 +66,44 @@ describe('<SnackbarContainer />', () => {
       });
 
       it('animates the old message out', () => {
-        expect(wrapper.find(Snackbar)).toHaveProp('active', false);
+        expect(wrapper.find(Toast)).toHaveProp('isActive', false);
       });
 
       it('does not change the displayed message until it animates out', () => {
-        expect(wrapper.find(Snackbar)).toHaveProp('message', messages[0].message);
-        expect(wrapper.find(Snackbar)).toHaveProp('actionText', messages[0].actionText);
-        expect(wrapper.find(Snackbar)).toHaveProp('actionHandler', messages[0].actionHandler);
+        expect(wrapper.find(Snackbar)).toHaveProp(
+          'message',
+          messages[0].message
+        );
+        expect(wrapper.find(Snackbar)).toHaveProp(
+          'actionText',
+          messages[0].actionText
+        );
+        expect(wrapper.find(Snackbar)).toHaveProp(
+          'actionHandler',
+          messages[0].actionHandler
+        );
       });
 
       describe('when it finishes animating', () => {
         beforeEach(jest.runOnlyPendingTimers);
 
         it('animates back in', () => {
-          expect(wrapper.find(Snackbar)).toHaveProp('active', true);
+          expect(wrapper.find(Toast)).toHaveProp('isActive', true);
         });
 
         it('shows the new message', () => {
-          expect(wrapper.find(Snackbar)).toHaveProp('message', messages[1].message);
-          expect(wrapper.find(Snackbar)).toHaveProp('actionText', messages[1].actionText);
-          expect(wrapper.find(Snackbar)).toHaveProp('actionHandler', messages[1].actionHandler);
+          expect(wrapper.find(Snackbar)).toHaveProp(
+            'message',
+            messages[1].message
+          );
+          expect(wrapper.find(Snackbar)).toHaveProp(
+            'actionText',
+            messages[1].actionText
+          );
+          expect(wrapper.find(Snackbar)).toHaveProp(
+            'actionHandler',
+            messages[1].actionHandler
+          );
         });
       });
     });
@@ -104,7 +128,7 @@ describe('<SnackbarContainer />', () => {
       });
 
       it('hides the snackbar', () => {
-        expect(wrapper.find(Snackbar)).toHaveProp('active', false);
+        expect(wrapper.find(Toast)).toHaveProp('isActive', false);
       });
 
       it('clears the message', () => {

@@ -3,6 +3,7 @@ import { isEqual, noop } from 'lodash';
 import { uniqueArrayOf } from 'airbnb-prop-types';
 
 import Snackbar from './Snackbar';
+import Toast from './Toast';
 
 export default class SnackbarContainer extends Component {
   static propTypes = {
@@ -14,6 +15,7 @@ export default class SnackbarContainer extends Component {
     ).isRequired,
     onEnter: PropTypes.func,
     onRequestLeave: PropTypes.func,
+    position: PropTypes.string,
   };
 
   static defaultProps = {
@@ -64,6 +66,10 @@ export default class SnackbarContainer extends Component {
   }
 
   render() {
-    return <Snackbar active={this.state.isActive} {...this.state.active} />;
+    return (
+      <Toast isActive={this.state.isActive} position={this.props.position}>
+        <Snackbar {...this.state.active} />
+      </Toast>
+    );
   }
 }

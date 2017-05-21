@@ -38,7 +38,11 @@ class Demo extends Component {
     return (
       <div>
         <Button raised onClick={this.alert} text="Show" />
-        <SnackbarContainer messages={this.state.alerts} />
+        <SnackbarContainer
+          messages={this.state.alerts}
+          position="right"
+          offsetY={0}
+        />
       </div>
     );
   }

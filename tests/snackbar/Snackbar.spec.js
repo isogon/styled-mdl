@@ -1,5 +1,5 @@
 import Snackbar from 'snackbar/Snackbar';
-import Toast from 'snackbar/Toast.style';
+import SnackbarBase from 'snackbar/Snackbar.style';
 import Message from 'snackbar/Message.style';
 import Action from 'snackbar/Action.style';
 
@@ -12,8 +12,8 @@ describe('<Snackbar />', () => {
     snackbar = render();
   });
 
-  it('renders a <Toast>', () => {
-    expect(snackbar.find(Toast)).toBePresent();
+  it('renders a <SnackbarBase>', () => {
+    expect(snackbar.find(SnackbarBase)).toBePresent();
   });
 
   it('renders a <Message> with [prop] message', () => {
