@@ -19,6 +19,9 @@ export default styled.button`
   text-decoration: none;
   text-align: center;
   align-self: center;
+  flex-shrink: 0;
+  font-weight: 600;
+  line-height: inherit;
 
   &::-moz-focus-inner {
     border: 0;

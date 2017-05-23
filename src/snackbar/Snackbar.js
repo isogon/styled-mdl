@@ -17,7 +17,7 @@ export default function Snackbar({ message, actionText, actionHandler }) {
 }
 
 Snackbar.propTypes = {
-  message: PropTypes.string,
+  message: PropTypes.node,
   actionText: PropTypes.string,
   actionHandler: PropTypes.func,
 };
