@@ -80,14 +80,16 @@ export default class Menu extends Component {
   }
 
   render() {
-    const childrenWithProps = Children.map(this.props.children, (child) =>
+    const { children, ...props } = this.props;
+
+    const childrenWithProps = Children.map(children, (child) =>
       cloneElement(child, {
         isVisible: this.state.isVisible,
-        fadeDown: !this.props.topRight && !this.props.topLeft,
+        fadeDown: !props.topRight && !props.topLeft,
       }),
     );
 
-    const control = cloneElement(this.props.control, {
+    const control = cloneElement(props.control, {
       onClick: () => {
         this.preventOpen = this.state.isVisible;
       },
@@ -106,15 +108,15 @@ export default class Menu extends Component {
         >
           <MenuContainer
             {...this.state}
-            {...this.props}
+            {...props}
             onClick={() => {
               setTimeout(() => this.handleClose(), 100);
             }}
           >
-            <MenuOutline {...this.state} {...this.props} />
+            <MenuOutline {...this.state} {...props} />
             <MenuBase
               {...this.state}
-              {...this.props}
+              {...props}
               innerRef={(menu) => {
                 this.menu = menu;
               }}
