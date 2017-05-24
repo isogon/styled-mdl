@@ -7,6 +7,8 @@ export const MenuControlWrap = styled.div`
   position: relative;
 `;
 
+MenuControlWrap.displayName = 'MenuControlWrap';
+
 export const MenuContainer = styled.div`
   display: block;
   margin: 0;
@@ -27,6 +29,8 @@ export const MenuContainer = styled.div`
     width: ${({ width }) => width}px;
   `}
 `;
+
+MenuContainer.displayName = 'MenuContainer';
 
 export const MenuOutline = styled.div`
   display: block;
@@ -72,6 +76,8 @@ export const MenuOutline = styled.div`
     transform-origin: 0 0;
   `}
 `;
+
+MenuOutline.displayName = 'MenuOutline';
 
 export const MenuBase = styled.div`
   position: absolute;
@@ -121,6 +127,8 @@ export const MenuBase = styled.div`
   `}
 `;
 
+MenuBase.displayName = 'MenuBase';
+
 export const MenuDivider = styled.hr`
   border-bottom: 1px solid ${g.defaultItemDividerColor};
   margin: 0;
@@ -133,6 +141,8 @@ export const MenuDivider = styled.hr`
     opacity: 1;
   `}
 `;
+
+MenuDivider.displayName = 'MenuDivider';
 
 export const MenuItem = styled.button`
   display: block;
@@ -192,3 +202,5 @@ export const MenuItem = styled.button`
     background-color: ${g.defaultItemActiveBgColor};
   }
 `;
+
+MenuItem.displayName = 'MenuItem';
