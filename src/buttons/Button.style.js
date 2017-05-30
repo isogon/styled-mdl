@@ -18,6 +18,7 @@ const base = css`
   ${typoButton()}
   overflow: hidden;
   will-change: box-shadow;
+  text-decoration: none;
   transition: box-shadow 0.2s ${g.animationCurveFastOutLinearIn},
               background-color 0.2s ${g.animationCurveDefault},
               color 0.2s ${g.animationCurveDefault};

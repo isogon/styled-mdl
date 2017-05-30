@@ -10,12 +10,6 @@ describe('<Button />', () => {
     button = renderButton();
   });
 
-  it('auto defocuses after click', () => {
-    const e = { preventDefault: jest.fn() };
-    button.find(StyledButton).simulate('mouseDown', e);
-    expect(e.preventDefault).toHaveBeenCalled();
-  });
-
   describe('when the [prop] text is defined and there are not children', () => {
     it('renders text inside <button>', () => {
       button.setProps({ children: null, text: 'text' });
