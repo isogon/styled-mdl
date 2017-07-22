@@ -53,8 +53,10 @@ const themers = [
 ];
 
 export default function createTheme(overrides = {}) {
-  const compiled = reduce(themers, (theme, themer) =>
-    assign({}, theme, themer(overrides))
+  const compiled = reduce(
+    themers,
+    (theme, themer) => assign({}, theme, themer(overrides)),
+    {},
   );
 
   return assign({}, colorDefinitions, compiled, overrides);
