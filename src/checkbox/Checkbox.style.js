@@ -52,33 +52,38 @@ export const BoxOutline = styled.div`
   border: 2px solid ${g.radioOffColor};
   border-radius: 2px;
   z-index: 2;
-  ${({ disabled }) => disabled && css`
+  ${({ disabled }) =>
+    disabled &&
+    css`
     border: 2px solid ${g.radioDisabledColor};
     cursor: auto;
-  `}
+  `};
 `;
 
 export const TickOutline = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 101%;
+  width: 101%;
   mask: url(${mask});
   background: transparent;
-  ${materialAnimationDefault('0.28s')}
-  transition-property: background;
+  ${materialAnimationDefault('0.28s')} transition-property: background;
 
-  ${({ disabled }) => disabled && css`
+  ${({ disabled }) =>
+    disabled &&
+    css`
     background-color: ${g.radioDisabledColor};
-  `}
+  `};
 `;
 
 export const CheckboxLabel = styled.span`
   cursor: pointer;
 
-  ${({ disabled }) => disabled && css`
+  ${({ disabled }) =>
+    disabled &&
+    css`
     color: ${g.radioDisabledColor};
     cursor: auto;
-  `}
+  `};
 `;
