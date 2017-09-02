@@ -30,10 +30,10 @@ export const CheckboxButton = styled.input`
   appearance: none;
   border: none;
   &:checked ~ div {
-    border: 2px solid ${g.radioColor};
+    border: 2px solid ${g.checkboxColor};
   }
   &:checked ~ div > div {
-    background-color: ${g.radioColor};
+    background-color: ${g.checkboxColor};
     background-image: url(${bg});
   }
 `;
@@ -49,32 +49,29 @@ export const BoxOutline = styled.div`
   margin: 0;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid ${g.radioOffColor};
+  border: 2px solid ${g.checkboxOffColor};
   border-radius: 2px;
   z-index: 2;
   ${({ disabled }) =>
     disabled &&
     css`
-    border: 2px solid ${g.radioDisabledColor};
-    cursor: auto;
-  `};
+      border: 2px solid ${g.checkboxDisabledColor};
+      cursor: auto;
+    `};
 `;
 
 export const TickOutline = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 101%;
-  width: 101%;
+  height: 102%;
+  width: 102%;
   mask: url(${mask});
   background: transparent;
   ${materialAnimationDefault('0.28s')} transition-property: background;
 
   ${({ disabled }) =>
-    disabled &&
-    css`
-    background-color: ${g.radioDisabledColor};
-  `};
+    disabled && css`background-color: ${g.checkboxDisabledColor};`};
 `;
 
 export const CheckboxLabel = styled.span`
@@ -83,7 +80,7 @@ export const CheckboxLabel = styled.span`
   ${({ disabled }) =>
     disabled &&
     css`
-    color: ${g.radioDisabledColor};
-    cursor: auto;
-  `};
+      color: ${g.checkboxDisabledColor};
+      cursor: auto;
+    `};
 `;
