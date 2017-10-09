@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
   "main": "lib/index.js",
