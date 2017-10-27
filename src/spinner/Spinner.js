@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Spinner as SpinnerStyle,
   LayerOne,
@@ -25,7 +26,7 @@ export const Layer = ({ level: Level, ...props }) => (
 );
 
 Layer.propTypes = {
-  level: React.PropTypes.any,
+  level: PropTypes.any,
 };
 
 export default function Spinner(props) {

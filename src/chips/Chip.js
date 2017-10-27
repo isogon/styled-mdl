@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MdCancel from 'react-icons/lib/md/cancel';
 
 import { ChipSpan, ChipText, ChipAction } from './Chip.style';

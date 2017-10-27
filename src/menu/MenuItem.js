@@ -1,14 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { MenuItem as MenuItemBase } from './Menu.style';
 import { Ripple } from '../ripple';
 
 export default class MenuItem extends Component {
-  static propTypes = {
-    isVisible: PropTypes.bool,
-    children: PropTypes.node,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -46,3 +42,8 @@ export default class MenuItem extends Component {
     );
   }
 }
+
+MenuItem.propTypes = {
+  isVisible: PropTypes.bool,
+  children: PropTypes.node,
+};

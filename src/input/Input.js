@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import warning from 'warning';
 
 import { autobind } from 'core-decorators';
@@ -12,17 +13,7 @@ const warnIfReadOnly = (props) => {
   warning(!isImmutable, MESSAGE);
 };
 
-export default class Input extends React.Component {
-  static propTypes = {
-    focused: PropTypes.bool,
-    autoFocus: PropTypes.bool,
-    value: PropTypes.number,
-    defaultValue: PropTypes.number,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-  };
-
+export default class Input extends Component {
   constructor(props) {
     super(props);
 
@@ -47,7 +38,8 @@ export default class Input extends React.Component {
     }
   }
 
-  @autobind handleChange(e) {
+  @autobind
+  handleChange(e) {
     if (isUndefined(this.props.value)) {
       this.setState({ value: e.target.value });
     }
@@ -57,7 +49,8 @@ export default class Input extends React.Component {
     }
   }
 
-  @autobind handleFocus(e) {
+  @autobind
+  handleFocus(e) {
     if (isUndefined(this.props.focused)) {
       this.setState({ focused: true });
     }
@@ -67,7 +60,8 @@ export default class Input extends React.Component {
     }
   }
 
-  @autobind handleBlur(e) {
+  @autobind
+  handleBlur(e) {
     if (isUndefined(this.props.focused)) {
       this.setState({ focused: false });
     }
@@ -81,3 +75,13 @@ export default class Input extends React.Component {
     return null;
   }
 }
+
+Input.propTypes = {
+  focused: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  value: PropTypes.number,
+  defaultValue: PropTypes.number,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+};

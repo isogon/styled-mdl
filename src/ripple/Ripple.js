@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { autobind } from 'core-decorators';
 
 import { getRippleSize, getRippleCoords } from './helpers';
 import { Effect, Wrap } from './Ripple.style';
 
-export default class Ripple extends React.Component {
+export default class Ripple extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,8 @@ export default class Ripple extends React.Component {
     this.size = getRippleSize(this.wrapper);
   }
 
-  @autobind handleMouseDown(e) {
+  @autobind
+  handleMouseDown(e) {
     const coords = getRippleCoords(e);
     const translate = `translate(-50%, -50%) translate(${coords})`;
     const initalScale = ' scale3d(0.0001, 0.0001, 1)';
@@ -35,7 +36,8 @@ export default class Ripple extends React.Component {
     });
   }
 
-  @autobind handleMouseUp() {
+  @autobind
+  handleMouseUp() {
     this.setState({ opacity: 0 });
   }
 
