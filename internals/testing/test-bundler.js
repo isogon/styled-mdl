@@ -4,9 +4,8 @@ import 'babel-polyfill';
 import 'jest-enzyme';
 import chalk from 'chalk';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { trim, every, fromPairs, reduce, has } from 'lodash';
-
 // requestAnimationFrame polyfill for jsDom
 import './rAF';
 

@@ -1,20 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Portal from 'react-portal';
 import { autobind } from 'core-decorators';
 import { TooltipBase, TooltipPosition, TooltipWrapper } from './Tooltip.style';
 import getRelativePosition from '../menu/getRelativePosition';
 
 export default class Tooltip extends Component {
-  static propTypes = {
-    message: PropTypes.node,
-    children: PropTypes.node,
-    position: PropTypes.string,
-  };
-
-  static defaultProps = {
-    position: 'above',
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -44,11 +35,13 @@ export default class Tooltip extends Component {
     }
   }
 
-  @autobind setPosition() {
+  @autobind
+  setPosition() {
     this.setState({ ...this.getPosition() });
   }
 
-  @autobind handleOpen() {
+  @autobind
+  handleOpen() {
     this.setState({ isOpened: true });
     this.setPosition();
     window.addEventListener('scroll', this.setPosition, true);
@@ -57,7 +50,8 @@ export default class Tooltip extends Component {
     });
   }
 
-  @autobind handleClose() {
+  @autobind
+  handleClose() {
     window.removeEventListener('scroll', this.setPosition, true);
     this.setState({ isOpened: false, isVisible: false });
   }
@@ -76,12 +70,20 @@ export default class Tooltip extends Component {
         {children}
         <Portal isOpened={this.state.isOpened}>
           <TooltipPosition {...this.state} {...this.props}>
-            <TooltipBase {...props}>
-              {this.props.message}
-            </TooltipBase>
+            <TooltipBase {...props}>{this.props.message}</TooltipBase>
           </TooltipPosition>
         </Portal>
       </TooltipWrapper>
     );
   }
 }
+
+Tooltip.propTypes = {
+  message: PropTypes.node,
+  children: PropTypes.node,
+  position: PropTypes.string,
+};
+
+Tooltip.defaultProps = {
+  position: 'above',
+};

@@ -1,19 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Portal from 'react-portal';
 
 import ToastBase from './Toast.style';
 
 export default class Toast extends Component {
-  static propTypes = {
-    isActive: PropTypes.bool,
-    position: PropTypes.string,
-    children: PropTypes.node,
-  };
-
-  static defaultProps = {
-    position: 'left',
-  };
-
   constructor(props) {
     super(props);
 
@@ -62,3 +53,13 @@ export default class Toast extends Component {
     );
   }
 }
+
+Toast.propTypes = {
+  isActive: PropTypes.bool,
+  position: PropTypes.string,
+  children: PropTypes.node,
+};
+
+Toast.defaultProps = {
+  position: 'left',
+};

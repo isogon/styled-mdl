@@ -1,23 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { isEqual, noop } from 'lodash';
-import { uniqueArrayOf } from 'airbnb-prop-types';
-
 import Snackbar from './Snackbar';
 import Toast from './Toast';
 
 export default class SnackbarContainer extends Component {
-  static propTypes = {
-    messages: uniqueArrayOf(
-      PropTypes.shape({
-        message: PropTypes.string.isRequired,
-        timeout: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-    onEnter: PropTypes.func,
-    onRequestLeave: PropTypes.func,
-    position: PropTypes.string,
-  };
-
   static defaultProps = {
     onEnter: noop,
     onRequestLeave: noop,
@@ -73,3 +60,15 @@ export default class SnackbarContainer extends Component {
     );
   }
 }
+
+SnackbarContainer.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      message: PropTypes.string.isRequired,
+      timeout: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  onEnter: PropTypes.func,
+  onRequestLeave: PropTypes.func,
+  position: PropTypes.string,
+};

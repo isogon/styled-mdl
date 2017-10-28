@@ -1,4 +1,5 @@
-import React, { PropTypes, Component, Children, cloneElement } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 import Portal from 'react-portal';
 import {
@@ -10,14 +11,6 @@ import {
 import getRelativePosition from './getRelativePosition';
 
 export default class Menu extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    control: PropTypes.node,
-    bottomRight: PropTypes.bool,
-    topLeft: PropTypes.bool,
-    topRight: PropTypes.bool,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +24,8 @@ export default class Menu extends Component {
     cancelAnimationFrame(this.openMenu);
   }
 
-  @autobind setMenuPosition() {
+  @autobind
+  setMenuPosition() {
     const control = getRelativePosition(this.control);
     const position = {};
     if (this.props.bottomRight) {
@@ -51,7 +45,8 @@ export default class Menu extends Component {
     this.setState({ ...position });
   }
 
-  @autobind handleOpen() {
+  @autobind
+  handleOpen() {
     this.openMenu = requestAnimationFrame(() => {
       if (this.preventOpen) {
         return;
@@ -69,7 +64,8 @@ export default class Menu extends Component {
     });
   }
 
-  @autobind handleClose() {
+  @autobind
+  handleClose() {
     window.removeEventListener('scroll', this.setMenuPosition, true);
 
     this.closeMenu = requestAnimationFrame(() => {
@@ -86,7 +82,7 @@ export default class Menu extends Component {
       cloneElement(child, {
         isVisible: this.state.isVisible,
         fadeDown: !props.topRight && !props.topLeft,
-      }),
+      })
     );
 
     const control = cloneElement(props.control, {
@@ -129,3 +125,11 @@ export default class Menu extends Component {
     );
   }
 }
+
+Menu.propTypes = {
+  children: PropTypes.node,
+  control: PropTypes.node,
+  bottomRight: PropTypes.bool,
+  topLeft: PropTypes.bool,
+  topRight: PropTypes.bool,
+};
