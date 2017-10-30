@@ -37,7 +37,7 @@ export const SwitchButton = styled.input`
   appearance: none;
   border: none;
   &:checked ~ div:first-of-type {
-    background: ${g.switchTrackColor}
+    background: ${g.switchTrackColor};
   }
   &:checked ~ div:nth-of-type(2) {
     background: ${g.switchThumbColor};

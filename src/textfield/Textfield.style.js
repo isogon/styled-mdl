@@ -165,17 +165,17 @@ export const ExpandableHolder = styled.div`
   ${materialAnimationDefault()};
   display: inline-block;
 
-  // Safari (possibly others) need to be convinced that this field is actually
+  ${'' /* // Safari (possibly others) need to be convinced that this field is actually
   // visible, otherwise it cannot be tabbed to nor focused via a <label>.
   // TODO: In some cases (Retina displays), this is big enough to render the
-  // inner element :(
+  // inner element :( */}
   max-width: 0.1px;
 
   ${({ focused, value }) => (focused || value) && css`
-    // This is an unfortunate hack. Animating between widths in percent (%)
+    ${'' /* // This is an unfortunate hack. Animating between widths in percent (%)
     // in many browsers (Chrome, Firefox) only animates the inner visual style
     // of the input - the outer bounding box still 'jumps'.
-    // Thus assume a sensible maximum, and animate to/from that value.
+    // Thus assume a sensible maximum, and animate to/from that value. */}
     max-width: 600px;
   `}
 

@@ -151,8 +151,8 @@ export const CircleClipper = styled.div`
   height: 100%;
   overflow: hidden;
   border-color: inherit;
-  ${({ left }) => left && css`float: left`}
-  ${({ right }) => right && css`float: right`}
+  ${({ left }) => left && css`float: left;`}
+  ${({ right }) => right && css`float: right;`}
 `;
 
 export const Circle = styled.div`

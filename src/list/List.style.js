@@ -89,7 +89,6 @@ export const LiIcon = styled.i`
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listIconSize - theme.listMinPadding}px;
   .twoLine & {
     float: left;
-    // Icons are aligned to center of text in a two line list.
     margin-top: ${({ theme }) => (theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding - theme.listIconSize) / 2}px;
   }
   .threeLine & {
@@ -102,9 +101,7 @@ export const LiAvatar = styled.span`
   width: ${g.listAvatarSize}px;
   box-sizing: border-box;
   border-radius: 50%;
-  // Set a background colour in case the user doesn't provide an image.
   background-color: ${g.listIconColor};
-  // Set a font size and color in case the user provides a Material Icon.
   font-size: ${g.listAvatarSize}px;
   ${({ src }) => src && css`
     background-image: url(${src});

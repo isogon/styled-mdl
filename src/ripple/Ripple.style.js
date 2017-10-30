@@ -49,7 +49,6 @@ export const Wrap = styled.div`
   `}
   ${({ round }) => round && css`
     border-radius: 50%;
-    // Fixes clipping bug in Safari.
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
   `}
 `;
