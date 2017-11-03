@@ -1,6 +1,5 @@
 import Radio from 'radio/Radio';
 import {
-  RadioStyle,
   RadioButton,
   RadioLabel,
   OuterCircle,
@@ -24,8 +23,9 @@ describe('<Radio />', () => {
     radio = render();
   });
 
-  it('renders a RadioStyle', () => {
-    expect(radio.find(RadioStyle)).toBePresent();
+  it('renders the radioStyle on an input', () => {
+    expect(radio.find('input')).toHaveProp('type', 'radio');
+    expect(radio.find('input')).toHaveProp('className');
   });
 
   it('renders a RadioLabel with the label text', () => {

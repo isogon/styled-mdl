@@ -1,9 +1,8 @@
-import Snackbar from 'snackbar/Snackbar';
-import SnackbarBase from 'snackbar/Snackbar.style';
+import { SnackbarBase } from 'snackbar/Snackbar';
 import Message from 'snackbar/Message.style';
 import Action from 'snackbar/Action.style';
 
-const render = shallowComponent(Snackbar, { message: 'message' });
+const render = shallowComponent(SnackbarBase, { message: 'message' });
 
 describe('<Snackbar />', () => {
   let snackbar;
@@ -12,8 +11,9 @@ describe('<Snackbar />', () => {
     snackbar = render();
   });
 
-  it('renders a <SnackbarBase>', () => {
-    expect(snackbar.find(SnackbarBase)).toBePresent();
+  it('renders the snackbar base style', () => {
+    expect(snackbar.find('div')).toBePresent();
+    expect(snackbar.find('div')).toHaveProp('className');
   });
 
   it('renders a <Message> with [prop] message', () => {

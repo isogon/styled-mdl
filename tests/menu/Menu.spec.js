@@ -4,15 +4,15 @@ import MenuItem from 'menu/MenuItem';
 import Button from 'buttons/Button';
 import Portal from 'react-portal';
 import { shallow } from 'enzyme';
-import {
-  MenuContainer,
-  MenuOutline,
-  MenuBase,
-} from 'menu/Menu.style';
+import { MenuContainer, MenuOutline, MenuBase } from 'menu/Menu.style';
 
-const render = shallowComponent(Menu, {
-  control: <Button>Click Me</Button>,
-}, <MenuItem />);
+const render = shallowComponent(
+  Menu,
+  {
+    control: <Button>Click Me</Button>,
+  },
+  <MenuItem />
+);
 
 describe('<Menu>', () => {
   let menu;
@@ -31,7 +31,10 @@ describe('<Menu>', () => {
         return menu.find(Portal);
       },
       get menuItem() {
-        return menu.find(MenuBase).children().at(0);
+        return menu
+          .find(MenuBase)
+          .children()
+          .at(0);
       },
       get menuBase() {
         return menu.find(MenuBase);
@@ -68,18 +71,6 @@ describe('<Menu>', () => {
       get.portal.prop('onOpen')();
       jest.runAllTimers();
     };
-  });
-
-  describe('refs', () => {
-    it('sets ref to menu', () => {
-      get.menuBase.prop('innerRef')('menu ref');
-      expect(menu.instance().menu).toEqual('menu ref');
-    });
-
-    it('sets ref to control', () => {
-      get.control.prop('innerRef')('control ref');
-      expect(menu.instance().control).toEqual('control ref');
-    });
   });
 
   describe('when the menu is open and then clicked', () => {
@@ -168,7 +159,7 @@ describe('<Menu>', () => {
         expect(window.removeEventListener).toHaveBeenCalledWith(
           'scroll',
           menu.instance().setMenuPosition,
-          true,
+          true
         );
       });
     });

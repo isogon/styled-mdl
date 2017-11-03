@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose';
 import { getters as g } from '../util';
 
-export default styled.div`
+export const CardActions = setDisplayName('CardActions')(styled.div`
   font-size: ${g.cardActionsFontSize}px;
   line-height: normal;
   width: 100%;
@@ -11,4 +12,4 @@ export default styled.div`
   ${({ border }) => border && css`
     border-top: 1px solid ${g.cardBorderColor};
   `}
-`;
+`);

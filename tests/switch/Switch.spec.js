@@ -1,6 +1,5 @@
 import Switch from 'switch/Switch';
 import {
-  SwitchWrap,
   SwitchStyle,
   SwitchButton,
   SwitchLabel,
@@ -25,8 +24,9 @@ describe('<Switch />', () => {
     mdSwitch = render();
   });
 
-  it('renders a SwitchWrap', () => {
-    expect(mdSwitch.find(SwitchWrap)).toBePresent();
+  it('renders the switchWrap style', () => {
+    expect(mdSwitch.find('div').at(0)).toBePresent();
+    expect(mdSwitch.find('div').at(0)).toHaveProp('className');
   });
 
   it('renders a SwitchStyle', () => {

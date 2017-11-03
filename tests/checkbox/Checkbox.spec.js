@@ -1,6 +1,5 @@
 import Checkbox from 'checkbox/Checkbox';
 import {
-  CheckboxStyle,
   CheckboxButton,
   CheckboxLabel,
   BoxOutline,
@@ -24,8 +23,8 @@ describe('<Checkbox />', () => {
     checkbox = render();
   });
 
-  it('renders a CheckboxStyle', () => {
-    expect(checkbox.find(CheckboxStyle)).toBePresent();
+  it('renders an input with checkBoxStyle', () => {
+    expect(checkbox.find('input')).toHaveProp('className');
   });
 
   it('renders a CheckboxLabel with the label text', () => {
@@ -39,9 +38,18 @@ describe('<Checkbox />', () => {
 
   it('handles [prop] name, value, and defaultChecked', () => {
     checkbox.setProps({ defaultChecked: true });
-    expect(checkbox.find('input[type="checkbox"]')).toHaveProp('name', props.name);
-    expect(checkbox.find('input[type="checkbox"]')).toHaveProp('value', props.value);
-    expect(checkbox.find('input[type="checkbox"]')).toHaveProp('defaultChecked', true);
+    expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
+      'name',
+      props.name
+    );
+    expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
+      'value',
+      props.value
+    );
+    expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
+      'defaultChecked',
+      true
+    );
   });
 
   it('handles [prop] disabled', () => {

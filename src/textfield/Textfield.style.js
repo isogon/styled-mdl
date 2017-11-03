@@ -3,7 +3,7 @@ import { getters as g } from '../util';
 import { materialAnimationDefault } from '../mixins';
 
 // The container for the whole component.
-export const TextfieldBase = styled.div`
+export const textfieldStyle = css`
   position: relative;
   font-size: ${g.inputTextFontSize}px;
   display: inline-block;
@@ -26,7 +26,7 @@ export const TextfieldBase = styled.div`
 `;
 
 // Styling for the input element.
-export const inputStyles = css`
+export const Input = styled.input`
   border: none;
   border-bottom: 1px solid ${g.inputTextBottomBorderColor};
   display: block;
@@ -65,9 +65,7 @@ export const inputStyles = css`
   `}
 `;
 
-export const Input = styled.input`${inputStyles}`;
-export const Textarea = styled.textarea`
-  ${inputStyles}
+export const Textarea = Input.withComponent('textarea').extend`
   display: block;
 `;
 
@@ -165,17 +163,17 @@ export const ExpandableHolder = styled.div`
   ${materialAnimationDefault()};
   display: inline-block;
 
-  // Safari (possibly others) need to be convinced that this field is actually
+  ${'' /* // Safari (possibly others) need to be convinced that this field is actually
   // visible, otherwise it cannot be tabbed to nor focused via a <label>.
   // TODO: In some cases (Retina displays), this is big enough to render the
-  // inner element :(
+  // inner element :( */}
   max-width: 0.1px;
 
   ${({ focused, value }) => (focused || value) && css`
-    // This is an unfortunate hack. Animating between widths in percent (%)
+    ${'' /* // This is an unfortunate hack. Animating between widths in percent (%)
     // in many browsers (Chrome, Firefox) only animates the inner visual style
     // of the input - the outer bounding box still 'jumps'.
-    // Thus assume a sensible maximum, and animate to/from that value.
+    // Thus assume a sensible maximum, and animate to/from that value. */}
     max-width: 600px;
   `}
 

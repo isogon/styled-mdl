@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { getters as g } from '../util';
 import { arrowTop, arrowBottom, arrowLeft, arrowRight } from '../mixins';
 
-export const TooltipWrapper = styled.div`
+export const tooltipWrapperStyle = css`
   display: inline-block;
 `;
 
@@ -49,6 +49,8 @@ export const TooltipPosition = styled.div`
   }}
 `;
 
+TooltipPosition.displayName = 'TooltipPosition';
+
 export const TooltipBase = styled.div`
   display: block;
   background: ${g.tooltipBackgroundColor};
@@ -93,3 +95,5 @@ export const TooltipBase = styled.div`
     }
   }}
 `;
+
+TooltipBase.displayName = 'TooltipBase';

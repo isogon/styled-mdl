@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
+import { setDisplayName, setPropTypes, defaultProps, compose } from 'recompose';
+import { ToastAnimation } from './Toast.style';
 
-import ToastBase from './Toast.style';
-
-export default class Toast extends Component {
+export class ToastBase extends Component {
   constructor(props) {
     super(props);
 
@@ -43,23 +43,27 @@ export default class Toast extends Component {
   render() {
     return (
       <Portal isOpened={this.state.isOpened}>
-        <ToastBase
+        <ToastAnimation
           isActive={this.state.isActive}
           position={this.props.position}
         >
           {this.props.children}
-        </ToastBase>
+        </ToastAnimation>
       </Portal>
     );
   }
 }
 
-Toast.propTypes = {
-  isActive: PropTypes.bool,
-  position: PropTypes.string,
-  children: PropTypes.node,
-};
+const enhance = compose(
+  defaultProps({
+    position: 'left',
+  }),
+  setPropTypes({
+    isActive: PropTypes.bool,
+    position: PropTypes.string,
+    children: PropTypes.node,
+  }),
+  setDisplayName('Toast')
+);
 
-Toast.defaultProps = {
-  position: 'left',
-};
+export default enhance(ToastBase);

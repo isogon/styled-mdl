@@ -1,36 +1,31 @@
 import styled, { css } from 'styled-components';
+import { cond, prop, always, T } from 'lodash/fp';
+
 import { getters as g, rgba } from '../util';
 
-export const Effect = styled.div`
-  background: #fff;
+export const Effect = styled.div.attrs({
+  color: cond([
+    [prop('dark'), always('rgba(0,0,0,.3)')],
+    [prop('colored'), ({ theme }) => rgba(theme.colorPrimary, 0.5)],
+    [prop('accent'), ({ theme }) => rgba(theme.colorAccent, 0.5)],
+    [T, always('white')],
+  ]),
+})`
+  background-color: ${prop('color')};
   border-radius: 50%;
-  height: ${({ size }) => size};
-  width: ${({ size }) => size};
-  transform: ${({ transform }) => transform || 'none'};
-  opacity: ${({ opacity }) => opacity};
+  transform: 'none';
   pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
   overflow: hidden;
-  ${({ dark }) => dark && css`
-    background: rgba(0,0,0,.3);
-  `}
-  ${({ colored }) => colored && css`
-    background: ${({ theme }) => rgba(theme.colorPrimary, 0.5)};
-  `}
-  ${({ accent }) => accent && css`
-    background: ${({ theme }) => rgba(theme.colorAccent, 0.5)};
-  `}
-  ${({ shouldAnimate }) => shouldAnimate && css`
-    transition: transform 0.6s ${g.animationCurveLinearOutSlowIn},
-                width 0.6s ${g.animationCurveLinearOutSlowIn},
-                height 0.6s ${g.animationCurveLinearOutSlowIn},
-                opacity 1.2s ${g.animationCurveLinearOutSlowIn};
-  `}
+  transition-duration: 0.6s, 0.6s, 0.6s, 1.2s;
+  transition-timing-function: ${g.animationCurveLinearOutSlowIn};
 `;
 
-export const Wrap = styled.div`
+Effect.displayName = 'Effect';
+
+export const WrapStyle = css`
   display: block;
   position: absolute;
   top: 0;
@@ -49,7 +44,6 @@ export const Wrap = styled.div`
   `}
   ${({ round }) => round && css`
     border-radius: 50%;
-    // Fixes clipping bug in Safari.
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
   `}
 `;

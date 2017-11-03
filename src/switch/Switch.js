@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, setDisplayName, setPropTypes } from 'recompose';
+
+import { withStyle } from '../util';
 import {
-  SwitchWrap,
+  switchWrapStyle,
   SwitchStyle,
   SwitchButton,
   SwitchLabel,
@@ -9,20 +12,24 @@ import {
   Thumb,
 } from './Switch.style';
 
-export default function Switch({ label, disabled, ...props }) {
-  return (
-    <SwitchWrap>
-      <SwitchStyle>
-        <SwitchButton type="checkbox" disabled={disabled} {...props} />
-        {label && <SwitchLabel disabled={disabled}>{label}</SwitchLabel>}
-        <Track disabled={disabled} />
-        <Thumb disabled={disabled} />
-      </SwitchStyle>
-    </SwitchWrap>
-  );
-}
+export const SwitchBase = ({ label, disabled, className, ...props }) => (
+  <div className={className}>
+    <SwitchStyle>
+      <SwitchButton type="checkbox" disabled={disabled} {...props} />
+      {label && <SwitchLabel disabled={disabled}>{label}</SwitchLabel>}
+      <Track disabled={disabled} />
+      <Thumb disabled={disabled} />
+    </SwitchStyle>
+  </div>
+);
 
-Switch.propTypes = {
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-};
+const enhance = compose(
+  withStyle(switchWrapStyle),
+  setPropTypes({
+    label: PropTypes.string,
+    disabled: PropTypes.bool,
+  }),
+  setDisplayName('Switch')
+);
+
+export default enhance(SwitchBase);

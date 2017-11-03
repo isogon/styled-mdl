@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
 import { getters as g } from '../util';
 
-const SnackbarBase = styled.div`
+export default css`
   background-color: #323232;
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,3 @@ const SnackbarBase = styled.div`
     margin: 0 16px 16px 16px;
   }
 `;
-
-SnackbarBase.displayName = 'SnackbarBase';
-
-export default SnackbarBase;

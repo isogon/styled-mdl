@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
+import { compose, setPropTypes, setDisplayName, defaultProps } from 'recompose';
 
+import { withStyle } from '../util';
 import { Input as BaseInput } from '../input';
 import {
-  TextfieldBase,
+  textfieldStyle,
   Input,
   Textarea,
   Label,
@@ -12,42 +14,48 @@ import {
   HelperText,
 } from './Textfield.style';
 
-export default class Textfield extends BaseInput {
-  static propTypes = {
-    error: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    value: PropTypes.string,
-    label: PropTypes.string,
-    multiLine: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    type: 'text',
-  };
-
+export class TextfieldBase extends BaseInput {
   render() {
+    const { className, ...props } = this.props;
     return (
-      <TextfieldBase {...this.props}>
-        <Label {...this.props} {...this.state}>{this.props.label}</Label>
-        {this.props.multiLine
+      <div className={className}>
+        <Label {...props} {...this.state}>{props.label}</Label>
+        {props.multiLine
           ? <Textarea
-            {...omit(this.props, ['defaultValue'])}
+            {...omit(props, ['defaultValue'])}
             {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
           : <Input
-            {...omit(this.props, ['defaultValue'])}
+            {...omit(props, ['defaultValue'])}
             {...this.state}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />}
-        {this.props.error && <ErrorMessage>{this.props.error}</ErrorMessage>}
-        {this.props.helperText &&
-          <HelperText>{this.props.helperText}</HelperText>}
-      </TextfieldBase>
+        {props.error && <ErrorMessage>{props.error}</ErrorMessage>}
+        {props.helperText &&
+          <HelperText>{props.helperText}</HelperText>}
+      </div>
     );
   }
 }
+
+const enhance = compose(
+  setPropTypes({
+    error: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    value: PropTypes.string,
+    label: PropTypes.string,
+    multiLine: PropTypes.bool,
+  }),
+  defaultProps({
+    type: 'text',
+  }),
+  withStyle(textfieldStyle),
+  setDisplayName('Textfield'),
+);
+
+export default enhance(TextfieldBase);

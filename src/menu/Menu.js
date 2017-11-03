@@ -89,15 +89,20 @@ export default class Menu extends Component {
       onClick: () => {
         this.preventOpen = this.state.isVisible;
       },
-      innerRef: (ctrl) => {
-        this.control = ctrl;
-      },
     });
 
     return (
       <MenuControlWrap>
         <Portal
-          openByClickOn={<span>{control}</span>}
+          openByClickOn={
+            <span
+              ref={(ctrl) => {
+                this.control = ctrl;
+              }}
+            >
+              {control}
+            </span>
+          }
           closeOnOutsideClick
           onOpen={this.handleOpen}
           onClose={this.handleClose}

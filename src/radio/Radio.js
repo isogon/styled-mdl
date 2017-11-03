@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, setDisplayName, setPropTypes } from 'recompose';
+
+import { withStyle } from '../util';
 import {
   RadioStyle,
   RadioButton,
@@ -8,18 +11,22 @@ import {
   InnerCircle,
 } from './Radio.style';
 
-export default function Radio({ label, disabled, ...props }) {
-  return (
-    <RadioStyle>
-      <RadioButton type="radio" {...props} disabled={disabled} />
-      {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
-      <OuterCircle disabled={disabled} />
-      <InnerCircle disabled={disabled} />
-    </RadioStyle>
-  );
-}
+export const Radio = ({ label, disabled, className, ...props }) => (
+  <label className={className} htmlFor={props.htmlFor}>
+    <RadioButton type="radio" {...props} disabled={disabled} />
+    {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
+    <OuterCircle disabled={disabled} />
+    <InnerCircle disabled={disabled} />
+  </label>
+);
 
-Radio.propTypes = {
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-};
+const enhance = compose(
+  setPropTypes({
+    label: PropTypes.string,
+    disabled: PropTypes.bool,
+  }),
+  withStyle(RadioStyle),
+  setDisplayName('Radio')
+);
+
+export default enhance(Radio);

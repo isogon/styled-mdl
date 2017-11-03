@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose';
 import { getters as g } from '../util';
 
-export default styled.header`
+export const CardTitle = setDisplayName('CardTitle')(styled.header`
   align-items: center;
   color: ${g.cardTextColor};
   display: block;
@@ -17,4 +18,4 @@ export default styled.header`
   ${({ expand }) => expand && css`
     flex-grow: 1;
   `}
-`;
+`);

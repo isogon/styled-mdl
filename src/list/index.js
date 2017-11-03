@@ -1,5 +1,6 @@
 export {
   List,
+  ListItem,
   LiAction,
   LiIcon,
   LiAvatar,
@@ -10,4 +11,3 @@ export {
   LiTextBody,
   LiTitle,
 } from './List.style';
-export ListItem from './ListItem';

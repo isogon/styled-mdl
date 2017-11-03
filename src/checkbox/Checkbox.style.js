@@ -4,7 +4,7 @@ import { materialAnimationDefault } from '../mixins';
 import { getters as g } from '../util';
 import { mask, bg } from './images';
 
-export const CheckboxStyle = styled.label`
+export const CheckboxStyle = css`
   position: relative;
   font-size: ${g.radioLabelFontSize}px;
   line-height: ${g.radioLabelHeight}px;
@@ -68,10 +68,13 @@ export const TickOutline = styled.div`
   width: 102%;
   mask: url(${mask});
   background: transparent;
-  ${materialAnimationDefault('0.28s')} transition-property: background;
-
+  transition-property: background;
+  ${materialAnimationDefault('0.28s')}
   ${({ disabled }) =>
-    disabled && css`background-color: ${g.checkboxDisabledColor};`};
+    disabled &&
+    css`
+      background-color: ${g.checkboxDisabledColor};
+    `};
 `;
 
 export const CheckboxLabel = styled.span`

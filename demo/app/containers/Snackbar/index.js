@@ -4,15 +4,10 @@ import DemoPage from 'components/DemoPage';
 
 import snackbar from './demos/snackbar';
 import toast from './demos/toast';
-import dismissable from './demos/dismissable';
 
 const title = 'Snackbar';
 const subtitle = 'Transient popup notifications.';
-const demos = [
-  { demos: [snackbar] },
-  { demos: [toast] },
-  { demos: [dismissable] },
-];
+const demos = [{ demos: [snackbar] }, { demos: [toast] }];
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class Snackbar extends Component {

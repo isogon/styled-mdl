@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getters as g } from '../util';
 
-export default styled.div`
+export const ToastAnimation = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 3;

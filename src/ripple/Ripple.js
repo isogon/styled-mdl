@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { autobind } from 'core-decorators';
+import { compose, setDisplayName } from 'recompose';
 
+import { withStyle } from '../util';
 import { getRippleSize, getRippleCoords } from './helpers';
-import { Effect, Wrap } from './Ripple.style';
+import { Effect, WrapStyle } from './Ripple.style';
 
-export default class Ripple extends Component {
+export class RippleBase extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,10 +45,8 @@ export default class Ripple extends Component {
 
   render() {
     return (
-      <Wrap
-        {...this.props}
-        toggle={this.state.toggle}
-        innerRef={(wrapper) => {
+      <div
+        ref={(wrapper) => {
           this.wrapper = wrapper;
         }}
         onMouseDown={this.handleMouseDown}
@@ -54,9 +54,25 @@ export default class Ripple extends Component {
         onMouseOut={this.handleMouseUp}
         onFocus={this.handleMouseDown}
         onBlur={this.handleMouseUp}
+        className={this.props.className}
       >
-        <Effect {...this.props} {...this.state} />
-      </Wrap>
+        <Effect
+          {...this.props}
+          style={{
+            height: this.state.size,
+            width: this.state.size,
+            transform: this.state.transform,
+            opacity: this.state.opacity,
+            transitionProperty: this.state.shouldAnimate
+              ? 'transform, width, height, opacity'
+              : 'none',
+          }}
+        />
+      </div>
     );
   }
 }
+
+const enhance = compose(withStyle(WrapStyle), setDisplayName('Ripple'));
+
+export default enhance(RippleBase);

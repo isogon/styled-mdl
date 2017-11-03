@@ -1,24 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
-import { SliderInput, SliderContainer, SliderBackground } from './Slider.style';
+import { compose, setDisplayName, setPropTypes } from 'recompose';
+
+import {
+  SliderInput,
+  SliderContainerStyle,
+  SliderBackground,
+} from './Slider.style';
 import { Input } from '../input';
+import { withStyle } from '../util';
 
-export default class Slider extends Input {
-  static propTypes = {
-    focused: PropTypes.bool,
-    autoFocus: PropTypes.bool,
-    active: PropTypes.bool,
-    value: PropTypes.number,
-    defaultValue: PropTypes.number,
-    disabled: PropTypes.bool,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-  };
-
+export class SliderBase extends Input {
   constructor(props) {
     super(props);
 
@@ -29,23 +22,25 @@ export default class Slider extends Input {
     };
   }
 
-  @autobind handleMouseDown() {
+  @autobind
+  handleMouseDown() {
     this.setState({ active: true });
   }
 
-  @autobind handleMouseUp(e) {
+  @autobind
+  handleMouseUp(e) {
     this.setState({ active: false });
     this.handleBlur(e);
   }
 
   render() {
-    const { disabled, max, min } = this.props;
+    const { disabled, max, min, className } = this.props;
     const { active, value, focused } = this.state;
 
     const percent = (value - min) / (max - min);
 
     return (
-      <SliderContainer>
+      <div className={className}>
         <SliderInput
           type="range"
           max={max}
@@ -68,7 +63,27 @@ export default class Slider extends Input {
           focused={focused}
           percent={percent}
         />
-      </SliderContainer>
+      </div>
     );
   }
 }
+
+const enhance = compose(
+  withStyle(SliderContainerStyle),
+  setPropTypes({
+    focused: PropTypes.bool,
+    autoFocus: PropTypes.bool,
+    active: PropTypes.bool,
+    value: PropTypes.number,
+    defaultValue: PropTypes.number,
+    disabled: PropTypes.bool,
+    min: PropTypes.number,
+    max: PropTypes.number,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+  }),
+  setDisplayName('Slider')
+);
+
+export default enhance(SliderBase);

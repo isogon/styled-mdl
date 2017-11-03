@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, setPropTypes, setDisplayName } from 'recompose';
+
 import {
-  Spinner as SpinnerStyle,
+  spinnerStyle,
   LayerOne,
   LayerTwo,
   LayerThree,
@@ -10,32 +12,35 @@ import {
   CircleClipper,
   Circle,
 } from './Spinner.style';
+import { withStyle } from '../util';
 
-export const Layer = ({ level: Level, ...props }) => (
-  <Level {...props}>
-    <CircleClipper left>
-      <Circle left clipper {...props} />
-    </CircleClipper>
-    <GapPatch>
-      <Circle gap />
-    </GapPatch>
-    <CircleClipper right>
-      <Circle right clipper {...props} />
-    </CircleClipper>
-  </Level>
+const layers = [LayerOne, LayerTwo, LayerThree, LayerFour];
+
+export const SpinnerBase = ({ className, ...props }) => (
+  <div className={className}>
+    {layers.map((Layer, i) => (
+      <Layer {...props} key={i}>
+        <CircleClipper left>
+          <Circle left clipper {...props} />
+        </CircleClipper>
+        <GapPatch>
+          <Circle gap />
+        </GapPatch>
+        <CircleClipper right>
+          <Circle right clipper {...props} />
+        </CircleClipper>
+      </Layer>
+    ))}
+  </div>
 );
 
-Layer.propTypes = {
-  level: PropTypes.any,
-};
+const enhance = compose(
+  setPropTypes({
+    active: PropTypes.bool,
+    singleColor: PropTypes.bool,
+  }),
+  withStyle(spinnerStyle),
+  setDisplayName('Spinner')
+);
 
-export default function Spinner(props) {
-  return (
-    <SpinnerStyle {...props}>
-      <Layer level={LayerOne} {...props} />
-      <Layer level={LayerTwo} {...props} />
-      <Layer level={LayerThree} {...props} />
-      <Layer level={LayerFour} {...props} />
-    </SpinnerStyle>
-  );
-}
+export default enhance(SpinnerBase);

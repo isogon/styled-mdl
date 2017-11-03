@@ -1,6 +1,5 @@
 import getRelativePosition from 'menu/getRelativePosition';
 
-
 describe('getRelativePosition', () => {
   describe('when scrollX/scrollY is set', () => {
     it('gets the position of the element', () => {

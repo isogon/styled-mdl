@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose';
 import { getters as g } from '../util';
 
-export default styled.div`
+export const Card = setDisplayName('Card')(styled.div`
   display: flex;
   flex-direction: column;
   font-size: ${g.cardFontSize}px;
@@ -17,4 +18,4 @@ export default styled.div`
   ${({ expand }) => expand && css`
     flex-grow: 1;
   `}
-`;
+`);

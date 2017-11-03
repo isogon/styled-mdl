@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getters as g } from '../util';
 
-export const BadgeWrap = styled.div`
+export const BadgeWrapStyle = css`
   position: relative;
   white-space: nowrap;
   display: inline-block;

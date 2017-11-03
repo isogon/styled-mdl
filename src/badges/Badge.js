@@ -1,22 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { setPropTypes, setDisplayName, defaultProps, compose } from 'recompose';
 
-import { BadgeWrap, BadgeText } from './Badge.style';
+import { BadgeWrapStyle, BadgeText } from './Badge.style';
+import { withStyle } from '../util/tools';
 
-export default function Badge({ text, children, ...props }) {
-  return (
-    <BadgeWrap {...props}>
-      {children}
-      <BadgeText {...props}>{text}</BadgeText>
-    </BadgeWrap>
-  );
-}
+export const BadgeBase = ({ text, children, className, ...props }) => (
+  <div className={className}>
+    {children}
+    <BadgeText {...props}>{text}</BadgeText>
+  </div>
+);
 
-Badge.propTypes = {
-  text: PropTypes.node,
-  children: PropTypes.node,
-};
+const enhance = compose(
+  setPropTypes({
+    text: PropTypes.node,
+    children: PropTypes.node,
+    className: PropTypes.string,
+  }),
+  defaultProps({
+    background: true,
+  }),
+  withStyle(BadgeWrapStyle),
+  setDisplayName('Badge')
+);
 
-Badge.defaultProps = {
-  background: true,
-};
+export default enhance(BadgeBase);
