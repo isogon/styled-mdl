@@ -1,17 +1,29 @@
 import styled, { css } from 'styled-components';
-import { getters as g } from '../util';
+import { call, prop, ifProp } from 'styled-tools';
+import { add, divide, subtract, cond, T, always, compose } from 'lodash/fp';
+
+const negate = (n) => -n;
+const overlap = prop('overlap');
+const forButton = prop('forButton');
+const badgeSize = prop('theme.badgeSize');
+const badgeFontSize = prop('theme.badgeFontSize');
+const badgeOverlap = prop('theme.badgeOverlap');
+const badgePadding = prop('theme.badgePadding');
+const preferredFont = prop('theme.preferredFont');
+const badgeBackground = prop('theme.badgeBackground');
+const badgeColor = prop('theme.badgeColor');
+const badgeColorInverse = prop('theme.badgeColorInverse');
+const badgeBackgroundInverse = prop('theme.badgeBackgroundInverse');
 
 export const BadgeWrapStyle = css`
   position: relative;
   white-space: nowrap;
   display: inline-block;
-  margin-right: ${({ theme }) => theme.badgeSize + theme.badgePadding}px;
-  ${({ overlap }) => overlap && css`
-    margin-right: ${({ theme }) => theme.badgeSize - theme.badgeOverlap}px;
-  `}
-  ${({ forButton }) => forButton && css`
-    margin-right: ${({ theme }) => theme.badgeSize - 14}px;
-  `}
+  margin-right: ${cond([
+    [overlap, call(subtract, badgeSize, badgeOverlap)],
+    [forButton, call(subtract, badgeSize, always(14))],
+    [T, call(add, badgeSize, badgePadding)],
+  ])}px;
 `;
 
 export const BadgeText = styled.div`
@@ -22,26 +34,19 @@ export const BadgeText = styled.div`
   align-content: center;
   align-items: center;
   position: absolute;
-  top: ${({ theme }) => -(theme.badgeSize / 2)}px;
-  right: ${({ theme }) => -(theme.badgeSize + theme.badgePadding)}px;
-  font-family: ${g.preferredFont};
+  top: ${ifProp('forButton', -10, call(divide, badgeSize, always(-2)))}px;
+  right: ${cond([
+    [forButton, always(-10)],
+    [overlap, call(compose(negate, subtract), badgeSize, badgeOverlap)],
+    [T, call(compose(negate, add), badgeSize, badgePadding)],
+  ])}px;
+  font-family: ${preferredFont};
   font-weight: 600;
-  font-size: ${g.badgeFontSize}px;
-  width: ${g.badgeSize}px;
-  height: ${g.badgeSize}px;
+  font-size: ${badgeFontSize}px;
+  width: ${badgeSize}px;
+  height: ${badgeSize}px;
   border-radius: 50%;
-  background: ${g.badgeBackground};
-  color: ${g.badgeColor};
-  ${({ forButton }) => forButton && css`
-    top: -10px;
-    right: -7px;
-  `}
-  ${({ background }) => !background && css`
-    color: ${g.badgeColorInverse};
-    background: ${g.badgeBackgroundInverse};
-    box-shadow: 0 0 1px gray;
-  `}
-  ${({ overlap }) => overlap && css`
-    right: ${({ theme }) => -(theme.badgeSize - theme.badgeOverlap)}px;
-  `}
+  color: ${ifProp('background', badgeColor, badgeColorInverse)};
+  background: ${ifProp('background', badgeBackground, badgeBackgroundInverse)};
+  box-shadow: ${ifProp('background', 'none', '0 0 1px gray')};
 `;
