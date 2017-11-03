@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description":
     "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
@@ -70,6 +70,7 @@
     "react-modal": "^3.1.0",
     "react-portal": "^3.0.0",
     "recompose": "^0.26.0",
+    "styled-tools": "^0.2.2",
     "warning": "^3.0.0"
   },
   "devDependencies": {
