@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { shadow2dp } from '../mixins';
 import { getters as g } from '../util';
 
-const chipStyle = css`
+export const chipStyle = css`
   height: ${g.chipHeight}px;
   font-family: ${g.preferredFont};
   line-height: ${g.chipHeight}px;
@@ -30,9 +30,6 @@ const chipStyle = css`
     padding-left: 0px;
   `}
 `;
-
-export const ChipSpan = styled.span`${chipStyle}`;
-export const ChipButton = styled.button`${chipStyle}`;
 
 export const ChipText = styled.span`
   font-size: ${g.chipFontSize}px;
@@ -63,7 +60,7 @@ export const ChipAction = styled.button`
   }
 `;
 
-const chipContactStyle = css`
+export const ChipContactImg = styled.img`
   height: ${g.chipHeight}px;
   width: ${g.chipHeight}px;
   border-radius: ${({ theme }) => theme.chipHeight / 2}px;
@@ -78,5 +75,4 @@ const chipContactStyle = css`
   color: ${({ textColor }) => textColor || '#FFF'};
 `;
 
-export const ChipContactImg = styled.img`${chipContactStyle}`;
-export const ChipContactSpan = styled.span`${chipContactStyle}`;
+export const ChipContactSpan = ChipContactImg.withComponent('span');

@@ -1,44 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  compose,
+  setPropTypes,
+  setDisplayName,
+  defaultProps,
+  withProps,
+} from 'recompose';
 
+import { withStyle, omitProps } from '../util/tools';
 import { Ripple } from '../ripple';
 
-import StyledButton from './Button.style';
+import { ButtonStyles } from './Button.style';
 
-const shouldShowRipple = (props) =>
-  props.ripple && !props.disabled && !props.icon;
+export const ButtonBase = ({
+  children,
+  text,
+  shouldShowRipple,
+  isDark,
+  isRound,
+  ...props
+}) => (
+  <button {...props}>
+    {children || text}
+    {shouldShowRipple && <Ripple round={isRound} dark={isDark} />}
+  </button>
+);
 
-const isDark = (props) => {
-  if (props.raised || props.fab) {
-    if (props.colored || props.accent || props.primary) {
-      return false;
-    }
-  }
+const enhance = compose(
+  setPropTypes({
+    text: PropTypes.string,
+    children: PropTypes.node,
+    ripple: PropTypes.bool,
+    fab: PropTypes.bool,
+    icon: PropTypes.bool,
+    href: PropTypes.string,
+    to: PropTypes.string,
+    disabled: PropTypes.bool,
+  }),
+  defaultProps({
+    ripple: true,
+  }),
+  withProps((props) => ({
+    shouldShowRipple: props.ripple && !props.disabled && !props.icon,
+    isDark:
+      (props.raised || props.fab) &&
+      !(props.colored || props.accent || props.primary),
+    isRound: props.fab || props.icon,
+  })),
+  withStyle(ButtonStyles),
+  omitProps([
+    'colored',
+    'raised',
+    'primary',
+    'accent',
+    'fab',
+    'mini',
+    'icon',
+    'accent',
+    'ripple',
+  ]),
+  setDisplayName('Button')
+);
 
-  return true;
-};
-
-export default function Button({ children, text, ...props }) {
-  return (
-    <StyledButton {...props}>
-      {children || text}
-      {shouldShowRipple(props) &&
-        <Ripple round={props.fab} dark={isDark(props)} />}
-    </StyledButton>
-  );
-}
-
-Button.defaultProps = {
-  ripple: true,
-};
-
-Button.propTypes = {
-  text: PropTypes.string,
-  children: PropTypes.node,
-  ripple: PropTypes.bool,
-  fab: PropTypes.bool,
-  icon: PropTypes.bool,
-  href: PropTypes.string,
-  to: PropTypes.string,
-  disabled: PropTypes.bool,
-};
+export default enhance(ButtonBase);

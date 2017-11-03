@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-
+import { setDisplayName } from 'recompose';
 import { getters as g } from '../util';
 
 const rotate = keyframes`
@@ -69,7 +69,7 @@ const rightSpin = keyframes`
   to { transform: rotate(-130deg); }
 `;
 
-export const Spinner = styled.div`
+export const spinnerStyle = css`
   display: inline-block;
   position: relative;
   width: ${g.spinnerSize}px;
@@ -89,41 +89,41 @@ export const Layer = styled.div`
 const spinnerArcTime = (co) => ({ theme }) =>
   `${theme.spinnerArcTime * co}ms ${theme.animationCurveFastOutSlowIn} infinite both`;
 
-export const LayerOne = styled(Layer)`
+export const LayerOne = setDisplayName('LayerOne')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor1)};
 
   ${({ active }) => active && css`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer1FadeInOut} ${spinnerArcTime(4)};
   `}
-`;
+`);
 
-export const LayerTwo = styled(Layer)`
+export const LayerTwo = setDisplayName('LayerTwo')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor2)};
 
   ${({ active }) => active && css`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer2FadeInOut} ${spinnerArcTime(4)};
   `}
-`;
+`);
 
-export const LayerThree = styled(Layer)`
+export const LayerThree = setDisplayName('LayerThree')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor3)};
 
   ${({ active }) => active && css`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer3FadeInOut} ${spinnerArcTime(4)};
   `}
-`;
+`);
 
-export const LayerFour = styled(Layer)`
+export const LayerFour = setDisplayName('LayerFour')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor4)};
 
   ${({ active }) => active && css`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer4FadeInOut} ${spinnerArcTime(4)};
   `}
-`;
+`);
 
 /**
 * Patch the gap that appear between the two adjacent

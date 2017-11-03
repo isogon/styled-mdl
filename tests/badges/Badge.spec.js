@@ -1,7 +1,7 @@
-import Badge from 'badges/Badge';
-import { BadgeWrap, BadgeText } from 'badges/Badge.style';
+import { BadgeBase } from 'badges/Badge';
+import { BadgeText } from 'badges/Badge.style';
 
-const render = shallowComponent(Badge, { text: 'foo' }, 'Hello World');
+const render = shallowComponent(BadgeBase, { text: 'foo' }, 'Hello World');
 
 describe('<Badge />', () => {
   let badge;
@@ -10,8 +10,9 @@ describe('<Badge />', () => {
     badge = render();
   });
 
-  it('renders a BadgeWrap', () => {
-    expect(badge.find(BadgeWrap)).toBePresent();
+  it('renders a div with className', () => {
+    expect(badge.find('div')).toBePresent();
+    expect(badge.find('div')).toHaveProp('className');
   });
 
   it('renders a BadgeText with [prop] text', () => {
@@ -20,13 +21,12 @@ describe('<Badge />', () => {
   });
 
   it('renders its children', () => {
-    expect(badge.find(BadgeWrap).children().at(0).text()).toEqual(
-      'Hello World',
-    );
-  });
-
-  it('defaults to [prop] background to true', () => {
-    expect(badge.find(BadgeWrap)).toHaveProp('background', true);
-    expect(badge.find(BadgeText)).toHaveProp('background', true);
+    expect(
+      badge
+        .find('div')
+        .children()
+        .at(0)
+        .text()
+    ).toEqual('Hello World');
   });
 });

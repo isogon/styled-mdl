@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
 import { autobind } from 'core-decorators';
-import { TooltipBase, TooltipPosition, TooltipWrapper } from './Tooltip.style';
+import { compose, setDisplayName, setPropTypes, defaultProps } from 'recompose';
+
+import { withStyle } from '../util';
+import {
+  tooltipWrapperStyle,
+  TooltipBase,
+  TooltipPosition,
+} from './Tooltip.style';
 import getRelativePosition from '../menu/getRelativePosition';
 
-export default class Tooltip extends Component {
+export class Tooltip extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +48,11 @@ export default class Tooltip extends Component {
   }
 
   @autobind
+  setControl(ctrl) {
+    this.control = ctrl;
+  }
+
+  @autobind
   handleOpen() {
     this.setState({ isOpened: true });
     this.setPosition();
@@ -57,33 +69,37 @@ export default class Tooltip extends Component {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, className, ...props } = this.props;
 
     return (
-      <TooltipWrapper
+      <div
+        className={className}
         onMouseEnter={this.handleOpen}
         onMouseLeave={this.handleClose}
-        innerRef={(ctrl) => {
-          this.control = ctrl;
-        }}
+        ref={this.setControl}
       >
         {children}
         <Portal isOpened={this.state.isOpened}>
           <TooltipPosition {...this.state} {...this.props}>
-            <TooltipBase {...props}>{this.props.message}</TooltipBase>
+            <TooltipBase large={props.large} position={props.position}>{this.props.message}</TooltipBase>
           </TooltipPosition>
         </Portal>
-      </TooltipWrapper>
+      </div>
     );
   }
 }
 
-Tooltip.propTypes = {
-  message: PropTypes.node,
-  children: PropTypes.node,
-  position: PropTypes.string,
-};
+const enhance = compose(
+  setPropTypes({
+    message: PropTypes.node,
+    children: PropTypes.node,
+    position: PropTypes.string,
+  }),
+  defaultProps({
+    position: 'above',
+  }),
+  withStyle(tooltipWrapperStyle),
+  setDisplayName('Tooltip')
+);
 
-Tooltip.defaultProps = {
-  position: 'above',
-};
+export default enhance(Tooltip);

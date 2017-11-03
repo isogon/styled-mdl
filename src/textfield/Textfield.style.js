@@ -3,7 +3,7 @@ import { getters as g } from '../util';
 import { materialAnimationDefault } from '../mixins';
 
 // The container for the whole component.
-export const TextfieldBase = styled.div`
+export const textfieldStyle = css`
   position: relative;
   font-size: ${g.inputTextFontSize}px;
   display: inline-block;
@@ -26,7 +26,7 @@ export const TextfieldBase = styled.div`
 `;
 
 // Styling for the input element.
-export const inputStyles = css`
+export const Input = styled.input`
   border: none;
   border-bottom: 1px solid ${g.inputTextBottomBorderColor};
   display: block;
@@ -65,9 +65,7 @@ export const inputStyles = css`
   `}
 `;
 
-export const Input = styled.input`${inputStyles}`;
-export const Textarea = styled.textarea`
-  ${inputStyles}
+export const Textarea = Input.withComponent('textarea').extend`
   display: block;
 `;
 

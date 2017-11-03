@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { materialAnimationDefault } from '../mixins';
 import { getters as g } from '../util';
 
-export const RadioStyle = styled.label`
+export const RadioStyle = css`
   position: relative;
   font-size: ${g.radioLabelFontSize}px;
   line-height: ${g.radioLabelHeight}px;

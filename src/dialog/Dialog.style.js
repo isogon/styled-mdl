@@ -5,14 +5,14 @@ import { getters as g } from '../util';
 
 const flyIn = keyframes`
   from {
-    transform: translate(-50%, calc(-75% + 45vh));
+    transform: translate(0, 5vh);
   }
   to {
-    transform: translate(-50%, calc(-75% + 50vh));
+    transform: translate(0, 0);
   }
 `;
 
-const fadeIn = keyframes`
+export const fadeIn = keyframes`
   from {
     opacity: 0;
   }
@@ -21,19 +21,19 @@ const fadeIn = keyframes`
   }
 `;
 
-export const DialogBase = styled.div`
-  border: none;
-  z-index: 2000;
-  position: fixed;
-  top: 0;
-  right: auto;
-  left: 50%;
+export const DialogStyle = styled.div.attrs({
+  width: ({ size }) => `${parseInt(size || 5, 10) * 56}px`,
+})`
   background: white;
-  max-width: ${({ size }) => parseInt(size, 10) * 56}px;
+  width: ${({ width }) => width};
+  max-width: calc(100vw - 144px);
+  max-height: 80vh;
+  margin-top: -15vh;
+  border-radius: 3px;
   ${shadow24dp()}
+  overflow: auto;
   animation: ${fadeIn} 0.3s ${g.animationCurveDefault} forwards,
              ${flyIn} 0.3s ${g.animationCurveLinearOutSlowIn} forwards;
-  animation-fill-mode: forwards;
 `;
 
 export const DialogTitle = styled.h1`
@@ -52,8 +52,8 @@ export const DialogContent = styled.div`
 `;
 
 export const DialogActions = styled.div`
-  padding: 8px 8px 8px 24px;
-  margin-right: -8px;
+  position: relative;
+  padding: 8px 0 8px 24px;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
@@ -63,7 +63,7 @@ export const DialogActions = styled.div`
   }
   ${({ fullWidth }) => fullWidth && css`
     padding: 0 0 8px 0;
-    margin-right: 0;
+    right: 0;
     > * {
       height: 48px;
       flex: 0 0 auto;
@@ -72,6 +72,7 @@ export const DialogActions = styled.div`
       margin-right: 0;
       text-align: right;
       justify-content: flex-end;
+      border-radius: 0;
     }
   `}
 `;

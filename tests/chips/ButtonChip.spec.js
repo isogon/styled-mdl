@@ -1,6 +1,7 @@
-import { ButtonChip, ChipContact } from 'chips';
+import { ButtonChipBase } from 'chips/ButtonChip';
+import { ChipContact } from 'chips';
 
-const render = shallowComponent(ButtonChip, {}, 'children');
+const render = shallowComponent(ButtonChipBase, {}, 'children');
 
 describe('<ButtonChip />', () => {
   let chip;

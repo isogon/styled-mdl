@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import { getters as g } from '../util';
 import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../mixins';
 
-const base = css`
+export const ButtonStyles = css`
   background: transparent;
   border: none;
   border-radius: ${g.buttonBorderRadius}px;
@@ -39,9 +39,6 @@ const base = css`
   &:active {
     background-color: ${g.buttonActiveColor};
   }
-`;
-
-const mods = css`
   ${({ colored }) =>
     colored &&
     css`
@@ -222,5 +219,3 @@ const mods = css`
             `};
       `};
 `;
-
-export default styled.button`${base}${mods}`;

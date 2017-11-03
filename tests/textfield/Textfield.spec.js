@@ -1,13 +1,12 @@
-import Textfield from 'textfield/Textfield';
+import { TextfieldBase } from 'textfield/Textfield';
 import {
-  TextfieldBase,
   Input,
   Textarea,
   Label,
   ErrorMessage,
 } from 'textfield/Textfield.style';
 
-const render = shallowComponent(Textfield);
+const render = shallowComponent(TextfieldBase);
 
 describe('<Textfield />', () => {
   let textfield;
@@ -16,8 +15,9 @@ describe('<Textfield />', () => {
     textfield = render();
   });
 
-  it('renders a Textfieldbase', () => {
-    expect(textfield.find(TextfieldBase)).toBePresent();
+  it('renders a the textfieldBase style', () => {
+    expect(textfield.find('div')).toBePresent();
+    expect(textfield.find('div')).toHaveProp('className');
   });
 
   it('renders a Label', () => {

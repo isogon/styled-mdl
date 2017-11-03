@@ -4,7 +4,7 @@ import { materialAnimationDefault } from '../mixins';
 import { getters as g } from '../util';
 import { mask, bg } from './images';
 
-export const CheckboxStyle = styled.label`
+export const CheckboxStyle = css`
   position: relative;
   font-size: ${g.radioLabelFontSize}px;
   line-height: ${g.radioLabelHeight}px;

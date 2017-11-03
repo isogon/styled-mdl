@@ -1,12 +1,6 @@
-import Tooltip from 'tooltips/Tooltip';
-import {
-  TooltipBase,
-  TooltipPosition,
-  TooltipWrapper,
-} from 'tooltips/Tooltip.style';
-import Portal from 'react-portal';
+import { Tooltip } from 'tooltips/Tooltip';
 
-const render = shallowComponent(Tooltip, { message: 'message' }, 'children');
+const render = shallowComponent(Tooltip, { message: 'message', position: 'above' }, 'children');
 
 describe('<Tooltip>', () => {
   let tooltip;
@@ -19,7 +13,7 @@ describe('<Tooltip>', () => {
     window.scrollY = 0;
     window.addEventListener = jest.fn();
     window.removeEventListener = jest.fn();
-    tooltip.instance().control = {
+    tooltip.instance().setControl({
       getBoundingClientRect: () => ({
         height: 100,
         width: 100,
@@ -28,30 +22,21 @@ describe('<Tooltip>', () => {
         right: 200,
         bottom: 200,
       }),
-    };
+    });
     get = {
       get base() {
-        return tooltip.find(TooltipBase);
+        return tooltip.find('TooltipBase');
       },
       get position() {
-        return tooltip.find(TooltipPosition);
+        return tooltip.find('TooltipPosition');
       },
       get wrapper() {
-        return tooltip.find(TooltipWrapper);
+        return tooltip.find('div').at(0);
       },
       get portal() {
-        return tooltip.find(Portal);
+        return tooltip.find('Portal');
       },
     };
-  });
-
-  it('sets a ref to the TooltipWrapper', () => {
-    get.wrapper.prop('innerRef')('wrapper');
-    expect(tooltip.instance().control).toEqual('wrapper');
-  });
-
-  it('is positioned above by default', () => {
-    expect(get.base).toHaveProp('position', 'above');
   });
 
   describe('on hover', () => {

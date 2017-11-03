@@ -33,7 +33,7 @@ export const Row = styled.tr`
   `}
 `;
 
-const cellBase = css`
+const CellBase = styled.td`
   padding: 0 ${g.dataTableColumnPadding}px 12px ${g.dataTableColumnPadding}px;
   text-align: right;
 
@@ -50,8 +50,7 @@ const cellBase = css`
   `}
 `;
 
-export const Cell = styled.td`
-  ${cellBase}
+export const Cell = CellBase.extend`
   position: relative;
   vertical-align: middle;
   height: ${g.dataTableRowHeight}px;
@@ -61,8 +60,7 @@ export const Cell = styled.td`
   box-sizing: border-box;
 `;
 
-export const HeaderCell = styled.th`
-  ${cellBase}
+export const HeaderCell = CellBase.withComponent('th').extend`
   position: relative;
   vertical-align: bottom;
   text-overflow: ellipsis;

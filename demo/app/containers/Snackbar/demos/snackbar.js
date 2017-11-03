@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { autobind } from 'core-decorators';
-import { without, concat } from 'lodash';
-import { SnackbarContainer, Button } from 'material-components';
+import { tail, concat } from 'lodash';
+import { Toast, Snackbar, Button } from 'material-components';
 
 class Demo extends Component {
   constructor(props) {
@@ -9,29 +9,47 @@ class Demo extends Component {
     this.state = {
       buttonColor: null,
       messages: [],
+      showMessage: false,
+      activeMessage: null,
     };
   }
 
-  @autobind changeButtonColor() {
-    const buttonColor = `#${Math.floor(Math.random() * 0xffffff).toString(16)}`;
-    this.setState({ buttonColor });
-    this.addMessage({
-      message: 'Button color changed',
-      actionText: 'Undo',
-      actionHandler: () => this.setState({ buttonColor: null }),
-      timeout: 2000,
-    });
+  componentDidUpdate() {
+    if (this.state.messages[0] && !this.state.activeMessage) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        activeMessage: this.state.messages[0],
+        showMessage: true,
+      });
+
+      this.timeout = setTimeout(() => {
+        this.setState({ showMessage: false });
+        this.timeout = setTimeout(() => {
+          this.setState({
+            activeMessage: null,
+            messages: tail(this.state.messages),
+          });
+          this.timeout = null;
+        }, 300);
+      }, 2000);
+    }
   }
 
-  @autobind addMessage(message) {
-    this.setState({
-      messages: concat(this.state.messages, message),
-    });
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
-  @autobind clearMessage(message) {
+  @autobind
+  changeButtonColor() {
     this.setState({
-      messages: without(this.state.messages, message),
+      buttonColor: `#${Math.floor(Math.random() * 0xffffff).toString(16)}`,
+      messages: concat(this.state.messages, {
+        message: 'Button color changed',
+        actionText: 'Undo',
+        actionHandler: () => this.setState({ buttonColor: null }),
+      }),
     });
   }
 
@@ -44,10 +62,9 @@ class Demo extends Component {
           onClick={this.changeButtonColor}
           text="Show"
         />
-        <SnackbarContainer
-          messages={this.state.messages}
-          onRequestLeave={this.clearMessage}
-        />
+        <Toast isActive={this.state.showMessage}>
+          <Snackbar {...this.state.activeMessage} />
+        </Toast>
       </div>
     );
   }

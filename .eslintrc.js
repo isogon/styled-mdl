@@ -49,6 +49,7 @@ module.exports = {
     'prefer-template': 2,
     'class-methods-use-this': 0,
     'react/forbid-prop-types': 0,
+    'react/prop-types': 0,
     'react/jsx-first-prop-new-line': [2, 'multiline'],
     'react/jsx-filename-extension': 0,
     'react/jsx-no-target-blank': 0,

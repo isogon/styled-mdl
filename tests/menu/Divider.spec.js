@@ -4,7 +4,7 @@ import { MenuDivider as MenuDividerBase } from 'menu/Menu.style';
 
 const render = shallowComponent(MenuDivider);
 
-describe('MenuItem', () => {
+describe('Divider', () => {
   let divider;
 
   beforeEach(() => {

@@ -1,7 +1,8 @@
-import { Chip, ChipContact } from 'chips';
+import { ChipBase } from 'chips/Chip';
+import { ChipContact } from 'chips';
 import { ChipAction } from 'chips/Chip.style';
 
-const render = shallowComponent(Chip, {}, 'children');
+const render = shallowComponent(ChipBase, {}, 'children');
 
 describe('<Chip />', () => {
   let chip;

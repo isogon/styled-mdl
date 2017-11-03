@@ -11,27 +11,6 @@ export const List = styled.ul`
   width: ${({ width }) => width};
 `;
 
-export const ListItemBase = styled.li`
-  ${typoSubhead()}
-  line-height: 1;
-  display: flex;
-  min-height: ${g.listMinHeight}px;
-  box-sizing: border-box;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  padding: ${g.listMinPadding}px;
-  cursor: default;
-  color: ${g.listMainTextTextColor};
-  overflow: hidden;
-  ${({ twoLine }) => twoLine && css`
-    height: ${g.listTwoLineHeight}px;
-  `}
-  ${({ threeLine }) => threeLine && css`
-    height: ${g.listThreeLineHeight}px;
-  `}
-`;
-
 export const LiPrimary = styled.span`
   order: 0;
   flex-grow: 2;
@@ -39,16 +18,6 @@ export const LiPrimary = styled.span`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  .twoLine & {
-    height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-    line-height: 20px;
-    display: block;
-  }
-  .threeLine & {
-    height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-    line-height: 20px;
-    display: block;
-  }
 `;
 
 export const LiSecondary = styled.span`
@@ -56,12 +25,6 @@ export const LiSecondary = styled.span`
   flex-flow: column;
   align-items: flex-end;
   margin-left: ${g.listMinPadding}px;
-  .twoLine & {
-    height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-  }
-  .threeLine & {
-    height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-  }
 `;
 
 export const LiAction = styled.span``;
@@ -71,13 +34,6 @@ export const LiInfo = styled.span`
 `;
 export const LiSubTitle = styled.span`
   padding: 0 0 0 ${g.listMinPadding}px;
-  .twoLine & {
-    ${typoBody1()}
-    line-height: 18px;
-    color: ${g.listSupportingTextTextColor};
-    display: block;
-    padding: 0;
-  }
 `;
 
 export const LiIcon = styled.i`
@@ -87,13 +43,6 @@ export const LiIcon = styled.i`
   box-sizing: border-box;
   color: ${g.listIconColor};
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listIconSize - theme.listMinPadding}px;
-  .twoLine & {
-    float: left;
-    margin-top: ${({ theme }) => (theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding - theme.listIconSize) / 2}px;
-  }
-  .threeLine & {
-    float: left;
-  }
 `;
 
 export const LiAvatar = styled.span`
@@ -111,12 +60,6 @@ export const LiAvatar = styled.span`
   `}
   color: ${g.listAvatarColor};
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listAvatarSize - theme.listMinPadding}px;
-  .twoLine & {
-    float: left;
-  }
-  .threeLine & {
-    float: left;
-  }
 `;
 
 export const LiTitle = styled.span`
@@ -130,4 +73,59 @@ export const LiTextBody = styled.div`
   color: ${g.listSupportingTextTextColor};
   display: block;
   padding: 0;
+`;
+
+export const ListItem = styled.li`
+  ${typoSubhead()}
+  line-height: 1;
+  display: flex;
+  min-height: ${g.listMinHeight}px;
+  box-sizing: border-box;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: ${g.listMinPadding}px;
+  cursor: default;
+  color: ${g.listMainTextTextColor};
+  overflow: hidden;
+  ${({ twoLine, threeLine }) => (twoLine || threeLine) && css`
+    ${LiPrimary} {
+      line-height: 20px;
+      display: block;
+    }
+    ${LiIcon} {
+      float: left;
+    }
+    ${LiAvatar} {
+      float: left;
+    }
+  `}
+  ${({ twoLine }) => twoLine && css`
+    height: ${g.listTwoLineHeight}px;
+    ${LiPrimary} {
+      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+    }
+    ${LiSecondary} {
+      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+    }
+    ${LiSubTitle} {
+      ${typoBody1()}
+      line-height: 18px;
+      color: ${g.listSupportingTextTextColor};
+      display: block;
+      padding: 0;
+    }
+    ${LiIcon} {
+      margin-top: ${({ theme }) => (theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding - theme.listIconSize) / 2}px;
+    }
+  `}
+  ${({ threeLine }) => threeLine && css`
+    height: ${g.listThreeLineHeight}px;
+    ${LiPrimary} {
+      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+    }
+    ${LiSecondary} {
+      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+    }
+  `}
 `;

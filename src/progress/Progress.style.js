@@ -36,7 +36,7 @@ const indeterminate2 = keyframes`
   }
 `;
 
-export const ProgressBase = styled.div`
+export const ProgressBaseStyle = css`
   display: block;
   position: relative;
   height: ${g.barHeight}px;

@@ -1,24 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { setPropTypes, setDisplayName, compose } from 'recompose';
 
-import SnackbarBase from './Snackbar.style';
+import { withStyle } from '../util';
+import snackbarStyle from './Snackbar.style';
 import Message from './Message.style';
 import Action from './Action.style';
 
-export default function Snackbar({ message, actionText, actionHandler }) {
-  return (
-    <SnackbarBase>
-      {message && <Message>{message}</Message>}
-      {actionText &&
-        <Action onClick={actionHandler}>
-          {actionText}
-        </Action>}
-    </SnackbarBase>
-  );
-}
+export const SnackbarBase = ({
+  message,
+  actionText,
+  actionHandler,
+  className,
+}) => (
+  <div className={className}>
+    {message && <Message>{message}</Message>}
+    {actionText && <Action onClick={actionHandler}>{actionText}</Action>}
+  </div>
+);
 
-Snackbar.propTypes = {
-  message: PropTypes.node,
-  actionText: PropTypes.string,
-  actionHandler: PropTypes.func,
-};
+const enhance = compose(
+  withStyle(snackbarStyle),
+  setPropTypes({
+    message: PropTypes.node,
+    actionText: PropTypes.string,
+    actionHandler: PropTypes.func,
+  }),
+  setDisplayName('Snackbar')
+);
+
+export default enhance(SnackbarBase);

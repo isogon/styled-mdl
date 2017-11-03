@@ -80,7 +80,6 @@ Input.propTypes = {
   focused: PropTypes.bool,
   autoFocus: PropTypes.bool,
   value: PropTypes.number,
-  defaultValue: PropTypes.number,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,

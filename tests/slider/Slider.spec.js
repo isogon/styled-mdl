@@ -1,7 +1,6 @@
-import Slider from 'slider/Slider';
-import { SliderInput, SliderBackground } from 'slider/Slider.style';
+import { SliderBase } from 'slider/Slider';
 
-const render = shallowComponent(Slider, { min: 0, max: 100 });
+const render = shallowComponent(SliderBase, { min: 0, max: 100 });
 
 describe('<Slider>', () => {
   let slider;
@@ -11,10 +10,10 @@ describe('<Slider>', () => {
     slider = render();
     get = {
       get input() {
-        return slider.find(SliderInput);
+        return slider.find('SliderInput');
       },
       get bg() {
-        return slider.find(SliderBackground);
+        return slider.find('SliderBackground');
       },
     };
   });

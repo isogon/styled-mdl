@@ -313,6 +313,8 @@ export const SliderInput = styled.input`
     `}
 `;
 
+SliderInput.displayName = 'SliderInput';
+
 // Since we need to specify a height of 32px in IE, we add a class here for a
 // container that brings it back to a reasonable height.
 export const SliderBackgroundIEContainer = styled.div`
@@ -323,9 +325,11 @@ export const SliderBackgroundIEContainer = styled.div`
   padding: none;
 `;
 
+SliderBackgroundIEContainer.displayName = 'SliderBackgroundIEContainer';
+
 // We use a set of divs behind the track to style it in all non-IE browsers.
 // This one contains both the background and the slider.
-export const SliderContainer = styled.div`
+export const SliderContainerStyle = css`
   height: 18px;
   position: relative;
   background: none;
@@ -360,6 +364,7 @@ export const SliderBackground = styled.div`
     &:before {
       background: ${g.rangeColor};
       flex: ${percent} 1 0%;
+      left: 0;
       ${disabled &&
         css`
           background-color: ${g.rangeBgColor};
@@ -369,9 +374,11 @@ export const SliderBackground = styled.div`
     &:after {
       background: ${g.rangeBgColor};
       flex: ${1 - percent} 1 0%;
+      left: 0;
       transition: left 0.18s ${g.animationCurveDefault}
         ${(percent === 0 || disabled) &&
           css`
+            display: none;
             left: 6px;
           `}
         ${percent === 0 &&
@@ -383,3 +390,5 @@ export const SliderBackground = styled.div`
     }
   `};
 `;
+
+SliderBackground.displayName = 'SliderBackground';

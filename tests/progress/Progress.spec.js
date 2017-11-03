@@ -1,7 +1,7 @@
-import Progress from 'progress/Progress';
-import { ProgressBase, ProgressBar, BufferBar, AuxBar } from 'progress/Progress.style';
+import { ProgressBase } from 'progress/Progress';
+import { ProgressBar, BufferBar, AuxBar } from 'progress/Progress.style';
 
-const render = shallowComponent(Progress);
+const render = shallowComponent(ProgressBase);
 
 describe('<Progress />', () => {
   let progress;
@@ -10,8 +10,8 @@ describe('<Progress />', () => {
     progress = render();
   });
 
-  it('renders a ProgressBase', () => {
-    expect(progress.find(ProgressBase)).toBePresent();
+  it('renders progressBaseStyle', () => {
+    expect(progress.find('div')).toHaveProp('className');
   });
 
   it('renders a ProgressBar', () => {
