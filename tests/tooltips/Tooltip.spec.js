@@ -1,6 +1,11 @@
-import { Tooltip } from 'tooltips/Tooltip';
+import Tooltip, { TooltipBase } from 'tooltips/Tooltip';
+import { TooltipWrapper } from 'tooltips/Tooltip.style';
 
-const render = shallowComponent(Tooltip, { message: 'message', position: 'above' }, 'children');
+const render = shallowComponent(
+  TooltipBase,
+  { message: 'message', position: 'above', __StyledComponent__: TooltipWrapper },
+  'children'
+);
 
 describe('<Tooltip>', () => {
   let tooltip;
@@ -25,18 +30,26 @@ describe('<Tooltip>', () => {
     });
     get = {
       get base() {
-        return tooltip.find('TooltipBase');
+        return tooltip.find('TooltipStyle');
       },
       get position() {
         return tooltip.find('TooltipPosition');
       },
       get wrapper() {
-        return tooltip.find('div').at(0);
+        return tooltip.find('TooltipWrapper');
       },
       get portal() {
         return tooltip.find('Portal');
       },
     };
+  });
+
+  it('has the right displayName', () => {
+    expect(Tooltip.displayName).toEqual('Tooltip');
+  });
+
+  it('is extendable', () => {
+    expect(typeof Tooltip.extend).toEqual('function');
   });
 
   describe('on hover', () => {
@@ -92,7 +105,7 @@ describe('<Tooltip>', () => {
       expect(window.addEventListener).toHaveBeenCalledWith(
         'scroll',
         tooltip.instance().setPosition,
-        true,
+        true
       );
     });
 
@@ -126,7 +139,7 @@ describe('<Tooltip>', () => {
       expect(window.removeEventListener).toHaveBeenCalledWith(
         'scroll',
         setPosition,
-        true,
+        true
       );
     });
   });
@@ -142,7 +155,7 @@ describe('<Tooltip>', () => {
       expect(window.removeEventListener).toHaveBeenCalledWith(
         'scroll',
         tooltip.instance().setPosition,
-        true,
+        true
       );
     });
 

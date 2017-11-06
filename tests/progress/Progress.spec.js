@@ -1,28 +1,32 @@
-import { ProgressBase } from 'progress/Progress';
-import { ProgressBar, BufferBar, AuxBar } from 'progress/Progress.style';
+import Progress, { ProgressBase } from 'progress/Progress';
 
-const render = shallowComponent(ProgressBase);
+const render = shallowComponent(Progress);
 
 describe('<Progress />', () => {
   let progress;
 
   beforeEach(() => {
-    progress = render();
+    progress = render().until(ProgressBase);
   });
 
-  it('renders progressBaseStyle', () => {
-    expect(progress.find('div')).toHaveProp('className');
+  it('has the right displayName', () => {
+    expect(Progress.displayName).toEqual('Progress');
+  });
+
+  it('is deeply extendable', () => {
+    expect(typeof Progress.extend).toEqual('function');
+    expect(typeof Progress.extend``.extend).toEqual('function');
   });
 
   it('renders a ProgressBar', () => {
-    expect(progress.find(ProgressBar)).toBePresent();
+    expect(progress.find('ProgressBar')).toBePresent();
   });
 
   it('renders a BufferBar', () => {
-    expect(progress.find(BufferBar)).toBePresent();
+    expect(progress.find('BufferBar')).toBePresent();
   });
 
   it('renders an AuxBar', () => {
-    expect(progress.find(AuxBar)).toBePresent();
+    expect(progress.find('AuxBar')).toBePresent();
   });
 });

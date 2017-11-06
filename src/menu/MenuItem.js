@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import { compose, setDisplayName, setPropTypes } from 'recompose';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import { MenuItem as MenuItemBase } from './Menu.style';
 import { Ripple } from '../ripple';
+import { proxyStyledStatics } from '../hocs';
 
-export default class MenuItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      getTransitionDelay: () => 0,
-    };
+export class MenuItem extends Component {
+  state = {
+    getTransitionDelay: () => 0,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,22 +27,30 @@ export default class MenuItem extends Component {
   }
 
   render() {
+    const { __StyledComponent__: Styled, ...props } = this.props;
+
     return (
-      <MenuItemBase
-        {...this.props}
+      <Styled
+        {...props}
         {...this.state}
         innerRef={(menuItem) => {
           this.menuItem = menuItem;
         }}
       >
-        {this.props.children}
+        {props.children}
         <Ripple dark />
-      </MenuItemBase>
+      </Styled>
     );
   }
 }
 
-MenuItem.propTypes = {
-  isVisible: PropTypes.bool,
-  children: PropTypes.node,
-};
+const enhance = compose(
+  proxyStyledStatics(MenuItemBase),
+  setPropTypes({
+    isVisible: PropTypes.bool,
+    children: PropTypes.node,
+  }),
+  setDisplayName('MenuItem'),
+);
+
+export default enhance(MenuItem);

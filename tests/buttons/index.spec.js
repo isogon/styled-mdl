@@ -1,12 +1,21 @@
-import { ButtonBase } from 'buttons/Button';
+import Button, { ButtonBase } from 'buttons/Button';
 
-const renderButton = shallowComponent(ButtonBase);
+const renderButton = shallowComponent(Button);
 
 describe('<Button />', () => {
   let button;
 
   beforeEach(() => {
-    button = renderButton();
+    button = renderButton().until(ButtonBase);
+  });
+
+  it('is has the right displayName', () => {
+    expect(Button.displayName).toEqual('Button');
+  });
+
+  it('is deeply extendable', () => {
+    expect(typeof Button.extend).toEqual('function');
+    expect(typeof Button.extend``.extend).toEqual('function');
   });
 
   describe('when the [prop] text is defined and there are not children', () => {
@@ -14,7 +23,7 @@ describe('<Button />', () => {
       button.setProps({ children: null, text: 'text' });
       expect(
         button
-          .find('button')
+          .find('ButtonInner')
           .children()
           .at(0)
           .text()

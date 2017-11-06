@@ -1,19 +1,21 @@
-import React from 'react';
+import { compose, setPropTypes, setDisplayName } from 'recompose';
 import PropTypes from 'prop-types';
-import { compose, setPropTypes } from 'recompose';
+import React from 'react';
 
-import { withStyle } from '../util/tools';
-import { chipStyle, ChipText } from './Chip.style';
+import { ButtonChipStyle, ChipText } from './Chip.style';
+import { proxyStyledStatics } from '../hocs';
 import ChipContact from './ChipContact';
 
-export const ButtonChipBase = ({ contact, children, className }) => (
-  <button className={className}>
+export const ButtonChipBase = ({ contact, children, __StyledComponent__: Styled, ...props }) => (
+  <Styled {...props}>
     {contact && <ChipContact {...contact} />}
     <ChipText>{children}</ChipText>
-  </button>
+  </Styled>
 );
 
 const enhance = compose(
+  proxyStyledStatics(ButtonChipStyle),
+  setDisplayName('ButtonChip'),
   setPropTypes({
     contact: PropTypes.shape({
       color: PropTypes.string,
@@ -23,7 +25,6 @@ const enhance = compose(
     }),
     children: PropTypes.node.isRequired,
   }),
-  withStyle(chipStyle)
 );
 
 export default enhance(ButtonChipBase);

@@ -1,7 +1,9 @@
+import { setDisplayName } from 'recompose';
 import styled, { css } from 'styled-components';
+
 import { getters as g } from '../util';
 
-export const ToastAnimation = styled.div`
+export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
   position: fixed;
   bottom: 0;
   z-index: 3;
@@ -59,4 +61,4 @@ export const ToastAnimation = styled.div`
       }}
     }
   `}
-`;
+`);

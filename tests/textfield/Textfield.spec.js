@@ -1,67 +1,76 @@
-import { TextfieldBase } from 'textfield/Textfield';
-import {
-  Input,
-  Textarea,
-  Label,
-  ErrorMessage,
-} from 'textfield/Textfield.style';
+import Textfield, { TextfieldBase } from 'textfield/Textfield';
 
-const render = shallowComponent(TextfieldBase);
+const render = shallowComponent(Textfield);
 
 describe('<Textfield />', () => {
   let textfield;
+  let get;
 
   beforeEach(() => {
     textfield = render();
+    get = {
+      get label() {
+        return textfield.until(TextfieldBase).find('Label');
+      },
+      get input() {
+        return textfield.until(TextfieldBase).find('Input');
+      },
+      get textarea() {
+        return textfield.until(TextfieldBase).find('Textarea');
+      },
+      get errorMessage() {
+        return textfield.until(TextfieldBase).find('ErrorMessage');
+      },
+    };
   });
 
-  it('renders a the textfieldBase style', () => {
-    expect(textfield.find('div')).toBePresent();
-    expect(textfield.find('div')).toHaveProp('className');
+  it('has the right displayName', () => {
+    expect(Textfield.displayName).toEqual('Textfield');
+  });
+
+  it('is deeply extendable', () => {
+    expect(typeof Textfield.extend).toEqual('function');
+    expect(typeof Textfield.extend``.extend).toEqual('function');
   });
 
   it('renders a Label', () => {
-    expect(textfield.find(Label)).toBePresent();
+    expect(textfield.until(TextfieldBase).find('Label')).toBePresent();
   });
 
   describe('when [prop] multiline is true', () => {
-    const textarea = () => textfield.find(Textarea);
-
     beforeEach(() => {
       textfield = render({ defaultValue: 'foo', multiLine: true });
     });
 
     it('converts defaultValue into internal state', () => {
       textfield.setProps({ defaultValue: 'foo' });
-      expect(textarea()).not.toHaveProp('defaultValue');
-      expect(textarea()).toHaveProp('value', 'foo');
+      expect(get.textarea).not.toHaveProp('defaultValue');
+      expect(get.textarea).toHaveProp('value', 'foo');
     });
 
     it('renders a Textarea', () => {
-      expect(textarea()).toBePresent();
+      expect(get.textarea).toBePresent();
     });
   });
 
   describe('when [prop] multiline is false', () => {
-    const input = () => textfield.find(Input);
-
     beforeEach(() => {
       textfield = render({ defaultValue: 'foo', multiLine: false });
     });
 
     it('converts defaultValue into internal state', () => {
-      expect(input()).not.toHaveProp('defaultValue');
-      expect(input()).toHaveProp('value', 'foo');
+      expect(get.input).not.toHaveProp('defaultValue');
+      expect(get.input).toHaveProp('value', 'foo');
     });
 
     it('renders an input', () => {
-      expect(input()).toBePresent();
+      expect(get.input).toBePresent();
     });
   });
 
   it('renders an error when one is provided', () => {
     textfield.setProps({ error: 'o snap!' });
-    expect(textfield.find(ErrorMessage)).toBePresent();
-    expect(textfield.find(ErrorMessage)).toHaveInnerText('o snap!');
+    expect(get.errorMessage).toBePresent();
+    expect(get.errorMessage).toHaveInnerText('o snap!');
   });
 });

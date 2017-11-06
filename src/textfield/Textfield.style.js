@@ -1,9 +1,11 @@
+import { setDisplayName } from 'recompose';
 import styled, { css } from 'styled-components';
+
 import { getters as g } from '../util';
 import { materialAnimationDefault } from '../mixins';
 
 // The container for the whole component.
-export const textfieldStyle = css`
+export const TextfieldStyle = setDisplayName('TextfieldStyle')(styled.div`
   position: relative;
   font-size: ${g.inputTextFontSize}px;
   display: inline-block;
@@ -23,10 +25,10 @@ export const textfieldStyle = css`
     width: auto;
     min-height: ${g.inputTextButtonSize}px;
   `}
-`;
+`);
 
 // Styling for the input element.
-export const Input = styled.input`
+export const Input = setDisplayName('Input')(styled.input`
   border: none;
   border-bottom: 1px solid ${g.inputTextBottomBorderColor};
   display: block;
@@ -63,14 +65,14 @@ export const Input = styled.input`
     border-bottom: 1px dotted ${g.inputTextDisabledColor};
     color: ${g.inputTextDisabledTextColor};
   `}
-`;
+`);
 
-export const Textarea = Input.withComponent('textarea').extend`
+export const Textarea = setDisplayName('Textarea')(Input.withComponent('textarea').extend`
   display: block;
-`;
+`);
 
 // Styling for the label / floating label.
-export const Label = styled.label`
+export const Label = setDisplayName('Label')(styled.label`
   bottom: 0;
   color: ${g.inputTextLabelColor};
   font-size: ${g.inputTextFontSize}px;
@@ -134,18 +136,18 @@ export const Label = styled.label`
   ${({ disabled }) => disabled && css`
     color: ${g.inputTextDisabledTextColor};
   `}
-`;
+`);
 
 // TextField Error.
-export const ErrorMessage = styled.div`
+export const ErrorMessage = setDisplayName('ErrorMessage')(styled.div`
   color: ${g.inputTextErrorColor};
   position: absolute;
   font-size: ${g.inputTextFloatingLabelFontsize}px;
   margin-top: 3px;
   display: block;
-`;
+`);
 
-export const HelperText = styled.div`
+export const HelperText = setDisplayName('HelperText')(styled.div`
   color: ${g.inputTextLabelColor};
   position: absolute;
   right: 0;
@@ -153,9 +155,9 @@ export const HelperText = styled.div`
   font-size: ${g.inputTextFloatingLabelFontsize}px;
   margin-top: 3px;
   display: block;
-`;
+`);
 
-export const ExpandableHolder = styled.div`
+export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`
   display: inline-block;
   position: relative;
   margin-left: ${g.inputTextButtonSize};
@@ -185,4 +187,4 @@ export const ExpandableHolder = styled.div`
       top: ${-(theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
     `}
   `}
-`;
+`);

@@ -8,10 +8,10 @@ import {
   withProps,
 } from 'recompose';
 
-import { withStyle, omitProps } from '../util/tools';
 import { Ripple } from '../ripple';
 
-import { ButtonStyles } from './Button.style';
+import { StyledButton, ButtonInner } from './Button.style';
+import { proxyStyledStatics } from '../hocs';
 
 export const ButtonBase = ({
   children,
@@ -19,15 +19,20 @@ export const ButtonBase = ({
   shouldShowRipple,
   isDark,
   isRound,
+  __StyledComponent__: Button,
   ...props
 }) => (
-  <button {...props}>
-    {children || text}
-    {shouldShowRipple && <Ripple round={isRound} dark={isDark} />}
-  </button>
+  <Button {...props}>
+    <ButtonInner>
+      {children || text}
+      {shouldShowRipple && <Ripple round={isRound} dark={isDark} />}
+    </ButtonInner>
+  </Button>
 );
 
 const enhance = compose(
+  proxyStyledStatics(StyledButton),
+  setDisplayName('Button'),
   setPropTypes({
     text: PropTypes.string,
     children: PropTypes.node,
@@ -48,19 +53,6 @@ const enhance = compose(
       !(props.colored || props.accent || props.primary),
     isRound: props.fab || props.icon,
   })),
-  withStyle(ButtonStyles),
-  omitProps([
-    'colored',
-    'raised',
-    'primary',
-    'accent',
-    'fab',
-    'mini',
-    'icon',
-    'accent',
-    'ripple',
-  ]),
-  setDisplayName('Button')
 );
 
 export default enhance(ButtonBase);

@@ -3,9 +3,7 @@ import styled, { css } from 'styled-components';
 import { shadow2dp, typoBody1 } from '../mixins';
 import { getters as g } from '../util';
 
-export const MenuControlWrap = styled.div`
-  position: relative;
-`;
+export const MenuControlWrap = styled.div`position: relative;`;
 
 MenuControlWrap.displayName = 'MenuControlWrap';
 
@@ -20,14 +18,16 @@ export const MenuContainer = styled.div`
   width: 0;
   visibility: hidden;
   z-index: -1;
-  ${({ isVisible }) => isVisible && css`
-    z-index: 999;
-    visibility: visible;
-    top: ${({ top }) => top}px;
-    left: ${({ left }) => left}px;
-    height: ${({ height }) => height}px;
-    width: ${({ width }) => width}px;
-  `}
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      z-index: 999;
+      visibility: visible;
+      top: ${({ top }) => top}px;
+      left: ${({ left }) => left}px;
+      height: ${({ height }) => height}px;
+      width: ${({ width }) => width}px;
+    `};
 `;
 
 MenuContainer.displayName = 'MenuContainer';
@@ -46,35 +46,24 @@ export const MenuOutline = styled.div`
   opacity: 0;
   transform: scale(0);
   transform-origin: 0 0;
-  ${shadow2dp()}
-  will-change: transform;
+  ${shadow2dp()} will-change: transform;
   transition: transform ${g.menuExpandDuration}s ${g.animationCurveDefault},
-              opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
+    opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
   z-index: -1;
 
-  ${({ isVisible }) => isVisible && css`
-    opacity: 1;
-    transform: scale(1);
-    z-index: 999;
-    height: ${({ height }) => height}px;
-    width: ${({ width }) => width}px;
-  `}
-
-  ${({ bottomRight }) => bottomRight && css`
-    transform-origin: 100% 0;
-  `}
-
-  ${({ topLeft }) => topLeft && css`
-    transform-origin: 0 100%;
-  `}
-
-  ${({ topRight }) => topRight && css`
-    transform-origin: 100% 100%;
-  `}
-
-  ${({ bottomLeft }) => bottomLeft && css`
-    transform-origin: 0 0;
-  `}
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      opacity: 1;
+      transform: scale(1);
+      z-index: 999;
+      height: ${({ height }) => height}px;
+      width: ${({ width }) => width}px;
+    `} ${({ bottomRight }) =>
+      bottomRight && css`transform-origin: 100% 0;`} ${({ topLeft }) =>
+      topLeft && css`transform-origin: 0 100%;`} ${({ topRight }) =>
+      topRight && css`transform-origin: 100% 100%;`} ${({ bottomLeft }) =>
+      bottomLeft && css`transform-origin: 0 0;`};
 `;
 
 MenuOutline.displayName = 'MenuOutline';
@@ -94,37 +83,39 @@ export const MenuBase = styled.div`
   clip: rect(0 0 0 0);
   z-index: -1;
   transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault},
-              clip ${g.menuExpandDuration}s ${g.animationCurveDefault};
+    clip ${g.menuExpandDuration}s ${g.animationCurveDefault};
 
-  ${({ isVisible }) => isVisible && css`
-    opacity: 1;
-    clip: ${({ height, width }) => `rect(0px ${width}px ${height}px 0px)`};
-    height: ${({ height }) => height}px;
-    width: ${({ width }) => width}px;
-    z-index: 999;
-  `}
-
-  ${({ bottomRight }) => bottomRight && css`
-    left: auto;
-    right: 0;
-  `}
-
-  ${({ topLeft }) => topLeft && css`
-    top: auto;
-    bottom: 0;
-  `}
-
-  ${({ topRight }) => topRight && css`
-    top: auto;
-    left: auto;
-    bottom: 0;
-    right: 0;
-  `}
-
-  ${({ bottomLeft }) => bottomLeft && css`
-    top: auto;
-    left: auto;
-  `}
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      opacity: 1;
+      clip: ${({ height, width }) => `rect(0px ${width}px ${height}px 0px)`};
+      height: ${({ height }) => height}px;
+      width: ${({ width }) => width}px;
+      z-index: 999;
+    `} ${({ bottomRight }) =>
+      bottomRight &&
+      css`
+        left: auto;
+        right: 0;
+      `} ${({ topLeft }) =>
+      topLeft &&
+      css`
+        top: auto;
+        bottom: 0;
+      `} ${({ topRight }) =>
+      topRight &&
+      css`
+        top: auto;
+        left: auto;
+        bottom: 0;
+        right: 0;
+      `} ${({ bottomLeft }) =>
+      bottomLeft &&
+      css`
+        top: auto;
+        left: auto;
+      `};
 `;
 
 MenuBase.displayName = 'MenuBase';
@@ -136,10 +127,9 @@ export const MenuDivider = styled.hr`
   height: 0;
   border-top: 0;
   transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
-  transition-delay: ${({ getTransitionDelay, theme }) => getTransitionDelay(theme.menuExpandDuration)}s;
-  ${({ isVisible }) => isVisible && css`
-    opacity: 1;
-  `}
+  transition-delay: ${({ getTransitionDelay, theme }) =>
+    getTransitionDelay(theme.menuExpandDuration)}s;
+  ${({ isVisible }) => isVisible && css`opacity: 1;`};
 `;
 
 MenuDivider.displayName = 'MenuDivider';
@@ -156,40 +146,36 @@ export const MenuItem = styled.button`
   outline-color: ${g.defaultItemOutlineColor};
   position: relative;
   overflow: hidden;
-  ${typoBody1()}
-  text-decoration: none;
+  ${typoBody1()} text-decoration: none;
   cursor: pointer;
   height: 48px;
   line-height: 48px;
   white-space: nowrap;
   opacity: 0;
   transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
-  transition-delay: ${({ getTransitionDelay, theme }) => getTransitionDelay(theme.menuExpandDuration)}s;
+  transition-delay: ${({ getTransitionDelay, theme }) =>
+    getTransitionDelay(theme.menuExpandDuration)}s;
   user-select: none;
 
-  ${({ isVisible }) => isVisible && css`
-    opacity: 1;
-  `}
-
-  &::-moz-focus-inner {
+  ${({ isVisible }) => isVisible && css`opacity: 1;`} &::-moz-focus-inner {
     border: 0;
   }
 
-  ${({ disabled }) => disabled && css`
-    color: ${g.disabledItemTextColor};
-    background-color: transparent;
-    cursor: auto;
-
-    &:hover {
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      color: ${g.disabledItemTextColor};
       background-color: transparent;
-    }
+      cursor: auto;
 
-    &:focus {
-      background-color: transparent;
-    }
-  `}
+      &:hover {
+        background-color: transparent;
+      }
 
-  &:hover {
+      &:focus {
+        background-color: transparent;
+      }
+    `} &:hover {
     background-color: ${g.defaultItemHoverBgColor};
   }
 

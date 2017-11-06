@@ -1,5 +1,4 @@
-import { RippleBase } from 'ripple/Ripple';
-import { Effect } from 'ripple/Ripple.style';
+import Ripple, { RippleBase } from 'ripple/Ripple';
 import { each } from 'lodash';
 const createClickEvent = ({ target, clientX, clientY, isTouch }) => ({
   currentTarget: {
@@ -10,7 +9,7 @@ const createClickEvent = ({ target, clientX, clientY, isTouch }) => ({
   touches: isTouch ? [{ clientX, clientY }] : undefined,
 });
 
-const render = shallowComponent(RippleBase);
+const render = shallowComponent(Ripple);
 
 describe('<Ripple />', () => {
   let ripple;
@@ -28,19 +27,16 @@ describe('<Ripple />', () => {
     jest.useFakeTimers();
   });
 
-  it('renders a <div />', () => {
-    expect(ripple.find('div')).toBePresent();
+  it('has the right displayName', () => {
+    expect(Ripple.displayName).toEqual('Ripple');
   });
 
-  it('passes classname to <div>', () => {
-    expect(ripple.find('div').at(0)).toHaveProp('className');
+  it('is deeply extendable', () => {
+    expect(typeof Ripple.extend).toEqual('function');
+    expect(typeof Ripple.extend``.extend).toEqual('function');
   });
 
-  it('renders a <Effect />', () => {
-    expect(ripple.find(Effect)).toBePresent();
-  });
-
-  it('sets style from the state for <Effect />', () => {
+  it('sets style from the state for <RippleEffect />', () => {
     ripple.setState({
       size: '100px',
       transform: 'the transform',
@@ -48,7 +44,7 @@ describe('<Ripple />', () => {
       shouldAnimate: true,
     });
     ripple.update();
-    expect(ripple.find('Effect').prop('style')).toEqual({
+    expect(ripple.until(RippleBase).find('RippleEffect').prop('style')).toEqual({
       height: '100px',
       width: '100px',
       transform: 'the transform',
@@ -57,16 +53,16 @@ describe('<Ripple />', () => {
     });
   });
 
-  it('clears the transitionProperties for <Effect /> when it should not animate', () => {
+  it('clears the transitionProperties for <RippleEffect /> when it should not animate', () => {
     ripple.setState({
       shouldAnimate: false,
     });
-    expect(ripple.find(Effect).prop('style').transitionProperty).toEqual('none');
+    expect(ripple.until(RippleBase).find('RippleEffect').prop('style').transitionProperty).toEqual('none');
   });
 
   describe('init', () => {
     it('sets opacity to 0', () => {
-      expect(ripple.find(Effect).prop('style').opacity).toEqual(0);
+      expect(ripple.until(RippleBase).find('RippleEffect').prop('style').opacity).toEqual(0);
     });
   });
 
@@ -84,7 +80,7 @@ describe('<Ripple />', () => {
 
   describe('[method] handleMouseDown', () => {
     it('is bound to Wrap [prop] onMouseDown', () => {
-      expect(ripple.find('div').at(0)).toHaveProp(
+      expect(ripple.until('RippleBase').find('div').at(0)).toHaveProp(
         'onMouseDown',
         instance.handleMouseDown
       );
@@ -168,6 +164,7 @@ describe('<Ripple />', () => {
     it('sets [state] opacity to 0', () => {
       ripple.setState({ opacity: Math.random() });
       ripple
+        .until(RippleBase)
         .find('div')
         .at(0)
         .simulate('mouseup');

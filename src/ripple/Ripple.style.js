@@ -1,9 +1,10 @@
-import styled, { css } from 'styled-components';
 import { cond, prop, always, T } from 'lodash/fp';
+import { setDisplayName } from 'recompose';
+import styled, { css } from 'styled-components';
 
 import { getters as g, rgba } from '../util';
 
-export const Effect = styled.div.attrs({
+export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
   color: cond([
     [prop('dark'), always('rgba(0,0,0,.3)')],
     [prop('colored'), ({ theme }) => rgba(theme.colorPrimary, 0.5)],
@@ -21,11 +22,9 @@ export const Effect = styled.div.attrs({
   overflow: hidden;
   transition-duration: 0.6s, 0.6s, 0.6s, 1.2s;
   transition-timing-function: ${g.animationCurveLinearOutSlowIn};
-`;
+`);
 
-Effect.displayName = 'Effect';
-
-export const WrapStyle = css`
+export const RippleWrap = setDisplayName('RippleWrap')(styled.div`
   display: block;
   position: absolute;
   top: 0;
@@ -46,4 +45,4 @@ export const WrapStyle = css`
     border-radius: 50%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
   `}
-`;
+`);

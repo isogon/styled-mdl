@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { autobind } from 'core-decorators';
 import { compose, setDisplayName, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
+import React from 'react';
 
+import { autobind } from 'core-decorators';
+
+import { Input } from '../input';
 import {
   SliderInput,
-  SliderContainerStyle,
+  SliderContainer,
   SliderBackground,
 } from './Slider.style';
-import { Input } from '../input';
-import { withStyle } from '../util';
+import { proxyStyledStatics } from '../hocs';
 
 export class SliderBase extends Input {
   constructor(props) {
@@ -34,13 +35,13 @@ export class SliderBase extends Input {
   }
 
   render() {
-    const { disabled, max, min, className } = this.props;
+    const { disabled, max, min, __StyledComponent__: Styled } = this.props;
     const { active, value, focused } = this.state;
 
     const percent = (value - min) / (max - min);
 
     return (
-      <div className={className}>
+      <Styled>
         <SliderInput
           type="range"
           max={max}
@@ -63,13 +64,14 @@ export class SliderBase extends Input {
           focused={focused}
           percent={percent}
         />
-      </div>
+      </Styled>
     );
   }
 }
 
 const enhance = compose(
-  withStyle(SliderContainerStyle),
+  proxyStyledStatics(SliderContainer),
+  setDisplayName('Slider'),
   setPropTypes({
     focused: PropTypes.bool,
     autoFocus: PropTypes.bool,
@@ -83,7 +85,6 @@ const enhance = compose(
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
   }),
-  setDisplayName('Slider')
 );
 
 export default enhance(SliderBase);

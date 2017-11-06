@@ -23,6 +23,14 @@ describe('<Radio />', () => {
     radio = render();
   });
 
+  it('has the right displayName', () => {
+    expect(Radio.displayName).toEqual('Radio');
+  });
+
+  it('is extendable', () => {
+    expect(typeof Radio.extend).toEqual('function');
+  });
+
   it('renders the radioStyle on an input', () => {
     expect(radio.find('input')).toHaveProp('type', 'radio');
     expect(radio.find('input')).toHaveProp('className');

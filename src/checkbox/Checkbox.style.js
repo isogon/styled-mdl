@@ -1,10 +1,11 @@
+import { setDisplayName } from 'recompose';
 import styled, { css } from 'styled-components';
 
-import { materialAnimationDefault } from '../mixins';
 import { getters as g } from '../util';
 import { mask, bg } from './images';
+import { materialAnimationDefault } from '../mixins';
 
-export const CheckboxStyle = css`
+export const CheckboxWrap = setDisplayName('CheckboxWrap')(styled.label`
   position: relative;
   font-size: ${g.radioLabelFontSize}px;
   line-height: ${g.radioLabelHeight}px;
@@ -14,9 +15,9 @@ export const CheckboxStyle = css`
   height: ${g.radioLabelHeight}px;
   margin: 0;
   padding-left: ${({ theme }) => theme.radioButtonSize + theme.radioPadding}px;
-`;
+`);
 
-export const CheckboxButton = styled.input`
+export const CheckboxButton = setDisplayName('CheckboxButton')(styled.input`
   line-height: ${g.radioLabelHeight}px;
   position: absolute;
   width: 0;
@@ -36,9 +37,9 @@ export const CheckboxButton = styled.input`
     background-color: ${g.checkboxColor};
     background-image: url(${bg});
   }
-`;
+`);
 
-export const BoxOutline = styled.div`
+export const BoxOutline = setDisplayName('BoxOutline')(styled.div`
   position: absolute;
   top: ${g.radioTopOffset}px;
   left: 0;
@@ -58,14 +59,15 @@ export const BoxOutline = styled.div`
       border: 2px solid ${g.checkboxDisabledColor};
       cursor: auto;
     `};
-`;
+`);
 
-export const TickOutline = styled.div`
+export const TickOutline = setDisplayName('TickOutline')(styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 102%;
-  width: 102%;
+  bottom: 0;
+  right: 0;
+  transform: scale(1.01);
   mask: url(${mask});
   background: transparent;
   transition-property: background;
@@ -75,9 +77,9 @@ export const TickOutline = styled.div`
     css`
       background-color: ${g.checkboxDisabledColor};
     `};
-`;
+`);
 
-export const CheckboxLabel = styled.span`
+export const CheckboxLabel = setDisplayName('CheckboxLabel')(styled.span`
   cursor: pointer;
 
   ${({ disabled }) =>
@@ -86,4 +88,4 @@ export const CheckboxLabel = styled.span`
       color: ${g.checkboxDisabledColor};
       cursor: auto;
     `};
-`;
+`);

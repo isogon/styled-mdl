@@ -69,7 +69,7 @@ const rightSpin = keyframes`
   to { transform: rotate(-130deg); }
 `;
 
-export const spinnerStyle = css`
+export const SpinnerStyle = setDisplayName('SpinnerStyle')(styled.div`
   display: inline-block;
   position: relative;
   width: ${g.spinnerSize}px;
@@ -78,7 +78,8 @@ export const spinnerStyle = css`
   ${({ active }) => active && css`
     animation: ${rotate} ${g.spinnerDuration}ms linear infinite;
   `}
-`;
+`);
+
 export const Layer = styled.div`
   position: absolute;
   width: 100%;
@@ -133,7 +134,7 @@ export const LayerFour = setDisplayName('LayerFour')(Layer.extend`
 * Update: the gap no longer appears on Chrome when .mdl-spinner__layer-N's
 * opacity is 0.99, but still does on Safari and IE.
 */
-export const GapPatch = styled.div`
+export const GapPatch = setDisplayName('GapPatch')(styled.div`
   position: absolute;
   box-sizing: border-box;
   top: 0;
@@ -142,9 +143,9 @@ export const GapPatch = styled.div`
   height: 100%;
   overflow: hidden;
   border-color: inherit;
-`;
+`);
 
-export const CircleClipper = styled.div`
+export const CircleClipper = setDisplayName('CircleClipper')(styled.div`
   display: inline-block;
   position: relative;
   width: 50%;
@@ -153,9 +154,9 @@ export const CircleClipper = styled.div`
   border-color: inherit;
   ${({ left }) => left && css`float: left;`}
   ${({ right }) => right && css`float: right;`}
-`;
+`);
 
-export const Circle = styled.div`
+export const Circle = setDisplayName('Circle')(styled.div`
   box-sizing: border-box;
   height: 100%;
   border-width: ${g.spinnerStrokeWidth}px;
@@ -197,4 +198,4 @@ export const Circle = styled.div`
     width: 1000%;
     left: -450%;
   `}
-`;
+`);

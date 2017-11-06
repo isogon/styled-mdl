@@ -12,12 +12,10 @@ import {
   Spacer,
 } from 'material-components';
 
-
-const EventCard = styled(Card)`
-  ${shadow2dp()}
-  width: 256px;
+const EventCard = Card.extend`
+  ${shadow2dp()} width: 256px;
   height: 256px;
-  background: #3E4EB8;
+  background: #3e4eb8;
   align-self: flex-start;
 `;
 
@@ -33,7 +31,7 @@ const EventInfo = styled(CardTitleText)`
 const EventActions = styled(CardActions)`
   border-color: rgba(255, 255, 255, 0.2);
   display: flex;
-  box-sizing:border-box;
+  box-sizing: border-box;
   align-items: center;
 `;
 
@@ -43,7 +41,7 @@ const EventIcon = styled(MdEvent)`
   color: #fff;
 `;
 
-const WhiteButton = styled(Button)`
+const WhiteButton = Button.extend`
   color: #fff;
 `;
 
@@ -66,8 +64,7 @@ const demo = () => (
   </EventCard>
 );
 
-const code =
-`/*----- Event Card -----*/
+const code = `/*----- Event Card -----*/
 
 const EventCard = styled(Card)\`
   \${shadow2dp()}

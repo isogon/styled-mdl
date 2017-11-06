@@ -1,8 +1,6 @@
-import { SnackbarBase } from 'snackbar/Snackbar';
-import Message from 'snackbar/Message.style';
-import Action from 'snackbar/Action.style';
+import Snackbar, { SnackbarBase } from 'snackbar/Snackbar';
 
-const render = shallowComponent(SnackbarBase, { message: 'message' });
+const render = shallowComponent(Snackbar, { message: 'message' });
 
 describe('<Snackbar />', () => {
   let snackbar;
@@ -11,30 +9,43 @@ describe('<Snackbar />', () => {
     snackbar = render();
   });
 
-  it('renders the snackbar base style', () => {
-    expect(snackbar.find('div')).toBePresent();
-    expect(snackbar.find('div')).toHaveProp('className');
+  it('has the right displayName', () => {
+    expect(Snackbar.displayName).toEqual('Snackbar');
   });
 
-  it('renders a <Message> with [prop] message', () => {
+  it('is deeply extendable', () => {
+    expect(typeof Snackbar.extend).toEqual('function');
+    expect(typeof Snackbar.extend``.extend).toEqual('function');
+  });
+
+  it('renders a <SnackbarMessage> with [prop] message', () => {
     snackbar.setProps({ message: 'message' });
-    expect(snackbar.find(Message)).toHaveInnerText('message');
+    expect(
+      snackbar.until(SnackbarBase).find('SnackbarMessage'),
+    ).toHaveInnerText('message');
   });
 
-  it('only renders an <Action> when [prop] actionText is defined', () => {
-    expect(snackbar.find(Action)).not.toBePresent();
+  it('only renders an <SnackbarAction> when [prop] actionText is defined', () => {
+    expect(
+      snackbar.until(SnackbarBase).find('SnackbarAction'),
+    ).not.toBePresent();
   });
 
-  it('renders an <Action> with [prop] actionText', () => {
+  it('renders an <SnackbarAction> with [prop] actionText', () => {
     snackbar.setProps({ actionText: 'action' });
-    expect(snackbar.find(Action)).toHaveInnerText('action');
+    expect(snackbar.until(SnackbarBase).find('SnackbarAction')).toHaveInnerText(
+      'action',
+    );
   });
 
-  it('triggers [prop] actionHander when <Action> is clicked', () => {
+  it('triggers [prop] actionHander when <SnackbarAction> is clicked', () => {
     const actionHandler = jest.fn();
     snackbar.setProps({ actionHandler, actionText: 'action' });
 
-    snackbar.find(Action).simulate('click');
+    snackbar
+      .until(SnackbarBase)
+      .find('SnackbarAction')
+      .simulate('click');
 
     expect(actionHandler).toHaveBeenCalled();
   });

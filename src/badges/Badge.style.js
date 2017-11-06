@@ -1,6 +1,7 @@
-import styled, { css } from 'styled-components';
-import { call, prop, ifProp } from 'styled-tools';
 import { add, divide, subtract, cond, T, always, compose } from 'lodash/fp';
+import { call, prop, ifProp } from 'styled-tools';
+import { setDisplayName } from 'recompose';
+import styled from 'styled-components';
 
 const negate = (n) => -n;
 const overlap = prop('overlap');
@@ -15,7 +16,7 @@ const badgeColor = prop('theme.badgeColor');
 const badgeColorInverse = prop('theme.badgeColorInverse');
 const badgeBackgroundInverse = prop('theme.badgeBackgroundInverse');
 
-export const BadgeWrapStyle = css`
+export const BadgeWrap = setDisplayName('BadgeWrap')(styled.div`
   position: relative;
   white-space: nowrap;
   display: inline-block;
@@ -24,9 +25,9 @@ export const BadgeWrapStyle = css`
     [forButton, call(subtract, badgeSize, always(14))],
     [T, call(add, badgeSize, badgePadding)],
   ])}px;
-`;
+`);
 
-export const BadgeText = styled.div`
+export const BadgeText = setDisplayName('BadgeText')(styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -49,4 +50,4 @@ export const BadgeText = styled.div`
   color: ${ifProp('background', badgeColor, badgeColorInverse)};
   background: ${ifProp('background', badgeBackground, badgeBackgroundInverse)};
   box-shadow: ${ifProp('background', 'none', '0 0 1px gray')};
-`;
+`);
