@@ -1,10 +1,11 @@
-import React from 'react';
+import { compose, setPropTypes, setDisplayName } from 'recompose';
 import PropTypes from 'prop-types';
-import MdCancel from 'react-icons/lib/md/cancel';
-import { compose, setPropTypes } from 'recompose';
+import React from 'react';
 
-import { withStyle } from '../util/tools';
-import { chipStyle, ChipText, ChipAction } from './Chip.style';
+import MdCancel from 'react-icons/lib/md/cancel';
+
+import { ChipStyle, ChipText, ChipAction } from './Chip.style';
+import { proxyStyledStatics } from '../hocs';
 import ChipContact from './ChipContact';
 
 export const ChipBase = ({
@@ -12,9 +13,9 @@ export const ChipBase = ({
   contact,
   children,
   onClickDelete,
-  className,
+  __StyledComponent__: Styled,
 }) => (
-  <span className={className}>
+  <Styled deletable={deletable} contact={contact}>
     {contact && <ChipContact {...contact} />}
     {children && <ChipText>{children}</ChipText>}
     {deletable && (
@@ -22,10 +23,12 @@ export const ChipBase = ({
         <MdCancel />
       </ChipAction>
     )}
-  </span>
+  </Styled>
 );
 
 const enhance = compose(
+  proxyStyledStatics(ChipStyle),
+  setDisplayName('Chip'),
   setPropTypes({
     deletable: PropTypes.bool,
     contact: PropTypes.shape({
@@ -37,7 +40,6 @@ const enhance = compose(
     children: PropTypes.node,
     onClickDelete: PropTypes.func,
   }),
-  withStyle(chipStyle)
 );
 
 export default enhance(ChipBase);

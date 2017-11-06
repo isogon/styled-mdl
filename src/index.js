@@ -22,5 +22,6 @@ export * from './textfield';
 export * from './theme';
 export * from './toast';
 export * from './tooltips';
+export * from './hocs';
 export * as util from './util';
 export theme from './util/getters';

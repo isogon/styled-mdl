@@ -1,6 +1,6 @@
-import { SliderBase } from 'slider/Slider';
+import Slider, { SliderBase } from 'slider/Slider';
 
-const render = shallowComponent(SliderBase, { min: 0, max: 100 });
+const render = shallowComponent(Slider, { min: 0, max: 100 });
 
 describe('<Slider>', () => {
   let slider;
@@ -10,12 +10,21 @@ describe('<Slider>', () => {
     slider = render();
     get = {
       get input() {
-        return slider.find('SliderInput');
+        return slider.until(SliderBase).find('SliderInput');
       },
       get bg() {
-        return slider.find('SliderBackground');
+        return slider.until(SliderBase).find('SliderBackground');
       },
     };
+  });
+
+  it('has the right displayName', () => {
+    expect(Slider.displayName).toEqual('Slider');
+  });
+
+  it('is deeply extendable', () => {
+    expect(typeof Slider.extend).toEqual('function');
+    expect(typeof Slider.extend``.extend).toEqual('function');
   });
 
   describe('when user starts moving slider', () => {

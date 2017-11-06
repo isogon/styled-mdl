@@ -1,3 +1,4 @@
+import { setDisplayName } from 'recompose';
 import styled, { css, keyframes } from 'styled-components';
 
 import { getters as g } from '../util';
@@ -36,13 +37,13 @@ const indeterminate2 = keyframes`
   }
 `;
 
-export const ProgressBaseStyle = css`
+export const ProgressBaseStyle = setDisplayName('ProgressBaseStyle')(styled.div`
   display: block;
   position: relative;
   height: ${g.barHeight}px;
   max-width: 100%;
   width: ${({ width }) => width || '500px'};
-`;
+`);
 
 const Bar = styled.div`
   display: block;
@@ -53,7 +54,7 @@ const Bar = styled.div`
   transition: width 0.2s ${g.animationCurveDefault};
 `;
 
-export const ProgressBar = styled(Bar)`
+export const ProgressBar = setDisplayName('ProgressBar')(Bar.extend`
   background-color: ${g.progressMainColor};
   z-index: 1;
   left: 0;
@@ -67,18 +68,18 @@ export const ProgressBar = styled(Bar)`
   ${({ percent }) => percent && css`
     width: ${percent};
   `}
-`;
+`);
 
-export const BufferBar = styled(Bar)`
+export const BufferBar = setDisplayName('BufferBar')(Bar.extend`
   background-image:
     linear-gradient(to right, ${g.progressSecondaryColor}, ${g.progressSecondaryColor}),
     linear-gradient(to right, ${g.progressMainColor}, ${g.progressMainColor});
   z-index: 0;
   left: 0;
   width: 100%;
-`;
+`);
 
-export const AuxBar = styled(Bar)`
+export const AuxBar = setDisplayName('AuxBar')(Bar.extend`
   right: 0;
   ${({ indeterminate }) => indeterminate && css`
       background-image:
@@ -89,4 +90,4 @@ export const AuxBar = styled(Bar)`
       animation-iteration-count: infinite;
       animation-timing-function: linear;
   `}
-`;
+`);

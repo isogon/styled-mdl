@@ -1,32 +1,39 @@
-import { BadgeBase } from 'badges/Badge';
-import { BadgeText } from 'badges/Badge.style';
+import Badge, { BadgeBase } from 'badges/Badge';
 
-const render = shallowComponent(BadgeBase, { text: 'foo' }, 'Hello World');
+const render = shallowComponent(Badge, { text: 'foo' }, 'Hello World');
 
 describe('<Badge />', () => {
   let badge;
 
   beforeEach(() => {
-    badge = render();
+    badge = render().until(BadgeBase);
   });
 
-  it('renders a div with className', () => {
-    expect(badge.find('div')).toBePresent();
-    expect(badge.find('div')).toHaveProp('className');
+  it('has the right displayName', () => {
+    expect(Badge.displayName).toEqual('Badge');
+  });
+
+  it('is deeply extendable', () => {
+    expect(typeof Badge.extend).toEqual('function');
+    expect(typeof Badge.extend``.extend).toEqual('function');
+  });
+
+  it('renders a BadgeWrap with className', () => {
+    expect(badge.find('BadgeWrap')).toBePresent();
   });
 
   it('renders a BadgeText with [prop] text', () => {
-    expect(badge.find(BadgeText)).toBePresent();
-    expect(badge.find(BadgeText)).toHaveInnerText('foo');
+    expect(badge.find('BadgeText')).toBePresent();
+    expect(badge.find('BadgeText')).toHaveInnerText('foo');
   });
 
   it('renders its children', () => {
     expect(
       badge
-        .find('div')
+        .find('BadgeWrap')
         .children()
         .at(0)
-        .text()
+        .text(),
     ).toEqual('Hello World');
   });
 });

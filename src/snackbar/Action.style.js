@@ -1,9 +1,10 @@
+import { setDisplayName } from 'recompose';
 import styled from 'styled-components';
 
 import { getters as g } from '../util';
 import { typoButton } from '../mixins';
 
-export default styled.button`
+export const SnackbarAction = setDisplayName('SnackbarAction')(styled.button`
   background: transparent;
   border: none;
   color: ${g.snackbarActionColor};
@@ -30,4 +31,4 @@ export default styled.button`
     opacity: 1;
     pointer-events: auto;
   }
-`;
+`);

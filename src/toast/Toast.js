@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Portal from 'react-portal';
 import { setDisplayName, setPropTypes, defaultProps, compose } from 'recompose';
+import Portal from 'react-portal';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
 import { ToastAnimation } from './Toast.style';
+import { proxyStyledStatics } from '../hocs';
 
 export class ToastBase extends Component {
   constructor(props) {
@@ -41,20 +43,20 @@ export class ToastBase extends Component {
   }
 
   render() {
+    const { __StyledComponent__: Styled, ...props } = this.props;
     return (
       <Portal isOpened={this.state.isOpened}>
-        <ToastAnimation
-          isActive={this.state.isActive}
-          position={this.props.position}
-        >
-          {this.props.children}
-        </ToastAnimation>
+        <Styled {...props} isActive={this.state.isActive}>
+          {props.children}
+        </Styled>
       </Portal>
     );
   }
 }
 
 const enhance = compose(
+  proxyStyledStatics(ToastAnimation),
+  setDisplayName('Toast'),
   defaultProps({
     position: 'left',
   }),
@@ -63,7 +65,6 @@ const enhance = compose(
     position: PropTypes.string,
     children: PropTypes.node,
   }),
-  setDisplayName('Toast')
 );
 
 export default enhance(ToastBase);

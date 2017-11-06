@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
+import { curry } from 'lodash/fp';
 
-export const arrowTop = (size, color) => css`
+export const arrowTop = curry((size, color) => css`
   &:after {
     bottom: 100%;
     left: 50%;
@@ -15,9 +16,9 @@ export const arrowTop = (size, color) => css`
     border-width: ${size};
     margin-left: -${size};
   }
-`;
+`);
 
-export const arrowRight = (size, color) => css`
+export const arrowRight = curry((size, color) => css`
   &:after {
     left: 100%;
     top: 50%;
@@ -32,8 +33,9 @@ export const arrowRight = (size, color) => css`
     border-width: ${size};
     margin-top: -${size};
   }
-`;
-export const arrowBottom = (size, color) => css`
+`);
+
+export const arrowBottom = curry((size, color) => css`
   &:after {
     top: 100%;
     left: 50%;
@@ -48,9 +50,9 @@ export const arrowBottom = (size, color) => css`
     border-width: ${size};
     margin-left: -${size};
   }
-`;
+`);
 
-export const arrowLeft = (size, color) => css`
+export const arrowLeft = curry((size, color) => css`
   &:after {
     right: 100%;
     top: 50%;
@@ -65,4 +67,4 @@ export const arrowLeft = (size, color) => css`
     border-width: ${size};
     margin-top: -${size};
   }
-`;
+`);

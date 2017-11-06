@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Portal from 'react-portal';
-import { autobind } from 'core-decorators';
 import { compose, setDisplayName, setPropTypes, defaultProps } from 'recompose';
+import Portal from 'react-portal';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-import { withStyle } from '../util';
-import {
-  tooltipWrapperStyle,
-  TooltipBase,
-  TooltipPosition,
-} from './Tooltip.style';
+import { autobind } from 'core-decorators';
+
+import { TooltipStyle, TooltipPosition, TooltipWrapper } from './Tooltip.style';
+import { proxyStyledStatics } from '../hocs';
 import getRelativePosition from '../menu/getRelativePosition';
 
-export class Tooltip extends Component {
+export class TooltipBase extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +19,7 @@ export class Tooltip extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.setPosition, true);
-    cancelAnimationFrame(this.open);
+    clearTimeout(this.open);
   }
 
   getPosition() {
@@ -57,7 +54,7 @@ export class Tooltip extends Component {
     this.setState({ isOpened: true });
     this.setPosition();
     window.addEventListener('scroll', this.setPosition, true);
-    this.open = requestAnimationFrame(() => {
+    this.open = setTimeout(() => {
       this.setState({ isVisible: true });
     });
   }
@@ -69,27 +66,31 @@ export class Tooltip extends Component {
   }
 
   render() {
-    const { children, className, ...props } = this.props;
+    const { children, __StyledComponent__: Styled, ...props } = this.props;
 
     return (
-      <div
-        className={className}
+      <Styled
+        {...props}
         onMouseEnter={this.handleOpen}
         onMouseLeave={this.handleClose}
-        ref={this.setControl}
+        innerRef={this.setControl}
       >
         {children}
         <Portal isOpened={this.state.isOpened}>
           <TooltipPosition {...this.state} {...this.props}>
-            <TooltipBase large={props.large} position={props.position}>{this.props.message}</TooltipBase>
+            <TooltipStyle large={props.large} position={props.position}>
+              {this.props.message}
+            </TooltipStyle>
           </TooltipPosition>
         </Portal>
-      </div>
+      </Styled>
     );
   }
 }
 
 const enhance = compose(
+  proxyStyledStatics(TooltipWrapper),
+  setDisplayName('Tooltip'),
   setPropTypes({
     message: PropTypes.node,
     children: PropTypes.node,
@@ -98,8 +99,6 @@ const enhance = compose(
   defaultProps({
     position: 'above',
   }),
-  withStyle(tooltipWrapperStyle),
-  setDisplayName('Tooltip')
 );
 
-export default enhance(Tooltip);
+export default enhance(TooltipBase);

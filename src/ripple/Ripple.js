@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { autobind } from 'core-decorators';
 import { compose, setDisplayName } from 'recompose';
 
-import { withStyle } from '../util';
+import { proxyStyledStatics } from '../hocs';
 import { getRippleSize, getRippleCoords } from './helpers';
-import { Effect, WrapStyle } from './Ripple.style';
+import { RippleEffect, RippleWrap } from './Ripple.style';
 
 export class RippleBase extends Component {
   constructor(props) {
@@ -44,9 +44,11 @@ export class RippleBase extends Component {
   }
 
   render() {
+    const { __StyledComponent__: Styled } = this.props;
+
     return (
-      <div
-        ref={(wrapper) => {
+      <Styled
+        innerRef={(wrapper) => {
           this.wrapper = wrapper;
         }}
         onMouseDown={this.handleMouseDown}
@@ -56,7 +58,7 @@ export class RippleBase extends Component {
         onBlur={this.handleMouseUp}
         className={this.props.className}
       >
-        <Effect
+        <RippleEffect
           {...this.props}
           style={{
             height: this.state.size,
@@ -68,11 +70,14 @@ export class RippleBase extends Component {
               : 'none',
           }}
         />
-      </div>
+      </Styled>
     );
   }
 }
 
-const enhance = compose(withStyle(WrapStyle), setDisplayName('Ripple'));
+const enhance = compose(
+  proxyStyledStatics(RippleWrap),
+  setDisplayName('Ripple'),
+);
 
 export default enhance(RippleBase);

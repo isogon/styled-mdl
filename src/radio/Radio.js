@@ -1,32 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { compose, setDisplayName, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { withStyle } from '../util';
 import {
-  RadioStyle,
+  InnerCircle,
+  OuterCircle,
   RadioButton,
   RadioLabel,
-  OuterCircle,
-  InnerCircle,
+  RadioStyle,
 } from './Radio.style';
+import { proxyStyledStatics } from '../hocs';
 
-export const Radio = ({ label, disabled, className, ...props }) => (
-  <label className={className} htmlFor={props.htmlFor}>
+export const RadioBase = ({ label, disabled, __StyledComponent__: Styled, ...props }) => (
+  <Styled>
     <RadioButton type="radio" {...props} disabled={disabled} />
     {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
     <OuterCircle disabled={disabled} />
     <InnerCircle disabled={disabled} />
-  </label>
+  </Styled>
 );
 
 const enhance = compose(
+  proxyStyledStatics(RadioStyle),
+  setDisplayName('Radio'),
   setPropTypes({
     label: PropTypes.string,
     disabled: PropTypes.bool,
   }),
-  withStyle(RadioStyle),
-  setDisplayName('Radio')
 );
 
-export default enhance(Radio);
+export default enhance(RadioBase);

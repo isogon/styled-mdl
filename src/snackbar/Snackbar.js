@@ -1,32 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { setPropTypes, setDisplayName, compose } from 'recompose';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { withStyle } from '../util';
-import snackbarStyle from './Snackbar.style';
-import Message from './Message.style';
-import Action from './Action.style';
+import { SnackbarAction } from './Action.style';
+import { SnackbarMessage } from './Message.style';
+import { proxyStyledStatics } from '../hocs';
+import { SnackbarStyle } from './Snackbar.style';
 
 export const SnackbarBase = ({
   message,
   actionText,
   actionHandler,
-  className,
+  __StyledComponent__: Styled,
+  ...props
 }) => (
-  <div className={className}>
-    {message && <Message>{message}</Message>}
-    {actionText && <Action onClick={actionHandler}>{actionText}</Action>}
-  </div>
+  <Styled {...props}>
+    {message && <SnackbarMessage>{message}</SnackbarMessage>}
+    {actionText && (
+      <SnackbarAction onClick={actionHandler}>{actionText}</SnackbarAction>
+    )}
+  </Styled>
 );
 
 const enhance = compose(
-  withStyle(snackbarStyle),
+  proxyStyledStatics(SnackbarStyle),
+  setDisplayName('Snackbar'),
   setPropTypes({
     message: PropTypes.node,
     actionText: PropTypes.string,
     actionHandler: PropTypes.func,
   }),
-  setDisplayName('Snackbar')
 );
 
 export default enhance(SnackbarBase);

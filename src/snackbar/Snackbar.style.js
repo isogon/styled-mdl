@@ -1,7 +1,9 @@
-import { css } from 'styled-components';
+import { setDisplayName } from 'recompose';
+import styled from 'styled-components';
+
 import { getters as g } from '../util';
 
-export default css`
+export const SnackbarStyle = setDisplayName('SnacbarStyle')(styled.div`
   background-color: #323232;
   display: flex;
   justify-content: space-between;
@@ -16,4 +18,4 @@ export default css`
     border-radius: 2px;
     margin: 0 16px 16px 16px;
   }
-`;
+`);

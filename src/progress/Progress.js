@@ -1,24 +1,25 @@
-import React from 'react';
 import { compose, setDisplayName } from 'recompose';
-import { withStyle } from '../util';
+import React from 'react';
+
 import {
   ProgressBaseStyle,
   ProgressBar,
   BufferBar,
   AuxBar,
 } from './Progress.style';
+import { proxyStyledStatics } from '../hocs';
 
-export const ProgressBase = ({ className, ...props }) => (
-  <div className={className}>
-    <ProgressBar {...props} />
-    <BufferBar {...props} />
-    <AuxBar {...props} />
-  </div>
+export const ProgressBase = ({ indeterminate, percent, width, __StyledComponent__: Styled }) => (
+  <Styled width={width}>
+    <ProgressBar indeterminate={indeterminate} percent={percent} />
+    <BufferBar indeterminate={indeterminate} percent={percent} />
+    <AuxBar indeterminate={indeterminate} percent={percent} />
+  </Styled>
 );
 
 const enhance = compose(
-  withStyle(ProgressBaseStyle),
-  setDisplayName('Progress')
+  proxyStyledStatics(ProgressBaseStyle),
+  setDisplayName('Progress'),
 );
 
 export default enhance(ProgressBase);

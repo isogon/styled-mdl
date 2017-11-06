@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { compose, setPropTypes, setDisplayName } from 'recompose';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import {
-  spinnerStyle,
+  SpinnerStyle,
   LayerOne,
   LayerTwo,
   LayerThree,
@@ -12,35 +12,35 @@ import {
   CircleClipper,
   Circle,
 } from './Spinner.style';
-import { withStyle } from '../util';
+import { proxyStyledStatics } from '../hocs';
 
 const layers = [LayerOne, LayerTwo, LayerThree, LayerFour];
 
-export const SpinnerBase = ({ className, ...props }) => (
-  <div className={className}>
+export const SpinnerBase = ({ __StyledComponent__: Styled, ...props }) => (
+  <Styled {...props}>
     {layers.map((Layer, i) => (
-      <Layer {...props} key={i}>
+      <Layer key={i} {...props} >
         <CircleClipper left>
-          <Circle left clipper {...props} />
+          <Circle {...props} left clipper />
         </CircleClipper>
         <GapPatch>
           <Circle gap />
         </GapPatch>
         <CircleClipper right>
-          <Circle right clipper {...props} />
+          <Circle {...props} right clipper />
         </CircleClipper>
       </Layer>
     ))}
-  </div>
+  </Styled>
 );
 
 const enhance = compose(
+  proxyStyledStatics(SpinnerStyle),
+  setDisplayName('Spinner'),
   setPropTypes({
     active: PropTypes.bool,
     singleColor: PropTypes.bool,
   }),
-  withStyle(spinnerStyle),
-  setDisplayName('Spinner')
 );
 
 export default enhance(SpinnerBase);

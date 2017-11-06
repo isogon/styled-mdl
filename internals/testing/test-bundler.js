@@ -5,18 +5,22 @@ import 'jest-enzyme';
 import chalk from 'chalk';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import ShallowWrapper from 'enzyme/ShallowWrapper';
 import { trim, every, fromPairs, reduce, has } from 'lodash';
+import until from './until';
+
 // requestAnimationFrame polyfill for jsDom
 import './rAF';
 
+ShallowWrapper.prototype.until = until;
 global.shallowComponent = (component, defaultProps = {}, children) => (
-  props = {}
+  props = {},
 ) =>
   shallow(
-    React.createElement(component, { ...defaultProps, ...props }, children)
+    React.createElement(component, { ...defaultProps, ...props }, children),
   );
 global.mountComponent = (component, defaultProps = {}, children) => (
-  props = {}
+  props = {},
 ) =>
   mount(React.createElement(component, { ...defaultProps, ...props }, children));
 
@@ -25,7 +29,7 @@ const log = (pass) => (strings, thing, expected, actual) => {
   return `${wanted} ${thing.type().displayName}${pass
     ? ' not'
     : ''} ${toBe}:\n${chalk.green(expected)}\n\n${received}:\n${chalk.red(
-    actual
+    actual,
   )}`;
 };
 
@@ -36,7 +40,7 @@ const matchers = {
         const actualText = actual.children().text();
         const pass = actualText === expected;
         const message = log(
-          pass
+          pass,
         )`Expected ${actual} to have text ${expected} but it was ${actualText}`;
         return { pass, message };
       },
@@ -55,13 +59,13 @@ const matchers = {
               const [k, v] = rule.split(':').map(trim);
               return [k, trim(v, ';')];
             })
-            .filter(([k]) => has(expected, k))
+            .filter(([k]) => has(expected, k)),
         );
         const pass = every(expected, (v, k) => styles[k] === v);
         const toString = (s) =>
           reduce(s, (aggr, v, k) => `${aggr}${k}: ${v}\n`, '');
         const message = log(pass)`Expected ${actual} to have styles ${toString(
-          expected
+          expected,
         )} but it had ${toString(styles)}`;
         return { pass, message };
       },

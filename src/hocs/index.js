@@ -1,0 +1,1 @@
+export proxyStyledStatics from './proxyStyledStatics';

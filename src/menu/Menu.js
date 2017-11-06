@@ -1,16 +1,20 @@
-import React, { Component, Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
-import { autobind } from 'core-decorators';
+import { compose, setDisplayName, setPropTypes } from 'recompose';
 import Portal from 'react-portal';
+import PropTypes from 'prop-types';
+import React, { Component, Children, cloneElement } from 'react';
+
+import { autobind } from 'core-decorators';
+
 import {
   MenuContainer,
   MenuControlWrap,
   MenuOutline,
   MenuBase,
 } from './Menu.style';
+import { proxyStyledStatics } from '../hocs';
 import getRelativePosition from './getRelativePosition';
 
-export default class Menu extends Component {
+export class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,13 +80,14 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, __StyledComponent__: Styled, ...props } = this.props;
 
     const childrenWithProps = Children.map(children, (child) =>
       cloneElement(child, {
         isVisible: this.state.isVisible,
         fadeDown: !props.topRight && !props.topLeft,
-      })
+        getTransitionDelay: () => 0,
+      }),
     );
 
     const control = cloneElement(props.control, {
@@ -107,7 +112,7 @@ export default class Menu extends Component {
           onOpen={this.handleOpen}
           onClose={this.handleClose}
         >
-          <MenuContainer
+          <Styled
             {...this.state}
             {...props}
             onClick={() => {
@@ -124,17 +129,23 @@ export default class Menu extends Component {
             >
               {childrenWithProps}
             </MenuBase>
-          </MenuContainer>
+          </Styled>
         </Portal>
       </MenuControlWrap>
     );
   }
 }
 
-Menu.propTypes = {
-  children: PropTypes.node,
-  control: PropTypes.node,
-  bottomRight: PropTypes.bool,
-  topLeft: PropTypes.bool,
-  topRight: PropTypes.bool,
-};
+const enhance = compose(
+  proxyStyledStatics(MenuContainer),
+  setPropTypes({
+    children: PropTypes.node,
+    control: PropTypes.node,
+    bottomRight: PropTypes.bool,
+    topLeft: PropTypes.bool,
+    topRight: PropTypes.bool,
+  }),
+  setDisplayName('Menu'),
+);
+
+export default enhance(Menu);

@@ -1,11 +1,14 @@
+import { setDisplayName } from 'recompose';
 import styled, { css } from 'styled-components';
 
-import { materialAnimationDefault, shadow2dp, shadow3dp } from '../mixins';
 import { getters as g } from '../util';
+import { materialAnimationDefault, shadow2dp, shadow3dp } from '../mixins';
 
-export const switchWrapStyle = css`display: inline-block;`;
+export const SwitchWrapStyle = setDisplayName('SwitchWrapStyle')(styled.div`
+  display: inline-block;
+`);
 
-export const SwitchStyle = styled.label`
+export const SwitchStyle = setDisplayName('SwitchStyle')(styled.label`
   position: relative;
   z-index: 1;
   vertical-align: middle;
@@ -19,9 +22,9 @@ export const SwitchStyle = styled.label`
   padding-left: ${({ theme }) => theme.switchTrackLength}px;
   -webkit-touch-callout: none;
   user-select: none;
-`;
+`);
 
-export const SwitchButton = styled.input`
+export const SwitchButton = setDisplayName('SwitchButton')(styled.input`
   line-height: ${g.switchLabelHeight}px;
   position: absolute;
   width: 0;
@@ -42,9 +45,9 @@ export const SwitchButton = styled.input`
     left: ${({ theme }) => theme.switchTrackLength - theme.switchThumbSize}px;
     ${shadow3dp()};
   }
-`;
+`);
 
-export const Track = styled.div`
+export const Track = setDisplayName('Track')(styled.div`
   background: ${g.switchOffTrackColor};
   position: absolute;
   left: 0;
@@ -59,9 +62,9 @@ export const Track = styled.div`
       border: 2px solid ${g.switchDisabledTrackColor};
       cursor: auto;
     `};
-`;
+`);
 
-export const Thumb = styled.div`
+export const Thumb = setDisplayName('Thumb')(styled.div`
   background: ${g.switchOffThumbColor};
   position: absolute;
   left: 0;
@@ -71,9 +74,9 @@ export const Thumb = styled.div`
   border-radius: 50%;
   cursor: pointer;
   ${shadow2dp()} ${materialAnimationDefault('0.28s')} transition-property: left;
-`;
+`);
 
-export const SwitchLabel = styled.span`
+export const SwitchLabel = setDisplayName('SwitchLabel')(styled.span`
   position: relative;
   cursor: pointer;
   font-size: ${g.switchLabelFontSize}px;
@@ -86,4 +89,4 @@ export const SwitchLabel = styled.span`
       color: ${g.switchDisabledTumbColor};
       cursor: auto;
     `};
-`;
+`);

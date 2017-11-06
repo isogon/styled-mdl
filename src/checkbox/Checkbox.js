@@ -1,33 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { compose, setDisplayName, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { withStyle } from '../util/tools';
 import {
-  CheckboxStyle,
+  CheckboxWrap,
   CheckboxButton,
   CheckboxLabel,
   BoxOutline,
   TickOutline,
 } from './Checkbox.style';
+import { proxyStyledStatics } from '../hocs';
 
-export const Checkbox = ({ label, disabled, className, ...props }) => (
-  <label className={className} htmlFor={props.htmlFor}>
-    <CheckboxButton type="checkbox" disabled={disabled} {...props} />
-    {label && <CheckboxLabel disabled={disabled}>{label}</CheckboxLabel>}
-    <BoxOutline disabled={disabled}>
-      <TickOutline disabled={disabled} />
+export const CheckboxBase = ({ label, __StyledComponent__: Styled, ...props }) => (
+  <Styled {...props}>
+    <CheckboxButton type="checkbox" {...props} />
+    {label && <CheckboxLabel {...props}>{label}</CheckboxLabel>}
+    <BoxOutline {...props}>
+      <TickOutline {...props} />
     </BoxOutline>
-  </label>
+  </Styled>
 );
 
 const enhance = compose(
+  proxyStyledStatics(CheckboxWrap),
+  setDisplayName('Checkbox'),
   setPropTypes({
     label: PropTypes.string,
     disabled: PropTypes.bool,
   }),
-  withStyle(CheckboxStyle),
-  setDisplayName('Checkbox')
 );
 
-export default enhance(Checkbox);
+export default enhance(CheckboxBase);

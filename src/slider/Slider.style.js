@@ -329,13 +329,15 @@ SliderBackgroundIEContainer.displayName = 'SliderBackgroundIEContainer';
 
 // We use a set of divs behind the track to style it in all non-IE browsers.
 // This one contains both the background and the slider.
-export const SliderContainerStyle = css`
+export const SliderContainer = styled.div`
   height: 18px;
   position: relative;
   background: none;
   display: flex;
   flex-direction: row;
 `;
+
+SliderContainer.displayName = 'SliderContainer';
 
 // This one sets up a flex box for the styled upper and lower portions of the
 // the slider track.

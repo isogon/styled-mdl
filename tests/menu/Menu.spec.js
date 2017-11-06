@@ -11,7 +11,7 @@ const render = shallowComponent(
   {
     control: <Button>Click Me</Button>,
   },
-  <MenuItem />
+  <MenuItem />,
 );
 
 describe('<Menu>', () => {
@@ -159,7 +159,7 @@ describe('<Menu>', () => {
         expect(window.removeEventListener).toHaveBeenCalledWith(
           'scroll',
           menu.instance().setMenuPosition,
-          true
+          true,
         );
       });
     });
@@ -176,7 +176,7 @@ describe('<Menu>', () => {
         expect(window.addEventListener).toHaveBeenCalledWith(
           'scroll',
           menu.instance().setMenuPosition,
-          true
+          true,
         );
       });
 
@@ -190,7 +190,7 @@ describe('<Menu>', () => {
         expect(window.removeEventListener).toHaveBeenCalledWith(
           'scroll',
           setMenuPosition,
-          true
+          true,
         );
       });
 

@@ -1,4 +1,4 @@
-import { ChipContact } from 'chips';
+import ChipContact from 'chips/ChipContact';
 import { ChipContactImg, ChipContactSpan } from 'chips/Chip.style';
 
 const render = shallowComponent(ChipContact);
@@ -8,6 +8,10 @@ describe('<ChipContact />', () => {
 
   beforeEach(() => {
     chipContact = render();
+  });
+
+  it('has the right displayName', () => {
+    expect(ChipContact.name).toEqual('ChipContact');
   });
 
   describe('when it has an image', () => {
