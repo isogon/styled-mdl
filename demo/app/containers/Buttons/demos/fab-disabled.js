@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button } from 'material-components';
-import { MdAdd } from 'react-icons/lib/md';
+import { Button, Icon } from 'material-components';
 
-const demo = () => <Button fab disabled><MdAdd /></Button>;
+const demo = () => (
+  <Button fab disabled>
+    <Icon name="add" />
+  </Button>
+);
 const caption = 'Disabled';
-const code =
-`/*----- Disabled fab button -----*/
+const code = `/*----- Disabled fab button -----*/
 <Button fab disabled><MdAdd /></Button>`;
 
 export default { demo, caption, code };

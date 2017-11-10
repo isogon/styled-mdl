@@ -44,6 +44,7 @@ export const ChipText = setDisplayName('ChipText')(styled.span`
 export const ChipAction = setDisplayName('ChipAction')(styled.button`
   height: 24px;
   width: 24px;
+  font-size: 24px;
   background: transparent;
   opacity: 0.54;
   display: inline-block;
@@ -52,16 +53,11 @@ export const ChipAction = setDisplayName('ChipAction')(styled.button`
   vertical-align: middle;
   padding: 0;
   margin: 0 0 0 4px;
-  font-size: ${g.chipFontSize}px;
   text-decoration: none;
   color: ${g.textColorPrimary};
   border: none;
   outline: none;
   overflow: hidden;
-  svg {
-    height: 24px;
-    width: 24px;
-  }
 `);
 
 export const ChipContactImg = setDisplayName('ChipContactImg')(styled.img`

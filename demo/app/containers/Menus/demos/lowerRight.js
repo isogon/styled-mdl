@@ -1,13 +1,19 @@
 import React from 'react';
-import { Menu, MenuItem, MenuDivider, Button } from 'material-components';
-import More from 'react-icons/lib/md/more-vert';
+import { Menu, MenuItem, MenuDivider, Button, Icon } from 'material-components';
 
 import { Container, Bar, Bg } from './styled';
 
 const demo = () => (
   <Container align="right">
     <Bar>
-      <Menu bottomRight control={<Button icon><More /></Button>}>
+      <Menu
+        bottomRight
+        control={
+          <Button icon>
+            <Icon name="more_vert" />
+          </Button>
+        }
+      >
         <MenuItem>Some Action</MenuItem>
         <MenuItem>Another Action</MenuItem>
         <MenuDivider />
@@ -20,7 +26,7 @@ const demo = () => (
 );
 
 const caption = 'Lower right';
-const code = `<Menu bottomRight control={<Button icon><More /></Button>}>
+const code = `<Menu bottomRight control={<Button icon><Icon name="more_vert" /></Button>}>
   <MenuItem>Some Action</MenuItem>
   <MenuItem>Another Action</MenuItem>
   <MenuDivider />

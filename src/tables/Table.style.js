@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { getters as g } from '../util';
+import { Icon } from '../icons';
 import { materialAnimationDefault, typoBody2 } from '../mixins';
 
 export const Table = styled.table`
@@ -72,9 +73,8 @@ export const HeaderCell = CellBase.withComponent('th').extend`
   box-sizing: border-box;
 `;
 
-export const TableIcon = styled.span`
-  display: inline-block;
+export const TableIcon = Icon.extend`
   font-size: ${g.dataTableHeaderSortIconSize}px;
   margin-right: 5px;
-  margin-top: -2px;
+  vertical-align: bottom;
 `;

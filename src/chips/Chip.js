@@ -2,8 +2,7 @@ import { compose, setPropTypes, setDisplayName } from 'recompose';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import MdCancel from 'react-icons/lib/md/cancel';
-
+import { Icon } from '../icons';
 import { ChipStyle, ChipText, ChipAction } from './Chip.style';
 import { proxyStyledStatics } from '../hocs';
 import ChipContact from './ChipContact';
@@ -20,7 +19,7 @@ export const ChipBase = ({
     {children && <ChipText>{children}</ChipText>}
     {deletable && (
       <ChipAction onClick={onClickDelete}>
-        <MdCancel />
+        <Icon name="cancel" />
       </ChipAction>
     )}
   </Styled>

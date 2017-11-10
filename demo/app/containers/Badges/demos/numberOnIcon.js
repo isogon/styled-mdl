@@ -1,12 +1,13 @@
 import React from 'react';
-import { Badge } from 'material-components';
-import AccountBox from 'react-icons/lib/md/account-box';
-import styled from 'styled-components';
 
-const AccountBoxIcon = styled(AccountBox)`font-size: 32px`;
+import { Badge, Icon } from 'material-components';
 
-const demo = () => <Badge overlap text="4"><AccountBoxIcon /></Badge>;
+const demo = () => (
+  <Badge overlap text="4">
+    <Icon lg name="account_box" />
+  </Badge>
+);
 const caption = 'Number';
-const code = '<Badge text="4"><AccountBox /></Badge>';
+const code = '<Badge overlap text="4"><Icon lg name="account_box" /></Badge>';
 
 export default { demo, caption, code };

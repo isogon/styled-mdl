@@ -1,19 +1,16 @@
 import React from 'react';
-import { Badge } from 'material-components';
-import AccountBox from 'react-icons/lib/md/account-box';
-import Done from 'react-icons/lib/md/done';
-
-import styled from 'styled-components';
-
-const AccountBoxIcon = styled(AccountBox)`font-size: 32px`;
-const DoneIcon = styled(Done)`font-size: 16px`;
+import { Badge, Icon } from 'material-components';
 
 const demo = () => {
-  const done = <DoneIcon />;
-  return <Badge overlap text={done}><AccountBoxIcon /></Badge>;
+  const done = <Icon sm name="done" />;
+  return (
+    <Badge overlap text={done}>
+      <Icon lg name="account_box" />
+    </Badge>
+  );
 };
 const caption = 'Icon';
-const code = `const done = <DoneIcon />;
-return <Badge overlap text={done}>><AccountBoxIcon /></Badge>;`;
+const code = `const done = <Icon size="16" name="done" />;
+return <Badge overlap text={done}><Icon size="32" name="account_box" /></Badge>;`;
 
 export default { demo, caption, code };

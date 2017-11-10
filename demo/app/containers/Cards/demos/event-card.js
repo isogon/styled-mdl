@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdEvent } from 'react-icons/lib/md';
 
 import {
   Card,
@@ -10,6 +9,7 @@ import {
   shadow2dp,
   Button,
   Spacer,
+  Icon,
 } from 'material-components';
 
 const EventCard = Card.extend`
@@ -35,9 +35,8 @@ const EventActions = styled(CardActions)`
   align-items: center;
 `;
 
-const EventIcon = styled(MdEvent)`
+const EventIcon = Icon.extend`
   padding-right: 10px;
-  font-size: 1.5em;
   color: #fff;
 `;
 
@@ -59,7 +58,7 @@ const demo = () => (
     <EventActions border>
       <WhiteButton colored>Add to calenar</WhiteButton>
       <Spacer />
-      <EventIcon />
+      <EventIcon name="event" />
     </EventActions>
   </EventCard>
 );
