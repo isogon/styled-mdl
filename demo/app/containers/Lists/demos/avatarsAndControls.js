@@ -9,14 +9,16 @@ import {
   Checkbox,
   Radio,
   Switch,
+  Icon,
 } from 'material-components';
-import Person from 'react-icons/lib/md/person';
 
 const demo = () => (
   <List>
     <ListItem>
       <LiPrimary>
-        <LiAvatar><Person /></LiAvatar>
+        <LiAvatar>
+          <Icon name="person" />
+        </LiAvatar>
         Bryan Cranston
       </LiPrimary>
       <LiSecondary>
@@ -27,7 +29,9 @@ const demo = () => (
     </ListItem>
     <ListItem>
       <LiPrimary>
-        <LiAvatar><Person /></LiAvatar>
+        <LiAvatar>
+          <Icon name="person" />
+        </LiAvatar>
         Aaron Paul
       </LiPrimary>
       <LiSecondary>
@@ -38,7 +42,9 @@ const demo = () => (
     </ListItem>
     <ListItem>
       <LiPrimary>
-        <LiAvatar><Person /></LiAvatar>
+        <LiAvatar>
+          <Icon name="person" />
+        </LiAvatar>
         Bob Odenkirk
       </LiPrimary>
       <LiSecondary>
@@ -53,7 +59,7 @@ const caption = 'Avatars and controls';
 const code = `<List>
   <ListItem>
     <LiPrimary>
-      <LiAvatar><Person /></LiAvatar>
+      <LiAvatar><Icon name="person" /></LiAvatar>
       Bryan Cranston
     </LiPrimary>
     <LiSecondary>
@@ -64,7 +70,7 @@ const code = `<List>
   </ListItem>
   <ListItem>
     <LiPrimary>
-      <LiAvatar><Person /></LiAvatar>
+      <LiAvatar><Icon name="person" /></LiAvatar>
       Aaron Paul
     </LiPrimary>
     <LiSecondary>
@@ -75,7 +81,7 @@ const code = `<List>
   </ListItem>
   <ListItem>
     <LiPrimary>
-      <LiAvatar><Person /></LiAvatar>
+      <LiAvatar><Icon name="person" /></LiAvatar>
       Bob Odenkirk
     </LiPrimary>
     <LiSecondary>

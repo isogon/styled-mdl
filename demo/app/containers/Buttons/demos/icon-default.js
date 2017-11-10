@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button } from 'material-components';
-import { MdAdd } from 'react-icons/lib/md';
+import { Button, Icon } from 'material-components';
 
-const demo = () => <Button icon><MdAdd /></Button>;
+const demo = () => (
+  <Button icon>
+    <Icon name="add" />
+  </Button>
+);
 const caption = 'Icon Button';
-const code =
-`/*----- Icon button -----*/
+const code = `/*----- Icon button -----*/
 <Button icon><MdAdd /></Button>`;
 
 export default { demo, caption, code };

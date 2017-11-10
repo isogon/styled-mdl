@@ -1,17 +1,12 @@
 import React from 'react';
-import { Badge } from 'material-components';
-import Done from 'react-icons/lib/md/done';
-
-import styled from 'styled-components';
-
-const DoneIcon = styled(Done)`font-size: 16px`;
+import { Badge, Icon } from 'material-components';
 
 const demo = () => {
-  const done = <DoneIcon />;
+  const done = <Icon sm name="done" />;
   return <Badge text={done}>Walk the dog</Badge>;
 };
 const caption = 'Icon';
-const code = `const done = <DoneIcon />;
+const code = `const done = <Icon size="16" name="done" />;
 return <Badge text={done}>Walk the dog</Badge>;`;
 
 export default { demo, caption, code };

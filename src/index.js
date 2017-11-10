@@ -5,6 +5,7 @@ export * from './checkbox';
 export * from './chips';
 export * from './dialog';
 export * from './globals';
+export * from './icons';
 export * from './input';
 export * from './layout';
 export * from './list';

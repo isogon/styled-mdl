@@ -46,6 +46,9 @@ export const LiIcon = styled.i`
 `;
 
 export const LiAvatar = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: ${g.listAvatarSize}px;
   width: ${g.listAvatarSize}px;
   box-sizing: border-box;

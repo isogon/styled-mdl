@@ -7,8 +7,8 @@ import {
   LiSecondary,
   LiAvatar,
   Button,
+  Icon,
 } from 'material-components';
-import Star from 'react-icons/lib/md/star';
 
 const demo = () => (
   <List>
@@ -19,7 +19,9 @@ const demo = () => (
       </LiPrimary>
       <LiSecondary>
         <LiAction>
-          <Button icon accent><Star /></Button>
+          <Button icon accent>
+            <Icon name="star" />
+          </Button>
         </LiAction>
       </LiSecondary>
     </ListItem>
@@ -30,7 +32,9 @@ const demo = () => (
       </LiPrimary>
       <LiSecondary>
         <LiAction>
-          <Button icon accent><Star /></Button>
+          <Button icon accent>
+            <Icon name="star" />
+          </Button>
         </LiAction>
       </LiSecondary>
     </ListItem>
@@ -41,7 +45,9 @@ const demo = () => (
       </LiPrimary>
       <LiSecondary>
         <LiAction>
-          <Button icon accent><Star /></Button>
+          <Button icon accent>
+            <Icon name="star" />
+          </Button>
         </LiAction>
       </LiSecondary>
     </ListItem>
@@ -56,7 +62,7 @@ const code = `<List>
     </LiPrimary>
     <LiSecondary>
       <LiAction>
-        <Button icon accent><Star /></Button>
+        <Button icon accent><Icon name="star" /></Button>
       </LiAction>
     </LiSecondary>
   </ListItem>
@@ -67,7 +73,7 @@ const code = `<List>
     </LiPrimary>
     <LiSecondary>
       <LiAction>
-        <Button icon accent><Star /></Button>
+        <Button icon accent><Icon name="star" /></Button>
       </LiAction>
     </LiSecondary>
   </ListItem>
@@ -78,7 +84,7 @@ const code = `<List>
     </LiPrimary>
     <LiSecondary>
       <LiAction>
-        <Button icon accent><Star /></Button>
+        <Button icon accent><Icon name="star" /></Button>
       </LiAction>
     </LiSecondary>
   </ListItem>

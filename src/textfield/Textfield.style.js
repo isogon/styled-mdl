@@ -139,22 +139,18 @@ export const Label = setDisplayName('Label')(styled.label`
 `);
 
 // TextField Error.
-export const ErrorMessage = setDisplayName('ErrorMessage')(styled.div`
-  color: ${g.inputTextErrorColor};
+
+
+export const HelperText = setDisplayName('HelperText')(styled.div`
+  color: ${g.inputTextLabelColor};
   position: absolute;
   font-size: ${g.inputTextFloatingLabelFontsize}px;
   margin-top: 3px;
   display: block;
 `);
 
-export const HelperText = setDisplayName('HelperText')(styled.div`
-  color: ${g.inputTextLabelColor};
-  position: absolute;
-  right: 0;
-  text-align: right;
-  font-size: ${g.inputTextFloatingLabelFontsize}px;
-  margin-top: 3px;
-  display: block;
+export const ErrorMessage = setDisplayName('ErrorMessage')(HelperText.extend`
+  color: ${g.inputTextErrorColor};
 `);
 
 export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`

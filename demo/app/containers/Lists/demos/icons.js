@@ -1,19 +1,24 @@
 import React from 'react';
-import { List, ListItem, LiIcon } from 'material-components';
-import Person from 'react-icons/lib/md/person';
+import { List, ListItem, LiIcon, Icon } from 'material-components';
 
 const demo = () => (
   <List>
     <ListItem>
-      <LiIcon><Person /></LiIcon>
+      <LiIcon>
+        <Icon name="person" />
+      </LiIcon>
       Bryan Cranston
     </ListItem>
     <ListItem>
-      <LiIcon><Person /></LiIcon>
+      <LiIcon>
+        <Icon name="person" />
+      </LiIcon>
       Aaron Paul
     </ListItem>
     <ListItem>
-      <LiIcon><Person /></LiIcon>
+      <LiIcon>
+        <Icon name="person" />
+      </LiIcon>
       Bob Odenkirk
     </ListItem>
   </List>
@@ -22,15 +27,15 @@ const demo = () => (
 const caption = 'Icons';
 const code = `<List>
   <ListItem>
-    <LiIcon><Person /></LiIcon>
+    <LiIcon><Icon name="person" /></LiIcon>
     Bryan Cranston
   </ListItem>
   <ListItem>
-    <LiIcon><Person /></LiIcon>
+    <LiIcon><Icon name="person" /></LiIcon>
     Aaron Paul
   </ListItem>
   <ListItem>
-    <LiIcon><Person /></LiIcon>
+    <LiIcon><Icon name="person" /></LiIcon>
     Bob Odenkirk
   </ListItem>
 </List>`;
