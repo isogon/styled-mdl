@@ -47,8 +47,8 @@ export const MenuOutline = styled.div`
   transform: scale(0);
   transform-origin: 0 0;
   ${shadow2dp()} will-change: transform;
-  transition: transform ${g.menuExpandDuration}s ${g.animationCurveDefault},
-    opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
+  transition: transform ${g.menuExpandDuration}s ${g.animation.default},
+    opacity ${g.menuFadeDuration}s ${g.animation.default};
   z-index: -1;
 
   ${({ isVisible }) =>
@@ -82,8 +82,8 @@ export const MenuBase = styled.div`
   opacity: 0;
   clip: rect(0 0 0 0);
   z-index: -1;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault},
-    clip ${g.menuExpandDuration}s ${g.animationCurveDefault};
+  transition: opacity ${g.menuFadeDuration}s ${g.animation.default},
+    clip ${g.menuExpandDuration}s ${g.animation.default};
 
   ${({ isVisible }) =>
     isVisible &&
@@ -126,7 +126,7 @@ export const MenuDivider = styled.hr`
   opacity: 0;
   height: 0;
   border-top: 0;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
+  transition: opacity ${g.menuFadeDuration}s ${g.animation.default};
   transition-delay: ${({ getTransitionDelay, theme }) =>
     getTransitionDelay(theme.menuExpandDuration)}s;
   ${({ isVisible }) => isVisible && css`opacity: 1;`};
@@ -152,7 +152,7 @@ export const MenuItem = styled.button`
   line-height: 48px;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
+  transition: opacity ${g.menuFadeDuration}s ${g.animation.default};
   transition-delay: ${({ getTransitionDelay, theme }) =>
     getTransitionDelay(theme.menuExpandDuration)}s;
   user-select: none;

@@ -21,7 +21,7 @@ export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
   left: 0;
   overflow: hidden;
   transition-duration: 0.6s, 0.6s, 0.6s, 1.2s;
-  transition-timing-function: ${g.animationCurveLinearOutSlowIn};
+  transition-timing-function: ${g.animation.linearOutSlowIn};
 `);
 
 export const RippleWrap = setDisplayName('RippleWrap')(styled.div`

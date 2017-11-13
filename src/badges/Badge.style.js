@@ -1,29 +1,24 @@
 import { add, divide, subtract, cond, T, always, compose } from 'lodash/fp';
-import { call, prop, ifProp } from 'styled-tools';
+import { call, prop as p, ifProp } from 'styled-tools';
 import { setDisplayName } from 'recompose';
 import styled from 'styled-components';
 
+import { getters } from '../util';
+
+const { badge } = getters;
 const negate = (n) => -n;
-const overlap = prop('overlap');
-const forButton = prop('forButton');
-const badgeSize = prop('theme.badgeSize');
-const badgeFontSize = prop('theme.badgeFontSize');
-const badgeOverlap = prop('theme.badgeOverlap');
-const badgePadding = prop('theme.badgePadding');
-const preferredFont = prop('theme.preferredFont');
-const badgeBackground = prop('theme.badgeBackground');
-const badgeColor = prop('theme.badgeColor');
-const badgeColorInverse = prop('theme.badgeColorInverse');
-const badgeBackgroundInverse = prop('theme.badgeBackgroundInverse');
+const overlap = p('overlap');
+const forButton = p('forButton');
+const preferredFont = p('theme.preferredFont');
 
 export const BadgeWrap = setDisplayName('BadgeWrap')(styled.div`
   position: relative;
   white-space: nowrap;
   display: inline-block;
   margin-right: ${cond([
-    [overlap, call(subtract, badgeSize, badgeOverlap)],
-    [forButton, call(subtract, badgeSize, always(14))],
-    [T, call(add, badgeSize, badgePadding)],
+    [overlap, call(subtract, badge.size, badge.overlap)],
+    [forButton, call(subtract, badge.size, always(14))],
+    [T, call(add, badge.size, badge.padding)],
   ])}px;
 `);
 
@@ -35,19 +30,19 @@ export const BadgeText = setDisplayName('BadgeText')(styled.div`
   align-content: center;
   align-items: center;
   position: absolute;
-  top: ${ifProp('forButton', -10, call(divide, badgeSize, always(-2)))}px;
+  top: ${ifProp('forButton', -10, call(divide, badge.size, always(-2)))}px;
   right: ${cond([
     [forButton, always(-10)],
-    [overlap, call(compose(negate, subtract), badgeSize, badgeOverlap)],
-    [T, call(compose(negate, add), badgeSize, badgePadding)],
+    [overlap, call(compose(negate, subtract), badge.size, badge.overlap)],
+    [T, call(compose(negate, add), badge.size, badge.padding)],
   ])}px;
   font-family: ${preferredFont};
   font-weight: 600;
-  font-size: ${badgeFontSize}px;
-  width: ${badgeSize}px;
-  height: ${badgeSize}px;
+  font-size: ${badge.fontSize}px;
+  width: ${badge.size}px;
+  height: ${badge.size}px;
   border-radius: 50%;
-  color: ${ifProp('background', badgeColor, badgeColorInverse)};
-  background: ${ifProp('background', badgeBackground, badgeBackgroundInverse)};
+  color: ${ifProp('background', badge.color, badge.colorInverse)};
+  background: ${ifProp('background', badge.background, badge.backgroundInverse)};
   box-shadow: ${ifProp('background', 'none', '0 0 1px gray')};
 `);

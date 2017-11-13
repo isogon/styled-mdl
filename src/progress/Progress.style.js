@@ -51,7 +51,7 @@ const Bar = styled.div`
   top: 0;
   bottom: 0;
   width: 0%;
-  transition: width 0.2s ${g.animationCurveDefault};
+  transition: width 0.2s ${g.animation.default};
 `;
 
 export const ProgressBar = setDisplayName('ProgressBar')(Bar.extend`

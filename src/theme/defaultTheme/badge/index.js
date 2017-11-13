@@ -1,14 +1,15 @@
-import * as defaults from './defaults';
-import { colorAccentContrast, colorAccent } from '../colors/defaults';
-import createThemer from '../createThemer';
-import { rgba, rgb } from '../../../util/colors';
+import { compose } from 'recompose';
+import { transparentize } from 'polished';
 
-export default createThemer(
-  { colorAccentContrast, colorAccent, ...defaults },
-  (theme) => ({
-    badgeColor: rgb(theme.colorAccentContrast),
-    badgeColorInverse: rgb(theme.colorAccent),
-    badgeBackground: rgb(theme.colorAccent),
-    badgeBackgroundInverse: rgba(theme.colorAccentContrast, 0.2),
-  })
-);
+import { ref } from '../helpers';
+
+export default {
+  fontSize: 12,
+  size: 22,
+  padding: 2,
+  overlap: 12,
+  color: ref('colors.accentContrast'),
+  colorInverse: ref('colors.accent'),
+  background: ref('colors.accent'),
+  backgroundInverse: compose(transparentize(0.8), ref('colors.accentContrast')),
+};

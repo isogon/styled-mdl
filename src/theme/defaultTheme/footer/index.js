@@ -1,7 +1,24 @@
-import * as defaults from './defaults';
-import createThemer from '../createThemer';
+import { compose } from 'recompose';
+import { multiply } from 'lodash';
 
-export default createThemer(defaults, (theme) => ({
-  footerHeadingLineHeight: 1.7 * theme.footerHeadingFontSize,
-  miniFooterHeadingLineHeight: 1.5 * theme.miniFooterHeadingFontSize,
-}));
+import { ref } from '../helpers';
+
+export default {
+  /* megaFooter */
+  minPadding: 16,
+  paddingSides: 40,
+  headingFontSize: 14,
+  btnSize: 36,
+  headingLineHeight: compose(multiply(1.7), ref('footer.headingFontSize')),
+
+  /* miniFooter */
+  mini: {
+    padding: 16,
+    headingFontSize: 24,
+    btnSize: 36,
+    headingLineHeight: compose(
+      multiply(1.5),
+      ref('footer.mini.headingFontSize'),
+    ),
+  },
+};

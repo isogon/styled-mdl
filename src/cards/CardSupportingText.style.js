@@ -1,15 +1,19 @@
-import styled, { css } from 'styled-components';
+import { ifProp } from 'styled-tools';
 import { setDisplayName } from 'recompose';
-import { getters as g } from '../util';
+import styled, { css } from 'styled-components';
+
+import { getters } from '../util';
+
+const { card } = getters;
 
 export const CardSupportingText = setDisplayName('CardSupportingText')(styled.div`
-  color: ${g.cardSupportingTextTextColor};
-  font-size: ${g.cardSupportingTextFontSize}px;
-  line-height: ${g.cardSupportingTextLineHeight}px;
+  color: ${card.supportingTextTextColor};
+  font-size: ${card.supportingTextFontSize}px;
+  line-height: ${card.supportingTextLineHeight}px;
   overflow: hidden;
-  padding: ${g.cardVerticalPadding}px ${g.cardHorizontalPadding}px;
+  padding: ${card.verticalPadding}px ${card.horizontalPadding}px;
   width: 90%;
-  ${({ border }) => border && css`
-    border-bottom: 1px solid ${g.cardBorderColor};
-  `}
+  ${ifProp('border', css`
+    border-bottom: 1px solid ${card.borderColor};
+  `)}
 `);

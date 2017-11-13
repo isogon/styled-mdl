@@ -1,19 +1,23 @@
-import { setDisplayName } from 'recompose';
+import { compose, setDisplayName } from 'recompose';
+import { ifProp, prop } from 'styled-tools';
 import styled, { css } from 'styled-components';
 
-import { getters as g } from '../util';
+import { colorFromProp } from '../theme/defaultTheme/helpers';
+import { getters, half } from '../util';
 import { shadow2dp } from '../mixins';
 
+const { chip, colors } = getters;
+
 export const ChipStyle = setDisplayName('ChipStyle')(styled.span`
-  height: ${g.chipHeight}px;
-  font-family: ${g.preferredFont};
-  line-height: ${g.chipHeight}px;
+  height: ${chip.height}px;
+  font-family: ${getters.preferredFont};
+  line-height: ${chip.height}px;
   padding: 0 12px;
   border: 0;
-  border-radius: ${({ theme }) => theme.chipHeight / 2}px;
-  background-color: ${g.chipBgColor};
+  border-radius: ${compose(half, chip.height)}px;
+  background-color: ${chip.bgColor};
   display: inline-block;
-  color: ${g.textColorPrimary};
+  color: ${colors.textPrimary};
   margin: 2px 0;
   font-size: 0;
   white-space: nowrap;
@@ -22,21 +26,21 @@ export const ChipStyle = setDisplayName('ChipStyle')(styled.span`
     ${shadow2dp()}
   }
   &:active {
-    background-color: ${g.chipBgActiveColor};
+    background-color: ${chip.bgActiveColor};
   }
-  ${({ deletable }) => deletable && css`
+  ${ifProp('deletable', css`
     padding-right: 4px;
-  `}
-  ${({ contact }) => contact && css`
-    padding-left: 0px;
-  `}
+  `)}
+  ${ifProp('contact', css`
+    padding-left: 0;
+  `)}
 `);
 
 export const ButtonChipStyle = ChipStyle.withComponent('button');
 
 
 export const ChipText = setDisplayName('ChipText')(styled.span`
-  font-size: ${g.chipFontSize}px;
+  font-size: ${chip.fontSize}px;
   vertical-align: middle;
   display: inline-block;
 `);
@@ -54,16 +58,16 @@ export const ChipAction = setDisplayName('ChipAction')(styled.button`
   padding: 0;
   margin: 0 0 0 4px;
   text-decoration: none;
-  color: ${g.textColorPrimary};
+  color: ${colors.textPrimary};
   border: none;
   outline: none;
   overflow: hidden;
 `);
 
 export const ChipContactImg = setDisplayName('ChipContactImg')(styled.img`
-  height: ${g.chipHeight}px;
-  width: ${g.chipHeight}px;
-  border-radius: ${({ theme }) => theme.chipHeight / 2}px;
+  height: ${chip.height}px;
+  width: ${chip.height}px;
+  border-radius: ${compose(half, chip.height)}px;
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -71,8 +75,8 @@ export const ChipContactImg = setDisplayName('ChipContactImg')(styled.img`
   text-align: center;
   font-size: 18px;
   line-height: 32px;
-  background-color: ${g.rgbFromProp('color', g.colorPrimary)};
-  color: ${({ textColor }) => textColor || '#FFF'};
+  background-color: ${colorFromProp('color', colors.primary)};
+  color: ${prop('textColor', 'white')}
 `);
 
 export const ChipContactSpan = setDisplayName('ChipContactSpan')(

@@ -1,21 +1,25 @@
-import styled, { css } from 'styled-components';
+import { ifProp } from 'styled-tools';
 import { setDisplayName } from 'recompose';
-import { getters as g } from '../util';
+import styled, { css } from 'styled-components';
+
+import { getters } from '../util';
+
+const { card } = getters;
 
 export const Card = setDisplayName('Card')(styled.div`
   display: flex;
   flex-direction: column;
-  font-size: ${g.cardFontSize}px;
+  font-size: ${card.fontSize}px;
   font-weight: 400;
-  min-height: ${g.cardHeight}px;
+  min-height: ${card.height}px;
   overflow: hidden;
-  width: ${g.cardWidth}px;
-  z-index: ${g.cardZIndex};
+  width: ${card.width}px;
+  z-index: ${card.zIndex};
   position: relative;
-  background: ${g.cardBackgroundColor};
+  background: ${card.backgroundColor};
   border-radius: 2px;
   box-sizing: border-box;
-  ${({ expand }) => expand && css`
+  ${ifProp('expand', css`
     flex-grow: 1;
-  `}
+  `)}
 `);

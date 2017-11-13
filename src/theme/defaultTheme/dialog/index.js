@@ -1,5 +1,5 @@
-import createThemer from '../createThemer';
+import { ref } from '../helpers';
 
-export default createThemer({}, (theme) => ({
-  dialogContentColor: theme.cardSupportingTextColor,
-}));
+export default {
+  contentColor: ref('card.supportingTextColor'),
+};

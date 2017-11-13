@@ -4,25 +4,27 @@ import styled, { css } from 'styled-components';
 import { getters as g } from '../util';
 import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../mixins';
 
+const { button } = g;
+
 export const StyledButton = setDisplayName('Button')(styled.button`
   background: transparent;
   border: none;
-  border-radius: ${g.buttonBorderRadius}px;
-  color: ${g.buttonSecondaryColor};
+  border-radius: ${button.borderRadius}px;
+  color: ${button.secondaryColor};
   position: relative;
-  height: ${g.buttonHeight}px;
-  line-height: ${g.buttonHeight}px;
+  height: ${button.height}px;
+  line-height: ${button.height}px;
   margin: 0;
-  min-width: ${g.buttonMinWidth}px;
-  padding: 0 ${g.buttonPadding}px;
+  min-width: ${button.minWidth}px;
+  padding: 0 ${button.padding}px;
   white-space: nowrap;
   display: inline-flex;
   ${typoButton()} overflow: hidden;
   will-change: box-shadow;
   text-decoration: none;
-  transition: box-shadow 0.2s ${g.animationCurveFastOutLinearIn},
-    background-color 0.2s ${g.animationCurveDefault},
-    color 0.2s ${g.animationCurveDefault};
+  transition: box-shadow 0.2s ${g.animation.fastOutLinearIn},
+    background-color 0.2s ${g.animation.default},
+    color 0.2s ${g.animation.default};
   outline: none;
   cursor: pointer;
   text-decoration: none;
@@ -33,108 +35,108 @@ export const StyledButton = setDisplayName('Button')(styled.button`
     border: 0;
   }
   &:hover {
-    background-color: ${g.buttonHoverColor};
+    background-color: ${button.hoverColor};
   }
   &:focus:not(:active) {
-    background-color: ${g.buttonFocusColor};
+    background-color: ${button.focusColor};
   }
   &:active {
-    background-color: ${g.buttonActiveColor};
+    background-color: ${button.activeColor};
   }
   ${({ colored }) =>
     colored &&
     css`
-      color: ${g.buttonPrimaryColorAlt};
+      color: ${button.primaryColorAlt};
       &:focus:not(:active) {
-        background-color: ${g.buttonFocusColorAlt};
+        background-color: ${button.focusColorAlt};
       }
     `} ${({ raised }) =>
       raised &&
       css`
-        background: ${g.buttonPrimaryColor};
+        background: ${button.primaryColor};
         ${shadow2dp()} &:active {
-          ${shadow4dp()} background-color: ${g.buttonActiveColor};
+          ${shadow4dp()} background-color: ${button.activeColor};
         }
 
         &:focus:not(:active) {
-          ${focusShadow()} background-color: ${g.buttonActiveColor};
+          ${focusShadow()} background-color: ${button.activeColor};
         }
 
         ${({ colored }) =>
           colored &&
           css`
-            background: ${g.buttonPrimaryColorAlt};
-            color: ${g.buttonSecondaryColorAlt};
+            background: ${button.primaryColorAlt};
+            color: ${button.secondaryColorAlt};
 
             &:hover {
-              background-color: ${g.buttonHoverColorAlt};
+              background-color: ${button.hoverColorAlt};
             }
 
             &:active {
-              background-color: ${g.buttonActiveColorAlt};
+              background-color: ${button.activeColorAlt};
             }
 
             &:focus:not(:active) {
-              background-color: ${g.buttonActiveColorAlt};
+              background-color: ${button.activeColorAlt};
             }
           `};
       `} ${({ fab }) =>
       fab &&
       css`
         border-radius: 50%;
-        font-size: ${g.buttonFabFontSize}px;
-        height: ${g.buttonFabSize}px;
+        font-size: ${button.fabFontSize}px;
+        height: ${button.fabSize}px;
         margin: auto;
-        min-width: ${g.buttonFabSize}px;
-        width: ${g.buttonFabSize}px;
+        min-width: ${button.fabSize}px;
+        width: ${button.fabSize}px;
         padding: 0;
         overflow: hidden;
-        background: ${g.buttonPrimaryColor};
+        background: ${button.primaryColor};
         ${shadow2dp()} position: relative;
         line-height: normal;
 
         ${({ mini }) =>
           mini &&
           css`
-            height: ${g.buttonFabSizeMini}px;
-            min-width: ${g.buttonFabSizeMini}px;
-            width: ${g.buttonFabSizeMini}px;
+            height: ${button.fabSizeMini}px;
+            min-width: ${button.fabSizeMini}px;
+            width: ${button.fabSizeMini}px;
           `} &:active {
-          ${shadow4dp()} background-color: ${g.buttonActiveColor};
+          ${shadow4dp()} background-color: ${button.activeColor};
         }
 
         &:focus:not(:active) {
-          ${focusShadow()} background-color: ${g.buttonActiveColor};
+          ${focusShadow()} background-color: ${button.activeColor};
         }
 
         ${({ colored }) =>
           colored &&
           css`
-            background: ${g.buttonFabColorAlt};
-            color: ${g.buttonFabTextColorAlt};
+            background: ${button.fabColorAlt};
+            color: ${button.fabTextColorAlt};
 
             &:hover {
-              background-color: ${g.buttonFabHoverColorAlt};
+              background-color: ${button.fabHoverColorAlt};
             }
 
             &:focus:not(:active) {
-              background-color: ${g.buttonFabActiveColorAlt};
+              background-color: ${button.fabActiveColorAlt};
             }
 
             &:active {
-              background-color: ${g.buttonFabActiveColorAlt};
+              background-color: ${button.fabActiveColorAlt};
             }
           `};
       `} ${({ icon }) =>
       icon &&
       css`
         border-radius: 50%;
-        font-size: ${g.buttonFabFontSize}px;
-        height: ${g.buttonIconSize}px;
+        font-size: ${button.fabFontSize}px;
+        height: ${button.iconSize}px;
         margin-left: 0;
         margin-right: 0;
-        min-width: ${g.buttonIconSize}px;
-        width: ${g.buttonIconSize}px;
+        min-width: ${button.iconSize}px;
+        width: ${button.iconSize}px;
         padding: 0;
         overflow: hidden;
         color: inherit;
@@ -143,44 +145,44 @@ export const StyledButton = setDisplayName('Button')(styled.button`
         ${({ mini }) =>
           mini &&
           css`
-            height: ${g.buttonIconSizeMini}px;
-            min-width: ${g.buttonIconSizeMini}px;
-            width: ${g.buttonIconSizeMini}px;
+            height: ${button.iconSizeMini}px;
+            min-width: ${button.iconSizeMini}px;
+            width: ${button.iconSizeMini}px;
           `};
       `} ${({ primary }) =>
       primary &&
       css`
-        color: ${g.buttonPrimaryColorAlt};
+        color: ${button.primaryColorAlt};
         ${({ raised, fab }) =>
           (raised || fab) &&
           css`
-            color: ${g.buttonSecondaryColorAlt};
-            background-color: ${g.buttonPrimaryColorAlt};
+            color: ${button.secondaryColorAlt};
+            background-color: ${button.primaryColorAlt};
             &:hover,
             &:active,
             &:focus:not(:active) {
-              background-color: ${g.buttonPrimaryColorAlt};
+              background-color: ${button.primaryColorAlt};
             }
           `};
       `} ${({ accent }) =>
       accent &&
       css`
-        color: ${g.buttonFabColorAlt};
+        color: ${button.fabColorAlt};
         ${({ raised, fab }) =>
           (raised || fab) &&
           css`
-            color: ${g.buttonFabTextColorAlt};
-            background-color: ${g.buttonFabColorAlt};
+            color: ${button.fabTextColorAlt};
+            background-color: ${button.fabColorAlt};
             &:hover,
             &:active,
             &:focus:not(:active) {
-              background-color: ${g.buttonFabColorAlt};
+              background-color: ${button.fabColorAlt};
             }
           `};
       `} ${({ disabled }) =>
       disabled &&
       css`
-        color: ${g.buttonSecondaryColorDisabled};
+        color: ${button.secondaryColorDisabled};
         cursor: default;
         background-color: transparent;
         &:hover {
@@ -189,34 +191,34 @@ export const StyledButton = setDisplayName('Button')(styled.button`
         ${({ fab }) =>
           fab &&
           css`
-            background-color: ${g.buttonPrimaryColorDisabled};
-            color: ${g.buttonSecondaryColorDisabled};
+            background-color: ${button.primaryColorDisabled};
+            color: ${button.secondaryColorDisabled};
             &:hover,
             &:active,
             &:focus:not(:active) {
-              background-color: ${g.buttonPrimaryColorDisabled};
+              background-color: ${button.primaryColorDisabled};
               ${shadow2dp()};
             }
           `} ${({ colored }) =>
             colored &&
             css`
-              color: ${g.buttonSecondaryColorDisabled};
+              color: ${button.secondaryColorDisabled};
               &:hover,
               &:active,
               &:focus:not(:active) {
-                color: ${g.buttonSecondaryColorDisabled};
+                color: ${button.secondaryColorDisabled};
               }
             `} ${({ raised }) =>
             raised &&
             css`
-              background-color: ${g.buttonPrimaryColorDisabled};
-              color: ${g.buttonSecondaryColorDisabled};
+              background-color: ${button.primaryColorDisabled};
+              color: ${button.secondaryColorDisabled};
               box-shadow: none;
               &:hover,
               &:active,
               &:focus:not(:active) {
-                color: ${g.buttonSecondaryColorDisabled};
-                background-color: ${g.buttonPrimaryColorDisabled};
+                color: ${button.secondaryColorDisabled};
+                background-color: ${button.primaryColorDisabled};
               }
             `};
       `};

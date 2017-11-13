@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { setDisplayName } from 'recompose';
-import { getters as g } from '../util';
+import { getters } from '../util';
 
+const { card } = getters;
 export const CardSubtitleText = setDisplayName('CardSubtitleText')(styled.h4`
-  font-size: ${g.cardSubtitleFontSize}px;
-  color: ${g.cardSubtitleColor}px;
+  font-size: ${card.subtitleFontSize}px;
+  color: ${card.subtitleColor}px;
   margin: 0;
 `);

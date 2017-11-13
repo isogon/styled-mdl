@@ -1,15 +1,19 @@
-import styled, { css } from 'styled-components';
+import { ifProp } from 'styled-tools';
 import { setDisplayName } from 'recompose';
-import { getters as g } from '../util';
+import styled, { css } from 'styled-components';
+
+import { getters } from '../util';
+
+const { card } = getters;
 
 export const CardActions = setDisplayName('CardActions')(styled.div`
-  font-size: ${g.cardActionsFontSize}px;
+  font-size: ${card.actionsFontSize}px;
   line-height: normal;
   width: 100%;
   background-color: rgba(0,0,0,0);
   padding: 8px;
   box-sizing: border-box;
-  ${({ border }) => border && css`
-    border-top: 1px solid ${g.cardBorderColor};
-  `}
+  ${ifProp('border', css`
+    border-top: 1px solid ${card.borderColor};
+  `)}
 `);

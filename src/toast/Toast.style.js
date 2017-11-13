@@ -10,7 +10,7 @@ export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
   display: block;
   will-change: transform;
   transform: translate(0, 100%);
-  transition: transform 0.25s ${g.animationCurveFastOutLinearIn};
+  transition: transform 0.25s ${g.animation.fastOutLinearIn};
   @media(max-width: ${({ theme }) => theme.snackbarTabletBreakpoint - 1}px) {
     width: 100%;
     left: 0;
@@ -43,7 +43,7 @@ export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
 
   ${({ isActive }) => isActive && css`
     transform: translate(0, 0);
-    transition: transform 0.25s ${g.animationCurveLinearOutSlowIn};
+    transition: transform 0.25s ${g.animation.linearOutSlowIn};
     @media(min-width: ${g.snackbarTabletBreakpoint}px) {
       ${({ position }) => {
         switch (position) {

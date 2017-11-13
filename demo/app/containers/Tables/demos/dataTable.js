@@ -1,5 +1,4 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 
 import {
   Table,
@@ -11,34 +10,30 @@ import {
   Cell,
   shadow2dp,
   Checkbox,
-  theme,
 } from 'material-components';
 
-const DemoTable = styled(Table)`
+const DemoTable = Table.extend`
   ${shadow2dp()};
-`;
-
-const DemoTh = styled(HeaderCell)`
-  ${({ sorted }) =>
-    sorted &&
-    css`
-      color: ${theme.textColorPrimary};
-    `};
+  border: 0;
+  border-radius: 3px;
+  ${Row}:last-child ${Cell} {
+    border-bottom: 0;
+  }
 `;
 
 const demo = () => (
   <DemoTable>
     <TableHeader>
       <Row>
-        <DemoTh>
+        <HeaderCell>
           <Checkbox />
-        </DemoTh>
-        <DemoTh nonNumeric sorted>
+        </HeaderCell>
+        <HeaderCell nonNumeric sorted>
           <TableIcon name="arrow_downward" />
           Material
-        </DemoTh>
-        <DemoTh>Quantity</DemoTh>
-        <DemoTh>Unit price</DemoTh>
+        </HeaderCell>
+        <HeaderCell>Quantity</HeaderCell>
+        <HeaderCell>Unit price</HeaderCell>
       </Row>
     </TableHeader>
     <TableBody>

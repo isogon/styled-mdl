@@ -88,7 +88,7 @@ export const Layer = styled.div`
 `;
 
 const spinnerArcTime = (co) => ({ theme }) =>
-  `${theme.spinnerArcTime * co}ms ${theme.animationCurveFastOutSlowIn} infinite both`;
+  `${theme.spinnerArcTime * co}ms ${theme.animation.fastOutSlowIn} infinite both`;
 
 export const LayerOne = setDisplayName('LayerOne')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor1)};
@@ -176,7 +176,7 @@ export const Circle = setDisplayName('Circle')(styled.div`
     transform: rotate(129deg);
     ${({ active }) => active && css`
       animation: ${leftSpin} ${g.spinnerArcTime}ms
-                 ${g.animationCurveFastOutSlowIn} infinite both;
+                 ${g.animation.fastOutSlowIn} infinite both;
     `}
   `}
 
@@ -186,7 +186,7 @@ export const Circle = setDisplayName('Circle')(styled.div`
     transform: rotate(-129deg);
     ${({ active }) => active && css`
       animation: ${rightSpin} ${g.spinnerArcTime}ms
-                 ${g.animationCurveFastOutSlowIn} infinite both;
+                 ${g.animation.fastOutSlowIn} infinite both;
     `}
   `}
 

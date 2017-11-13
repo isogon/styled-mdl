@@ -1,14 +1,17 @@
+import { ifProp, prop } from 'styled-tools';
 import styled, { css } from 'styled-components';
 
+import { getters } from '../util';
 import { typoSubhead, typoCaption, typoBody1 } from '../mixins';
-import { getters as g } from '../util';
+
+const { list } = getters;
 
 export const List = styled.ul`
   display: block;
   padding: $list-border 0;
   list-style: none;
   min-width: 300px;
-  width: ${({ width }) => width};
+  width: ${prop('width')};
 `;
 
 export const LiPrimary = styled.span`
@@ -24,45 +27,45 @@ export const LiSecondary = styled.span`
   display: flex;
   flex-flow: column;
   align-items: flex-end;
-  margin-left: ${g.listMinPadding}px;
+  margin-left: ${list.minPadding}px;
 `;
 
 export const LiAction = styled.span``;
 export const LiInfo = styled.span`
   ${typoCaption()}
-  color: ${g.listSupportingTextTextColor};
+  color: ${list.supportingTextTextColor};
 `;
 export const LiSubTitle = styled.span`
-  padding: 0 0 0 ${g.listMinPadding}px;
+  padding: 0 0 0 ${list.minPadding}px;
 `;
 
 export const LiIcon = styled.i`
-  height: ${g.listIconSize}px;
-  width: ${g.listIconSize}px;
-  font-size: ${g.listIconSize}px;
+  height: ${list.iconSize}px;
+  width: ${list.iconSize}px;
+  font-size: ${list.iconSize}px;
   box-sizing: border-box;
-  color: ${g.listIconColor};
-  margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listIconSize - theme.listMinPadding}px;
+  color: ${list.iconColor};
+  margin-right: ${(p) => list.iconTextLeftDistance(p) - list.iconSize(p) - list.minPadding(p)}px;
 `;
 
 export const LiAvatar = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${g.listAvatarSize}px;
-  width: ${g.listAvatarSize}px;
+  height: ${list.avatarSize}px;
+  width: ${list.avatarSize}px;
   box-sizing: border-box;
   border-radius: 50%;
-  background-color: ${g.listIconColor};
-  font-size: ${g.listAvatarSize}px;
-  ${({ src }) => src && css`
-    background-image: url(${src});
+  background-color: ${list.iconColor};
+  font-size: ${list.avatarSize}px;
+  ${ifProp('src', css`
+    background-image: url(${prop('src')});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  `}
-  color: ${g.listAvatarColor};
-  margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listAvatarSize - theme.listMinPadding}px;
+  `)}
+  color: ${list.avatarColor};
+  margin-right: ${(p) => list.iconTextLeftDistance(p) - list.avatarSize(p) - list.minPadding(p)}px;
 `;
 
 export const LiTitle = styled.span`
@@ -72,8 +75,8 @@ export const LiTitle = styled.span`
 export const LiTextBody = styled.div`
   ${typoBody1()}
   line-height: 18px;
-  height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-  color: ${g.listSupportingTextTextColor};
+  height: ${(p) => list.threeLineHeight(p) - list.minPadding(p) - list.bottomPadding(p)}px;
+  color: ${list.supportingTextTextColor};
   display: block;
   padding: 0;
 `;
@@ -82,14 +85,14 @@ export const ListItem = styled.li`
   ${typoSubhead()}
   line-height: 1;
   display: flex;
-  min-height: ${g.listMinHeight}px;
+  min-height: ${list.minHeight}px;
   box-sizing: border-box;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  padding: ${g.listMinPadding}px;
+  padding: ${list.minPadding}px;
   cursor: default;
-  color: ${g.listMainTextTextColor};
+  color: ${list.mainTextTextColor};
   overflow: hidden;
   ${({ twoLine, threeLine }) => (twoLine || threeLine) && css`
     ${LiPrimary} {
@@ -103,32 +106,32 @@ export const ListItem = styled.li`
       float: left;
     }
   `}
-  ${({ twoLine }) => twoLine && css`
-    height: ${g.listTwoLineHeight}px;
+  ${ifProp('twoLine', css`
+    height: ${list.twoLineHeight}px;
     ${LiPrimary} {
-      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${(p) => list.twoLineHeight(p) - list.minPadding(p) - list.bottomPadding(p)}px;
     }
     ${LiSecondary} {
-      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${(p) => list.twoLineHeight(p) - list.minPadding(p) - list.bottomPadding(p)}px;
     }
     ${LiSubTitle} {
       ${typoBody1()}
       line-height: 18px;
-      color: ${g.listSupportingTextTextColor};
+      color: ${list.supportingTextTextColor};
       display: block;
       padding: 0;
     }
     ${LiIcon} {
-      margin-top: ${({ theme }) => (theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding - theme.listIconSize) / 2}px;
+      margin-top: ${(p) => (list.twoLineHeight(p) - list.minPadding(p) - list.bottomPadding(p) - list.iconSize(p)) / 2}px;
     }
-  `}
-  ${({ threeLine }) => threeLine && css`
-    height: ${g.listThreeLineHeight}px;
+  `)}
+  ${ifProp('threeLine', css`
+    height: ${list.threeLineHeight}px;
     ${LiPrimary} {
-      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${(p) => list.threeLineHeight(p) - list.minPadding(p) - list.bottomPadding(p)}px;
     }
     ${LiSecondary} {
-      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${(p) => list.threeLineHeight(p) - list.minPadding(p) - list.bottomPadding(p)}px;
     }
-  `}
+  `)}
 `;

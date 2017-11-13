@@ -8,6 +8,7 @@ import card from './card';
 import chip from './chip';
 import * as colorDefinitions from './colorDefinitions';
 import colors from './colors';
+import colors2 from './colors/v2';
 import dataTable from './dataTable';
 import dialog from './dialog';
 import footer from './footer';
@@ -27,20 +28,7 @@ import tooltip from './tooltip';
 import typography from './typography';
 
 const themers = [
-  animation,
-  badge,
-  button,
-  card,
-  chip,
   colors,
-  dataTable,
-  dialog,
-  footer,
-  grid,
-  iconToggle,
-  layout,
-  list,
-  menu,
   progress,
   radio,
   shadows,
@@ -59,5 +47,26 @@ export default function createTheme(overrides = {}) {
     {},
   );
 
-  return assign({}, colorDefinitions, compiled, overrides);
+  return assign(
+    {},
+    colorDefinitions,
+    compiled,
+    {
+      badge,
+      colors: colors2,
+      button,
+      animation,
+      card,
+      chip,
+      dataTable,
+      dialog,
+      footer,
+      grid,
+      iconToggle,
+      layout,
+      list,
+      menu,
+    },
+    overrides,
+  );
 }

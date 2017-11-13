@@ -90,10 +90,10 @@ export const SliderInput = styled.input`
     border-radius: 50%;
     background: ${g.rangeColor};
     border: none;
-    transition: transform 0.18s ${g.animationCurveDefault},
-                border 0.18s ${g.animationCurveDefault},
-                box-shadow 0.18s ${g.animationCurveDefault},
-                background 0.28s ${g.animationCurveDefault};
+    transition: transform 0.18s ${g.animation.default},
+                border 0.18s ${g.animation.default},
+                box-shadow 0.18s ${g.animation.default},
+                background 0.28s ${g.animation.default};
   }
 
   &::-moz-range-thumb {
@@ -117,8 +117,8 @@ export const SliderInput = styled.input`
     transform: scale(0.375);
     ${'' /* // -ms-thumb doesn't currently support transitions, but leaving this here
     // in case support ever gets added. */}
-    transition: transform 0.18s ${g.animationCurveDefault},
-                background 0.28s ${g.animationCurveDefault};
+    transition: transform 0.18s ${g.animation.default},
+                background 0.28s ${g.animation.default};
   }
 
 
@@ -377,7 +377,7 @@ export const SliderBackground = styled.div`
       background: ${g.rangeBgColor};
       flex: ${1 - percent} 1 0%;
       left: 0;
-      transition: left 0.18s ${g.animationCurveDefault}
+      transition: left 0.18s ${g.animation.default}
         ${(percent === 0 || disabled) &&
           css`
             display: none;
