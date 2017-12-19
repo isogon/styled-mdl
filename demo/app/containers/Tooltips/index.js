@@ -8,6 +8,7 @@ import left from './demos/left';
 import right from './demos/right';
 import multiLine from './demos/multiLine';
 import large from './demos/large';
+import delay from './demos/delay';
 
 const title = 'Tooltips';
 const subtitle = 'Useful information on hover.';
@@ -15,7 +16,7 @@ const subtitle = 'Useful information on hover.';
 const demos = [
   { demos: [above, below] },
   { demos: [left, right] },
-  { demos: [multiLine, large] },
+  { demos: [multiLine, large, delay] },
 ];
 
 // eslint-disable-next-line react/prefer-stateless-function

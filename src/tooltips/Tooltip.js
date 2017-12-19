@@ -56,12 +56,13 @@ export class TooltipBase extends Component {
     window.addEventListener('scroll', this.setPosition, true);
     this.open = setTimeout(() => {
       this.setState({ isVisible: true });
-    });
+    }, this.props.delay);
   }
 
   @autobind
   handleClose() {
     window.removeEventListener('scroll', this.setPosition, true);
+    clearTimeout(this.open);
     this.setState({ isOpened: false, isVisible: false });
   }
 
@@ -95,9 +96,11 @@ const enhance = compose(
     message: PropTypes.node,
     children: PropTypes.node,
     position: PropTypes.string,
+    delay: PropTypes.number,
   }),
   defaultProps({
     position: 'above',
+    delay: 0,
   }),
 );
 
