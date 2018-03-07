@@ -1,4 +1,4 @@
-import { setDisplayName } from 'recompose';
+import { compose, defaultProps, setDisplayName } from 'recompose';
 import styled, { css } from 'styled-components';
 
 import { getters as g } from '../util';
@@ -41,7 +41,12 @@ export const ChipText = setDisplayName('ChipText')(styled.span`
   display: inline-block;
 `);
 
-export const ChipAction = setDisplayName('ChipAction')(styled.button`
+export const ChipAction = compose(
+  defaultProps({
+    type: 'button',
+  }),
+  setDisplayName('ChipAction'),
+)(styled.button`
   height: 24px;
   width: 24px;
   font-size: 24px;
