@@ -2,6 +2,7 @@
 .gitattributes
 .eslintrc
 .idea
+jest.config.js
 demo
 internals
 tests

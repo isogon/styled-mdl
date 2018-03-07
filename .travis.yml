@@ -7,6 +7,7 @@ cache: yarn
 before_deploy:
 - yarn manualPrepublish
 deploy:
+  skip_cleanup: true
   provider: npm
   email: kegan+isogon@keganmyers.com
   api_key:
