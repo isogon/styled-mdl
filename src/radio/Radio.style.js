@@ -11,7 +11,7 @@ export const RadioStyle = setDisplayName('RadioStyle')(styled.label`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  height: ${g.radioLabelHeight}px;
+  min-height: ${g.radioLabelHeight}px;
   margin: 0;
   padding-left: ${({ theme }) => theme.radioButtonSize + theme.radioPadding}px;
 `);
