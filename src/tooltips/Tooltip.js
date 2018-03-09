@@ -3,19 +3,14 @@ import Portal from 'react-portal';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { autobind } from 'core-decorators';
-
 import { TooltipStyle, TooltipPosition, TooltipWrapper } from './Tooltip.style';
 import { proxyStyledStatics } from '../hocs';
 import getRelativePosition from '../menu/getRelativePosition';
 
 export class TooltipBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false,
-    };
-  }
+  state = {
+    isVisible: false,
+  };
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.setPosition, true);
@@ -39,32 +34,28 @@ export class TooltipBase extends Component {
     }
   }
 
-  @autobind
-  setPosition() {
+  setPosition = () => {
     this.setState({ ...this.getPosition() });
-  }
+  };
 
-  @autobind
-  setControl(ctrl) {
+  setControl = (ctrl) => {
     this.control = ctrl;
-  }
+  };
 
-  @autobind
-  handleOpen() {
+  handleOpen = () => {
     this.setState({ isOpened: true });
     this.setPosition();
     window.addEventListener('scroll', this.setPosition, true);
     this.open = setTimeout(() => {
       this.setState({ isVisible: true });
     }, this.props.delay);
-  }
+  };
 
-  @autobind
-  handleClose() {
+  handleClose = () => {
     window.removeEventListener('scroll', this.setPosition, true);
     clearTimeout(this.open);
     this.setState({ isOpened: false, isVisible: false });
-  }
+  };
 
   render() {
     const { children, __StyledComponent__: Styled, ...props } = this.props;

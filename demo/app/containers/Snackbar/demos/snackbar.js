@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { autobind } from 'core-decorators';
 import { tail, concat } from 'lodash';
 import { Toast, Snackbar, Button } from 'material-components';
 
@@ -41,8 +40,7 @@ class Demo extends Component {
     }
   }
 
-  @autobind
-  changeButtonColor() {
+  changeButtonColor = () => {
     this.setState({
       buttonColor: `#${Math.floor(Math.random() * 0xffffff).toString(16)}`,
       messages: concat(this.state.messages, {
@@ -51,7 +49,7 @@ class Demo extends Component {
         actionHandler: () => this.setState({ buttonColor: null }),
       }),
     });
-  }
+  };
 
   render() {
     return (
@@ -80,8 +78,7 @@ const code = `class Demo extends Component {
     };
   }
 
-  @autobind
-  changeButtonColor() {
+  changeButtonColor = () => {
     const buttonColor = \`#\${Math.floor(Math.random() * 0xFFFFFF).toString(16)}\`;
     this.setState({ buttonColor });
     this.addMessage({
@@ -92,8 +89,7 @@ const code = `class Demo extends Component {
     });
   }
 
-  @autobind
-  addMessage(message) {
+  addMessage = (message) => {
     this.setState({
       messages: concat(this.state.messages, message),
     });

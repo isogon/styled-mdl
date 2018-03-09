@@ -1,6 +1,6 @@
 {
   "name": "styled-mdl",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "description":
     "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
@@ -58,13 +58,11 @@
     "include": ["core-js", "lodash", "eventsource-polyfill"]
   },
   "peerDependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "styled-components": "^2.2.2"
+    "react": "^15.4.1 || 16.x",
+    "react-dom": "^15.4.1 || 16.x",
+    "styled-components": "2.x || 3.x"
   },
   "dependencies": {
-    "core-decorators": "^0.15.0",
-    "detect-node": "^2.0.3",
     "fontfaceobserver": "2.0.7",
     "lodash": "4.17.2",
     "prop-types": "^15.6.0",

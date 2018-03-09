@@ -3,8 +3,6 @@ import Portal from 'react-portal';
 import PropTypes from 'prop-types';
 import React, { Component, Children, cloneElement } from 'react';
 
-import { autobind } from 'core-decorators';
-
 import {
   MenuContainer,
   MenuControlWrap,
@@ -15,12 +13,9 @@ import { proxyStyledStatics } from '../hocs';
 import getRelativePosition from './getRelativePosition';
 
 export class Menu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false,
-    };
-  }
+  state = {
+    isVisible: false,
+  };
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.setMenuPosition, true);
@@ -28,8 +23,7 @@ export class Menu extends Component {
     cancelAnimationFrame(this.openMenu);
   }
 
-  @autobind
-  setMenuPosition() {
+  setMenuPosition = () => {
     const control = getRelativePosition(this.control);
     const position = {};
     if (this.props.bottomRight) {
@@ -47,10 +41,9 @@ export class Menu extends Component {
     }
 
     this.setState({ ...position });
-  }
+  };
 
-  @autobind
-  handleOpen() {
+  handleOpen = () => {
     this.openMenu = requestAnimationFrame(() => {
       if (this.preventOpen) {
         return;
@@ -66,10 +59,9 @@ export class Menu extends Component {
       this.setState({ isVisible: true });
       this.setMenuPosition();
     });
-  }
+  };
 
-  @autobind
-  handleClose() {
+  handleClose = () => {
     window.removeEventListener('scroll', this.setMenuPosition, true);
 
     this.closeMenu = requestAnimationFrame(() => {
@@ -77,7 +69,7 @@ export class Menu extends Component {
         isVisible: false,
       });
     });
-  }
+  };
 
   render() {
     const { children, __StyledComponent__: Styled, ...props } = this.props;

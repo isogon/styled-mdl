@@ -1,9 +1,11 @@
 import FontFaceObserver from 'fontfaceobserver';
 import { injectGlobal } from 'styled-components';
-import isNode from 'detect-node';
+
+const isBrowser =
+  Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) !== '[object process]';
 
 export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
-  if (!isNode && fontObserver) {
+  if (isBrowser && fontObserver) {
     const fontLoaded = () => document.body.classList.add('fontLoaded');
     const fontNotLoaded = () => document.body.classList.remove('fontLoaded');
 

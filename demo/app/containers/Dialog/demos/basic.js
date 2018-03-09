@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { autobind } from 'core-decorators';
 import {
   Dialog,
   DialogTitle,
@@ -16,17 +15,17 @@ class Demo extends Component {
     };
   }
 
-  @autobind show() {
+  show = () => {
     this.setState({
       showDialog: true,
     });
-  }
+  };
 
-  @autobind hide() {
+  hide = () => {
     this.setState({
       showDialog: false,
     });
-  }
+  };
 
   render() {
     return (
@@ -40,7 +39,8 @@ class Demo extends Component {
         >
           <DialogTitle>MDL Dialog</DialogTitle>
           <DialogContent>
-            This is an example of the Material Design Lite dialog component. Please use responsibly.
+            This is an example of the Material Design Lite dialog component.
+            Please use responsibly.
           </DialogContent>
           <DialogActions>
             <Button onClick={this.hide}>Close</Button>

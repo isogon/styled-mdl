@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { autobind } from 'core-decorators';
 import {
   Dialog,
   DialogTitle,
@@ -16,17 +15,17 @@ class Demo extends Component {
     };
   }
 
-  @autobind show() {
+  show = () => {
     this.setState({
       showDialog: true,
     });
-  }
+  };
 
-  @autobind hide() {
+  hide = () => {
     this.setState({
       showDialog: false,
     });
-  }
+  };
 
   render() {
     const mdSpecLink =
@@ -42,8 +41,9 @@ class Demo extends Component {
         >
           <DialogTitle>MDL Dialog</DialogTitle>
           <DialogContent>
-            This is an example of the MDL Dialog being used as a modal. It is using the full width action design intended for use with buttons that do not fit within the specified
-            {' '}
+            This is an example of the MDL Dialog being used as a modal. It is
+            using the full width action design intended for use with buttons
+            that do not fit within the specified{' '}
             <a href={mdSpecLink}>length metrics</a>
             .
           </DialogContent>

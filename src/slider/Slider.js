@@ -2,37 +2,25 @@ import { compose, setDisplayName, setPropTypes } from 'recompose';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { autobind } from 'core-decorators';
-
 import { Input } from '../input';
-import {
-  SliderInput,
-  SliderContainer,
-  SliderBackground,
-} from './Slider.style';
+import { SliderInput, SliderContainer, SliderBackground } from './Slider.style';
 import { proxyStyledStatics } from '../hocs';
 
 export class SliderBase extends Input {
-  constructor(props) {
-    super(props);
+  state = {
+    ...this.state,
+    value: this.props.value || this.props.defaultValue || this.props.min,
+    active: this.props.active,
+  };
 
-    this.state = {
-      ...this.state,
-      value: props.value || props.defaultValue || props.min,
-      active: props.active,
-    };
-  }
-
-  @autobind
-  handleMouseDown() {
+  handleMouseDown = () => {
     this.setState({ active: true });
-  }
+  };
 
-  @autobind
-  handleMouseUp(e) {
+  handleMouseUp = (e) => {
     this.setState({ active: false });
     this.handleBlur(e);
-  }
+  };
 
   render() {
     const { disabled, max, min, __StyledComponent__: Styled } = this.props;

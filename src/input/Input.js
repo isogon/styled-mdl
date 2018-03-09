@@ -2,7 +2,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 
-import { autobind } from 'core-decorators';
 import isUndefined from 'lodash/isUndefined';
 
 const MESSAGE =
@@ -38,8 +37,7 @@ export default class Input extends Component {
     }
   }
 
-  @autobind
-  handleChange(e) {
+  handleChange = (e) => {
     if (isUndefined(this.props.value)) {
       this.setState({ value: e.target.value });
     }
@@ -47,10 +45,9 @@ export default class Input extends Component {
     if (this.props.onChange) {
       this.props.onChange(e);
     }
-  }
+  };
 
-  @autobind
-  handleFocus(e) {
+  handleFocus = (e) => {
     if (isUndefined(this.props.focused)) {
       this.setState({ focused: true });
     }
@@ -58,10 +55,9 @@ export default class Input extends Component {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
-  }
+  };
 
-  @autobind
-  handleBlur(e) {
+  handleBlur = (e) => {
     if (isUndefined(this.props.focused)) {
       this.setState({ focused: false });
     }
@@ -69,7 +65,7 @@ export default class Input extends Component {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
-  }
+  };
 
   render() {
     return null;

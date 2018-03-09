@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { autobind } from 'core-decorators';
 import { tail, concat } from 'lodash';
 import { Toast, Snackbar, Button } from 'material-components';
 
@@ -41,15 +40,14 @@ class Demo extends Component {
     }
   }
 
-  @autobind
-  increment() {
+  increment = () => {
     this.setState({
       counter: this.state.counter + 1,
       messages: concat(this.state.messages, {
         message: `Example message #${this.state.counter + 1}`,
       }),
     });
-  }
+  };
 
   render() {
     return (
@@ -73,8 +71,7 @@ const code = `class Demo extends Component {
     };
   }
 
-  @autobind
-  increment() {
+  increment = () => {
     const counter = this.state.counter + 1;
     this.setState({ counter });
     this.addMessage({
@@ -83,15 +80,13 @@ const code = `class Demo extends Component {
     });
   }
 
-  @autobind
-  addMessage(message) {
+  addMessage = (message) => {
     this.setState({
       messages: concat(this.state.messages, message),
     });
   }
 
-  @autobind
-  clearMessage(message) {
+  clearMessage = (message) => {
     this.setState({
       messages: without(this.state.messages, message),
     });

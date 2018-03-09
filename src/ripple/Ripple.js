@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { autobind } from 'core-decorators';
 import { compose, setDisplayName } from 'recompose';
 
 import { proxyStyledStatics } from '../hocs';
@@ -7,19 +6,15 @@ import { getRippleSize, getRippleCoords } from './helpers';
 import { RippleEffect, RippleWrap } from './Ripple.style';
 
 export class RippleBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opacity: 0,
-    };
-  }
+  state = {
+    opacity: 0,
+  };
 
   componentDidMount() {
     this.size = getRippleSize(this.wrapper);
   }
 
-  @autobind
-  handleMouseDown(e) {
+  handleMouseDown = (e) => {
     const coords = getRippleCoords(e);
     const translate = `translate(-50%, -50%) translate(${coords})`;
     const initalScale = ' scale3d(0.0001, 0.0001, 1)';
@@ -36,12 +31,11 @@ export class RippleBase extends Component {
         transform: translate + finalScale,
       });
     });
-  }
+  };
 
-  @autobind
-  handleMouseUp() {
+  handleMouseUp = () => {
     this.setState({ opacity: 0 });
-  }
+  };
 
   render() {
     const { __StyledComponent__: Styled } = this.props;
