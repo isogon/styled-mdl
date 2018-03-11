@@ -1,4 +1,4 @@
-import Progress, { ProgressBase } from 'progress/Progress';
+import Progress, { ProgressBase } from '../../src/progress/Progress';
 
 const render = shallowComponent(Progress);
 

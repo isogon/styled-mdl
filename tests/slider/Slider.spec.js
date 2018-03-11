@@ -1,4 +1,4 @@
-import Slider, { SliderBase } from 'slider/Slider';
+import Slider, { SliderBase } from '../../src/slider/Slider';
 
 const render = shallowComponent(Slider, { min: 0, max: 100 });
 
@@ -30,6 +30,7 @@ describe('<Slider>', () => {
   describe('when user starts moving slider', () => {
     it('makes slider active', () => {
       get.input.simulate('mousedown');
+      slider.update();
       expect(get.input).toHaveProp('active', true);
       expect(get.bg).toHaveProp('active', true);
     });
@@ -39,6 +40,7 @@ describe('<Slider>', () => {
     beforeEach(() => {
       get.input.simulate('mousedown');
       get.input.simulate('focus');
+      slider.update();
 
       // invariant
       expect(get.input).toHaveProp('active', true);
@@ -47,6 +49,7 @@ describe('<Slider>', () => {
 
     it('makes slider inactive and blurred', () => {
       get.input.simulate('mouseup');
+      slider.update();
 
       expect(get.input).toHaveProp('active', false);
       expect(get.input).toHaveProp('focused', false);
@@ -57,6 +60,7 @@ describe('<Slider>', () => {
     it('calls handleBlur', () => {
       slider.instance().handleBlur = jest.fn();
       get.input.simulate('mouseup', 'event');
+      slider.update();
 
       expect(slider.instance().handleBlur).toHaveBeenCalledWith('event');
     });

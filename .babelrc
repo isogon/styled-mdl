@@ -1,6 +1,5 @@
 {
-  "presets": ["latest", "react", "stage-0"],
-  "plugins": ["transform-decorators-legacy"],
+  "presets": ["env", "react", "stage-0"],
   "env": {
     "production": {
       "only": ["app"],
@@ -11,8 +10,8 @@
       ]
     },
     "test": {
-      "presets": ["latest", "react", "stage-0"],
-      "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node", "transform-decorators-legacy"]
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["dynamic-import-node"]
     }
   }
 }

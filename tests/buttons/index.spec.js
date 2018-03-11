@@ -1,14 +1,8 @@
-import Button, { ButtonBase } from 'buttons/Button';
+import Button, { ButtonBase } from '../../src/buttons/Button';
 
-const renderButton = shallowComponent(Button);
+const render = shallowComponent(Button);
 
 describe('<Button />', () => {
-  let button;
-
-  beforeEach(() => {
-    button = renderButton().until(ButtonBase);
-  });
-
   it('is has the right displayName', () => {
     expect(Button.displayName).toEqual('Button');
   });
@@ -20,14 +14,9 @@ describe('<Button />', () => {
 
   describe('when the [prop] text is defined and there are not children', () => {
     it('renders text inside <button>', () => {
+      const button = render().until(ButtonBase);
       button.setProps({ children: null, text: 'text' });
-      expect(
-        button
-          .find('ButtonInner')
-          .children()
-          .at(0)
-          .text()
-      ).toEqual('text');
+      expect(button).toHaveInnerText('text');
     });
   });
 });

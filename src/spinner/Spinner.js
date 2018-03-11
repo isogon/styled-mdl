@@ -18,8 +18,8 @@ const layers = [LayerOne, LayerTwo, LayerThree, LayerFour];
 
 export const SpinnerBase = ({ __StyledComponent__: Styled, ...props }) => (
   <Styled {...props}>
-    {layers.map((Layer, i) => (
-      <Layer key={i} {...props} >
+    {layers.map((Layer) => (
+      <Layer key={Layer.displayName} {...props}>
         <CircleClipper left>
           <Circle {...props} left clipper />
         </CircleClipper>

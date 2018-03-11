@@ -1,4 +1,4 @@
-import Snackbar, { SnackbarBase } from 'snackbar/Snackbar';
+import Snackbar, { SnackbarBase } from '../../src/snackbar/Snackbar';
 
 const render = shallowComponent(Snackbar, { message: 'message' });
 

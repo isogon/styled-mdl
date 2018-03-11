@@ -1,7 +1,5 @@
-import { util } from 'material-components';
 import { random, round } from 'lodash';
-
-const { rgb, rgba } = util;
+import { rgb, rgba } from '../../src/util/colors';
 
 describe('rgb', () => {
   it('should wrap its input with rgb(<input>)', () => {

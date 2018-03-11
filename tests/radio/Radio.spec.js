@@ -1,10 +1,10 @@
-import Radio from 'radio/Radio';
+import Radio from '../../src/radio/Radio';
 import {
   RadioButton,
   RadioLabel,
   OuterCircle,
   InnerCircle,
-} from 'radio/Radio.style';
+} from '../../src/radio/Radio.style';
 
 const props = {
   name: 'name',
@@ -49,7 +49,10 @@ describe('<Radio />', () => {
     radio.setProps({ defaultChecked: true });
     expect(radio.find('input[type="radio"]')).toHaveProp('name', props.name);
     expect(radio.find('input[type="radio"]')).toHaveProp('value', props.value);
-    expect(radio.find('input[type="radio"]')).toHaveProp('defaultChecked', true);
+    expect(radio.find('input[type="radio"]')).toHaveProp(
+      'defaultChecked',
+      true,
+    );
   });
 
   it('handles [prop] disabled', () => {

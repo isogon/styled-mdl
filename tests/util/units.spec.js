@@ -1,6 +1,4 @@
-import { util } from 'material-components';
-
-const { px } = util;
+import { px } from '../../src/util/units';
 
 describe('px', () => {
   it('should append px', () => {

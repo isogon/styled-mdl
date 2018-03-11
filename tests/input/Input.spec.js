@@ -1,4 +1,4 @@
-import Input from 'input/Input';
+import Input from '../../src/input/Input';
 
 const render = shallowComponent(Input);
 

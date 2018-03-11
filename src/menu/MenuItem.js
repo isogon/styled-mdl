@@ -9,14 +9,14 @@ import { proxyStyledStatics } from '../hocs';
 export class MenuItem extends Component {
   state = {
     getTransitionDelay: () => 0,
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.isVisible && nextProps.isVisible) {
       const {
         height,
       } = this.menuItem.parentNode.parentNode.getBoundingClientRect();
-      const offsetTop = this.menuItem.offsetTop;
+      const { offsetTop } = this.menuItem;
       const { height: itemHeight } = this.menuItem.getBoundingClientRect();
       const getTransitionDelay = nextProps.fadeDown
         ? (duration) => offsetTop / height * duration

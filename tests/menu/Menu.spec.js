@@ -1,10 +1,14 @@
 import React from 'react';
-import Menu from 'menu/Menu';
-import MenuItem from 'menu/MenuItem';
-import Button from 'buttons/Button';
-import Portal from 'react-portal';
 import { shallow } from 'enzyme';
-import { MenuContainer, MenuOutline, MenuBase } from 'menu/Menu.style';
+import Portal from 'react-portal';
+import { Menu } from '../../src/menu/Menu';
+import MenuItem from '../../src/menu/MenuItem';
+import Button from '../../src/buttons/Button';
+import {
+  MenuContainer,
+  MenuOutline,
+  MenuBase,
+} from '../../src/menu/Menu.style';
 
 const render = shallowComponent(
   Menu,
@@ -64,12 +68,14 @@ describe('<Menu>', () => {
 
       window.scrollY = 100;
       window.scrollX = 100;
+      menu.update();
     };
     open = () => {
       get.control.simulate('click');
       // React portal calls this prop when control is clicked
       get.portal.prop('onOpen')();
       jest.runAllTimers();
+      menu.update();
     };
   });
 
@@ -82,9 +88,10 @@ describe('<Menu>', () => {
     it('does not try to update if the component is unmounted before 100ms', () => {
       window.console.error = jest.fn();
 
-      jest.runTimersToTime(99);
+      jest.advanceTimersByTime(99);
       menu.unmount();
       jest.runAllTimers();
+      menu.update();
 
       /*
       React will complain but not actually throw if you try
@@ -97,14 +104,16 @@ describe('<Menu>', () => {
 
     it('closes in 100ms', () => {
       get.menuContainer.simulate('click');
-      jest.runTimersToTime(99);
+      jest.advanceTimersByTime(99);
+      menu.update();
 
       // menu still open
       expect(menu.find(MenuContainer)).toHaveProp('isVisible', true);
       expect(menu.find(MenuBase)).toHaveProp('isVisible', true);
       expect(menu.find(MenuOutline)).toHaveProp('isVisible', true);
 
-      jest.runTimersToTime(100);
+      jest.advanceTimersByTime(1);
+      menu.update();
 
       // menu closed
       expect(menu.find(MenuContainer)).toHaveProp('isVisible', false);
@@ -135,6 +144,7 @@ describe('<Menu>', () => {
 
       it('hides the menu on the next animation frame', () => {
         jest.runAllTimers();
+        menu.update();
         expect(menu.find(MenuContainer)).toHaveProp('isVisible', false);
         expect(menu.find(MenuBase)).toHaveProp('isVisible', false);
         expect(menu.find(MenuOutline)).toHaveProp('isVisible', false);

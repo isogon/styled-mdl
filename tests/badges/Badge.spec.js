@@ -1,4 +1,4 @@
-import Badge, { BadgeBase } from 'badges/Badge';
+import Badge, { BadgeBase } from '../../src/badges/Badge';
 
 const render = shallowComponent(Badge, { text: 'foo' }, 'Hello World');
 

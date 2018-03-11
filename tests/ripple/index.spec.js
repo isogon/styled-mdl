@@ -1,5 +1,5 @@
-import Ripple, { RippleBase } from 'ripple/Ripple';
 import { each } from 'lodash';
+import Ripple, { RippleBase } from '../../src/ripple/Ripple';
 const createClickEvent = ({ target, clientX, clientY, isTouch }) => ({
   currentTarget: {
     getBoundingClientRect: jest.fn(() => target),
@@ -44,7 +44,12 @@ describe('<Ripple />', () => {
       shouldAnimate: true,
     });
     ripple.update();
-    expect(ripple.until(RippleBase).find('RippleEffect').prop('style')).toEqual({
+    expect(
+      ripple
+        .until(RippleBase)
+        .find('RippleEffect')
+        .prop('style'),
+    ).toEqual({
       height: '100px',
       width: '100px',
       transform: 'the transform',
@@ -57,12 +62,22 @@ describe('<Ripple />', () => {
     ripple.setState({
       shouldAnimate: false,
     });
-    expect(ripple.until(RippleBase).find('RippleEffect').prop('style').transitionProperty).toEqual('none');
+    expect(
+      ripple
+        .until(RippleBase)
+        .find('RippleEffect')
+        .prop('style').transitionProperty,
+    ).toEqual('none');
   });
 
   describe('init', () => {
     it('sets opacity to 0', () => {
-      expect(ripple.until(RippleBase).find('RippleEffect').prop('style').opacity).toEqual(0);
+      expect(
+        ripple
+          .until(RippleBase)
+          .find('RippleEffect')
+          .prop('style').opacity,
+      ).toEqual(0);
     });
   });
 
@@ -80,10 +95,12 @@ describe('<Ripple />', () => {
 
   describe('[method] handleMouseDown', () => {
     it('is bound to Wrap [prop] onMouseDown', () => {
-      expect(ripple.until('RippleBase').find('div').at(0)).toHaveProp(
-        'onMouseDown',
-        instance.handleMouseDown
-      );
+      expect(
+        ripple
+          .until('RippleBase')
+          .find('div')
+          .at(0),
+      ).toHaveProp('onMouseDown', instance.handleMouseDown);
     });
 
     const testEvents = {
@@ -124,6 +141,7 @@ describe('<Ripple />', () => {
           beforeEach(() => {
             instance.size = Math.random();
             instance.handleMouseDown(event);
+            jest.useFakeTimers();
           });
 
           it('does not try to animate intial setup', () => {
@@ -141,22 +159,22 @@ describe('<Ripple />', () => {
           it(`${expectedBehavior} and scales it to be very small`, () => {
             expect(ripple).toHaveState(
               'transform',
-              `translate(-50%, -50%) ${expectedTransform} scale3d(0.0001, 0.0001, 1)`
+              `translate(-50%, -50%) ${expectedTransform} scale3d(0.0001, 0.0001, 1)`,
             );
           });
 
           describe('on the next animationFrame', () => {
             it('starts scaling to full size', () => {
-              jest.runOnlyPendingTimers();
+              jest.runAllTimers();
               expect(ripple).toHaveState(
                 'transform',
-                `translate(-50%, -50%) ${expectedTransform} scale3d(1, 1, 1)`
+                `translate(-50%, -50%) ${expectedTransform} scale3d(1, 1, 1)`,
               );
               expect(ripple).toHaveState('shouldAnimate', true);
             });
           });
         });
-      }
+      },
     );
   });
 
@@ -168,6 +186,7 @@ describe('<Ripple />', () => {
         .find('div')
         .at(0)
         .simulate('mouseup');
+      ripple.until(RippleBase).update();
       expect(ripple).toHaveState('opacity', 0);
     });
   });

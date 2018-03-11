@@ -1,10 +1,14 @@
-import Tooltip, { TooltipBase } from 'tooltips/Tooltip';
-import { TooltipWrapper } from 'tooltips/Tooltip.style';
+import Tooltip, { TooltipBase } from '../../src/tooltips/Tooltip';
+import { TooltipWrapper } from '../../src/tooltips/Tooltip.style';
 
 const render = shallowComponent(
   TooltipBase,
-  { message: 'message', position: 'above', __StyledComponent__: TooltipWrapper },
-  'children'
+  {
+    message: 'message',
+    position: 'above',
+    __StyledComponent__: TooltipWrapper,
+  },
+  'children',
 );
 
 describe('<Tooltip>', () => {
@@ -55,6 +59,7 @@ describe('<Tooltip>', () => {
   describe('on hover', () => {
     beforeEach(() => {
       get.wrapper.simulate('mouseenter');
+      tooltip.update();
     });
 
     it('opens the portal immediately', () => {
@@ -65,6 +70,7 @@ describe('<Tooltip>', () => {
       it('renders above the wrapped content', () => {
         tooltip.setProps({ position: 'above' });
         get.wrapper.simulate('mouseenter');
+        tooltip.update();
 
         expect(get.position).toHaveProp('x', 150);
         expect(get.position).toHaveProp('y', 100);
@@ -75,6 +81,7 @@ describe('<Tooltip>', () => {
       it('renders below the wrapped content', () => {
         tooltip.setProps({ position: 'below' });
         get.wrapper.simulate('mouseenter');
+        tooltip.update();
 
         expect(get.position).toHaveProp('x', 150);
         expect(get.position).toHaveProp('y', 200);
@@ -85,6 +92,7 @@ describe('<Tooltip>', () => {
       it('renders to the right of the wrapped content', () => {
         tooltip.setProps({ position: 'right' });
         get.wrapper.simulate('mouseenter');
+        tooltip.update();
 
         expect(get.position).toHaveProp('x', 200);
         expect(get.position).toHaveProp('y', 150);
@@ -95,6 +103,7 @@ describe('<Tooltip>', () => {
       it('renders to the left of the wrapped content', () => {
         tooltip.setProps({ position: 'left' });
         get.wrapper.simulate('mouseenter');
+        tooltip.update();
 
         expect(get.position).toHaveProp('x', 100);
         expect(get.position).toHaveProp('y', 150);
@@ -105,7 +114,7 @@ describe('<Tooltip>', () => {
       expect(window.addEventListener).toHaveBeenCalledWith(
         'scroll',
         tooltip.instance().setPosition,
-        true
+        true,
       );
     });
 
@@ -113,6 +122,7 @@ describe('<Tooltip>', () => {
       expect(get.position).toHaveProp('isVisible', false);
 
       jest.runAllTimers();
+      tooltip.update();
 
       expect(get.position).toHaveProp('isVisible', true);
     });
@@ -139,7 +149,7 @@ describe('<Tooltip>', () => {
       expect(window.removeEventListener).toHaveBeenCalledWith(
         'scroll',
         setPosition,
-        true
+        true,
       );
     });
   });
@@ -147,15 +157,17 @@ describe('<Tooltip>', () => {
   describe('on leave', () => {
     beforeEach(() => {
       get.wrapper.simulate('mouseenter');
+      tooltip.update();
       jest.runAllTimers();
       get.wrapper.simulate('mouseleave');
+      tooltip.update();
     });
 
     it('stops recalculating position on scroll', () => {
       expect(window.removeEventListener).toHaveBeenCalledWith(
         'scroll',
         tooltip.instance().setPosition,
-        true
+        true,
       );
     });
 

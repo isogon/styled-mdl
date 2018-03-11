@@ -17,6 +17,10 @@ function getY({ clientY, touches }) {
 }
 
 export function getRippleSize(e) {
+  if (!e) {
+    return '0px';
+  }
+
   const { width, height } = e.getBoundingClientRect();
   return px(double(diagonalLength(width, height)) + 2);
 }
@@ -28,5 +32,8 @@ export function getRippleCoords(e) {
     ? [width, height].map(half)
     : [getX(e) - left, getY(e) - top];
 
-  return coords.map(round).map(px).join(', ');
+  return coords
+    .map(round)
+    .map(px)
+    .join(', ');
 }

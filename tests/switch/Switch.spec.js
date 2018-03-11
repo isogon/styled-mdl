@@ -1,4 +1,4 @@
-import Switch from 'switch/Switch';
+import Switch from '../../src/switch/Switch';
 
 const props = {
   name: 'name',
@@ -47,15 +47,15 @@ describe('<Switch />', () => {
     mdSwitch.setProps({ defaultChecked: true });
     expect(mdSwitch.find('input[type="checkbox"]')).toHaveProp(
       'name',
-      props.name
+      props.name,
     );
     expect(mdSwitch.find('input[type="checkbox"]')).toHaveProp(
       'value',
-      props.value
+      props.value,
     );
     expect(mdSwitch.find('input[type="checkbox"]')).toHaveProp(
       'defaultChecked',
-      true
+      true,
     );
   });
 

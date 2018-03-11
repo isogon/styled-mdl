@@ -1,4 +1,4 @@
-import Textfield, { TextfieldBase } from 'textfield/Textfield';
+import Textfield, { TextfieldBase } from '../../src/textfield/Textfield';
 
 const render = shallowComponent(Textfield);
 
@@ -34,7 +34,7 @@ describe('<Textfield />', () => {
   });
 
   it('renders a Label', () => {
-    expect(textfield.until(TextfieldBase).find('Label')).toBePresent();
+    expect(get.label).toBePresent();
   });
 
   describe('when [prop] multiline is true', () => {

@@ -1,6 +1,4 @@
-import { util } from 'material-components';
-
-const { half, double, diagonalLength } = util;
+import { half, double, diagonalLength } from '../../src/util/math';
 
 describe('half', () => {
   it('should divide by 2 and round to the nearest int', () => {

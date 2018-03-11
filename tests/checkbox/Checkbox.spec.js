@@ -1,4 +1,4 @@
-import Checkbox from 'checkbox/Checkbox';
+import Checkbox from '../../src/checkbox/Checkbox';
 
 const props = {
   name: 'name',
@@ -43,15 +43,15 @@ describe('<Checkbox />', () => {
     checkbox.setProps({ defaultChecked: true });
     expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
       'name',
-      props.name
+      props.name,
     );
     expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
       'value',
-      props.value
+      props.value,
     );
     expect(checkbox.find('input[type="checkbox"]')).toHaveProp(
       'defaultChecked',
-      true
+      true,
     );
   });
 

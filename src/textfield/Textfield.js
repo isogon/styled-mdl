@@ -17,28 +17,19 @@ import { proxyStyledStatics } from '../hocs';
 export class TextfieldBase extends BaseInput {
   render() {
     const { __StyledComponent__: Styled, ...props } = this.props;
+    const Component = props.multiLine ? Textarea : Input;
     return (
       <Styled {...props}>
         <Label {...props} {...this.state}>
           {props.label}
         </Label>
-        {props.multiLine ? (
-          <Textarea
-            {...omit(props, ['defaultValue'])}
-            {...this.state}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
-        ) : (
-          <Input
-            {...omit(props, ['defaultValue'])}
-            {...this.state}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
-        )}
+        <Component
+          {...omit(props, ['defaultValue'])}
+          {...this.state}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+        />
         {props.error && <ErrorMessage>{props.error}</ErrorMessage>}
         {props.helperText && <HelperText>{props.helperText}</HelperText>}
       </Styled>

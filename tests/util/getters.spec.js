@@ -1,7 +1,6 @@
 import entries from 'lodash/entries';
-import { util, defaultTheme } from 'material-components';
-
-const { getters } = util;
+import getters from '../../src/util/getters';
+import { defaultTheme } from '../../src/theme';
 
 describe('getters', () => {
   let props;
@@ -43,42 +42,40 @@ describe('getters', () => {
 
     describe('rgb', () => {
       it('returns the rgb wrapped value for the correct color', () => {
-        expect(
-          get.rgb('grey', 500)(props)
-        ).toEqual(`rgb(${props.theme.grey[500]})`);
+        expect(get.rgb('grey', 500)(props)).toEqual(
+          `rgb(${props.theme.grey[500]})`,
+        );
       });
       it('returns the rgba wrapped value for the correct color and alpha', () => {
         const alpha = Math.random();
-        expect(
-          get.rgba('grey', 500, alpha)(props)
-        ).toEqual(`rgba(${props.theme.grey[500]},${alpha})`);
+        expect(get.rgba('grey', 500, alpha)(props)).toEqual(
+          `rgba(${props.theme.grey[500]},${alpha})`,
+        );
       });
     });
 
     describe('rgbFrom', () => {
       it('returns the rgb wrapped value from the prop', () => {
         expect(
-          get.rgbFromProp('myProp')({ ...props, myProp: 'grey|400' })
+          get.rgbFromProp('myProp')({ ...props, myProp: 'grey|400' }),
         ).toEqual(`rgb(${props.theme.grey[400]})`);
       });
 
       it('defaults to 500 for the value', () => {
-        expect(
-          get.rgbFromProp('myProp')({ ...props, myProp: 'red' })
-        ).toEqual(`rgb(${props.theme.red[500]})`);
+        expect(get.rgbFromProp('myProp')({ ...props, myProp: 'red' })).toEqual(
+          `rgb(${props.theme.red[500]})`,
+        );
       });
 
       describe('when prop is undefined', () => {
         it('uses fallback when it is defined', () => {
           expect(
-            get.rgbFromProp('myProp', get.rgb('grey', 500))(props)
+            get.rgbFromProp('myProp', get.rgb('grey', 500))(props),
           ).toEqual(`rgb(${props.theme.grey[500]})`);
         });
 
-        it('returns \'none\' when no fallback is provided', () => {
-          expect(
-            get.rgbFromProp('myProp')(props)
-          ).toEqual('none');
+        it("returns 'none' when no fallback is provided", () => {
+          expect(get.rgbFromProp('myProp')(props)).toEqual('none');
         });
       });
     });
