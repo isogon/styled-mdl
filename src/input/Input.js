@@ -75,7 +75,7 @@ export default class Input extends Component {
 Input.propTypes = {
   focused: PropTypes.bool,
   autoFocus: PropTypes.bool,
-  value: PropTypes.number,
+  value: PropTypes.any,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
