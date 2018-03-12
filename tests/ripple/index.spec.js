@@ -1,5 +1,5 @@
 import { each } from 'lodash';
-import Ripple, { RippleBase } from '../../src/ripple/Ripple';
+import Ripple, { RippleBase } from '../../src/components/ripple/Ripple';
 const createClickEvent = ({ target, clientX, clientY, isTouch }) => ({
   currentTarget: {
     getBoundingClientRect: jest.fn(() => target),

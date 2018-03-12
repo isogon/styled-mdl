@@ -1,4 +1,4 @@
-import getRelativePosition from '../../src/menu/getRelativePosition';
+import getRelativePosition from '../../src/components/menu/getRelativePosition';
 
 describe('getRelativePosition', () => {
   describe('when scrollX/scrollY is set', () => {

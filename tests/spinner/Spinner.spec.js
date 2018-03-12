@@ -1,4 +1,4 @@
-import Spinner, { SpinnerBase } from '../../src/spinner/Spinner';
+import Spinner, { SpinnerBase } from '../../src/components/spinner/Spinner';
 
 const render = shallowComponent(Spinner, { active: true });
 

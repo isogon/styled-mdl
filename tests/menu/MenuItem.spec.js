@@ -1,5 +1,7 @@
-import MenuItem, { MenuItem as MenuItemClass } from '../../src/menu/MenuItem';
-import { MenuItem as MenuItemBase } from '../../src/menu/Menu.style';
+import MenuItem, {
+  MenuItem as MenuItemClass,
+} from '../../src/components/menu/MenuItem';
+import { MenuItem as MenuItemBase } from '../../src/components/menu/Menu.style';
 
 const render = shallowComponent(MenuItemClass);
 

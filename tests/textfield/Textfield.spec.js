@@ -1,4 +1,6 @@
-import Textfield, { TextfieldBase } from '../../src/textfield/Textfield';
+import Textfield, {
+  TextfieldBase,
+} from '../../src/components/textfield/Textfield';
 
 const render = shallowComponent(Textfield);
 

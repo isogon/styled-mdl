@@ -1,10 +1,10 @@
-import Radio from '../../src/radio/Radio';
+import Radio from '../../src/components/radio/Radio';
 import {
   RadioButton,
   RadioLabel,
   OuterCircle,
   InnerCircle,
-} from '../../src/radio/Radio.style';
+} from '../../src/components/radio/Radio.style';
 
 const props = {
   name: 'name',

@@ -1,6 +1,6 @@
-import MenuDivider from '../../src/menu/MenuDivider';
+import MenuDivider from '../../src/components/menu/MenuDivider';
 
-import { MenuDivider as MenuDividerBase } from '../../src/menu/Menu.style';
+import { MenuDivider as MenuDividerBase } from '../../src/components/menu/Menu.style';
 
 const render = shallowComponent(MenuDivider);
 

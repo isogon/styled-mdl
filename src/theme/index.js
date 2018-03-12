@@ -1,2 +1,3 @@
-export Theme from './Theme';
-export { defaultTheme, createTheme, colors } from './defaultTheme';
+export defaultTheme from './defaultTheme';
+export createTheme from './createTheme';
+export * as colors from './colorDefinitions';

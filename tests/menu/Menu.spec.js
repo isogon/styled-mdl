@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Portal from 'react-portal';
-import { Menu } from '../../src/menu/Menu';
-import MenuItem from '../../src/menu/MenuItem';
-import Button from '../../src/buttons/Button';
+import { Menu } from '../../src/components/menu/Menu';
+import MenuItem from '../../src/components/menu/MenuItem';
+import Button from '../../src/components/buttons/Button';
 import {
   MenuContainer,
   MenuOutline,
   MenuBase,
-} from '../../src/menu/Menu.style';
+} from '../../src/components/menu/Menu.style';
 
 const render = shallowComponent(
   Menu,

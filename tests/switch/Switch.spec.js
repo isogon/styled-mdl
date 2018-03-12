@@ -1,4 +1,4 @@
-import Switch from '../../src/switch/Switch';
+import Switch from '../../src/components/switch/Switch';
 
 const props = {
   name: 'name',

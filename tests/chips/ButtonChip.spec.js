@@ -1,4 +1,6 @@
-import ButtonChip, { ButtonChipBase } from '../../src/chips/ButtonChip';
+import ButtonChip, {
+  ButtonChipBase,
+} from '../../src/components/chips/ButtonChip';
 
 const render = shallowComponent(ButtonChip, {}, 'children');
 

@@ -1,4 +1,4 @@
-import Checkbox from '../../src/checkbox/Checkbox';
+import Checkbox from '../../src/components/checkbox/Checkbox';
 
 const props = {
   name: 'name',

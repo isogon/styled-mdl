@@ -1,5 +1,5 @@
-import Tooltip, { TooltipBase } from '../../src/tooltips/Tooltip';
-import { TooltipWrapper } from '../../src/tooltips/Tooltip.style';
+import Tooltip, { TooltipBase } from '../../src/components/tooltips/Tooltip';
+import { TooltipWrapper } from '../../src/components/tooltips/Tooltip.style';
 
 const render = shallowComponent(
   TooltipBase,

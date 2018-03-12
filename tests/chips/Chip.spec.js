@@ -1,6 +1,6 @@
-import Chip, { ChipBase } from '../../src/chips/Chip';
-import { ChipContact } from '../../src/chips';
-import { ChipAction } from '../../src/chips/Chip.style';
+import Chip, { ChipBase } from '../../src/components/chips/Chip';
+import { ChipContact } from '../../src/components/chips';
+import { ChipAction } from '../../src/components/chips/Chip.style';
 
 const render = shallowComponent(Chip, {}, 'children');
 

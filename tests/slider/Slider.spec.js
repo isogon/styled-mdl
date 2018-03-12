@@ -1,4 +1,4 @@
-import Slider, { SliderBase } from '../../src/slider/Slider';
+import Slider, { SliderBase } from '../../src/components/slider/Slider';
 
 const render = shallowComponent(Slider, { min: 0, max: 100 });
 

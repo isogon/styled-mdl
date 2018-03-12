@@ -1,5 +1,8 @@
-import ChipContact from '../../src/chips/ChipContact';
-import { ChipContactImg, ChipContactSpan } from '../../src/chips/Chip.style';
+import ChipContact from '../../src/components/chips/ChipContact';
+import {
+  ChipContactImg,
+  ChipContactSpan,
+} from '../../src/components/chips/Chip.style';
 
 const render = shallowComponent(ChipContact);
 

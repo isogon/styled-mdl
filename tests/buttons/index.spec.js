@@ -1,4 +1,4 @@
-import Button, { ButtonBase } from '../../src/buttons/Button';
+import Button, { ButtonBase } from '../../src/components/buttons/Button';
 
 const render = shallowComponent(Button);
 
