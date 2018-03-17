@@ -1,7 +1,7 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components'
 
-import { shadow24dp } from '../../mixins';
-import { getters as g } from '../../util';
+import { shadow24dp } from '../../mixins'
+import { getters as g } from '../../util'
 
 const flyIn = keyframes`
   from {
@@ -10,7 +10,7 @@ const flyIn = keyframes`
   to {
     transform: translate(0, 0);
   }
-`;
+`
 
 export const fadeIn = keyframes`
   from {
@@ -19,7 +19,7 @@ export const fadeIn = keyframes`
   to {
     opacity: 1;
   }
-`;
+`
 
 export const DialogStyle = styled.div.attrs({
   width: ({ size }) => `${parseInt(size || 5, 10) * 56}px`,
@@ -34,7 +34,7 @@ export const DialogStyle = styled.div.attrs({
   overflow: auto;
   animation: ${fadeIn} 0.3s ${g.animationCurveDefault} forwards,
              ${flyIn} 0.3s ${g.animationCurveLinearOutSlowIn} forwards;
-`;
+`
 
 export const DialogTitle = styled.h1`
   padding: 24px 24px 0;
@@ -42,14 +42,14 @@ export const DialogTitle = styled.h1`
   font-size: 20px;
   line-height: 20px;
   font-weight: 500;
-`;
+`
 
 export const DialogContent = styled.div`
   padding: 20px 24px 24px;
   font-size: 16px;
   line-height: 24px;
   color: ${g.dialogContentColor};
-`;
+`
 
 export const DialogActions = styled.div`
   position: relative;
@@ -75,4 +75,4 @@ export const DialogActions = styled.div`
       border-radius: 0;
     }
   `}
-`;
+`

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
+import { getters as g } from '../../util'
 
 // TODO: get this working with styled components?
 // // Some CSS magic to target only IE.
@@ -311,9 +311,9 @@ export const SliderInput = styled.input`
         margin-left: 6px;
       }
     `}
-`;
+`
 
-SliderInput.displayName = 'SliderInput';
+SliderInput.displayName = 'SliderInput'
 
 // Since we need to specify a height of 32px in IE, we add a class here for a
 // container that brings it back to a reasonable height.
@@ -323,9 +323,9 @@ export const SliderBackgroundIEContainer = styled.div`
   border: none;
   margin: none;
   padding: none;
-`;
+`
 
-SliderBackgroundIEContainer.displayName = 'SliderBackgroundIEContainer';
+SliderBackgroundIEContainer.displayName = 'SliderBackgroundIEContainer'
 
 // We use a set of divs behind the track to style it in all non-IE browsers.
 // This one contains both the background and the slider.
@@ -335,9 +335,9 @@ export const SliderContainer = styled.div`
   background: none;
   display: flex;
   flex-direction: row;
-`;
+`
 
-SliderContainer.displayName = 'SliderContainer';
+SliderContainer.displayName = 'SliderContainer'
 
 // This one sets up a flex box for the styled upper and lower portions of the
 // the slider track.
@@ -391,6 +391,6 @@ export const SliderBackground = styled.div`
           `};
     }
   `};
-`;
+`
 
-SliderBackground.displayName = 'SliderBackground';
+SliderBackground.displayName = 'SliderBackground'

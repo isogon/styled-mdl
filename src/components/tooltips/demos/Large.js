@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { Tooltip, Button, Icon } from '../../../';
+import { Tooltip, Button, Icon } from '../../../'
 
 export default () => (
   <Tooltip message="big text" large>
@@ -8,4 +8,4 @@ export default () => (
       <Icon name="add" />
     </Button>
   </Tooltip>
-);
+)

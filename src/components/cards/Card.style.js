@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled, { css } from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 export const Card = setDisplayName('Card')(styled.div`
   display: flex;
@@ -18,4 +18,4 @@ export const Card = setDisplayName('Card')(styled.div`
   ${({ expand }) => expand && css`
     flex-grow: 1;
   `}
-`);
+`)

@@ -1,16 +1,18 @@
-import FontFaceObserver from 'fontfaceobserver';
-import { injectGlobal } from 'styled-components';
+import FontFaceObserver from 'fontfaceobserver'
+import { injectGlobal } from 'styled-components'
 
 const isBrowser =
-  Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) !== '[object process]';
+  Object.prototype.toString.call(
+    typeof process !== 'undefined' ? process : 0,
+  ) !== '[object process]'
 
 export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
   if (isBrowser && fontObserver) {
-    const fontLoaded = () => document.body.classList.add('fontLoaded');
-    const fontNotLoaded = () => document.body.classList.remove('fontLoaded');
+    const fontLoaded = () => document.body.classList.add('fontLoaded')
+    const fontNotLoaded = () => document.body.classList.remove('fontLoaded')
 
-    const observer = new FontFaceObserver(fontObserver, {});
-    observer.load().then(fontLoaded, fontNotLoaded);
+    const observer = new FontFaceObserver(fontObserver, {})
+    observer.load().then(fontLoaded, fontNotLoaded)
   }
 
   // eslint-disable-next-line no-unused-expressions
@@ -42,5 +44,5 @@ export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
       min-height: 100%;
       margin: 0;
     }
-  `;
-};
+  `
+}

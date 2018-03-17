@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { Icon } from '../icons';
-import { materialAnimationDefault, typoBody2 } from '../../mixins';
+import { getters as g } from '../../util'
+import { Icon } from '../icons'
+import { materialAnimationDefault, typoBody2 } from '../../mixins'
 
 export const Table = styled.table`
   position: relative;
@@ -11,18 +11,18 @@ export const Table = styled.table`
   white-space: nowrap;
   font-size: ${g.dataTableFontSize}px;
   background-color: #fff;
-`;
+`
 
 export const TableHeader = styled.thead`
   padding-bottom: 3px;
 
-`;
+`
 
 export const TableBody = styled.tbody`
   tr:hover {
     background-color: ${g.dataTableHoverColor};
   }
-`;
+`
 
 export const Row = styled.tr`
   position: relative;
@@ -32,7 +32,7 @@ export const Row = styled.tr`
   ${({ isSelected }) => isSelected && css`
     background-color: ${g.dataTableSelectionColor};
   `}
-`;
+`
 
 const CellBase = styled.td`
   padding: 0 ${g.dataTableColumnPadding}px 12px ${g.dataTableColumnPadding}px;
@@ -49,7 +49,7 @@ const CellBase = styled.td`
   ${({ nonNumeric }) => nonNumeric && css`
     text-align: left;
   `}
-`;
+`
 
 export const Cell = CellBase.extend`
   position: relative;
@@ -59,7 +59,7 @@ export const Cell = CellBase.extend`
   border-bottom: ${g.dataTableDividers};
   padding-top: ${g.dataTableCellTop}px;
   box-sizing: border-box;
-`;
+`
 
 export const HeaderCell = CellBase.withComponent('th').extend`
   position: relative;
@@ -71,10 +71,10 @@ export const HeaderCell = CellBase.withComponent('th').extend`
   color: ${g.dataTableHeaderColor};
   padding-bottom: 8px;
   box-sizing: border-box;
-`;
+`
 
 export const TableIcon = Icon.extend`
   font-size: ${g.dataTableHeaderSortIconSize}px;
   margin-right: 5px;
   vertical-align: bottom;
-`;
+`

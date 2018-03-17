@@ -1,9 +1,9 @@
-import { compose, setPropTypes, setDisplayName, defaultProps } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
-import omit from 'lodash/omit';
+import { compose, setPropTypes, setDisplayName, defaultProps } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
+import omit from 'lodash/omit'
 
-import { Input as BaseInput } from '../../input';
+import { Input as BaseInput } from '../../input'
 import {
   ErrorMessage,
   HelperText,
@@ -11,13 +11,13 @@ import {
   Label,
   Textarea,
   TextfieldStyle,
-} from './Textfield.style';
-import { proxyStyledStatics } from '../../hocs';
+} from './Textfield.style'
+import { proxyStyledStatics } from '../../hocs'
 
 export class TextfieldBase extends BaseInput {
   render() {
-    const { __StyledComponent__: Styled, ...props } = this.props;
-    const Component = props.multiLine ? Textarea : Input;
+    const { __StyledComponent__: Styled, ...props } = this.props
+    const Component = props.multiLine ? Textarea : Input
     return (
       <Styled {...props}>
         <Label {...props} {...this.state}>
@@ -33,7 +33,7 @@ export class TextfieldBase extends BaseInput {
         {props.error && <ErrorMessage>{props.error}</ErrorMessage>}
         {props.helperText && <HelperText>{props.helperText}</HelperText>}
       </Styled>
-    );
+    )
   }
 }
 
@@ -50,6 +50,6 @@ const enhance = compose(
   defaultProps({
     type: 'text',
   }),
-);
+)
 
-export default enhance(TextfieldBase);
+export default enhance(TextfieldBase)

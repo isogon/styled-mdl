@@ -1,4 +1,4 @@
-import React from 'react';
-import { Chip } from '../../../';
+import React from 'react'
+import { Chip } from '../../../'
 
-export default () => <Chip>Basic Chip</Chip>;
+export default () => <Chip>Basic Chip</Chip>

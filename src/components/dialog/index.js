@@ -1,3 +1,3 @@
-export { DialogTitle, DialogActions, DialogContent } from './Dialog.style';
+export { DialogTitle, DialogActions, DialogContent } from './Dialog.style'
 
-export Dialog from './Dialog';
+export Dialog from './Dialog'

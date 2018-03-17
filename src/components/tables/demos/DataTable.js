@@ -1,5 +1,5 @@
-import React from 'react';
-import { css } from 'styled-components';
+import React from 'react'
+import { css } from 'styled-components'
 
 import {
   Table,
@@ -12,11 +12,11 @@ import {
   shadow2dp,
   Checkbox,
   theme,
-} from '../../../';
+} from '../../../'
 
 export const DemoTable = Table.extend`
   ${shadow2dp()};
-`;
+`
 
 export const DemoTh = HeaderCell.extend`
   ${({ sorted }) =>
@@ -24,7 +24,7 @@ export const DemoTh = HeaderCell.extend`
     css`
       color: ${theme.textColorPrimary};
     `};
-`;
+`
 
 export default () => (
   <DemoTable>
@@ -68,4 +68,4 @@ export default () => (
       </Row>
     </TableBody>
   </DemoTable>
-);
+)

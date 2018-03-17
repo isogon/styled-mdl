@@ -1,5 +1,5 @@
-import React from 'react';
-import { List, ListItem } from '../../../';
+import React from 'react'
+import { List, ListItem } from '../../../'
 
 export default () => (
   <List>
@@ -7,4 +7,4 @@ export default () => (
     <ListItem>Aaron Paul</ListItem>
     <ListItem>Bob Odenkirk</ListItem>
   </List>
-);
+)

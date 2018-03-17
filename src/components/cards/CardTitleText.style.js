@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 export const CardTitleText = setDisplayName('CardTitleText')(styled.h1`
   align-self: flex-end;
@@ -13,4 +13,4 @@ export const CardTitleText = setDisplayName('CardTitleText')(styled.h1`
   overflow: hidden;
   transform-origin: ${g.cardTitleTextTransformOriginX}px ${g.cardTitleTextTransformOriginY}px;
   margin: 0;
-`);
+`)

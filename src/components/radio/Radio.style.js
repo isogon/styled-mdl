@@ -1,8 +1,8 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { materialAnimationDefault } from '../../mixins';
+import { getters as g } from '../../util'
+import { materialAnimationDefault } from '../../mixins'
 
 export const RadioStyle = setDisplayName('RadioStyle')(styled.label`
   position: relative;
@@ -14,7 +14,7 @@ export const RadioStyle = setDisplayName('RadioStyle')(styled.label`
   min-height: ${g.radioLabelHeight}px;
   margin: 0;
   padding-left: ${({ theme }) => theme.radioButtonSize + theme.radioPadding}px;
-`);
+`)
 
 export const RadioButton = setDisplayName('RadioButton')(styled.input`
   line-height: ${g.radioLabelHeight}px;
@@ -35,7 +35,7 @@ export const RadioButton = setDisplayName('RadioButton')(styled.input`
   &:checked ~ div:nth-of-type(2) {
     transform: scale(1, 1);
   }
-`);
+`)
 
 export const OuterCircle = setDisplayName('OuterCircle')(styled.div`
   position: absolute;
@@ -55,7 +55,7 @@ export const OuterCircle = setDisplayName('OuterCircle')(styled.div`
     border: 2px solid ${g.radioDisabledColor};
     cursor: auto;
   `}
-`);
+`)
 
 export const InnerCircle = setDisplayName('InnerCircle')(styled.div`
   position: absolute;
@@ -81,7 +81,7 @@ export const InnerCircle = setDisplayName('InnerCircle')(styled.div`
   ${({ focused }) => focused && css`
     box-shadow: 0 0 0px 10px rgba(0, 0, 0, 0.1);
   `}
-`);
+`)
 
 export const RadioLabel = setDisplayName('RadioLabel')(styled.span`
   cursor: pointer;
@@ -90,4 +90,4 @@ export const RadioLabel = setDisplayName('RadioLabel')(styled.span`
     color: ${g.radioDisabledColor};
     cursor: auto;
   `}
-`);
+`)

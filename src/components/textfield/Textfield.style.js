@@ -1,8 +1,8 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { materialAnimationDefault } from '../../mixins';
+import { getters as g } from '../../util'
+import { materialAnimationDefault } from '../../mixins'
 
 // The container for the whole component.
 export const TextfieldStyle = setDisplayName('TextfieldStyle')(styled.div`
@@ -25,7 +25,7 @@ export const TextfieldStyle = setDisplayName('TextfieldStyle')(styled.div`
     width: auto;
     min-height: ${g.inputTextButtonSize}px;
   `}
-`);
+`)
 
 // Styling for the input element.
 export const Input = setDisplayName('Input')(styled.input`
@@ -65,11 +65,11 @@ export const Input = setDisplayName('Input')(styled.input`
     border-bottom: 1px dotted ${g.inputTextDisabledColor};
     color: ${g.inputTextDisabledTextColor};
   `}
-`);
+`)
 
 export const Textarea = setDisplayName('Textarea')(Input.withComponent('textarea').extend`
   display: block;
-`);
+`)
 
 // Styling for the label / floating label.
 export const Label = setDisplayName('Label')(styled.label`
@@ -136,7 +136,7 @@ export const Label = setDisplayName('Label')(styled.label`
   ${({ disabled }) => disabled && css`
     color: ${g.inputTextDisabledTextColor};
   `}
-`);
+`)
 
 // TextField Error.
 
@@ -147,11 +147,11 @@ export const HelperText = setDisplayName('HelperText')(styled.div`
   font-size: ${g.inputTextFloatingLabelFontsize}px;
   margin-top: 3px;
   display: block;
-`);
+`)
 
 export const ErrorMessage = setDisplayName('ErrorMessage')(HelperText.extend`
   color: ${g.inputTextErrorColor};
-`);
+`)
 
 export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`
   display: inline-block;
@@ -183,4 +183,4 @@ export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`
       top: ${-(theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
     `}
   `}
-`);
+`)

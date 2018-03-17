@@ -1,8 +1,8 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../../mixins';
+import { getters as g } from '../../util'
+import { typoButton, shadow2dp, shadow4dp, focusShadow } from '../../mixins'
 
 export const StyledButton = setDisplayName('Button')(styled.button`
   background: transparent;
@@ -220,11 +220,11 @@ export const StyledButton = setDisplayName('Button')(styled.button`
               }
             `};
       `};
-`);
+`)
 
 export const ButtonInner = setDisplayName('ButtonInner')(styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`);
+`)

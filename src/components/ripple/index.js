@@ -1,1 +1,1 @@
-export Ripple from './Ripple';
+export Ripple from './Ripple'

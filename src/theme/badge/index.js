@@ -1,7 +1,7 @@
-import * as defaults from './defaults';
-import { colorAccentContrast, colorAccent } from '../colors/defaults';
-import createThemer from '../createThemer';
-import { rgba, rgb } from '../../util/colors';
+import * as defaults from './defaults'
+import { colorAccentContrast, colorAccent } from '../colors/defaults'
+import createThemer from '../createThemer'
+import { rgba, rgb } from '../../util/colors'
 
 export default createThemer(
   { colorAccentContrast, colorAccent, ...defaults },
@@ -11,4 +11,4 @@ export default createThemer(
     badgeBackground: rgb(theme.colorAccent),
     badgeBackgroundInverse: rgba(theme.colorAccentContrast, 0.2),
   }),
-);
+)

@@ -1,15 +1,15 @@
-import { css } from 'styled-components';
-import { getters as g } from '../util';
+import { css } from 'styled-components'
+import { getters as g } from '../util'
 
 export function typoPreferredFont(usePreferred = true) {
   return usePreferred
     ? css`
         font-family: ${g.preferredFont};
       `
-    : null;
+    : null
 }
 
-const contrast = (cc, opacity) => (cc ? `opacity: ${opacity};` : null);
+const contrast = (cc, opacity) => (cc ? `opacity: ${opacity};` : null)
 
 export function typoDisplay4(colorContrast = false, usePreferred = true) {
   return css`
@@ -19,7 +19,7 @@ export function typoDisplay4(colorContrast = false, usePreferred = true) {
     line-height: 1;
     letter-spacing: -0.04em;
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoDisplay3(colorContrast = false, usePreferred = true) {
@@ -30,7 +30,7 @@ export function typoDisplay3(colorContrast = false, usePreferred = true) {
     line-height: 1.35;
     letter-spacing: -0.02em;
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoDisplay2(colorContrast = false, usePreferred = true) {
@@ -40,7 +40,7 @@ export function typoDisplay2(colorContrast = false, usePreferred = true) {
     font-weight: 400;
     line-height: 48px;
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoDisplay1(colorContrast = false, usePreferred = true) {
@@ -50,7 +50,7 @@ export function typoDisplay1(colorContrast = false, usePreferred = true) {
     font-weight: 400;
     line-height: 40px;
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoHeadline(colorContrast = false, usePreferred = true) {
@@ -61,7 +61,7 @@ export function typoHeadline(colorContrast = false, usePreferred = true) {
     line-height: 32px;
     -moz-osx-font-smoothing: grayscale;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoTitle(colorContrast = false, usePreferred = true) {
@@ -72,7 +72,7 @@ export function typoTitle(colorContrast = false, usePreferred = true) {
     line-height: 1;
     letter-spacing: 0.02em;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoSubhead(colorContrast = false, usePreferred = true) {
@@ -83,7 +83,7 @@ export function typoSubhead(colorContrast = false, usePreferred = true) {
     line-height: 24px;
     letter-spacing: 0.04em;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoSubhead2(colorContrast = false, usePreferred = true) {
@@ -94,7 +94,7 @@ export function typoSubhead2(colorContrast = false, usePreferred = true) {
     line-height: 28px;
     letter-spacing: 0.04em;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoBody2(colorContrast = false, usePreferred = false) {
@@ -105,7 +105,7 @@ export function typoBody2(colorContrast = false, usePreferred = false) {
     line-height: 24px;
     letter-spacing: 0;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoBody1(colorContrast = false, usePreferred = false) {
@@ -116,7 +116,7 @@ export function typoBody1(colorContrast = false, usePreferred = false) {
     line-height: 24px;
     letter-spacing: 0;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoCaption(colorContrast = false, usePreferred = false) {
@@ -127,7 +127,7 @@ export function typoCaption(colorContrast = false, usePreferred = false) {
     line-height: 1;
     letter-spacing: 0;
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoBlockquote(colorContrast = false, usePreferred = true) {
@@ -149,7 +149,7 @@ export function typoBlockquote(colorContrast = false, usePreferred = true) {
       margin-left: -0.05em;
     }
     ${contrast(colorContrast, 0.54)}
-  `;
+  `
 }
 
 export function typoMenu(colorContrast = false, usePreferred = true) {
@@ -160,7 +160,7 @@ export function typoMenu(colorContrast = false, usePreferred = true) {
     line-height: 1;
     letter-spacing: 0;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoButton(colorContrast = false, usePreferred = true) {
@@ -172,7 +172,7 @@ export function typoButton(colorContrast = false, usePreferred = true) {
     line-height: 1;
     letter-spacing: 0;
     ${contrast(colorContrast, 0.87)}
-  `;
+  `
 }
 
 export function typoIcon() {
@@ -189,5 +189,5 @@ export function typoIcon() {
     font-feature-settings: 'liga';
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-  `;
+  `
 }

@@ -1,4 +1,4 @@
-import ShallowWrapper from 'enzyme/ShallowWrapper';
+import ShallowWrapper from 'enzyme/ShallowWrapper'
 
 function textRecursively(wrapper) {
   return wrapper
@@ -6,17 +6,17 @@ function textRecursively(wrapper) {
     .map((child) => {
       if (!child.children().length) {
         if (child.getElement()) {
-          return ''; // empty element with no children
+          return '' // empty element with no children
         }
-        return child.text(); // text content
+        return child.text() // text content
       }
-      return textRecursively(child); // element has child nodes
+      return textRecursively(child) // element has child nodes
     })
-    .join('');
+    .join('')
 }
 
 function textOnly() {
-  return this.single('textOnly', () => textRecursively(this));
+  return this.single('textOnly', () => textRecursively(this))
 }
 
-ShallowWrapper.prototype.textOnly = textOnly;
+ShallowWrapper.prototype.textOnly = textOnly

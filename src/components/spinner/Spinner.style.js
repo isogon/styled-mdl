@@ -1,14 +1,14 @@
-import styled, { css, keyframes } from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled, { css, keyframes } from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 const rotate = keyframes`
   to { transform: rotate(360deg) }
-`;
+`
 
 const spinnerArcSize = (scalar) => css`
   transform: rotate(${scalar * 270}deg);
-`;
+`
 
 const fillUnfillRotate = keyframes`
   12.5% { ${spinnerArcSize(0.5)} }
@@ -19,7 +19,7 @@ const fillUnfillRotate = keyframes`
   75%   { ${spinnerArcSize(3.0)} }
   87.5% { ${spinnerArcSize(3.5)} }
   to    { ${spinnerArcSize(4.0)} }
-`;
+`
 /**
 * HACK: Even though the intention is to have the current .mdl-spinner__layer-N
 * at `opacity: 1`, we set it to `opacity: 0.99` instead since this forces Chrome
@@ -36,38 +36,38 @@ const layer1FadeInOut = keyframes`
   89% { opacity: 0; }
   90% { opacity: 0.99; }
   100% { opacity: 0.99; }
-`;
+`
 const layer2FadeInOut = keyframes`
   from { opacity: 0; }
   15% { opacity: 0; }
   25% { opacity: 0.99; }
   50% { opacity: 0.99; }
   51% { opacity: 0; }
-`;
+`
 const layer3FadeInOut = keyframes`
   from { opacity: 0; }
   40% { opacity: 0; }
   50% { opacity: 0.99; }
   75% { opacity: 0.99; }
   76% { opacity: 0; }
-`;
+`
 const layer4FadeInOut = keyframes`
   from { opacity: 0; }
   65% { opacity: 0; }
   75% { opacity: 0.99; }
   90% { opacity: 0.99; }
   100% { opacity: 0; }
-`;
+`
 const leftSpin = keyframes`
   from { transform: rotate(130deg); }
   50% { transform: rotate(-5deg); }
   to { transform: rotate(130deg); }
-`;
+`
 const rightSpin = keyframes`
   from { transform: rotate(-130deg); }
   50% { transform: rotate(5deg); }
   to { transform: rotate(-130deg); }
-`;
+`
 
 export const SpinnerStyle = setDisplayName('SpinnerStyle')(styled.div`
   display: inline-block;
@@ -78,17 +78,17 @@ export const SpinnerStyle = setDisplayName('SpinnerStyle')(styled.div`
   ${({ active }) => active && css`
     animation: ${rotate} ${g.spinnerDuration}ms linear infinite;
   `}
-`);
+`)
 
 export const Layer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0;
-`;
+`
 
 const spinnerArcTime = (co) => ({ theme }) =>
-  `${theme.spinnerArcTime * co}ms ${theme.animationCurveFastOutSlowIn} infinite both`;
+  `${theme.spinnerArcTime * co}ms ${theme.animationCurveFastOutSlowIn} infinite both`
 
 export const LayerOne = setDisplayName('LayerOne')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor1)};
@@ -97,7 +97,7 @@ export const LayerOne = setDisplayName('LayerOne')(Layer.extend`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer1FadeInOut} ${spinnerArcTime(4)};
   `}
-`);
+`)
 
 export const LayerTwo = setDisplayName('LayerTwo')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor2)};
@@ -106,7 +106,7 @@ export const LayerTwo = setDisplayName('LayerTwo')(Layer.extend`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer2FadeInOut} ${spinnerArcTime(4)};
   `}
-`);
+`)
 
 export const LayerThree = setDisplayName('LayerThree')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor3)};
@@ -115,7 +115,7 @@ export const LayerThree = setDisplayName('LayerThree')(Layer.extend`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer3FadeInOut} ${spinnerArcTime(4)};
   `}
-`);
+`)
 
 export const LayerFour = setDisplayName('LayerFour')(Layer.extend`
   border-color: ${({ theme, singleColor }) => (singleColor ? theme.spinnerSingleColor : theme.spinnerColor4)};
@@ -124,7 +124,7 @@ export const LayerFour = setDisplayName('LayerFour')(Layer.extend`
     animation: ${fillUnfillRotate} ${spinnerArcTime(4)},
                ${layer4FadeInOut} ${spinnerArcTime(4)};
   `}
-`);
+`)
 
 /**
 * Patch the gap that appear between the two adjacent
@@ -143,7 +143,7 @@ export const GapPatch = setDisplayName('GapPatch')(styled.div`
   height: 100%;
   overflow: hidden;
   border-color: inherit;
-`);
+`)
 
 export const CircleClipper = setDisplayName('CircleClipper')(styled.div`
   display: inline-block;
@@ -154,7 +154,7 @@ export const CircleClipper = setDisplayName('CircleClipper')(styled.div`
   border-color: inherit;
   ${({ left }) => left && css`float: left;`}
   ${({ right }) => right && css`float: right;`}
-`);
+`)
 
 export const Circle = setDisplayName('Circle')(styled.div`
   box-sizing: border-box;
@@ -198,4 +198,4 @@ export const Circle = setDisplayName('Circle')(styled.div`
     width: 1000%;
     left: -450%;
   `}
-`);
+`)

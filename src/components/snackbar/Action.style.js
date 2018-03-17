@@ -1,8 +1,8 @@
-import { setDisplayName } from 'recompose';
-import styled from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled from 'styled-components'
 
-import { getters as g } from '../../util';
-import { typoButton } from '../../mixins';
+import { getters as g } from '../../util'
+import { typoButton } from '../../mixins'
 
 export const SnackbarAction = setDisplayName('SnackbarAction')(styled.button`
   background: transparent;
@@ -31,4 +31,4 @@ export const SnackbarAction = setDisplayName('SnackbarAction')(styled.button`
     opacity: 1;
     pointer-events: auto;
   }
-`);
+`)

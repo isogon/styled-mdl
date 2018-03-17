@@ -1,1 +1,1 @@
-export Snackbar from './Snackbar';
+export Snackbar from './Snackbar'

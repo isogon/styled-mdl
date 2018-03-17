@@ -1,4 +1,4 @@
-import React from 'react';
-import { Button } from '../../../';
+import React from 'react'
+import { Button } from '../../../'
 
-export default () => <Button>Default</Button>;
+export default () => <Button>Default</Button>

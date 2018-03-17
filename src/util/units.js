@@ -1,1 +1,1 @@
-export const px = (n) => `${n}px`;
+export const px = (n) => `${n}px`

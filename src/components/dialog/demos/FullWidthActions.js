@@ -1,15 +1,15 @@
-import React from 'react';
-import { withStateHandlers } from 'recompose';
+import React from 'react'
+import { withStateHandlers } from 'recompose'
 import {
   Dialog,
   DialogTitle,
   DialogActions,
   DialogContent,
   Button,
-} from '../../../';
+} from '../../../'
 
 const mdSpecLink =
-  'https://www.google.com/design/spec/components/dialogs.html#dialogs-specs';
+  'https://www.google.com/design/spec/components/dialogs.html#dialogs-specs'
 
 export default withStateHandlers(
   { isShowingDialog: false },
@@ -40,4 +40,4 @@ export default withStateHandlers(
       </DialogActions>
     </Dialog>
   </React.Fragment>
-));
+))

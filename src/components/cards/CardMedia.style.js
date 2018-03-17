@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 export const CardMedia = setDisplayName('CardMedia')(styled.div`
   background-color: ${g.cardImagePlaceholderColor};
@@ -10,4 +10,4 @@ export const CardMedia = setDisplayName('CardMedia')(styled.div`
   background-origin: padding-box;
   background-attachment: scroll;
   box-sizing: border-box;
-`);
+`)

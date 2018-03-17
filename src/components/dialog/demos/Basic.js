@@ -1,12 +1,12 @@
-import React from 'react';
-import { withStateHandlers } from 'recompose';
+import React from 'react'
+import { withStateHandlers } from 'recompose'
 import {
   Dialog,
   DialogTitle,
   DialogActions,
   DialogContent,
   Button,
-} from '../../../';
+} from '../../../'
 
 export default withStateHandlers(
   { isShowingDialog: false },
@@ -35,4 +35,4 @@ export default withStateHandlers(
       </DialogActions>
     </Dialog>
   </React.Fragment>
-));
+))

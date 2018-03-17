@@ -1,14 +1,14 @@
-import { call, ifProp, switchProp, prop } from 'styled-tools';
-import { subtract, add, always } from 'lodash/fp';
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { call, ifProp, switchProp, prop } from 'styled-tools'
+import { subtract, add, always } from 'lodash/fp'
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { arrowTop, arrowBottom, arrowLeft, arrowRight } from '../../mixins';
-import { getters as g } from '../../util';
+import { arrowTop, arrowBottom, arrowLeft, arrowRight } from '../../mixins'
+import { getters as g } from '../../util'
 
 export const TooltipWrapper = setDisplayName('TooltipWrapper')(styled.div`
   display: inline-block;
-`);
+`)
 
 export const TooltipPosition = setDisplayName('TooltipPosition')(styled.div`
   position: fixed;
@@ -43,7 +43,7 @@ export const TooltipPosition = setDisplayName('TooltipPosition')(styled.div`
       transform-origin: center left;
     `,
   })}
-`);
+`)
 
 export const TooltipStyle = setDisplayName('TooltipBase')(styled.div`
   display: block;
@@ -80,4 +80,4 @@ export const TooltipStyle = setDisplayName('TooltipBase')(styled.div`
       ${call(arrowLeft('5px'), g.tooltipBackgroundColor)}
     `,
   })}
-`);
+`)

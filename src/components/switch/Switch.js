@@ -1,8 +1,8 @@
-import { compose, setDisplayName, setPropTypes } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { compose, setDisplayName, setPropTypes } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { proxyStyledStatics } from '../../hocs';
+import { proxyStyledStatics } from '../../hocs'
 import {
   SwitchWrapStyle,
   SwitchStyle,
@@ -10,9 +10,14 @@ import {
   SwitchLabel,
   Track,
   Thumb,
-} from './Switch.style';
+} from './Switch.style'
 
-export const SwitchBase = ({ label, disabled, __StyledComponent__: Styled, ...props }) => (
+export const SwitchBase = ({
+  label,
+  disabled,
+  __StyledComponent__: Styled,
+  ...props
+}) => (
   <Styled {...props}>
     <SwitchStyle>
       <SwitchButton type="checkbox" disabled={disabled} {...props} />
@@ -21,7 +26,7 @@ export const SwitchBase = ({ label, disabled, __StyledComponent__: Styled, ...pr
       <Thumb disabled={disabled} />
     </SwitchStyle>
   </Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(SwitchWrapStyle),
@@ -30,6 +35,6 @@ const enhance = compose(
     label: PropTypes.string,
     disabled: PropTypes.bool,
   }),
-);
+)
 
-export default enhance(SwitchBase);
+export default enhance(SwitchBase)

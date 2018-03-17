@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-import { shadow2dp, typoBody1 } from '../../mixins';
-import { getters as g } from '../../util';
+import { shadow2dp, typoBody1 } from '../../mixins'
+import { getters as g } from '../../util'
 
-export const MenuControlWrap = styled.div`position: relative;`;
+export const MenuControlWrap = styled.div`position: relative;`
 
-MenuControlWrap.displayName = 'MenuControlWrap';
+MenuControlWrap.displayName = 'MenuControlWrap'
 
 export const MenuContainer = styled.div`
   display: block;
@@ -28,9 +28,9 @@ export const MenuContainer = styled.div`
       height: ${({ height }) => height}px;
       width: ${({ width }) => width}px;
     `};
-`;
+`
 
-MenuContainer.displayName = 'MenuContainer';
+MenuContainer.displayName = 'MenuContainer'
 
 export const MenuOutline = styled.div`
   display: block;
@@ -64,9 +64,9 @@ export const MenuOutline = styled.div`
       topLeft && css`transform-origin: 0 100%;`} ${({ topRight }) =>
       topRight && css`transform-origin: 100% 100%;`} ${({ bottomLeft }) =>
       bottomLeft && css`transform-origin: 0 0;`};
-`;
+`
 
-MenuOutline.displayName = 'MenuOutline';
+MenuOutline.displayName = 'MenuOutline'
 
 export const MenuBase = styled.div`
   position: absolute;
@@ -116,9 +116,9 @@ export const MenuBase = styled.div`
         top: auto;
         left: auto;
       `};
-`;
+`
 
-MenuBase.displayName = 'MenuBase';
+MenuBase.displayName = 'MenuBase'
 
 export const MenuDivider = styled.hr`
   border-bottom: 1px solid ${g.defaultItemDividerColor};
@@ -130,9 +130,9 @@ export const MenuDivider = styled.hr`
   transition-delay: ${({ getTransitionDelay, theme }) =>
     getTransitionDelay(theme.menuExpandDuration)}s;
   ${({ isVisible }) => isVisible && css`opacity: 1;`};
-`;
+`
 
-MenuDivider.displayName = 'MenuDivider';
+MenuDivider.displayName = 'MenuDivider'
 
 export const MenuItem = styled.button`
   display: block;
@@ -187,6 +187,6 @@ export const MenuItem = styled.button`
   &:active {
     background-color: ${g.defaultItemActiveBgColor};
   }
-`;
+`
 
-MenuItem.displayName = 'MenuItem';
+MenuItem.displayName = 'MenuItem'

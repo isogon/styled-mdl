@@ -1,8 +1,8 @@
-import { cond, prop, always, T } from 'lodash/fp';
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { cond, prop, always, T } from 'lodash/fp'
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g, rgba } from '../../util';
+import { getters as g, rgba } from '../../util'
 
 export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
   color: cond([
@@ -22,7 +22,7 @@ export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
   overflow: hidden;
   transition-duration: 0.6s, 0.6s, 0.6s, 1.2s;
   transition-timing-function: ${g.animationCurveLinearOutSlowIn};
-`);
+`)
 
 export const RippleWrap = setDisplayName('RippleWrap')(styled.div`
   display: block;
@@ -45,4 +45,4 @@ export const RippleWrap = setDisplayName('RippleWrap')(styled.div`
     border-radius: 50%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
   `}
-`);
+`)

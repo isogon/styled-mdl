@@ -1,8 +1,8 @@
-import { compose, defaultProps, setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { compose, defaultProps, setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { shadow2dp } from '../../mixins';
+import { getters as g } from '../../util'
+import { shadow2dp } from '../../mixins'
 
 export const ChipStyle = setDisplayName('ChipStyle')(styled.span`
   height: ${g.chipHeight}px;
@@ -30,16 +30,16 @@ export const ChipStyle = setDisplayName('ChipStyle')(styled.span`
   ${({ contact }) => contact && css`
     padding-left: 0px;
   `}
-`);
+`)
 
-export const ButtonChipStyle = ChipStyle.withComponent('button');
+export const ButtonChipStyle = ChipStyle.withComponent('button')
 
 
 export const ChipText = setDisplayName('ChipText')(styled.span`
   font-size: ${g.chipFontSize}px;
   vertical-align: middle;
   display: inline-block;
-`);
+`)
 
 export const ChipAction = compose(
   defaultProps({
@@ -63,7 +63,7 @@ export const ChipAction = compose(
   border: none;
   outline: none;
   overflow: hidden;
-`);
+`)
 
 export const ChipContactImg = setDisplayName('ChipContactImg')(styled.img`
   height: ${g.chipHeight}px;
@@ -78,8 +78,8 @@ export const ChipContactImg = setDisplayName('ChipContactImg')(styled.img`
   line-height: 32px;
   background-color: ${g.rgbFromProp('color', g.colorPrimary)};
   color: ${({ textColor }) => textColor || '#FFF'};
-`);
+`)
 
 export const ChipContactSpan = setDisplayName('ChipContactSpan')(
   ChipContactImg.withComponent('span')
-);
+)

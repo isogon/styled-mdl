@@ -1,4 +1,4 @@
-import React from 'react';
-import { Spinner } from '../../../';
+import React from 'react'
+import { Spinner } from '../../../'
 
-export default () => <Spinner active singleColor />;
+export default () => <Spinner active singleColor />

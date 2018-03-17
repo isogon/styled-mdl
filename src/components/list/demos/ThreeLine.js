@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   List,
   ListItem,
@@ -9,7 +9,7 @@ import {
   LiTextBody,
   Button,
   Icon,
-} from '../../../';
+} from '../../../'
 
 export default () => (
   <List width="650px">
@@ -72,4 +72,4 @@ export default () => (
       </LiSecondary>
     </ListItem>
   </List>
-);
+)

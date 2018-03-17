@@ -1,2 +1,2 @@
-export MaterialIcons from './MaterialIcons';
-export Roboto from './Roboto';
+export MaterialIcons from './MaterialIcons'
+export Roboto from './Roboto'

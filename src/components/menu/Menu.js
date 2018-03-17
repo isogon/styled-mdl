@@ -1,78 +1,78 @@
-import { compose, setDisplayName, setPropTypes } from 'recompose';
-import Portal from 'react-portal';
-import PropTypes from 'prop-types';
-import React, { Component, Children, cloneElement } from 'react';
+import { compose, setDisplayName, setPropTypes } from 'recompose'
+import Portal from 'react-portal'
+import PropTypes from 'prop-types'
+import React, { Component, Children, cloneElement } from 'react'
 
 import {
   MenuContainer,
   MenuControlWrap,
   MenuOutline,
   MenuBase,
-} from './Menu.style';
-import { proxyStyledStatics } from '../../hocs';
-import getRelativePosition from './getRelativePosition';
+} from './Menu.style'
+import { proxyStyledStatics } from '../../hocs'
+import getRelativePosition from './getRelativePosition'
 
 export class Menu extends Component {
   state = {
     isVisible: false,
-  };
+  }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.setMenuPosition, true);
-    cancelAnimationFrame(this.closeMenu);
-    cancelAnimationFrame(this.openMenu);
+    window.removeEventListener('scroll', this.setMenuPosition, true)
+    cancelAnimationFrame(this.closeMenu)
+    cancelAnimationFrame(this.openMenu)
   }
 
   setMenuPosition = () => {
-    const control = getRelativePosition(this.control);
-    const position = {};
+    const control = getRelativePosition(this.control)
+    const position = {}
     if (this.props.bottomRight) {
-      position.left = control.right - this.state.width;
-      position.top = control.bottom;
+      position.left = control.right - this.state.width
+      position.top = control.bottom
     } else if (this.props.topLeft) {
-      position.left = control.left;
-      position.top = control.top - this.state.height;
+      position.left = control.left
+      position.top = control.top - this.state.height
     } else if (this.props.topRight) {
-      position.left = control.right - this.state.width;
-      position.top = control.top - this.state.height;
+      position.left = control.right - this.state.width
+      position.top = control.top - this.state.height
     } else {
-      position.left = control.left;
-      position.top = control.bottom;
+      position.left = control.left
+      position.top = control.bottom
     }
 
-    this.setState({ ...position });
-  };
+    this.setState({ ...position })
+  }
 
   handleOpen = () => {
     this.openMenu = requestAnimationFrame(() => {
       if (this.preventOpen) {
-        return;
+        return
       }
 
-      const menu = this.menu.getBoundingClientRect();
+      const menu = this.menu.getBoundingClientRect()
       this.setState({
         height: menu.height,
         width: menu.width,
-      });
+      })
 
-      window.addEventListener('scroll', this.setMenuPosition, true);
-      this.setState({ isVisible: true });
-      this.setMenuPosition();
-    });
-  };
+      window.addEventListener('scroll', this.setMenuPosition, true)
+      this.setState({ isVisible: true })
+      this.setMenuPosition()
+    })
+  }
 
   handleClose = () => {
-    window.removeEventListener('scroll', this.setMenuPosition, true);
+    window.removeEventListener('scroll', this.setMenuPosition, true)
 
     this.closeMenu = requestAnimationFrame(() => {
       this.setState({
         isVisible: false,
-      });
-    });
-  };
+      })
+    })
+  }
 
   render() {
-    const { children, __StyledComponent__: Styled, ...props } = this.props;
+    const { children, __StyledComponent__: Styled, ...props } = this.props
 
     const childrenWithProps = Children.map(children, (child) =>
       cloneElement(child, {
@@ -80,13 +80,13 @@ export class Menu extends Component {
         fadeDown: !props.topRight && !props.topLeft,
         getTransitionDelay: () => 0,
       }),
-    );
+    )
 
     const control = cloneElement(props.control, {
       onClick: () => {
-        this.preventOpen = this.state.isVisible;
+        this.preventOpen = this.state.isVisible
       },
-    });
+    })
 
     return (
       <MenuControlWrap>
@@ -94,7 +94,7 @@ export class Menu extends Component {
           openByClickOn={
             <span
               ref={(ctrl) => {
-                this.control = ctrl;
+                this.control = ctrl
               }}
             >
               {control}
@@ -108,7 +108,7 @@ export class Menu extends Component {
             {...this.state}
             {...props}
             onClick={() => {
-              setTimeout(() => this.handleClose(), 100);
+              setTimeout(() => this.handleClose(), 100)
             }}
           >
             <MenuOutline {...this.state} {...props} />
@@ -116,7 +116,7 @@ export class Menu extends Component {
               {...this.state}
               {...props}
               innerRef={(menu) => {
-                this.menu = menu;
+                this.menu = menu
               }}
             >
               {childrenWithProps}
@@ -124,7 +124,7 @@ export class Menu extends Component {
           </Styled>
         </Portal>
       </MenuControlWrap>
-    );
+    )
   }
 }
 
@@ -138,6 +138,6 @@ const enhance = compose(
     topRight: PropTypes.bool,
   }),
   setDisplayName('Menu'),
-);
+)
 
-export default enhance(Menu);
+export default enhance(Menu)

@@ -1,5 +1,5 @@
-import createTheme from './createTheme';
+import createTheme from './createTheme'
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme()
 
-export default defaultTheme;
+export default defaultTheme

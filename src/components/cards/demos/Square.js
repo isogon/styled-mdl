@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import {
   Button,
@@ -8,19 +8,19 @@ import {
   CardTitle,
   CardTitleText,
   shadow2dp,
-} from '../../../';
+} from '../../../'
 
 export const DemoCardSquare = Card.extend`
   ${shadow2dp()} width: 320px;
   height: 320px;
-`;
+`
 
 export const DemoCardTitle = CardTitle.extend`
   color: #fff;
   height: 176px;
   background: url('https://getmdl.io/assets/demos/dog.png') bottom right 15%
     no-repeat #46b6ac;
-`;
+`
 
 export default () => (
   <DemoCardSquare>
@@ -34,4 +34,4 @@ export default () => (
       <Button colored>View Updates</Button>
     </CardActions>
   </DemoCardSquare>
-);
+)

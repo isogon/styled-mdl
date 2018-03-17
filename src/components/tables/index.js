@@ -1,1 +1,1 @@
-export * from './Table.style';
+export * from './Table.style'

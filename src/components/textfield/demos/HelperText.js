@@ -1,5 +1,5 @@
-import React from 'react';
-import { Textfield } from '../../../';
+import React from 'react'
+import { Textfield } from '../../../'
 
 export default () => (
   <Textfield
@@ -7,4 +7,4 @@ export default () => (
     helperText="33/100"
     defaultValue="Useful information for your users"
   />
-);
+)

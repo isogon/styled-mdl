@@ -1,12 +1,12 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { materialAnimationDefault, shadow2dp, shadow3dp } from '../../mixins';
+import { getters as g } from '../../util'
+import { materialAnimationDefault, shadow2dp, shadow3dp } from '../../mixins'
 
 export const SwitchWrapStyle = setDisplayName('SwitchWrapStyle')(styled.div`
   display: inline-block;
-`);
+`)
 
 export const SwitchStyle = setDisplayName('SwitchStyle')(styled.label`
   position: relative;
@@ -22,7 +22,7 @@ export const SwitchStyle = setDisplayName('SwitchStyle')(styled.label`
   padding-left: ${({ theme }) => theme.switchTrackLength}px;
   -webkit-touch-callout: none;
   user-select: none;
-`);
+`)
 
 export const SwitchButton = setDisplayName('SwitchButton')(styled.input`
   line-height: ${g.switchLabelHeight}px;
@@ -45,7 +45,7 @@ export const SwitchButton = setDisplayName('SwitchButton')(styled.input`
     left: ${({ theme }) => theme.switchTrackLength - theme.switchThumbSize}px;
     ${shadow3dp()};
   }
-`);
+`)
 
 export const Track = setDisplayName('Track')(styled.div`
   background: ${g.switchOffTrackColor};
@@ -62,7 +62,7 @@ export const Track = setDisplayName('Track')(styled.div`
       border: 2px solid ${g.switchDisabledTrackColor};
       cursor: auto;
     `};
-`);
+`)
 
 export const Thumb = setDisplayName('Thumb')(styled.div`
   background: ${g.switchOffThumbColor};
@@ -74,7 +74,7 @@ export const Thumb = setDisplayName('Thumb')(styled.div`
   border-radius: 50%;
   cursor: pointer;
   ${shadow2dp()} ${materialAnimationDefault('0.28s')} transition-property: left;
-`);
+`)
 
 export const SwitchLabel = setDisplayName('SwitchLabel')(styled.span`
   position: relative;
@@ -89,4 +89,4 @@ export const SwitchLabel = setDisplayName('SwitchLabel')(styled.span`
       color: ${g.switchDisabledTumbColor};
       cursor: auto;
     `};
-`);
+`)

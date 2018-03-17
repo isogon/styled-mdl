@@ -1,20 +1,20 @@
-import MenuDivider from '../../src/components/menu/MenuDivider';
+import MenuDivider from '../../src/components/menu/MenuDivider'
 
-import { MenuDivider as MenuDividerBase } from '../../src/components/menu/Menu.style';
+import { MenuDivider as MenuDividerBase } from '../../src/components/menu/Menu.style'
 
-const render = shallowComponent(MenuDivider);
+const render = shallowComponent(MenuDivider)
 
 describe('Divider', () => {
-  let divider;
+  let divider
 
   beforeEach(() => {
-    divider = render();
-  });
+    divider = render()
+  })
 
   describe('refs', () => {
     it('sets a ref to the menuItem', () => {
-      divider.find(MenuDividerBase).prop('innerRef')('menu divider ref');
-      expect(divider.instance().menuItem).toEqual('menu divider ref');
-    });
-  });
-});
+      divider.find(MenuDividerBase).prop('innerRef')('menu divider ref')
+      expect(divider.instance().menuItem).toEqual('menu divider ref')
+    })
+  })
+})

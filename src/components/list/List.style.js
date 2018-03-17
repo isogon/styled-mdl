@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-import { typoSubhead, typoCaption, typoBody1 } from '../../mixins';
-import { getters as g } from '../../util';
+import { typoSubhead, typoCaption, typoBody1 } from '../../mixins'
+import { getters as g } from '../../util'
 
 export const List = styled.ul`
   display: block;
@@ -9,7 +9,7 @@ export const List = styled.ul`
   list-style: none;
   min-width: 300px;
   width: ${({ width }) => width};
-`;
+`
 
 export const LiPrimary = styled.span`
   order: 0;
@@ -18,23 +18,23 @@ export const LiPrimary = styled.span`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-`;
+`
 
 export const LiSecondary = styled.span`
   display: flex;
   flex-flow: column;
   align-items: flex-end;
   margin-left: ${g.listMinPadding}px;
-`;
+`
 
-export const LiAction = styled.span``;
+export const LiAction = styled.span``
 export const LiInfo = styled.span`
   ${typoCaption()}
   color: ${g.listSupportingTextTextColor};
-`;
+`
 export const LiSubTitle = styled.span`
   padding: 0 0 0 ${g.listMinPadding}px;
-`;
+`
 
 export const LiIcon = styled.i`
   height: ${g.listIconSize}px;
@@ -43,7 +43,7 @@ export const LiIcon = styled.i`
   box-sizing: border-box;
   color: ${g.listIconColor};
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listIconSize - theme.listMinPadding}px;
-`;
+`
 
 export const LiAvatar = styled.span`
   display: flex;
@@ -63,11 +63,11 @@ export const LiAvatar = styled.span`
   `}
   color: ${g.listAvatarColor};
   margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listAvatarSize - theme.listMinPadding}px;
-`;
+`
 
 export const LiTitle = styled.span`
   font-size: 16px;
-`;
+`
 
 export const LiTextBody = styled.div`
   ${typoBody1()}
@@ -76,7 +76,7 @@ export const LiTextBody = styled.div`
   color: ${g.listSupportingTextTextColor};
   display: block;
   padding: 0;
-`;
+`
 
 export const ListItem = styled.li`
   ${typoSubhead()}
@@ -131,4 +131,4 @@ export const ListItem = styled.li`
       height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
     }
   `}
-`;
+`

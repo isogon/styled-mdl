@@ -1,5 +1,5 @@
-import * as defaults from './defaults';
-import createThemer from '../createThemer';
+import * as defaults from './defaults'
+import createThemer from '../createThemer'
 
 export default createThemer(defaults, (theme) => ({
   gridTabletGutter: theme.gridDesktopGutter,
@@ -8,4 +8,4 @@ export default createThemer(defaults, (theme) => ({
   gridPhoneMargin: theme.gridDesktopMargin,
   gridCellDefaultColumns: theme.gridPhoneColumns,
   gridMaxColumns: theme.gridDesktopColumns,
-}));
+}))

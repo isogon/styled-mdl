@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactModal from 'react-modal';
+import React from 'react'
+import ReactModal from 'react-modal'
 
-import { DialogStyle, fadeIn } from './Dialog.style';
+import { DialogStyle, fadeIn } from './Dialog.style'
 
 const style = {
   overlay: {
@@ -32,16 +32,16 @@ const style = {
     border: 0,
     overflow: 'visible',
   },
-};
+}
 
 const DialogWrap = ({ className, children, ...props }) => (
   <ReactModal style={style} {...props}>
     <div className={className}>{children}</div>
   </ReactModal>
-);
+)
 
-const Dialog = DialogStyle.withComponent(DialogWrap);
+const Dialog = DialogStyle.withComponent(DialogWrap)
 
-Dialog.displayName = 'Dialog';
+Dialog.displayName = 'Dialog'
 
-export default Dialog;
+export default Dialog

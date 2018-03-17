@@ -1,6 +1,6 @@
-import * as defaults from './defaults';
-import createThemer from '../createThemer';
-import { rgba, rgb } from '../../util/colors';
+import * as defaults from './defaults'
+import createThemer from '../createThemer'
+import { rgba, rgb } from '../../util/colors'
 
 export default createThemer(defaults, (theme) => ({
   /* ========== Buttons  ========== */
@@ -78,4 +78,4 @@ export default createThemer(defaults, (theme) => ({
   /* ========== Footer ========== */
   footerButtonFillColor: theme.footerColor,
   footerUnderlineColor: theme.footerColor,
-}));
+}))

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import MenuItem from './MenuItem';
-import { MenuDivider as MenuDividerBase } from './Menu.style';
+import MenuItem from './MenuItem'
+import { MenuDivider as MenuDividerBase } from './Menu.style'
 
 export default class MenuDivider extends MenuItem {
   render() {
@@ -10,9 +10,9 @@ export default class MenuDivider extends MenuItem {
         {...this.props}
         {...this.state}
         innerRef={(menuItem) => {
-          this.menuItem = menuItem;
+          this.menuItem = menuItem
         }}
       />
-    );
+    )
   }
 }

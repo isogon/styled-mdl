@@ -1,19 +1,19 @@
 import MenuItem, {
   MenuItem as MenuItemClass,
-} from '../../src/components/menu/MenuItem';
-import { MenuItem as MenuItemBase } from '../../src/components/menu/Menu.style';
+} from '../../src/components/menu/MenuItem'
+import { MenuItem as MenuItemBase } from '../../src/components/menu/Menu.style'
 
-const render = shallowComponent(MenuItemClass);
+const render = shallowComponent(MenuItemClass)
 
 describe('MenuItem', () => {
-  let menuItem;
-  const menuHeight = 500;
-  const itemOffset = 100;
-  const itemHeight = 50;
-  const duration = 2;
+  let menuItem
+  const menuHeight = 500
+  const itemOffset = 100
+  const itemHeight = 50
+  const duration = 2
 
   beforeEach(() => {
-    menuItem = render();
+    menuItem = render()
     menuItem.instance().menuItem = {
       parentNode: {
         parentNode: {
@@ -24,76 +24,76 @@ describe('MenuItem', () => {
       getBoundingClientRect: () => ({
         height: itemHeight,
       }),
-    };
-  });
+    }
+  })
 
   it('has the right displayName', () => {
-    expect(MenuItem.displayName).toEqual('MenuItem');
-  });
+    expect(MenuItem.displayName).toEqual('MenuItem')
+  })
 
   it('is extendable', () => {
-    expect(typeof MenuItem.extend).toEqual('function');
-  });
+    expect(typeof MenuItem.extend).toEqual('function')
+  })
 
   it('defaults getTransitionDelay to 0', () => {
     const actual = menuItem.find(MenuItemBase).prop('getTransitionDelay')(
       duration,
-    );
-    expect(actual).toEqual(0);
-  });
+    )
+    expect(actual).toEqual(0)
+  })
 
   describe('refs', () => {
     it('sets a ref to the menuItem', () => {
-      menuItem.find(MenuItemBase).prop('innerRef')('menu item ref');
-      expect(menuItem.instance().menuItem).toEqual('menu item ref');
-    });
-  });
+      menuItem.find(MenuItemBase).prop('innerRef')('menu item ref')
+      expect(menuItem.instance().menuItem).toEqual('menu item ref')
+    })
+  })
 
   describe('when receiving new props but not becoming visible', () => {
     it('does not attempt to recalculate transition delay', () => {
-      menuItem.setProps({ isVisible: true, fadeDown: true });
+      menuItem.setProps({ isVisible: true, fadeDown: true })
       menuItem.instance().menuItem = {
         ...menuItem.instance().menuItem,
         getBoundingClientRect: jest.fn(),
-      };
+      }
 
-      menuItem.setProps({ isVisible: false, fadeDown: true });
+      menuItem.setProps({ isVisible: false, fadeDown: true })
 
       expect(
         menuItem.instance().menuItem.getBoundingClientRect,
-      ).not.toHaveBeenCalled();
-    });
-  });
+      ).not.toHaveBeenCalled()
+    })
+  })
 
   describe('when it becomes visible', () => {
     describe('when it should fade down', () => {
       beforeEach(() => {
-        menuItem.setProps({ isVisible: true, fadeDown: true });
-      });
+        menuItem.setProps({ isVisible: true, fadeDown: true })
+      })
 
       it('fades menuItem in based on its distance the top', () => {
         const actual = menuItem.find(MenuItemBase).prop('getTransitionDelay')(
           duration,
-        );
-        const expected = itemOffset / menuHeight * duration;
+        )
+        const expected = itemOffset / menuHeight * duration
 
-        expect(actual).toEqual(expected);
-      });
-    });
+        expect(actual).toEqual(expected)
+      })
+    })
     describe('when it should fade up', () => {
       beforeEach(() => {
-        menuItem.setProps({ isVisible: true, fadeDown: false });
-      });
+        menuItem.setProps({ isVisible: true, fadeDown: false })
+      })
 
       it('fades menuItem in based on its distance the bottom', () => {
         const actual = menuItem.find(MenuItemBase).prop('getTransitionDelay')(
           duration,
-        );
+        )
         const expected =
-          -(itemOffset + itemHeight - menuHeight) / menuHeight * duration;
+          -(itemOffset + itemHeight - menuHeight) / menuHeight * duration
 
-        expect(actual).toEqual(expected);
-      });
-    });
-  });
-});
+        expect(actual).toEqual(expected)
+      })
+    })
+  })
+})

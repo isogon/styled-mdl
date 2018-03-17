@@ -1,9 +1,9 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
-import { mask, bg } from './images';
-import { materialAnimationDefault } from '../../mixins';
+import { getters as g } from '../../util'
+import { mask, bg } from './images'
+import { materialAnimationDefault } from '../../mixins'
 
 export const CheckboxWrap = setDisplayName('CheckboxWrap')(styled.label`
   position: relative;
@@ -15,7 +15,7 @@ export const CheckboxWrap = setDisplayName('CheckboxWrap')(styled.label`
   height: ${g.radioLabelHeight}px;
   margin: 0;
   padding-left: ${({ theme }) => theme.radioButtonSize + theme.radioPadding}px;
-`);
+`)
 
 export const CheckboxButton = setDisplayName('CheckboxButton')(styled.input`
   line-height: ${g.radioLabelHeight}px;
@@ -37,7 +37,7 @@ export const CheckboxButton = setDisplayName('CheckboxButton')(styled.input`
     background-color: ${g.checkboxColor};
     background-image: url(${bg});
   }
-`);
+`)
 
 export const BoxOutline = setDisplayName('BoxOutline')(styled.div`
   position: absolute;
@@ -59,7 +59,7 @@ export const BoxOutline = setDisplayName('BoxOutline')(styled.div`
       border: 2px solid ${g.checkboxDisabledColor};
       cursor: auto;
     `};
-`);
+`)
 
 export const TickOutline = setDisplayName('TickOutline')(styled.div`
   position: absolute;
@@ -77,7 +77,7 @@ export const TickOutline = setDisplayName('TickOutline')(styled.div`
     css`
       background-color: ${g.checkboxDisabledColor};
     `};
-`);
+`)
 
 export const CheckboxLabel = setDisplayName('CheckboxLabel')(styled.span`
   cursor: pointer;
@@ -88,4 +88,4 @@ export const CheckboxLabel = setDisplayName('CheckboxLabel')(styled.span`
       color: ${g.checkboxDisabledColor};
       cursor: auto;
     `};
-`);
+`)

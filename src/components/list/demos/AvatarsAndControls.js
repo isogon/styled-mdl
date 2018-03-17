@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   List,
   ListItem,
@@ -10,7 +10,7 @@ import {
   Radio,
   Switch,
   Icon,
-} from '../../../';
+} from '../../../'
 
 export default () => (
   <List>
@@ -54,4 +54,4 @@ export default () => (
       </LiSecondary>
     </ListItem>
   </List>
-);
+)

@@ -1,32 +1,32 @@
-import { compose, setDisplayName, setPropTypes } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { compose, setDisplayName, setPropTypes } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { Input } from '../../input';
-import { SliderInput, SliderContainer, SliderBackground } from './Slider.style';
-import { proxyStyledStatics } from '../../hocs';
+import { Input } from '../../input'
+import { SliderInput, SliderContainer, SliderBackground } from './Slider.style'
+import { proxyStyledStatics } from '../../hocs'
 
 export class SliderBase extends Input {
   state = {
     ...this.state,
     value: this.props.value || this.props.defaultValue || this.props.min,
     active: this.props.active,
-  };
+  }
 
   handleMouseDown = () => {
-    this.setState({ active: true });
-  };
+    this.setState({ active: true })
+  }
 
   handleMouseUp = (e) => {
-    this.setState({ active: false });
-    this.handleBlur(e);
-  };
+    this.setState({ active: false })
+    this.handleBlur(e)
+  }
 
   render() {
-    const { disabled, max, min, __StyledComponent__: Styled } = this.props;
-    const { active, value, focused } = this.state;
+    const { disabled, max, min, __StyledComponent__: Styled } = this.props
+    const { active, value, focused } = this.state
 
-    const percent = (value - min) / (max - min);
+    const percent = (value - min) / (max - min)
 
     return (
       <Styled>
@@ -53,7 +53,7 @@ export class SliderBase extends Input {
           percent={percent}
         />
       </Styled>
-    );
+    )
   }
 }
 
@@ -73,6 +73,6 @@ const enhance = compose(
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
   }),
-);
+)
 
-export default enhance(SliderBase);
+export default enhance(SliderBase)

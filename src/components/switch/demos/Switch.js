@@ -1,4 +1,4 @@
-import React from 'react';
-import { Switch } from '../../../';
+import React from 'react'
+import { Switch } from '../../../'
 
-export default () => <Switch label="Switch" />;
+export default () => <Switch label="Switch" />

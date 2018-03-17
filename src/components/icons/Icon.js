@@ -1,14 +1,14 @@
-import { compose, setDisplayName, setPropTypes, withProps } from 'recompose';
-import { prop, always, cond } from 'lodash/fp';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { compose, setDisplayName, setPropTypes, withProps } from 'recompose'
+import { prop, always, cond } from 'lodash/fp'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { IconStyle } from './Icon.style';
-import { proxyStyledStatics } from '../../hocs';
+import { IconStyle } from './Icon.style'
+import { proxyStyledStatics } from '../../hocs'
 
 const Icon = ({ name, __StyledComponent__: Styled, ...props }) => (
   <Styled {...props}>{name}</Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(IconStyle),
@@ -31,6 +31,6 @@ const enhance = compose(
       [prop('xl'), always('64')],
     ])(p),
   })),
-);
+)
 
-export default enhance(Icon);
+export default enhance(Icon)

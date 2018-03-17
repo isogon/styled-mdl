@@ -1,5 +1,5 @@
-import React from 'react';
-import { List, ListItem, LiIcon, Icon } from '../../../';
+import React from 'react'
+import { List, ListItem, LiIcon, Icon } from '../../../'
 
 export default () => (
   <List>
@@ -22,4 +22,4 @@ export default () => (
       Bob Odenkirk
     </ListItem>
   </List>
-);
+)

@@ -16,6 +16,7 @@ module.exports = {
     },
   },
   rules: {
+    semi: ['error', 'never'],
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': [2, 'as-needed'],
     'comma-dangle': [2, 'always-multiline'],
@@ -70,4 +71,4 @@ module.exports = {
       },
     },
   },
-};
+}

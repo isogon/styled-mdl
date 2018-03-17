@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled, { css } from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 export const CardTitle = setDisplayName('CardTitle')(styled.header`
   align-items: center;
@@ -18,4 +18,4 @@ export const CardTitle = setDisplayName('CardTitle')(styled.header`
   ${({ expand }) => expand && css`
     flex-grow: 1;
   `}
-`);
+`)

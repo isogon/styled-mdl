@@ -1,7 +1,8 @@
 {
   "name": "styled-mdl",
-  "version": "0.3.1",
-  "description": "Components for React built using Styled Components and based on Google's Material Design Lite",
+  "version": "0.3.2",
+  "description":
+    "Components for React built using Styled Components and based on Google's Material Design Lite",
   "private": false,
   "main": "lib/index.js",
   "repository": {
@@ -15,21 +16,30 @@
     "build": "babel src -s -d lib --ignore '/demos/'",
     "dev:serveStories": "NODE_ENV=development yarn storybook",
     "dev:createStories": "./scripts/demos2stories.js",
-    "dev": "concurrently -k \"yarn dev:serveStories\" \"yarn dev:createStories\"",
+    "dev":
+      "concurrently -k \"yarn dev:serveStories\" \"yarn dev:createStories\"",
+    "format":
+      "prettier --config ./.prettierrc --write \"{src,tests,stories}/**/*.js\"",
+    "format:check":
+      "prettier --config ./.prettierrc --list-different \"{src,tests,stories}/**/*.js\"",
     "lint": "eslint src tests stories",
     "lint:staged": "lint-staged",
+    "oncommit": "yarn format:check && yarn lint:staged",
     "pretest": "yarn test:clean && yarn lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "manualPrepublish": "yarn build && prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock",
+    "manualPrepublish":
+      "yarn build && prepare-isogon-package . && yarn generate-lock-entry --production > yarn.lock",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "lint-staged": {
-    "*.js": "lint"
+    "src/**/*.js": "eslint",
+    "tests/**/*.js": "eslint",
+    "stories/**/*.js": "eslint"
   },
-  "pre-commit": "lint:staged",
+  "pre-commit": "oncommit",
   "peerDependencies": {
     "react": "^15.4.1 || ^16.0.0",
     "react-dom": "^15.4.1 || ^16.0.0",
@@ -62,6 +72,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "6.16.0",
+    "concurrently": "^3.5.1",
     "cross-env": "^3.1.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -73,8 +84,9 @@
     "glob": "^7.1.2",
     "jest": "^22.4.2",
     "jest-enzyme": "^4.2.0",
-    "lint-staged": "3.2.1",
+    "lint-staged": "^7.0.0",
     "pre-commit": "1.1.3",
+    "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rimraf": "2.5.4",

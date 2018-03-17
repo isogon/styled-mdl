@@ -1,11 +1,11 @@
-import { setPropTypes, setDisplayName, compose } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { setPropTypes, setDisplayName, compose } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { SnackbarAction } from './Action.style';
-import { SnackbarMessage } from './Message.style';
-import { proxyStyledStatics } from '../../hocs';
-import { SnackbarStyle } from './Snackbar.style';
+import { SnackbarAction } from './Action.style'
+import { SnackbarMessage } from './Message.style'
+import { proxyStyledStatics } from '../../hocs'
+import { SnackbarStyle } from './Snackbar.style'
 
 export const SnackbarBase = ({
   message,
@@ -20,7 +20,7 @@ export const SnackbarBase = ({
       <SnackbarAction onClick={actionHandler}>{actionText}</SnackbarAction>
     )}
   </Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(SnackbarStyle),
@@ -30,6 +30,6 @@ const enhance = compose(
     actionText: PropTypes.string,
     actionHandler: PropTypes.func,
   }),
-);
+)
 
-export default enhance(SnackbarBase);
+export default enhance(SnackbarBase)

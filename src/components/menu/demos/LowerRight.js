@@ -1,7 +1,7 @@
-import React from 'react';
-import { Menu, MenuItem, MenuDivider, Button, Icon } from '../../../';
+import React from 'react'
+import { Menu, MenuItem, MenuDivider, Button, Icon } from '../../../'
 
-import { Container, Bar, Bg } from './_shared';
+import { Container, Bar, Bg } from './_shared'
 
 export default () => (
   <Container align="right">
@@ -23,4 +23,4 @@ export default () => (
     </Bar>
     <Bg />
   </Container>
-);
+)

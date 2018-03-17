@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { setDisplayName } from 'recompose';
-import { getters as g } from '../../util';
+import styled, { css } from 'styled-components'
+import { setDisplayName } from 'recompose'
+import { getters as g } from '../../util'
 
 export const CardSupportingText = setDisplayName('CardSupportingText')(styled.div`
   color: ${g.cardSupportingTextTextColor};
@@ -12,4 +12,4 @@ export const CardSupportingText = setDisplayName('CardSupportingText')(styled.di
   ${({ border }) => border && css`
     border-bottom: 1px solid ${g.cardBorderColor};
   `}
-`);
+`)

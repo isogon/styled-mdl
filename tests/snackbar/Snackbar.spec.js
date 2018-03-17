@@ -1,52 +1,52 @@
-import Snackbar, { SnackbarBase } from '../../src/components/snackbar/Snackbar';
+import Snackbar, { SnackbarBase } from '../../src/components/snackbar/Snackbar'
 
-const render = shallowComponent(Snackbar, { message: 'message' });
+const render = shallowComponent(Snackbar, { message: 'message' })
 
 describe('<Snackbar />', () => {
-  let snackbar;
+  let snackbar
 
   beforeEach(() => {
-    snackbar = render();
-  });
+    snackbar = render()
+  })
 
   it('has the right displayName', () => {
-    expect(Snackbar.displayName).toEqual('Snackbar');
-  });
+    expect(Snackbar.displayName).toEqual('Snackbar')
+  })
 
   it('is deeply extendable', () => {
-    expect(typeof Snackbar.extend).toEqual('function');
-    expect(typeof Snackbar.extend``.extend).toEqual('function');
-  });
+    expect(typeof Snackbar.extend).toEqual('function')
+    expect(typeof Snackbar.extend``.extend).toEqual('function')
+  })
 
   it('renders a <SnackbarMessage> with [prop] message', () => {
-    snackbar.setProps({ message: 'message' });
+    snackbar.setProps({ message: 'message' })
     expect(
       snackbar.until(SnackbarBase).find('SnackbarMessage'),
-    ).toHaveInnerText('message');
-  });
+    ).toHaveInnerText('message')
+  })
 
   it('only renders an <SnackbarAction> when [prop] actionText is defined', () => {
     expect(
       snackbar.until(SnackbarBase).find('SnackbarAction'),
-    ).not.toBePresent();
-  });
+    ).not.toBePresent()
+  })
 
   it('renders an <SnackbarAction> with [prop] actionText', () => {
-    snackbar.setProps({ actionText: 'action' });
+    snackbar.setProps({ actionText: 'action' })
     expect(snackbar.until(SnackbarBase).find('SnackbarAction')).toHaveInnerText(
       'action',
-    );
-  });
+    )
+  })
 
   it('triggers [prop] actionHander when <SnackbarAction> is clicked', () => {
-    const actionHandler = jest.fn();
-    snackbar.setProps({ actionHandler, actionText: 'action' });
+    const actionHandler = jest.fn()
+    snackbar.setProps({ actionHandler, actionText: 'action' })
 
     snackbar
       .until(SnackbarBase)
       .find('SnackbarAction')
-      .simulate('click');
+      .simulate('click')
 
-    expect(actionHandler).toHaveBeenCalled();
-  });
-});
+    expect(actionHandler).toHaveBeenCalled()
+  })
+})

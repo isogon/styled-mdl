@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   compose,
   setPropTypes,
   setDisplayName,
   defaultProps,
   withProps,
-} from 'recompose';
+} from 'recompose'
 
-import { Ripple } from '../ripple';
+import { Ripple } from '../ripple'
 
-import { StyledButton, ButtonInner } from './Button.style';
-import { proxyStyledStatics } from '../../hocs';
+import { StyledButton, ButtonInner } from './Button.style'
+import { proxyStyledStatics } from '../../hocs'
 
 export const ButtonBase = ({
   children,
@@ -28,7 +28,7 @@ export const ButtonBase = ({
       {shouldShowRipple && <Ripple round={isRound} dark={isDark} />}
     </ButtonInner>
   </Button>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(StyledButton),
@@ -53,6 +53,6 @@ const enhance = compose(
       !(props.colored || props.accent || props.primary),
     isRound: props.fab || props.icon,
   })),
-);
+)
 
-export default enhance(ButtonBase);
+export default enhance(ButtonBase)

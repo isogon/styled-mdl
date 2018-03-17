@@ -18,4 +18,4 @@ module.exports = {
   moduleDirectories: ['node_modules'],
   setupTestFrameworkScriptFile: '<rootDir>/tests/_setup/test-bundler.js',
   testRegex: 'tests/.*\\.spec\\.js$',
-};
+}

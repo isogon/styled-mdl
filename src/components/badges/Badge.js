@@ -1,9 +1,9 @@
-import { setPropTypes, setDisplayName, defaultProps, compose } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { setPropTypes, setDisplayName, defaultProps, compose } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { BadgeWrap, BadgeText } from './Badge.style';
-import { proxyStyledStatics } from '../../hocs';
+import { BadgeWrap, BadgeText } from './Badge.style'
+import { proxyStyledStatics } from '../../hocs'
 
 export const BadgeBase = ({
   text,
@@ -15,7 +15,7 @@ export const BadgeBase = ({
     {children}
     <BadgeText {...props}>{text}</BadgeText>
   </Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(BadgeWrap),
@@ -28,6 +28,6 @@ const enhance = compose(
   defaultProps({
     background: true,
   }),
-);
+)
 
-export default enhance(BadgeBase);
+export default enhance(BadgeBase)

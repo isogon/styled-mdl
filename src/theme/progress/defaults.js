@@ -1,1 +1,1 @@
-export const barHeight = 4;
+export const barHeight = 4

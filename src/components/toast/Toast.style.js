@@ -1,7 +1,7 @@
-import { setDisplayName } from 'recompose';
-import styled, { css } from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled, { css } from 'styled-components'
 
-import { getters as g } from '../../util';
+import { getters as g } from '../../util'
 
 export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
   position: fixed;
@@ -24,19 +24,19 @@ export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
             bottom: 0;
             left: 0;
             transform: translate(0, 100%);
-          `;
+          `
         case 'right':
           return css`
             bottom: 0;
             right: 0;
             transform: translate(0, 100%);
-          `;
+          `
         default:
           return css`
             left: 50%;
             bottom: 0;
             transform: translate(-50%, 100%);
-          `;
+          `
       }
     }}
   }
@@ -51,14 +51,14 @@ export const ToastAnimation = setDisplayName('ToastAnimation')(styled.div`
           case 'right':
             return css`
               transform: translate(0, 0);
-            `;
+            `
           default:
             return css`
               left: 50%;
               transform: translate(-50%, 0);
-            `;
+            `
         }
       }}
     }
   `}
-`);
+`)

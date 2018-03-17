@@ -1,1 +1,1 @@
-export Spacer from './Spacer.style';
+export Spacer from './Spacer.style'

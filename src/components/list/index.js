@@ -10,4 +10,4 @@ export {
   LiSubTitle,
   LiTextBody,
   LiTitle,
-} from './List.style';
+} from './List.style'

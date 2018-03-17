@@ -1,11 +1,11 @@
-import { compose, setPropTypes, setDisplayName } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { compose, setPropTypes, setDisplayName } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { Icon } from '../icons';
-import { ChipStyle, ChipText, ChipAction } from './Chip.style';
-import { proxyStyledStatics } from '../../hocs';
-import ChipContact from './ChipContact';
+import { Icon } from '../icons'
+import { ChipStyle, ChipText, ChipAction } from './Chip.style'
+import { proxyStyledStatics } from '../../hocs'
+import ChipContact from './ChipContact'
 
 export const ChipBase = ({
   deletable,
@@ -23,7 +23,7 @@ export const ChipBase = ({
       </ChipAction>
     )}
   </Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(ChipStyle),
@@ -39,6 +39,6 @@ const enhance = compose(
     children: PropTypes.node,
     onClickDelete: PropTypes.func,
   }),
-);
+)
 
-export default enhance(ChipBase);
+export default enhance(ChipBase)

@@ -1,4 +1,4 @@
-import ShallowWrapper from 'enzyme/ShallowWrapper';
+import ShallowWrapper from 'enzyme/ShallowWrapper'
 
 /* eslint-disable no-param-reassign */
 // Copied from gist
@@ -10,7 +10,7 @@ function shallowRecursively(wrapper, selector) {
     wrapper.isEmptyRender() ||
     typeof wrapper.getElement().type === 'string'
   ) {
-    return wrapper;
+    return wrapper
   }
   //
   // console.log(wrapper.getElement().type);
@@ -18,11 +18,11 @@ function shallowRecursively(wrapper, selector) {
 
   return selector && wrapper.is(selector)
     ? wrapper.dive()
-    : shallowRecursively(wrapper.dive(), selector);
+    : shallowRecursively(wrapper.dive(), selector)
 }
 
 function until(selector) {
-  return this.single('until', () => shallowRecursively(this, selector));
+  return this.single('until', () => shallowRecursively(this, selector))
 }
 
-ShallowWrapper.prototype.until = until;
+ShallowWrapper.prototype.until = until

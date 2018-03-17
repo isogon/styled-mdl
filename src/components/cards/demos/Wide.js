@@ -1,5 +1,5 @@
-import React from 'react';
-import { MdShare } from 'react-icons/lib/md';
+import React from 'react'
+import { MdShare } from 'react-icons/lib/md'
 
 import {
   Button,
@@ -10,22 +10,22 @@ import {
   CardTitle,
   CardTitleText,
   shadow2dp,
-} from '../../../';
+} from '../../../'
 
 export const DemoCardWide = Card.extend`
   ${shadow2dp()} width: 512px;
-`;
+`
 
 export const DemoCardTitle = CardTitle.extend`
   color: #fff;
   height: 176px;
   background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center /
     cover;
-`;
+`
 
 export const DemoCardMenu = CardMenu.extend`
   color: #fff;
-`;
+`
 
 export default () => (
   <DemoCardWide>
@@ -45,4 +45,4 @@ export default () => (
       </Button>
     </DemoCardMenu>
   </DemoCardWide>
-);
+)

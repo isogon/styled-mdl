@@ -1,7 +1,7 @@
-import { setDisplayName } from 'recompose';
-import styled from 'styled-components';
+import { setDisplayName } from 'recompose'
+import styled from 'styled-components'
 
-import { getters as g } from '../../util';
+import { getters as g } from '../../util'
 
 export const SnackbarStyle = setDisplayName('SnacbarStyle')(styled.div`
   background-color: #323232;
@@ -18,4 +18,4 @@ export const SnackbarStyle = setDisplayName('SnacbarStyle')(styled.div`
     border-radius: 2px;
     margin: 0 16px 16px 16px;
   }
-`);
+`)

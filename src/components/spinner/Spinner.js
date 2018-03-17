@@ -1,6 +1,6 @@
-import { compose, setPropTypes, setDisplayName } from 'recompose';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { compose, setPropTypes, setDisplayName } from 'recompose'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   SpinnerStyle,
@@ -11,10 +11,10 @@ import {
   GapPatch,
   CircleClipper,
   Circle,
-} from './Spinner.style';
-import { proxyStyledStatics } from '../../hocs';
+} from './Spinner.style'
+import { proxyStyledStatics } from '../../hocs'
 
-const layers = [LayerOne, LayerTwo, LayerThree, LayerFour];
+const layers = [LayerOne, LayerTwo, LayerThree, LayerFour]
 
 export const SpinnerBase = ({ __StyledComponent__: Styled, ...props }) => (
   <Styled {...props}>
@@ -32,7 +32,7 @@ export const SpinnerBase = ({ __StyledComponent__: Styled, ...props }) => (
       </Layer>
     ))}
   </Styled>
-);
+)
 
 const enhance = compose(
   proxyStyledStatics(SpinnerStyle),
@@ -41,6 +41,6 @@ const enhance = compose(
     active: PropTypes.bool,
     singleColor: PropTypes.bool,
   }),
-);
+)
 
-export default enhance(SpinnerBase);
+export default enhance(SpinnerBase)

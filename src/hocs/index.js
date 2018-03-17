@@ -1,1 +1,1 @@
-export proxyStyledStatics from './proxyStyledStatics';
+export proxyStyledStatics from './proxyStyledStatics'

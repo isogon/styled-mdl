@@ -13,7 +13,7 @@ export const red = {
   A200: '255,82,82',
   A400: '255,23,68',
   A700: '213,0,0',
-};
+}
 
 export const pink = {
   50: '252,228,236',
@@ -30,7 +30,7 @@ export const pink = {
   A200: '255,64,129',
   A400: '245,0,87',
   A700: '197,17,98',
-};
+}
 
 export const purple = {
   50: '243,229,245',
@@ -47,7 +47,7 @@ export const purple = {
   A200: '224,64,251',
   A400: '213,0,249',
   A700: '170,0,255',
-};
+}
 
 export const deepPurple = {
   50: '237,231,246',
@@ -64,7 +64,7 @@ export const deepPurple = {
   A200: '124,77,255',
   A400: '101,31,255',
   A700: '98,0,234',
-};
+}
 
 export const indigo = {
   50: '232,234,246',
@@ -81,7 +81,7 @@ export const indigo = {
   A200: '83,109,254',
   A400: '61,90,254',
   A700: '48,79,254',
-};
+}
 
 export const blue = {
   50: '227,242,253',
@@ -98,7 +98,7 @@ export const blue = {
   A200: '68,138,255',
   A400: '41,121,255',
   A700: '41,98,255',
-};
+}
 
 export const lightBlue = {
   50: '225,245,254',
@@ -115,7 +115,7 @@ export const lightBlue = {
   A200: '64,196,255',
   A400: '0,176,255',
   A700: '0,145,234',
-};
+}
 
 export const cyan = {
   50: '224,247,250',
@@ -132,7 +132,7 @@ export const cyan = {
   A200: '24,255,255',
   A400: '0,229,255',
   A700: '0,184,212',
-};
+}
 
 export const teal = {
   50: '224,242,241',
@@ -149,7 +149,7 @@ export const teal = {
   A200: '100,255,218',
   A400: '29,233,182',
   A700: '0,191,165',
-};
+}
 
 export const green = {
   50: '232,245,233',
@@ -166,7 +166,7 @@ export const green = {
   A200: '105,240,174',
   A400: '0,230,118',
   A700: '0,200,83',
-};
+}
 
 export const lightGreen = {
   50: '241,248,233',
@@ -183,7 +183,7 @@ export const lightGreen = {
   A200: '178,255,89',
   A400: '118,255,3',
   A700: '100,221,23',
-};
+}
 
 export const lime = {
   50: '249,251,231',
@@ -200,7 +200,7 @@ export const lime = {
   A200: '238,255,65',
   A400: '198,255,0',
   A700: '174,234,0',
-};
+}
 
 export const yellow = {
   50: '255,253,231',
@@ -217,7 +217,7 @@ export const yellow = {
   A200: '255,255,0',
   A400: '255,234,0',
   A700: '255,214,0',
-};
+}
 
 export const amber = {
   50: '255,248,225',
@@ -234,7 +234,7 @@ export const amber = {
   A200: '255,215,64',
   A400: '255,196,0',
   A700: '255,171,0',
-};
+}
 
 export const orange = {
   50: '255,243,224',
@@ -251,7 +251,7 @@ export const orange = {
   A200: '255,171,64',
   A400: '255,145,0',
   A700: '255,109,0',
-};
+}
 
 export const deepOrange = {
   50: '251,233,231',
@@ -268,7 +268,7 @@ export const deepOrange = {
   A200: '255,110,64',
   A400: '255,61,0',
   A700: '221,44,0',
-};
+}
 
 export const brown = {
   50: '239,235,233',
@@ -281,7 +281,7 @@ export const brown = {
   700: '93,64,55',
   800: '78,52,46',
   900: '62,39,35',
-};
+}
 
 export const grey = {
   50: '250,250,250',
@@ -294,7 +294,7 @@ export const grey = {
   700: '97,97,97',
   800: '66,66,66',
   900: '33,33,33',
-};
+}
 
 export const blueGrey = {
   50: '236,239,241',
@@ -307,11 +307,11 @@ export const blueGrey = {
   700: '69,90,100',
   800: '55,71,79',
   900: '38,50,56',
-};
+}
 
-export const black = '0,0,0';
-export const white = '255,255,255';
+export const black = '0,0,0'
+export const white = '255,255,255'
 
-export const styleguideGenerateTemplate = false;
-export const darkContrast = white;
-export const lightContrast = black;
+export const styleguideGenerateTemplate = false
+export const darkContrast = white
+export const lightContrast = black
