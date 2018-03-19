@@ -5,7 +5,7 @@ import { getters as g } from '../../util'
 
 export const List = styled.ul`
   display: block;
-  padding: $list-border 0;
+  padding: ${g.listBorder}px 0;
   list-style: none;
   min-width: 300px;
   width: ${({ width }) => width};
