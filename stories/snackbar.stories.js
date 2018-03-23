@@ -2,8 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import Snackbar from '../src/components/snackbar/demos/Snackbar.js'
-import SnackbarWithAction from '../src/components/snackbar/demos/SnackbarWithAction.js'
+import Snackbar from '../src/components/Snackbar/__demos__/Snackbar.js'
+import SnackbarWithAction from '../src/components/Snackbar/__demos__/SnackbarWithAction.js'
 
 storiesOf('Snackbar', module)
   .addDecorator(wrapStory)

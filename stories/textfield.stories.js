@@ -2,10 +2,10 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import Error from '../src/components/textfield/demos/Error.js'
-import HelperText from '../src/components/textfield/demos/HelperText.js'
-import MultiLine from '../src/components/textfield/demos/MultiLine.js'
-import SingleLine from '../src/components/textfield/demos/SingleLine.js'
+import Error from '../src/components/Textfield/__demos__/Error.js'
+import HelperText from '../src/components/Textfield/__demos__/HelperText.js'
+import MultiLine from '../src/components/Textfield/__demos__/MultiLine.js'
+import SingleLine from '../src/components/Textfield/__demos__/SingleLine.js'
 
 storiesOf('Textfield', module)
   .addDecorator(wrapStory)

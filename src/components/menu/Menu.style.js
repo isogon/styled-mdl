@@ -120,7 +120,7 @@ export const MenuBase = styled.div`
 
 MenuBase.displayName = 'MenuBase'
 
-export const MenuDivider = styled.hr`
+export const MenuDividerBase = styled.hr`
   border-bottom: 1px solid ${g.defaultItemDividerColor};
   margin: 0;
   opacity: 0;
@@ -132,9 +132,9 @@ export const MenuDivider = styled.hr`
   ${({ isVisible }) => isVisible && css`opacity: 1;`};
 `
 
-MenuDivider.displayName = 'MenuDivider'
+MenuDividerBase.displayName = 'MenuDividerBase'
 
-export const MenuItem = styled.button`
+export const MenuItemBase = styled.button`
   display: block;
   width: 100%;
   border: none;
@@ -189,4 +189,4 @@ export const MenuItem = styled.button`
   }
 `
 
-MenuItem.displayName = 'MenuItem'
+MenuItemBase.displayName = 'MenuItemBase'

@@ -2,11 +2,11 @@ import { compose, setDisplayName, setPropTypes } from 'recompose'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { MenuItem as MenuItemBase } from './Menu.style'
-import { Ripple } from '../ripple'
-import { proxyStyledStatics } from '../../hocs'
+import { MenuItemBase } from './Menu.style'
+import Ripple from '../Ripple'
+import proxyStyledStatics from '../../higherOrderComponents/proxyStyledStatics'
 
-export class MenuItem extends Component {
+export class MenuItemClass extends Component {
   state = {
     getTransitionDelay: () => 0,
   }
@@ -53,4 +53,4 @@ const enhance = compose(
   setDisplayName('MenuItem'),
 )
 
-export default enhance(MenuItem)
+export default enhance(MenuItemClass)

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import MenuItem from './MenuItem'
-import { MenuDivider as MenuDividerBase } from './Menu.style'
+import { MenuDividerBase } from './Menu.style'
+import { MenuItemClass } from './MenuItem'
 
-export default class MenuDivider extends MenuItem {
+export default class MenuDivider extends MenuItemClass {
   render() {
     return (
       <MenuDividerBase

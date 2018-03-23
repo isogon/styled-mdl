@@ -2,12 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import AvatarsAndActions from '../src/components/list/demos/AvatarsAndActions.js'
-import AvatarsAndControls from '../src/components/list/demos/AvatarsAndControls.js'
-import Icons from '../src/components/list/demos/Icons.js'
-import Simple from '../src/components/list/demos/Simple.js'
-import ThreeLine from '../src/components/list/demos/ThreeLine.js'
-import TwoLine from '../src/components/list/demos/TwoLine.js'
+import AvatarsAndActions from '../src/components/List/__demos__/AvatarsAndActions.js'
+import AvatarsAndControls from '../src/components/List/__demos__/AvatarsAndControls.js'
+import Icons from '../src/components/List/__demos__/Icons.js'
+import Simple from '../src/components/List/__demos__/Simple.js'
+import ThreeLine from '../src/components/List/__demos__/ThreeLine.js'
+import TwoLine from '../src/components/List/__demos__/TwoLine.js'
 
 storiesOf('List', module)
   .addDecorator(wrapStory)

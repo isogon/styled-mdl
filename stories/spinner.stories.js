@@ -2,8 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import Spinner from '../src/components/spinner/demos/Spinner.js'
-import SpinnerSingleColor from '../src/components/spinner/demos/SpinnerSingleColor.js'
+import Spinner from '../src/components/Spinner/__demos__/Spinner.js'
+import SpinnerSingleColor from '../src/components/Spinner/__demos__/SpinnerSingleColor.js'
 
 storiesOf('Spinner', module)
   .addDecorator(wrapStory)

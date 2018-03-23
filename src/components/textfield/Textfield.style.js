@@ -51,9 +51,9 @@ export const Input = setDisplayName('Input')(styled.input`
     margin: 0;
   }
 
-  ${({ focused }) => focused && css`
+  &:focus {
     outline: none;
-  `}
+  }
 
   ${({ invalid, error }) => invalid || (error && css`
     border-color: ${g.inputTextErrorColor};
@@ -98,11 +98,11 @@ export const Label = setDisplayName('Label')(styled.label`
     ${materialAnimationDefault()}
     visibility: hidden;
     width: 10px;
-    ${({ focused }) => focused && css`
+    &:focus {
       left: 0;
       visibility: visible;
       width: 100%;
-    `}
+    }
     ${({ invalid, error }) => invalid || (error && css`
       background-color: ${g.inputTextErrorColor};
     `)}
@@ -119,7 +119,14 @@ export const Label = setDisplayName('Label')(styled.label`
       transition: none;
     `}
 
-    ${({ focused, placeholder, value, theme }) => (focused || placeholder || value) && css`
+    &:focus {
+      color: ${g.inputTextHighlightColor};
+      font-size : ${g.inputTextFloatingLabelFontsize}px;
+      top: ${({ theme }) => theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
+      visibility: visible;
+    }
+
+    ${({ placeholder, value, theme }) => (placeholder || value) && css`
       color: ${g.inputTextHighlightColor};
       font-size : ${g.inputTextFloatingLabelFontsize}px;
       top: ${theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
@@ -151,36 +158,4 @@ export const HelperText = setDisplayName('HelperText')(styled.div`
 
 export const ErrorMessage = setDisplayName('ErrorMessage')(HelperText.extend`
   color: ${g.inputTextErrorColor};
-`)
-
-export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`
-  display: inline-block;
-  position: relative;
-  margin-left: ${g.inputTextButtonSize};
-
-  ${materialAnimationDefault()};
-  display: inline-block;
-
-  ${'' /* // Safari (possibly others) need to be convinced that this field is actually
-  // visible, otherwise it cannot be tabbed to nor focused via a <label>.
-  // TODO: In some cases (Retina displays), this is big enough to render the
-  // inner element :( */}
-  max-width: 0.1px;
-
-  ${({ focused, value }) => (focused || value) && css`
-    ${'' /* // This is an unfortunate hack. Animating between widths in percent (%)
-    // in many browsers (Chrome, Firefox) only animates the inner visual style
-    // of the input - the outer bounding box still 'jumps'.
-    // Thus assume a sensible maximum, and animate to/from that value. */}
-    max-width: 600px;
-  `}
-
-  .mdl-textfield__label:after {
-    bottom: 0;
-  }
-  ${({ label, theme }) => label && css`
-    ${({ focused, placeholder, value }) => (focused || placeholder || value) && css`
-      top: ${-(theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
-    `}
-  `}
 `)

@@ -2,10 +2,10 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import LowerLeft from '../src/components/menu/demos/LowerLeft.js'
-import LowerRight from '../src/components/menu/demos/LowerRight.js'
-import UpperLeft from '../src/components/menu/demos/UpperLeft.js'
-import UpperRight from '../src/components/menu/demos/UpperRight.js'
+import LowerLeft from '../src/components/Menu/__demos__/LowerLeft.js'
+import LowerRight from '../src/components/Menu/__demos__/LowerRight.js'
+import UpperLeft from '../src/components/Menu/__demos__/UpperLeft.js'
+import UpperRight from '../src/components/Menu/__demos__/UpperRight.js'
 
 storiesOf('Menu', module)
   .addDecorator(wrapStory)

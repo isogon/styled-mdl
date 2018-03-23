@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 
 import defaultTheme from '../../theme/defaultTheme'
 
-export function Theme({ children, theme = defaultTheme }) {
+export default function Theme({ children, theme = defaultTheme }) {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 

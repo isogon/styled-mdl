@@ -22,7 +22,7 @@
       "prettier --config ./.prettierrc --write \"{src,tests,stories}/**/*.js\"",
     "format:check":
       "prettier --config ./.prettierrc --list-different \"{src,tests,stories}/**/*.js\"",
-    "lint": "eslint src tests stories",
+    "lint": "eslint src testSetup scripts stories",
     "lint:staged": "lint-staged",
     "oncommit": "yarn format:check && yarn lint:staged",
     "pretest": "yarn test:clean && yarn lint",
@@ -36,7 +36,8 @@
   },
   "lint-staged": {
     "src/**/*.js": "eslint",
-    "tests/**/*.js": "eslint",
+    "testSetup/**/*.js": "eslint",
+    "scripts/**/*.js": "eslint",
     "stories/**/*.js": "eslint"
   },
   "pre-commit": "oncommit",

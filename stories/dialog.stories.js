@@ -2,8 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
-import Basic from '../src/components/dialog/demos/Basic.js'
-import FullWidthActions from '../src/components/dialog/demos/FullWidthActions.js'
+import Basic from '../src/components/Dialog/__demos__/Basic.js'
+import FullWidthActions from '../src/components/Dialog/__demos__/FullWidthActions.js'
 
 storiesOf('Dialog', module)
   .addDecorator(wrapStory)
