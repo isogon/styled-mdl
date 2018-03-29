@@ -8,8 +8,13 @@ import UpperLeft from '../src/components/Menu/__demos__/UpperLeft.js'
 import UpperRight from '../src/components/Menu/__demos__/UpperRight.js'
 
 storiesOf('Menu', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Lower Left', () => <LowerLeft />)
   .add('Lower Right', () => <LowerRight />)
   .add('Upper Left', () => <UpperLeft />)
   .add('Upper Right', () => <UpperRight />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Lower Left (inverse)', () => <LowerLeft inverse />)
+  .add('Lower Right (inverse)', () => <LowerRight inverse />)
+  .add('Upper Left (inverse)', () => <UpperLeft inverse />)
+  .add('Upper Right (inverse)', () => <UpperRight inverse />)

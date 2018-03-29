@@ -8,8 +8,13 @@ import Square from '../src/components/Card/__demos__/Square.js'
 import Wide from '../src/components/Card/__demos__/Wide.js'
 
 storiesOf('Card', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Event', () => <Event />)
   .add('Image', () => <Image />)
   .add('Square', () => <Square />)
   .add('Wide', () => <Wide />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Event (inverse)', () => <Event inverse />)
+  .add('Image (inverse)', () => <Image inverse />)
+  .add('Square (inverse)', () => <Square inverse />)
+  .add('Wide (inverse)', () => <Wide inverse />)

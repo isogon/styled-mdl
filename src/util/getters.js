@@ -1,5 +1,5 @@
 import { mapValues } from 'lodash'
-import { defaultTheme } from '../theme'
+import defaultTheme from '../theme_old/defaultTheme'
 import { rgb, rgba } from './colors'
 
 const getters = mapValues(defaultTheme, (v, k) => (p) => p.theme[k])

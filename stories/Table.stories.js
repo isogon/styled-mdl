@@ -5,5 +5,7 @@ import wrapStory from './decorators/wrapStory'
 import DataTable from '../src/components/Table/__demos__/DataTable.js'
 
 storiesOf('Table', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Data Table', () => <DataTable />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Data Table (inverse)', () => <DataTable inverse />)

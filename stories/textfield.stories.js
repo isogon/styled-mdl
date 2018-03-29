@@ -8,8 +8,13 @@ import MultiLine from '../src/components/Textfield/__demos__/MultiLine.js'
 import SingleLine from '../src/components/Textfield/__demos__/SingleLine.js'
 
 storiesOf('Textfield', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Error', () => <Error />)
   .add('Helper Text', () => <HelperText />)
   .add('Multi Line', () => <MultiLine />)
   .add('Single Line', () => <SingleLine />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Error (inverse)', () => <Error inverse />)
+  .add('Helper Text (inverse)', () => <HelperText inverse />)
+  .add('Multi Line (inverse)', () => <MultiLine inverse />)
+  .add('Single Line (inverse)', () => <SingleLine inverse />)

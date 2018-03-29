@@ -1,5 +1,8 @@
 import createTheme from './createTheme'
+import indigo from './colors/indigo'
+import pink from './colors/pink'
 
-const defaultTheme = createTheme()
-
-export default defaultTheme
+export default createTheme({
+  primary: indigo[500],
+  secondary: pink[500],
+})

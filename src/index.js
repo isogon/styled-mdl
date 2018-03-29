@@ -21,8 +21,10 @@ export Toast from './components/Toast'
 export Tooltip from './components/Tooltip'
 export Theme from './components/Theme'
 
-export * from './theme'
 export * from './mixins'
 export * as util from './util'
+
+export createTheme from './theme/createTheme'
+export themeProps from './theme/themeProps'
+export colors from './theme/colors'
 export initGlobals from './initGlobals'
-export theme from './util/getters'

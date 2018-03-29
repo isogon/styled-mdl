@@ -4,11 +4,17 @@ import { ThemeProvider } from 'styled-components'
 
 import defaultTheme from '../../theme/defaultTheme'
 
-export default function Theme({ children, theme = defaultTheme }) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+const Theme = ({ children, theme }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+)
+
+Theme.defaultProps = {
+  theme: defaultTheme,
 }
 
 Theme.propTypes = {
   children: PropTypes.node,
   theme: PropTypes.object,
 }
+
+export default Theme

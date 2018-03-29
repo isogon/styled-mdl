@@ -1,53 +1,53 @@
-import { add, divide, subtract, cond, T, always, compose } from 'lodash/fp'
-import { call, prop, ifProp } from 'styled-tools'
-import { setDisplayName } from 'recompose'
-import styled from 'styled-components'
+import { ifProp } from 'styled-tools'
+import styled, { css } from 'styled-components'
 
-const negate = (n) => -n
-const overlap = prop('overlap')
-const forButton = prop('forButton')
-const badgeSize = prop('theme.badgeSize')
-const badgeFontSize = prop('theme.badgeFontSize')
-const badgeOverlap = prop('theme.badgeOverlap')
-const badgePadding = prop('theme.badgePadding')
-const preferredFont = prop('theme.preferredFont')
-const badgeBackground = prop('theme.badgeBackground')
-const badgeColor = prop('theme.badgeColor')
-const badgeColorInverse = prop('theme.badgeColorInverse')
-const badgeBackgroundInverse = prop('theme.badgeBackgroundInverse')
+import { defaultTypography } from '../../mixins/type.style'
+import Icon from '../Icon'
+import themeProps from '../../theme/themeProps'
 
-export const BadgeWrap = setDisplayName('BadgeWrap')(styled.div`
+const fontSize = 0.75
+const fontWeight = 600
+const size = 1.375
+const padding = 0.125
+const overlap = 0.75
+const buttonOverlap = 0.875
+const foreground = themeProps.textPrimaryOnSecondary
+const background = themeProps.secondary
+
+export const BadgeWrap = styled.div`
   position: relative;
   white-space: nowrap;
   display: inline-block;
-  margin-right: ${cond([
-    [overlap, call(subtract, badgeSize, badgeOverlap)],
-    [forButton, call(subtract, badgeSize, always(14))],
-    [T, call(add, badgeSize, badgePadding)],
-  ])}px;
-`)
+  margin-right: ${size + padding}rem;
+  ${ifProp('overlap', css`
+    margin-right: ${size - overlap}rem;
+  `)}
+  ${ifProp('forButton', css`
+    margin-right: ${size - buttonOverlap}rem;
+  `)}
+`
 
-export const BadgeText = setDisplayName('BadgeText')(styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+export const BadgeText = styled.div`
   position: absolute;
-  top: ${ifProp('forButton', -10, call(divide, badgeSize, always(-2)))}px;
-  right: ${cond([
-    [forButton, always(-10)],
-    [overlap, call(compose(negate, subtract), badgeSize, badgeOverlap)],
-    [T, call(compose(negate, add), badgeSize, badgePadding)],
-  ])}px;
-  font-family: ${preferredFont};
-  font-weight: 600;
-  font-size: ${badgeFontSize}px;
-  width: ${badgeSize}px;
-  height: ${badgeSize}px;
+  top: ${-(size / 2)}rem;
+  right: ${-(size + padding)}rem;
+  color: ${foreground};
+  background: ${background};
+  ${defaultTypography()}
+  font-family: ${themeProps.preferredFont};
+  font-size: ${fontSize}rem;
+  font-weight: ${fontWeight};
+  width: ${size}rem;
+  height: ${size}rem;
+  text-align: center;
+  line-height: ${size}rem;
+  > ${Icon} { line-height: ${size}rem }
   border-radius: 50%;
-  color: ${ifProp('background', badgeColor, badgeColorInverse)};
-  background: ${ifProp('background', badgeBackground, badgeBackgroundInverse)};
-  box-shadow: ${ifProp('background', 'none', '0 0 1px gray')};
-`)
+  ${ifProp('forButton', css`
+    top: -0.625rem;
+    right: -0.625rem;
+  `)}
+  ${ifProp('overlap', css`
+    right: ${-(size - overlap)}rem;
+  `)}
+`

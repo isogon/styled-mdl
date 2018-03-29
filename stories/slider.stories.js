@@ -7,7 +7,11 @@ import Disabled from '../src/components/Slider/__demos__/disabled.js'
 import StartingValue from '../src/components/Slider/__demos__/startingValue.js'
 
 storiesOf('Slider', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Default', () => <Default />)
   .add('Disabled', () => <Disabled />)
   .add('Starting Value', () => <StartingValue />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Default (inverse)', () => <Default inverse />)
+  .add('Disabled (inverse)', () => <Disabled inverse />)
+  .add('Starting Value (inverse)', () => <StartingValue inverse />)

@@ -10,10 +10,17 @@ import ThreeLine from '../src/components/List/__demos__/ThreeLine.js'
 import TwoLine from '../src/components/List/__demos__/TwoLine.js'
 
 storiesOf('List', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   .add('Avatars And Actions', () => <AvatarsAndActions />)
   .add('Avatars And Controls', () => <AvatarsAndControls />)
   .add('Icons', () => <Icons />)
   .add('Simple', () => <Simple />)
   .add('Three Line', () => <ThreeLine />)
   .add('Two Line', () => <TwoLine />)
+  .addDecorator(wrapStory({ inverse: true }))
+  .add('Avatars And Actions (inverse)', () => <AvatarsAndActions inverse />)
+  .add('Avatars And Controls (inverse)', () => <AvatarsAndControls inverse />)
+  .add('Icons (inverse)', () => <Icons inverse />)
+  .add('Simple (inverse)', () => <Simple inverse />)
+  .add('Three Line (inverse)', () => <ThreeLine inverse />)
+  .add('Two Line (inverse)', () => <TwoLine inverse />)

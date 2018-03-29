@@ -6,12 +6,12 @@ const isBrowser =
     typeof process !== 'undefined' ? process : 0,
   ) !== '[object process]'
 
-export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
+export default (fontObserver = 'Roboto') => {
   if (isBrowser && fontObserver) {
     const fontLoaded = () => document.body.classList.add('fontLoaded')
     const fontNotLoaded = () => document.body.classList.remove('fontLoaded')
 
-    const observer = new FontFaceObserver(fontObserver, {})
+    const observer = new FontFaceObserver(fontObserver)
     observer.load().then(fontLoaded, fontNotLoaded)
   }
 
@@ -31,10 +31,11 @@ export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
 
     html {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       margin: 0;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.4;
+      letter-spacing: 0.04em;
       -ms-touch-action: manipulation;
       touch-action: manipulation;
     }
@@ -43,6 +44,7 @@ export default ({ defaultFont: fontObserver = 'Roboto' } = {}) => {
       width: 100%;
       min-height: 100%;
       margin: 0;
+      -webkit-font-smoothing: antialiased;
     }
   `
 }

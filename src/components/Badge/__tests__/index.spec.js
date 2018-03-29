@@ -2,40 +2,29 @@ import React from 'react'
 
 import { shallow } from 'enzyme'
 
-import Badge, { BadgeBase } from '..'
+import Badge from '..'
 
 describe('<Badge />', () => {
   let badge
 
   beforeEach(() => {
-    badge = shallow(<Badge text="foo">Hello World</Badge>).until(BadgeBase)
+    badge = shallow(
+      <Badge text="foo">
+        <div>Hello</div>
+      </Badge>,
+    )
   })
 
-  it('has the right displayName', () => {
-    expect(Badge.displayName).toEqual('Badge')
+  it('renders a BadgeWrap', () => {
+    expect(badge.find(Badge.Wrap)).toBePresent()
   })
 
-  it('is deeply extendable', () => {
-    expect(typeof Badge.extend).toEqual('function')
-    expect(typeof Badge.extend``.extend).toEqual('function')
-  })
-
-  it('renders a BadgeWrap with className', () => {
-    expect(badge.find('BadgeWrap')).toBePresent()
-  })
-
-  it('renders a BadgeText with [prop] text', () => {
-    expect(badge.find('BadgeText')).toBePresent()
-    expect(badge.find('BadgeText')).toHaveInnerText('foo')
+  it('renders a BadgeText with passed in text', () => {
+    expect(badge.find(Badge.Text)).toBePresent()
+    expect(badge.find(Badge.Text)).toHaveInnerText('foo')
   })
 
   it('renders its children', () => {
-    expect(
-      badge
-        .find('BadgeWrap')
-        .children()
-        .at(0)
-        .text(),
-    ).toEqual('Hello World')
+    expect(badge.find(Badge.Wrap).find('div')).toHaveText('Hello')
   })
 })

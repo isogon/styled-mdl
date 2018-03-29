@@ -5,6 +5,6 @@ import Icon from '../../Icon'
 
 export default () => (
   <Badge overlap text="4">
-    <Icon lg name="account_box" />
+    <Icon lg>account_box</Icon>
   </Badge>
 )
