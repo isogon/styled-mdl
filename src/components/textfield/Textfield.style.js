@@ -14,17 +14,23 @@ export const TextfieldStyle = setDisplayName('TextfieldStyle')(styled.div`
   max-width: 100%;
   margin: 0;
   padding: ${g.inputTextVerticalSpacing}px 0;
-  ${({ alignRight }) => alignRight && css`
-    text-align: right;
-  `}
-  ${({ fullWidth }) => fullWidth && css`
-    width: 100%;
-  `}
-  ${({ expandable }) => expandable && css`
-    min-width: ${g.inputTextButtonSize}px;
-    width: auto;
-    min-height: ${g.inputTextButtonSize}px;
-  `}
+  ${({ alignRight }) =>
+    alignRight &&
+    css`
+      text-align: right;
+    `}
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `}
+  ${({ expandable }) =>
+    expandable &&
+    css`
+      min-width: ${g.inputTextButtonSize}px;
+      width: auto;
+      min-height: ${g.inputTextButtonSize}px;
+    `}
 `)
 
 // Styling for the input element.
@@ -51,23 +57,32 @@ export const Input = setDisplayName('Input')(styled.input`
     margin: 0;
   }
 
-  ${({ focused }) => focused && css`
-    outline: none;
-  `}
+  ${({ focused }) =>
+    focused &&
+    css`
+      outline: none;
+    `}
 
-  ${({ invalid, error }) => invalid || (error && css`
-    border-color: ${g.inputTextErrorColor};
-    box-shadow: none;
-  `)}
+  ${({ invalid, error }) =>
+    invalid ||
+    (error &&
+      css`
+        border-color: ${g.inputTextErrorColor};
+        box-shadow: none;
+      `)}
 
-  ${({ disabled }) => disabled && css`
-    background-color: transparent;
-    border-bottom: 1px dotted ${g.inputTextDisabledColor};
-    color: ${g.inputTextDisabledTextColor};
-  `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: transparent;
+      border-bottom: 1px dotted ${g.inputTextDisabledColor};
+      color: ${g.inputTextDisabledTextColor};
+    `}
 `)
 
-export const Textarea = setDisplayName('Textarea')(Input.withComponent('textarea').extend`
+export const Textarea = setDisplayName('Textarea')(Input.withComponent(
+  'textarea',
+).extend`
   display: block;
 `)
 
@@ -81,7 +96,8 @@ export const Label = setDisplayName('Label')(styled.label`
   pointer-events: none;
   position: absolute;
   display: block;
-  top: ${({ theme }) => theme.inputTextPadding + theme.inputTextVerticalSpacing}px;
+  top: ${({ theme }) =>
+    theme.inputTextPadding + theme.inputTextVerticalSpacing}px;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -98,48 +114,68 @@ export const Label = setDisplayName('Label')(styled.label`
     ${materialAnimationDefault()}
     visibility: hidden;
     width: 10px;
-    ${({ focused }) => focused && css`
-      left: 0;
-      visibility: visible;
-      width: 100%;
-    `}
-    ${({ invalid, error }) => invalid || (error && css`
-      background-color: ${g.inputTextErrorColor};
-    `)}
+    ${({ focused }) =>
+      focused &&
+      css`
+        left: 0;
+        visibility: visible;
+        width: 100%;
+      `}
+    ${({ invalid, error }) =>
+      invalid ||
+      (error &&
+        css`
+          background-color: ${g.inputTextErrorColor};
+        `)}
   }
 
-  ${({ value, placeholder }) => value || (placeholder && css`
-    visibility: hidden;
-  `)}
+  ${({ value, placeholder }) =>
+    !!value ||
+    (!!placeholder &&
+      css`
+        visibility: hidden;
+      `)}
 
-  ${({ label }) => label && css`
+  ${({ label }) =>
+    label &&
+    css`
     ${materialAnimationDefault()}
 
-    ${({ placeholder }) => placeholder && css`
-      transition: none;
-    `}
+    ${({ placeholder }) =>
+      !!placeholder &&
+      css`
+        transition: none;
+      `}
 
-    ${({ focused, placeholder, value, theme }) => (focused || placeholder || value) && css`
-      color: ${g.inputTextHighlightColor};
-      font-size : ${g.inputTextFloatingLabelFontsize}px;
-      top: ${theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
-      visibility: visible;
-    `}
+    ${({ focused, placeholder, value, theme }) =>
+      (focused || !!placeholder || !!value) &&
+      css`
+        color: ${g.inputTextHighlightColor};
+        font-size: ${g.inputTextFloatingLabelFontsize}px;
+        top: ${theme.inputTextVerticalSpacing -
+          (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
+        visibility: visible;
+      `}
 
-    ${({ invalid, error, theme }) => invalid || (error && css`
-      color: ${g.inputTextErrorColor};
-      top: ${theme.inputTextVerticalSpacing - (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
-      font-size: ${g.inputTextFloatingLabelFontsize}px;
-    `)}
+    ${({ invalid, error, theme }) =>
+      invalid ||
+      (error &&
+        css`
+          color: ${g.inputTextErrorColor};
+          top: ${theme.inputTextVerticalSpacing -
+            (theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
+          font-size: ${g.inputTextFloatingLabelFontsize}px;
+        `)}
   `}
 
-  ${({ disabled }) => disabled && css`
-    color: ${g.inputTextDisabledTextColor};
-  `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      color: ${g.inputTextDisabledTextColor};
+    `}
 `)
 
 // TextField Error.
-
 
 export const HelperText = setDisplayName('HelperText')(styled.div`
   color: ${g.inputTextLabelColor};
@@ -164,23 +200,27 @@ export const ExpandableHolder = setDisplayName('ExpandableHolder')(styled.div`
   ${'' /* // Safari (possibly others) need to be convinced that this field is actually
   // visible, otherwise it cannot be tabbed to nor focused via a <label>.
   // TODO: In some cases (Retina displays), this is big enough to render the
-  // inner element :( */}
-  max-width: 0.1px;
+  // inner element :( */} max-width: 0.1px;
 
-  ${({ focused, value }) => (focused || value) && css`
-    ${'' /* // This is an unfortunate hack. Animating between widths in percent (%)
+  ${({ focused, value }) =>
+    (focused || !!value) &&
+    css`
+      ${'' /* // This is an unfortunate hack. Animating between widths in percent (%)
     // in many browsers (Chrome, Firefox) only animates the inner visual style
     // of the input - the outer bounding box still 'jumps'.
-    // Thus assume a sensible maximum, and animate to/from that value. */}
-    max-width: 600px;
-  `}
-
-  .mdl-textfield__label:after {
+    // Thus assume a sensible maximum, and animate to/from that value. */} max-width: 600px;
+    `} .mdl-textfield__label:after {
     bottom: 0;
   }
-  ${({ label, theme }) => label && css`
-    ${({ focused, placeholder, value }) => (focused || placeholder || value) && css`
-      top: ${-(theme.inputTextFloatingLabelFontsize + theme.inputTextPadding)}px;
-    `}
-  `}
+  ${({ label, theme }) =>
+    label &&
+    css`
+      ${({ focused, placeholder, value }) =>
+        (focused || !!placeholder || !!value) &&
+        css`
+          top: ${-(
+            theme.inputTextFloatingLabelFontsize + theme.inputTextPadding
+          )}px;
+        `};
+    `};
 `)
