@@ -1,11 +1,12 @@
 import React from 'react'
+import { action } from '@storybook/addon-actions'
 
 import Chip from '..'
 
-const avatarImg = 'https://getmdl.io/templates/dashboard/images/user.jpg'
-
 export default () => (
-  <Chip deletable contact={{ src: avatarImg }}>
+  <Chip>
+    <Chip.Contact src="https://getmdl.io/templates/dashboard/images/user.jpg" />
     Deletable Contact Chip
+    <Chip.Icon right name="cancel" onClick={action('delete-click')} />
   </Chip>
 )

@@ -5,7 +5,7 @@ import Chip from '..'
 
 /* eslint-disable no-alert */
 export default () => (
-  <Chip>
+  <Chip onClick={action('chip-click')}>
     Basic Chip
     <Chip.Icon right name="cancel" onClick={action('delete-click')} />
   </Chip>
