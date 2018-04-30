@@ -1,9 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
 
-import { shadow2dp } from '../../../mixins'
+import { elevation } from '../../../mixins'
+import Button from '../../Button'
 
-const Bar = styled.div`
+export const Bar = styled.div`
   box-sizing: border-box;
   background: #3f51b5;
   color: white;
@@ -11,22 +11,22 @@ const Bar = styled.div`
   padding: 16px;
 `
 
-const Bg = styled.div`
+export const Bg = styled.div`
   background: white;
   height: 148px;
   width: 100%;
 `
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   width: 200px;
   text-align: ${({ align }) => align};
-  ${shadow2dp()};
+  ${elevation(2)};
 `
 
-export const MenuDemoWrapper = ({ align, children }) => (
-  <Container align={align}>
-    <Bar>{children}</Bar>
-    <Bg />
-  </Container>
-)
+export const WhiteButton = styled(Button)`
+  color: white;
+  &:after {
+    background-color: white;
+  }
+`

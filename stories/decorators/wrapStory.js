@@ -6,9 +6,9 @@ import { Theme, initGlobals, createTheme, colors } from '../../src'
 
 initGlobals('Roboto')
 
-const smdlTheme = createTheme({
-  primary: colors.indigo[500],
-  secondary: colors.pink[500],
+const theme = createTheme({
+  primary: colors.deepPurple.a700,
+  secondary: colors.teal[600],
 })
 
 // eslint-disable-next-line no-unused-expressions
@@ -40,7 +40,7 @@ const Wrap = styled.div`
 `
 
 const StoryWrap = (props) => (
-  <Theme theme={smdlTheme}>
+  <Theme theme={theme}>
     <Wrap {...props}>{props.children}</Wrap>
   </Theme>
 )

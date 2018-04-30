@@ -1,30 +1,14 @@
-import { css } from 'styled-components'
-import { getters as g } from '../util'
+const ANIMATION_CURVE_FAST_OUT_SLOW_IN = 'cubic-bezier(0.4, 0, 0.2, 1)'
+const ANIMATION_CURVE_LINEAR_OUT_SLOW_IN = 'cubic-bezier(0, 0, 0.2, 1)'
+const ANIMATION_CURVE_FAST_OUT_LINEAR_IN = 'cubic-bezier(0.4, 0, 1, 1)'
 
-export function materialAnimationFastOutSlowIn(duration = '0.2s') {
-  return css`
-    transition-duration: ${duration};
-    transition-timing-function: ${g.animationCurveFastOutSlowIn};
-  `
-}
+export const animationFastOutSlowInValue = (property, duration = 280) =>
+  `${property} ${ANIMATION_CURVE_FAST_OUT_SLOW_IN} ${duration}ms`
 
-export function materialAnimationLinearOutSlowIn(duration = '0.2s') {
-  return css`
-    transition-duration: ${duration};
-    transition-timing-function: ${g.animationCurveLinearOutSlowIn};
-  `
-}
+export const animationLinearOutSlowInValue = (property, duration = 280) =>
+  `${property} ${ANIMATION_CURVE_LINEAR_OUT_SLOW_IN} ${duration}ms`
 
-export function materialAnimationFastOutLinearIn(duration = '0.2s') {
-  return css`
-    transition-duration: ${duration};
-    transition-timing-function: ${g.animationCurveFastOutLinearIn};
-  `
-}
+export const animationFastOutLinearInValue = (property, duration = 280) =>
+  `${property} ${ANIMATION_CURVE_FAST_OUT_LINEAR_IN} ${duration}ms`
 
-export function materialAnimationDefault(duration = '0.2s') {
-  return css`
-    transition-duration: ${duration};
-    transition-timing-function: ${g.animationCurveDefault};
-  `
-}
+export const animationDefaultValue = animationFastOutSlowInValue

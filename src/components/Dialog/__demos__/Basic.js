@@ -12,7 +12,9 @@ export default withStateHandlers(
   },
 )(({ showDialog, hideDialog, isShowingDialog }) => (
   <React.Fragment>
-    <Button raised onClick={showDialog} text="Show" />
+    <Button raised onClick={showDialog}>
+      Show
+    </Button>
     <Dialog
       isOpen={isShowingDialog}
       onRequestClose={hideDialog}

@@ -1,25 +1,27 @@
 import React from 'react'
 
-import { MenuDemoWrapper } from './_shared'
-import Button from '../../Button'
+import { Bar, Bg, Container, WhiteButton } from './_shared'
 import Icon from '../../Icon'
 import Menu from '..'
 
 export default () => (
-  <MenuDemoWrapper align="left">
-    <Menu
-      topLeft
-      control={
-        <Button icon>
-          <Icon name="more_vert" />
-        </Button>
-      }
-    >
-      <Menu.Item>Some Action</Menu.Item>
-      <Menu.Item>Another Action</Menu.Item>
-      <Menu.Divider />
-      <Menu.Item disabled>Disabled Action</Menu.Item>
-      <Menu.Item>Yet another action</Menu.Item>
-    </Menu>
-  </MenuDemoWrapper>
+  <Container align="left">
+    <Bg />
+    <Bar>
+      <Menu
+        position={Menu.positions.topLeft}
+        control={
+          <WhiteButton icon>
+            <Icon name="more_vert" />
+          </WhiteButton>
+        }
+      >
+        <Menu.Item>Some Action</Menu.Item>
+        <Menu.Item>Another Action</Menu.Item>
+        <Menu.Divider />
+        <Menu.Item disabled>Disabled Action</Menu.Item>
+        <Menu.Item>Yet another action</Menu.Item>
+      </Menu>
+    </Bar>
+  </Container>
 )

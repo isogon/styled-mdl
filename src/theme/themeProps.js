@@ -10,6 +10,8 @@ const themeKeys = [
   'secondary',
   'secondaryLight',
   'secondaryDark',
+  'divider',
+  'background',
   'text.dark.primary',
   'text.dark.secondary',
   'text.dark.hint',

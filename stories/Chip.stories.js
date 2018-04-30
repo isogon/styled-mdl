@@ -3,21 +3,21 @@ import { storiesOf } from '@storybook/react'
 import wrapStory from './decorators/wrapStory'
 
 import Basic from '../src/components/Chip/__demos__/Basic.js'
-import Button from '../src/components/Chip/__demos__/Button.js'
+import Clickable from '../src/components/Chip/__demos__/Clickable.js'
+import ClickableAndDeletable from '../src/components/Chip/__demos__/ClickableAndDeletable.js'
 import Contact from '../src/components/Chip/__demos__/Contact.js'
 import Deletable from '../src/components/Chip/__demos__/Deletable.js'
 import DeletableContact from '../src/components/Chip/__demos__/DeletableContact.js'
+import Selected from '../src/components/Chip/__demos__/Selected.js'
+import WithIcon from '../src/components/Chip/__demos__/WithIcon.js'
 
 storiesOf('Chip', module)
   .addDecorator(wrapStory())
   .add('Basic', () => <Basic />)
-  .add('Button', () => <Button />)
+  .add('Clickable', () => <Clickable />)
+  .add('Clickable And Deletable', () => <ClickableAndDeletable />)
   .add('Contact', () => <Contact />)
   .add('Deletable', () => <Deletable />)
   .add('Deletable Contact', () => <DeletableContact />)
-  .addDecorator(wrapStory({ inverse: true }))
-  .add('Basic (inverse)', () => <Basic inverse />)
-  .add('Button (inverse)', () => <Button inverse />)
-  .add('Contact (inverse)', () => <Contact inverse />)
-  .add('Deletable (inverse)', () => <Deletable inverse />)
-  .add('Deletable Contact (inverse)', () => <DeletableContact inverse />)
+  .add('Selected', () => <Selected />)
+  .add('With Icon', () => <WithIcon />)

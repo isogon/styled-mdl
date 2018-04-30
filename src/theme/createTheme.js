@@ -29,6 +29,7 @@ const BASE_THEME_OPTIONS = {
       icon: 'rgba(255,255,255,0.5)',
     },
   },
+  divider: 'rgba(0,0,0,0.12)',
   background: 'rgb(255,255,255)',
 }
 
@@ -64,63 +65,62 @@ export default function createTheme(options) {
 
   const theme = {
     ...base,
-    // Primary
     primary,
     primaryLight,
     primaryDark,
-    // Secondary
     secondary,
     secondaryLight,
     secondaryDark,
-    // Text-primary on "primary" background
+
+    // Text on "primary" background
     textPrimaryOnPrimary: contrastingTextFor.primary.primary,
     textSecondaryOnPrimary: contrastingTextFor.primary.secondary,
     textHintOnPrimary: contrastingTextFor.primary.hint,
     textDisabledOnPrimary: contrastingTextFor.primary.disabled,
     textIconOnPrimary: contrastingTextFor.primary.icon,
-    // Text-primary on "primary-light" background
+    // Text on "primary-light" background
     textPrimaryOnPrimaryLight: contrastingTextFor.primaryLight.primary,
     textSecondaryOnPrimaryLight: contrastingTextFor.primaryLight.secondary,
     textHintOnPrimaryLight: contrastingTextFor.primaryLight.hint,
     textDisabledOnPrimaryLight: contrastingTextFor.primaryLight.disabled,
     textIconOnPrimaryLight: contrastingTextFor.primaryLight.icon,
-    // Text-primary on "primary-dark" background
+    // Text on "primary-dark" background
     textPrimaryOnPrimaryDark: contrastingTextFor.primaryDark.primary,
     textSecondaryOnPrimaryDark: contrastingTextFor.primaryDark.secondary,
     textHintOnPrimaryDark: contrastingTextFor.primaryDark.hint,
     textDisabledOnPrimaryDark: contrastingTextFor.primaryDark.disabled,
     textIconOnPrimaryDark: contrastingTextFor.primaryDark.icon,
-    // Text-primary on "secondary" background
+    // Text on "secondary" background
     textPrimaryOnSecondary: contrastingTextFor.secondary.primary,
     textSecondaryOnSecondary: contrastingTextFor.secondary.secondary,
     textHintOnSecondary: contrastingTextFor.secondary.hint,
     textDisabledOnSecondary: contrastingTextFor.secondary.disabled,
     textIconOnSecondary: contrastingTextFor.secondary.icon,
-    // Text-primary on "secondary-light" background
+    // Text on "secondary-light" background
     textPrimaryOnSecondaryLight: contrastingTextFor.secondaryLight.primary,
     textSecondaryOnSecondaryLight: contrastingTextFor.secondaryLight.secondary,
     textHintOnSecondaryLight: contrastingTextFor.secondaryLight.hint,
     textDisabledOnSecondaryLight: contrastingTextFor.secondaryLight.disabled,
     textIconOnSecondaryLight: contrastingTextFor.secondaryLight.icon,
-    // Text-primary on "secondary-dark" background
+    // Text on "secondary-dark" background
     textPrimaryOnSecondaryDark: contrastingTextFor.secondaryDark.primary,
     textSecondaryOnSecondaryDark: contrastingTextFor.secondaryDark.secondary,
     textHintOnSecondaryDark: contrastingTextFor.secondaryDark.hint,
     textDisabledOnSecondaryDark: contrastingTextFor.secondaryDark.disabled,
     textIconOnSecondaryDark: contrastingTextFor.secondaryDark.icon,
-    // Text-primary on "background" background
+    // Text on "background" background
     textPrimaryOnBackground: contrastingTextFor.background.primary,
     textSecondaryOnBackground: contrastingTextFor.background.secondary,
     textHintOnBackground: contrastingTextFor.background.hint,
     textDisabledOnBackground: contrastingTextFor.background.disabled,
     textIconOnBackground: contrastingTextFor.background.icon,
-    // Text-primary on "light" background
+    // Text on "light" background
     textPrimaryOnLight: text.dark.primary,
     textSecondaryOnLight: text.dark.secondary,
     textHintOnLight: text.dark.hint,
     textDisabledOnLight: text.dark.disabled,
     textIconOnLight: text.dark.icon,
-    // Text-primary on "dark" background
+    // Text on "dark" background
     textPrimaryOnDark: text.light.primary,
     textSecondaryOnDark: text.light.secondary,
     textHintOnDark: text.light.hint,

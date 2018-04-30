@@ -1,18 +1,19 @@
 import { cond, prop, always, T } from 'lodash/fp'
-import { setDisplayName } from 'recompose'
+import { ifProp } from 'styled-tools'
+import compose from 'lodash/fp/flowRight'
 import styled, { css } from 'styled-components'
 
-import { getters as g, rgba } from '../../util'
+import { animationLinearOutSlowInValue } from '../../mixins'
+import alpha from '../../utils/alpha'
+import themeProps from '../../theme/themeProps'
 
-export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
-  color: cond([
-    [prop('dark'), always('rgba(0,0,0,.3)')],
-    [prop('colored'), ({ theme }) => rgba(theme.colorPrimary, 0.5)],
-    [prop('accent'), ({ theme }) => rgba(theme.colorAccent, 0.5)],
-    [T, always('white')],
-  ]),
-})`
-  background-color: ${prop('color')};
+export const RippleEffect = styled.div`
+  background-color: ${cond([
+    [prop('dark'), always('rgba(0,0,0,0.2)')],
+    [prop('colored'), compose(alpha(0.5), themeProps.primary)],
+    [prop('secondary'), compose(alpha(0.5), themeProps.secondary)],
+    [T, themeProps.textHintOnDark],
+  ])};
   border-radius: 50%;
   transform: 'none';
   pointer-events: none;
@@ -20,11 +21,15 @@ export const RippleEffect = setDisplayName('RippleEffect')(styled.div.attrs({
   top: 0;
   left: 0;
   overflow: hidden;
-  transition-duration: 0.6s, 0.6s, 0.6s, 1.2s;
-  transition-timing-function: ${g.animationCurveLinearOutSlowIn};
-`)
+  transition:
+    ${animationLinearOutSlowInValue('transform', 750)},
+    ${animationLinearOutSlowInValue('width', 750)},
+    ${animationLinearOutSlowInValue('height', 750)},
+    ${animationLinearOutSlowInValue('opacity', 750)};
+  will-change: transform, width, height, opacity;
+`
 
-export const RippleWrap = setDisplayName('RippleWrap')(styled.div`
+export const RippleStyle = styled.div`
   display: block;
   position: absolute;
   top: 0;
@@ -33,16 +38,16 @@ export const RippleWrap = setDisplayName('RippleWrap')(styled.div`
   right: 0;
   z-index: 4;
   overflow: hidden;
-  ${({ toggle }) => toggle && css`
+  ${ifProp('toggle', css`
     top: -6px;
     left: -10px;
     right: auto;
     bottom: auto;
     height: 36px;
     width: 36px;
-  `}
-  ${({ round }) => round && css`
+  `)}
+  ${ifProp('round', css`
     border-radius: 50%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
-  `}
-`)
+  `)}
+`

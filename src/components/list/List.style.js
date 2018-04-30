@@ -1,14 +1,33 @@
+import { ifProp } from 'styled-tools'
+import get from 'lodash/fp/get'
 import styled, { css } from 'styled-components'
 
-import { typoSubhead, typoCaption, typoBody1 } from '../../mixins'
-import { getters as g } from '../../util'
+import {
+  configurable,
+  typoBody1,
+  typoCaption,
+  typoSubhead,
+} from '../../mixins'
+import { themeProps } from '../..'
+import Icon from '../Icon'
+
+export const LIST_BORDER = 0.5
+export const LIST_MIN_HEIGHT = 3
+export const LIST_MIN_PADDING = 1
+export const LIST_BOTTOM_PADDING = 1.25
+export const LIST_AVATAR_TEXT_LEFT_DISTANCE = 4.5
+export const LIST_ICON_TEXT_LEFT_DISTANCE = 4.5
+export const LIST_AVATAR_SIZE = 2.5
+export const LIST_ICON_SIZE = 1.5
+export const LIST_TWO_LINE_HEIGHT = 4.5
+export const LIST_THREE_LINE_HEIGHT = 5.5
 
 export const List = styled.ul`
   display: block;
-  padding: $list-border 0;
+  padding: ${LIST_BORDER}rem 0;
   list-style: none;
-  min-width: 300px;
-  width: ${({ width }) => width};
+  min-width: 18.75rem;
+  ${configurable('width', '18.75rem')};
 `
 
 export const ListPrimary = styled.span`
@@ -24,56 +43,59 @@ export const ListSecondary = styled.span`
   display: flex;
   flex-flow: column;
   align-items: flex-end;
-  margin-left: ${g.listMinPadding}px;
+  margin-left: ${LIST_MIN_PADDING}rem;
 `
 
 export const ListAction = styled.span``
 export const ListInfo = styled.span`
   ${typoCaption()}
-  color: ${g.listSupportingTextTextColor};
+  color: ${themeProps.textSecondaryOnLight};
 `
 export const ListSubTitle = styled.span`
-  padding: 0 0 0 ${g.listMinPadding}px;
+  padding: 0 0 0 ${LIST_MIN_PADDING}rem;
 `
 
 export const ListIcon = styled.i`
-  height: ${g.listIconSize}px;
-  width: ${g.listIconSize}px;
-  font-size: ${g.listIconSize}px;
+  height: ${LIST_ICON_SIZE}rem;
+  width: ${LIST_ICON_SIZE}rem;
+  font-size: ${LIST_ICON_SIZE}rem;
   box-sizing: border-box;
-  color: ${g.listIconColor};
-  margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listIconSize - theme.listMinPadding}px;
+  color: ${themeProps.textSecondaryOnLight};
+  margin-right: ${LIST_ICON_TEXT_LEFT_DISTANCE - LIST_ICON_SIZE - LIST_MIN_PADDING}rem;
 `
 
 export const ListAvatar = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${g.listAvatarSize}px;
-  width: ${g.listAvatarSize}px;
+  height: ${LIST_AVATAR_SIZE}rem;
+  width: ${LIST_AVATAR_SIZE}rem;
   box-sizing: border-box;
   border-radius: 50%;
-  background-color: ${g.listIconColor};
-  font-size: ${g.listAvatarSize}px;
-  ${({ src }) => src && css`
-    background-image: url(${src});
+  background-color: ${themeProps.textSecondaryOnLight};
+  font-size: ${LIST_AVATAR_SIZE}rem;
+  ${Icon} {
+    font-size: ${LIST_AVATAR_SIZE}rem;
+  }
+  ${ifProp('src', css`
+    background-image: url(${get('src')});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  `}
-  color: ${g.listAvatarColor};
-  margin-right: ${({ theme }) => theme.listIconTextLeftDistance - theme.listAvatarSize - theme.listMinPadding}px;
+  `)}
+  color: ${themeProps.textPrimaryOnDark};
+  margin-right: ${LIST_ICON_TEXT_LEFT_DISTANCE - LIST_AVATAR_SIZE - LIST_MIN_PADDING}rem;
 `
 
 export const ListTitle = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
 `
 
 export const ListTextBody = styled.div`
   ${typoBody1()}
-  line-height: 18px;
-  height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
-  color: ${g.listSupportingTextTextColor};
+  line-height: 1.125rem;
+  height: ${LIST_THREE_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING}rem;
+  color: ${themeProps.textSecondaryOnLight};
   display: block;
   padding: 0;
 `
@@ -82,18 +104,18 @@ export const ListItem = styled.li`
   ${typoSubhead()}
   line-height: 1;
   display: flex;
-  min-height: ${g.listMinHeight}px;
+  min-height: ${LIST_MIN_HEIGHT}rem;
   box-sizing: border-box;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  padding: ${g.listMinPadding}px;
+  padding: ${LIST_MIN_PADDING}rem;
   cursor: default;
-  color: ${g.listMainTextTextColor};
+  color: ${themeProps.textPrimaryOnLight};
   overflow: hidden;
   ${({ twoLine, threeLine }) => (twoLine || threeLine) && css`
     ${ListPrimary} {
-      line-height: 20px;
+      line-height: 1.25rem;
       display: block;
     }
     ${ListIcon} {
@@ -104,31 +126,31 @@ export const ListItem = styled.li`
     }
   `}
   ${({ twoLine }) => twoLine && css`
-    height: ${g.listTwoLineHeight}px;
+    height: ${LIST_TWO_LINE_HEIGHT}rem;
     ${ListPrimary} {
-      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${LIST_TWO_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING}rem;
     }
     ${ListSecondary} {
-      height: ${({ theme }) => theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${LIST_TWO_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING}rem;
     }
     ${ListSubTitle} {
       ${typoBody1()}
-      line-height: 18px;
-      color: ${g.listSupportingTextTextColor};
+      line-height: 1.125rem;
+      color: ${themeProps.textSecondaryOnLight};
       display: block;
       padding: 0;
     }
     ${ListIcon} {
-      margin-top: ${({ theme }) => (theme.listTwoLineHeight - theme.listMinPadding - theme.listBottomPadding - theme.listIconSize) / 2}px;
+      margin-top: ${(LIST_TWO_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING - LIST_ICON_SIZE) / 2}rem;
     }
   `}
   ${({ threeLine }) => threeLine && css`
-    height: ${g.listThreeLineHeight}px;
+    height: ${LIST_THREE_LINE_HEIGHT}rem;
     ${ListPrimary} {
-      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${LIST_THREE_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING}rem;
     }
     ${ListSecondary} {
-      height: ${({ theme }) => theme.listThreeLineHeight - theme.listMinPadding - theme.listBottomPadding}px;
+      height: ${LIST_THREE_LINE_HEIGHT - LIST_MIN_PADDING - LIST_BOTTOM_PADDING}rem;
     }
   `}
 `

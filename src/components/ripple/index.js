@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { compose, setDisplayName } from 'recompose'
 
-import proxyStyledStatics from '../../higherOrderComponents/proxyStyledStatics'
 import { getRippleSize, getRippleCoords } from './helpers'
-import { RippleEffect, RippleWrap } from './Ripple.style'
+import { RippleEffect, RippleStyle } from './Ripple.style'
 
 export class RippleBase extends Component {
   state = {
@@ -12,6 +10,21 @@ export class RippleBase extends Component {
 
   componentDidMount() {
     this.size = getRippleSize(this.wrapper)
+  }
+
+  getStyle() {
+    const style = {
+      height: this.state.size,
+      width: this.state.size,
+      transform: this.state.transform,
+      opacity: this.state.opacity,
+    }
+
+    if (!this.state.shouldAnimate) {
+      style.transitionProperty = 'none'
+    }
+
+    return style
   }
 
   handleMouseDown = (e) => {
@@ -23,7 +36,7 @@ export class RippleBase extends Component {
       size: this.size,
       shouldAnimate: false,
       transform: translate + initalScale,
-      opacity: 0.3,
+      opacity: 1,
     })
     requestAnimationFrame(() => {
       this.setState({
@@ -38,13 +51,12 @@ export class RippleBase extends Component {
   }
 
   render() {
-    const { __StyledComponent__: Styled } = this.props
-
     return (
-      <Styled
-        innerRef={(wrapper) => {
-          this.wrapper = wrapper
+      <div
+        ref={(e) => {
+          this.wrapper = e
         }}
+        role="presentation"
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseOut={this.handleMouseUp}
@@ -52,26 +64,10 @@ export class RippleBase extends Component {
         onBlur={this.handleMouseUp}
         className={this.props.className}
       >
-        <RippleEffect
-          {...this.props}
-          style={{
-            height: this.state.size,
-            width: this.state.size,
-            transform: this.state.transform,
-            opacity: this.state.opacity,
-            transitionProperty: this.state.shouldAnimate
-              ? 'transform, width, height, opacity'
-              : 'none',
-          }}
-        />
-      </Styled>
+        <RippleEffect {...this.props} style={this.getStyle()} />
+      </div>
     )
   }
 }
 
-const enhance = compose(
-  proxyStyledStatics(RippleWrap),
-  setDisplayName('Ripple'),
-)
-
-export default enhance(RippleBase)
+export default RippleStyle.withComponent(RippleBase)

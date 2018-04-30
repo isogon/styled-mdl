@@ -1,11 +1,32 @@
+import { ifProp, switchProp } from 'styled-tools'
+import get from 'lodash/fp/get'
 import styled, { css } from 'styled-components'
 
-import { shadow2dp, typoBody1 } from '../../mixins'
+import { animationDefaultValue, elevation, typoBody1 } from '../../mixins'
+import { buttonColor } from '../Button/ButtonMixins.style'
 import { getters as g } from '../../util'
+import menuPositions from './menuPositions'
+import themeProps from '../../theme/themeProps'
 
-export const MenuControlWrap = styled.div`position: relative;`
+export const MENU_EXPAND_DURATION = 300
+const MENU_FADE_DURATION = 200
 
-MenuControlWrap.displayName = 'MenuControlWrap'
+export const MenuControlWrap = styled.div`
+  position: relative;
+  display: inline-flex;
+`
+
+const height = get('height')
+const width = get('width')
+const top = get('top')
+const left = get('left')
+
+const getInitialMenuClip = switchProp('position', {
+  [menuPositions.bottomRight]: css`rect(0, ${width}px, 0, ${width}px)`,
+  [menuPositions.topLeft]: css`rect(${height}px, 0, ${height}px, 0)`,
+  [menuPositions.topRight]: css`rect(${height}px, ${width}px, ${height}px, ${width}px)`,
+  [menuPositions.bottomLeft]: css`rect(0, 0, 0, 0)`,
+})
 
 export const MenuContainer = styled.div`
   display: block;
@@ -18,19 +39,15 @@ export const MenuContainer = styled.div`
   width: 0;
   visibility: hidden;
   z-index: -1;
-  ${({ isVisible }) =>
-    isVisible &&
-    css`
-      z-index: 999;
-      visibility: visible;
-      top: ${({ top }) => top}px;
-      left: ${({ left }) => left}px;
-      height: ${({ height }) => height}px;
-      width: ${({ width }) => width}px;
-    `};
+  ${ifProp('isVisible', css`
+    z-index: 999;
+    visibility: visible;
+    top: ${top}px;
+    left: ${left}px;
+    height: ${height}px;
+    width: ${width}px;
+  `)};
 `
-
-MenuContainer.displayName = 'MenuContainer'
 
 export const MenuOutline = styled.div`
   display: block;
@@ -46,27 +63,26 @@ export const MenuOutline = styled.div`
   opacity: 0;
   transform: scale(0);
   transform-origin: 0 0;
-  ${shadow2dp()} will-change: transform;
-  transition: transform ${g.menuExpandDuration}s ${g.animationCurveDefault},
-    opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
+  ${elevation(2)}
+  will-change: transform, opacity;
+  transition:
+    ${animationDefaultValue('transform', MENU_EXPAND_DURATION)},
+    ${animationDefaultValue('opacity', MENU_FADE_DURATION)};
   z-index: -1;
-
-  ${({ isVisible }) =>
-    isVisible &&
-    css`
-      opacity: 1;
-      transform: scale(1);
-      z-index: 999;
-      height: ${({ height }) => height}px;
-      width: ${({ width }) => width}px;
-    `} ${({ bottomRight }) =>
-      bottomRight && css`transform-origin: 100% 0;`} ${({ topLeft }) =>
-      topLeft && css`transform-origin: 0 100%;`} ${({ topRight }) =>
-      topRight && css`transform-origin: 100% 100%;`} ${({ bottomLeft }) =>
-      bottomLeft && css`transform-origin: 0 0;`};
+  ${switchProp('position', {
+    [menuPositions.bottomRight]: 'transform-origin: 100% 0;',
+    [menuPositions.topLeft]: 'transform-origin: 0 100%;',
+    [menuPositions.topRight]: 'transform-origin: 100% 100%;',
+    [menuPositions.bottomLeft]: 'transform-origin: 0 0;',
+  })}
+  ${ifProp('isVisible', css`
+    opacity: 1;
+    transform: scale(1);
+    z-index: 999;
+    height: ${height}px;
+    width: ${width}px;
+  `)}
 `
-
-MenuOutline.displayName = 'MenuOutline'
 
 export const MenuBase = styled.div`
   position: absolute;
@@ -77,116 +93,74 @@ export const MenuBase = styled.div`
   width: auto;
   min-width: 124px;
   box-sizing: border-box;
+  border-radius: 2px;
   padding: 8px 0;
   margin: 0;
   opacity: 0;
-  clip: rect(0 0 0 0);
   z-index: -1;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault},
-    clip ${g.menuExpandDuration}s ${g.animationCurveDefault};
-
-  ${({ isVisible }) =>
-    isVisible &&
-    css`
-      opacity: 1;
-      clip: ${({ height, width }) => `rect(0px ${width}px ${height}px 0px)`};
-      height: ${({ height }) => height}px;
-      width: ${({ width }) => width}px;
-      z-index: 999;
-    `} ${({ bottomRight }) =>
-      bottomRight &&
-      css`
-        left: auto;
-        right: 0;
-      `} ${({ topLeft }) =>
-      topLeft &&
-      css`
-        top: auto;
-        bottom: 0;
-      `} ${({ topRight }) =>
-      topRight &&
-      css`
-        top: auto;
-        left: auto;
-        bottom: 0;
-        right: 0;
-      `} ${({ bottomLeft }) =>
-      bottomLeft &&
-      css`
-        top: auto;
-        left: auto;
-      `};
+  will-change: opacity, clip;
+  background: white;
+  clip: ${getInitialMenuClip};
+  ${ifProp('isVisible', css`
+    opacity: 1;
+    height: ${height}px;
+    width: ${width}px;
+    z-index: 999;
+    transition:
+      ${animationDefaultValue('clip', MENU_EXPAND_DURATION)},
+      ${animationDefaultValue('opacity', MENU_FADE_DURATION)};
+    clip: rect(0, ${width}px, ${height}px, 0);
+    ${switchProp('position', {
+      [menuPositions.bottomRight]: 'left: auto; right: 0;',
+      [menuPositions.topLeft]: 'top: auto; bottom: 0;',
+      [menuPositions.topRight]: 'top: auto; right: 0; bottom: 0; left: auto;',
+      [menuPositions.bottomLeft]: 'top: auto; left: auto;',
+    })}
+  `)}
 `
 
-MenuBase.displayName = 'MenuBase'
-
-export const MenuDividerBase = styled.hr`
-  border-bottom: 1px solid ${g.defaultItemDividerColor};
-  margin: 0;
+export const MenuItemAnimationStyle = styled.div`
   opacity: 0;
+  transition: ${animationDefaultValue('opacity', MENU_FADE_DURATION)};
+  ${ifProp('isVisible', 'opacity: 1;')}
+`
+
+export const MenuDivider = styled.hr`
+  border-bottom: 1px solid ${themeProps.divider};
+  margin: 0;
   height: 0;
   border-top: 0;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
-  transition-delay: ${({ getTransitionDelay, theme }) =>
-    getTransitionDelay(theme.menuExpandDuration)}s;
-  ${({ isVisible }) => isVisible && css`opacity: 1;`};
 `
 
-MenuDividerBase.displayName = 'MenuDividerBase'
-
-export const MenuItemBase = styled.button`
+export const MenuItem = styled.button`
   display: block;
   width: 100%;
   border: none;
-  color: ${g.defaultItemTextColor};
-  background-color: transparent;
   text-align: left;
   margin: 0;
-  padding: 0 16px;
-  outline-color: ${g.defaultItemOutlineColor};
+  padding: 0 1rem;
+  outline-color: ${themeProps.textSecondaryOnLight};
   position: relative;
   overflow: hidden;
-  ${typoBody1()} text-decoration: none;
+  ${typoBody1()}
+  text-decoration: none;
   cursor: pointer;
-  height: 48px;
-  line-height: 48px;
+  height: 3rem;
+  line-height: 3rem;
   white-space: nowrap;
-  opacity: 0;
-  transition: opacity ${g.menuFadeDuration}s ${g.animationCurveDefault};
-  transition-delay: ${({ getTransitionDelay, theme }) =>
-    getTransitionDelay(theme.menuExpandDuration)}s;
   user-select: none;
-
-  ${({ isVisible }) => isVisible && css`opacity: 1;`} &::-moz-focus-inner {
+  &::-moz-focus-inner {
     border: 0;
   }
-
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      color: ${g.disabledItemTextColor};
-      background-color: transparent;
-      cursor: auto;
-
-      &:hover {
-        background-color: transparent;
-      }
-
-      &:focus {
-        background-color: transparent;
-      }
-    `} &:hover {
-    background-color: ${g.defaultItemHoverBgColor};
-  }
-
+  ${ifProp('disabled', css`
+    color: ${themeProps.textDisabledOnLight};
+    background-color: transparent;
+    cursor: auto;
+    &:hover { background-color: transparent; }
+    &:focus { background-color: transparent; }
+  `)}
   &:focus {
     outline: none;
-    background-color: ${g.defaultItemFocusBgColor};
   }
-
-  &:active {
-    background-color: ${g.defaultItemActiveBgColor};
-  }
+  ${buttonColor(themeProps.textPrimaryOnLight, 'transparent')}
 `
-
-MenuItemBase.displayName = 'MenuItemBase'
