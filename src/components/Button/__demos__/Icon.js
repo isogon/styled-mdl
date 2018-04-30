@@ -5,6 +5,6 @@ import Icon from '../../Icon'
 
 export default () => (
   <Button icon>
-    <Icon name="add" />
+    <Icon>add</Icon>
   </Button>
 )

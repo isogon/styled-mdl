@@ -3,7 +3,7 @@ import React from 'react'
 import Button from '..'
 
 export default () => (
-  <Button raised colored>
+  <Button raised primary>
     Raised Primary
   </Button>
 )

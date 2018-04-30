@@ -19,7 +19,7 @@ import wrapStory from './decorators/wrapStory'
 ${demos.map((demo) => `import ${demo.component} from '${demo.path}'`).join('\n')}
 
 storiesOf('${component}', module)
-  .addDecorator(wrapStory)
+  .addDecorator(wrapStory())
   ${demos.map(
     (demo) => `.add('${demo.name}', () => <${demo.component} />)`
   ).join('\n  ')}
