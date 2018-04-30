@@ -1,17 +1,22 @@
+import { ifProp } from 'styled-tools'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { setDisplayName } from 'recompose'
-import { getters as g } from '../../util'
 
-const CardActions = setDisplayName('CardActions')(styled.div`
-  font-size: ${g.cardActionsFontSize}px;
+import themeProps from '../../theme/themeProps'
+
+const CardActions = styled.div`
+  font-size: 1rem;
   line-height: normal;
   width: 100%;
-  background-color: rgba(0,0,0,0);
-  padding: 8px;
+  padding: 0.5rem;
   box-sizing: border-box;
-  ${({ border }) => border && css`
-    border-top: 1px solid ${g.cardBorderColor};
-  `}
-`)
+  ${ifProp('border', css`
+    border-top: 1px solid ${themeProps.divider};
+  `)}
+`
+
+CardActions.propTypes = {
+  border: PropTypes.bool,
+}
 
 export default CardActions

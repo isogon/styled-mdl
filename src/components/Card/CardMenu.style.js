@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-import { setDisplayName } from 'recompose'
 
-const CardMenu = setDisplayName('CardMenu')(styled.div`
+const CardMenu = styled.div`
   position: absolute;
-  right: 16px;
-  top: 16px;
-`)
+  right: 1rem;
+  top: 1rem;
+`
 
 export default CardMenu

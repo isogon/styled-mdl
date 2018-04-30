@@ -1,23 +1,39 @@
+import { ifProp } from 'styled-tools'
+import PropTypes from 'prop-types'
+import get from 'lodash/fp/get'
 import styled, { css } from 'styled-components'
-import { setDisplayName } from 'recompose'
-import { getters as g } from '../../util'
 
-const Card = setDisplayName('Card')(styled.div`
+import { configurable, elevation } from '../../mixins'
+import withPropArgs from '../../utils/withPropArgs'
+
+const elevationFromProps = withPropArgs(elevation)
+const Card = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: ${g.cardFontSize}px;
+  font-size: 1rem;
   font-weight: 400;
-  min-height: ${g.cardHeight}px;
+  ${configurable('height', 'auto')}
+  ${configurable('width', '12.5rem')}
+  max-width: 100%;
   overflow: hidden;
-  width: ${g.cardWidth}px;
-  z-index: ${g.cardZIndex};
+  z-index: 1;
   position: relative;
-  background: ${g.cardBackgroundColor};
-  border-radius: 2px;
+  background: white;
+  border-radius: 0.125rem;
   box-sizing: border-box;
-  ${({ expand }) => expand && css`
+  ${ifProp('expand', css`
     flex-grow: 1;
-  `}
-`)
+  `)}
+  ${elevationFromProps(get('elevation'))}
+`
+Card.propTypes = {
+  expand: PropTypes.bool,
+  elevation: PropTypes.number,
+}
+
+Card.defaultProps = {
+  elevation: 0,
+  expand: false,
+}
 
 export default Card

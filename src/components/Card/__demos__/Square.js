@@ -1,14 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { shadow2dp } from '../../../mixins'
 import Button from '../../Button'
 import Card from '..'
-
-export const DemoCardSquare = styled(Card)`
-  ${shadow2dp()} width: 320px;
-  height: 320px;
-`
 
 export const DemoCardTitle = styled(Card.Title)`
   color: #fff;
@@ -18,7 +12,7 @@ export const DemoCardTitle = styled(Card.Title)`
 `
 
 export default () => (
-  <DemoCardSquare>
+  <Card elevation={2} height="20rem" width="20rem">
     <DemoCardTitle expand>
       <Card.TitleText>Update</Card.TitleText>
     </DemoCardTitle>
@@ -28,5 +22,5 @@ export default () => (
     <Card.Actions border>
       <Button colored>View Updates</Button>
     </Card.Actions>
-  </DemoCardSquare>
+  </Card>
 )

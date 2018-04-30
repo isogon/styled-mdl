@@ -2,18 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Fill from '../../Fill'
-import { shadow2dp } from '../../../mixins'
 import Button from '../../Button'
 import Card from '..'
 import Icon from '../../Icon'
 
 // prettier-ignore
 const EventCard = styled(Card)`
-  ${shadow2dp()}
-  width: 256px;
-  height: 256px;
   background: #3e4eb8;
-  align-self: flex-start;
 `
 
 const EventInfo = styled(Card.TitleText)`
@@ -42,7 +37,7 @@ const WhiteButton = styled(Button)`
 `
 
 export default () => (
-  <EventCard>
+  <EventCard elevation={2} height="16rem" width="16rem">
     <Card.Title expand>
       <EventInfo>
         Featured event:<br />

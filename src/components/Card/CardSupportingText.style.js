@@ -1,17 +1,23 @@
+import { ifProp } from 'styled-tools'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { setDisplayName } from 'recompose'
-import { getters as g } from '../../util'
 
-const CardSupportingText = setDisplayName('CardSupportingText')(styled.div`
-  color: ${g.cardSupportingTextTextColor};
-  font-size: ${g.cardSupportingTextFontSize}px;
-  line-height: ${g.cardSupportingTextLineHeight}px;
+import themeProps from '../../theme/themeProps'
+
+const CardSupportingText = styled.div`
+  color: ${themeProps.textPrimaryOnLight};
+  font-size: 0.875rem;
+  line-height: 1.4;
   overflow: hidden;
-  padding: ${g.cardVerticalPadding}px ${g.cardHorizontalPadding}px;
+  padding: 1rem;
   width: 90%;
-  ${({ border }) => border && css`
-    border-bottom: 1px solid ${g.cardBorderColor};
-  `}
-`)
+  ${ifProp('border', css`
+    border-bottom: 1px solid ${themeProps.divider};
+  `)}
+`
+
+CardSupportingText.propTypes = {
+  border: PropTypes.bool,
+}
 
 export default CardSupportingText

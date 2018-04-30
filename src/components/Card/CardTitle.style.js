@@ -1,23 +1,28 @@
+import { ifProp } from 'styled-tools'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { setDisplayName } from 'recompose'
-import { getters as g } from '../../util'
 
-const CardTitle = setDisplayName('CardTitle')(styled.header`
+import themeProps from '../../theme/themeProps'
+
+const CardTitle = styled.header`
   align-items: center;
-  color: ${g.cardTextColor};
+  color: ${themeProps.textPrimaryOnLight};
   display: block;
   display: flex;
   line-height: normal;
-  padding: ${g.cardVerticalPadding}px ${g.cardHorizontalPadding}px;
-  perspective-origin: ${g.cardTitlePerspectiveOriginX}px ${g.cardTitlePerspectiveOriginY}px;
-  transform-origin: ${g.cardTitleTransformOriginX}px ${g.cardTitleTransformOriginY}px;
+  padding: 1rem;
   box-sizing: border-box;
-  ${({ border }) => border && css`
-    border-bottom: 1px solid ${g.cardBorderColor};
-  `}
-  ${({ expand }) => expand && css`
+  ${ifProp('border', css`
+    border-bottom: 1px solid ${themeProps.divider};
+  `)}
+  ${ifProp('expand', css`
     flex-grow: 1;
-  `}
-`)
+  `)}
+`
+
+CardTitle.propTypes = {
+  border: PropTypes.bool,
+  expand: PropTypes.bool,
+}
 
 export default CardTitle
