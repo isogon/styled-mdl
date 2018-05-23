@@ -109,7 +109,7 @@ export const ButtonStyle = styled.button`
     &:active { ${elevation(12)} }
     &:disabled { ${elevation(0)} }
   `)}
-  ${ifProp('icon', css`
+  ${ifProp('isIcon', css`
     ${roundButtonStyles(iconSize, iconSizeMini)}
     ${Ripple} {
       display: none;

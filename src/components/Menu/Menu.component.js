@@ -1,172 +1,116 @@
-import Portal from 'react-portal'
 import PropTypes from 'prop-types'
-import React, { Component, Children, cloneElement } from 'react'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import compose from 'lodash/fp/flowRight'
+import cond from 'lodash/fp/cond'
+import get from 'lodash/fp/get'
+import identity from 'lodash/fp/identity'
+import set from 'lodash/fp/set'
+import throttle from 'lodash/fp/throttle'
 
 import {
-  MenuContainer,
-  MenuControlWrap,
-  MenuOutline,
-  MenuBase,
-} from './Menu.style'
-import MenuItemAnimation from './MenuItemAnimation.component'
-import menuPositions from './menuPositions'
+  BOTTOM_LEFT,
+  BOTTOM_RIGHT,
+  TOP_LEFT,
+  TOP_RIGHT,
+} from './Menu.constants'
+import { MenuWrap } from './Menu.style'
+import { focusNextIn, focusPreviousIn } from '../../utils/focusIn'
+import AttachedSurface from '../AttachedSurface'
+import mapProps from '../../utils/mapProps'
+import withTimeouts from '../../higherOrderComponents/withTimeouts'
 
-export default class Menu extends Component {
-  state = {
-    isVisible: false,
-    left: 0,
-    top: 0,
-    height: 0,
-    width: 0,
+class MenuBase extends Component {
+  componentDidMount() {
+    /* eslint-disable-next-line react/no-find-dom-node */
+    this.DOMNode = ReactDOM.findDOMNode(this)
+    this.DOMNode.addEventListener('keydown', this.handleKeydown)
   }
 
   componentWillUnmount() {
-    this.willUnmount = true
-    window.removeEventListener('scroll', this.setMenuPosition, true)
-    this.cancelAnimation()
+    this.DOMNode.removeEventListener('keydown', this.handleKeydown)
   }
 
-  setMenuPosition = () => {
-    if (this.menu && this.control) {
-      const control = this.control.getBoundingClientRect()
-      const menu = this.menu.getBoundingClientRect()
-
-      switch (this.props.position) {
-        case menuPositions.bottomRight:
-          this.setState({
-            left: control.right - menu.width,
-            top: control.bottom,
-          })
-          break
-        case menuPositions.topLeft:
-          this.setState({
-            left: control.left,
-            top: control.top - menu.height,
-          })
-          break
-        case menuPositions.topRight:
-          this.setState({
-            left: control.right - menu.width,
-            top: control.top - menu.height,
-          })
-          break
-        default:
-          this.setState({
-            left: control.left,
-            top: control.bottom,
-          })
-      }
+  throttledKeyDown = throttle(150, (e) => {
+    if (e.key === 'ArrowDown' || (e.key === 'Tab' && !e.shiftKey)) {
+      focusNextIn(this.menu, e)
     }
-  }
-
-  setMenuSize = () => {
-    if (this.menu) {
-      const { height, width } = this.menu.getBoundingClientRect()
-      this.setState({ height, width })
+    if (e.key === 'ArrowUp' || (e.key === 'Tab' && e.shiftKey)) {
+      focusPreviousIn(this.menu, e)
     }
-  }
+  })
 
-  requestAnimationFrame = () =>
-    new Promise((resolve) => {
-      this.animationFrame = requestAnimationFrame(resolve)
-    })
-
-  cancelAnimation = () => {
-    cancelAnimationFrame(this.animationFrame)
-  }
-
-  handleOpen = () => {
-    this.requestAnimationFrame().then(() => {
-      if (this.allowOpen) {
-        window.addEventListener('scroll', this.setMenuPosition, true)
-
-        this.setMenuPosition()
-        this.setMenuSize()
-
-        this.requestAnimationFrame().then(() =>
-          this.setState({ isVisible: true }),
-        )
+  handleKeydown = (e) => {
+    if (e.key === 'Escape') {
+      this.DOMNode.focus()
+    } else {
+      if (e.persist) {
+        e.persist()
       }
-    })
-  }
-
-  handleClose = () => {
-    window.removeEventListener('scroll', this.setMenuPosition, true)
-    if (!this.willUnmount) {
-      this.requestAnimationFrame().then(() =>
-        this.setState({ isVisible: false }),
-      )
+      this.throttledKeyDown(e)
     }
   }
 
   render() {
-    const { children, ...props } = this.props
-    const itemAnimationProps = {
-      menuHeight: this.state.height,
-      isVisible: this.state.isVisible,
-      fadeDown:
-        props.position === menuPositions.bottomLeft ||
-        props.position === menuPositions.bottomRight,
-    }
-
-    const animatedChildren = Children.map(children, (child) => (
-      <MenuItemAnimation {...itemAnimationProps}>{child}</MenuItemAnimation>
-    ))
-
-    const control = cloneElement(props.control, {
-      onClick: () => {
-        this.allowOpen = !this.state.isVisible
-      },
-    })
-
     return (
-      <MenuControlWrap>
-        <Portal
-          openByClickOn={
-            <span
-              ref={(ctrl) => {
-                this.control = ctrl
-              }}
-            >
-              {control}
-            </span>
-          }
-          closeOnOutsideClick
-          onOpen={this.handleOpen}
-          onClose={this.handleClose}
-        >
-          <MenuContainer
-            {...this.state}
-            {...props}
-            onClick={() => {
-              setTimeout(() => this.handleClose(), 100)
-            }}
-          >
-            <MenuOutline {...this.state} {...props} />
-            <MenuBase
-              {...this.state}
-              {...props}
-              innerRef={(menu) => {
-                this.menu = menu
-              }}
-            >
-              {animatedChildren}
-            </MenuBase>
-          </MenuContainer>
-        </Portal>
-      </MenuControlWrap>
+      <AttachedSurface
+        closeOnOutsideClick
+        closeOnEsc
+        position={this.props.position}
+        elevation={this.props.elevation}
+        defaultOpen={this.props.defaultOpen}
+      >
+        {({ openSurface, closeSurface, surface, isOpen }) =>
+          this.props.children({
+            openMenu: openSurface,
+            closeMenu: closeSurface,
+            isOpen,
+            menu: (children) =>
+              surface(
+                <MenuWrap
+                  className={this.props.className}
+                  onClick={() => this.props.setTimeout(closeSurface, 100)}
+                  innerRef={(menu) => {
+                    this.menu = menu
+                  }}
+                  onKeyDown={this.handleKeydown}
+                >
+                  {children}
+                </MenuWrap>,
+              ),
+          })
+        }
+      </AttachedSurface>
     )
   }
 }
 
-Menu.positions = menuPositions
-
-Menu.propTypes = {
-  children: PropTypes.node,
-  control: PropTypes.node,
-  position: PropTypes.oneOf(Object.values(Menu.positions)),
+MenuBase.propTypes = {
+  children: PropTypes.func.isRequired,
+  elevation: PropTypes.number,
+  defaultOpen: PropTypes.bool,
+  position: PropTypes.oneOf([TOP_RIGHT, TOP_LEFT, BOTTOM_RIGHT, BOTTOM_LEFT]),
 }
 
-Menu.defaultProps = {
-  position: menuPositions.bottomLeft,
+MenuBase.defaultProps = {
+  elevation: 2,
+  position: BOTTOM_LEFT,
 }
+
+// Todo Anchor/Origin
+// <Menu anchor="top-left" />
+
+const Menu = compose(
+  withTimeouts,
+  mapProps(
+    cond([
+      [get('position'), identity],
+      [get('topRight'), set('position', TOP_RIGHT)],
+      [get('topLeft'), set('position', TOP_LEFT)],
+      [get('bottomRight'), set('position', BOTTOM_RIGHT)],
+      [get('bottomLeft'), set('position', BOTTOM_LEFT)],
+    ]),
+  ),
+)(MenuBase)
+
+export default Menu

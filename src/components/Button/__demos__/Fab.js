@@ -4,7 +4,7 @@ import Button from '..'
 import Icon from '../../Icon'
 
 export default () => (
-  <Button fab>
+  <Button fab autoFocus>
     <Icon name="add" />
   </Button>
 )

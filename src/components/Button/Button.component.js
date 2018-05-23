@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types'
+import compose from 'lodash/fp/flowRight'
 
 import { ButtonStyle } from './Button.style'
+import mapProps from '../../utils/mapProps'
 import withRipple from '../../higherOrderComponents/withRipple'
 
-const Button = withRipple()(ButtonStyle)
+const Button = compose(
+  withRipple(),
+  mapProps(({ icon, ...props }) => ({ isIcon: icon, ...props })),
+)(ButtonStyle)
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

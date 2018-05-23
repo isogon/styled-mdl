@@ -8,19 +8,28 @@ export default () => (
   <Container align="left">
     <Bg />
     <Bar>
-      <Menu
-        position={Menu.positions.topLeft}
-        control={
-          <WhiteButton icon>
-            <Icon name="more_vert" />
-          </WhiteButton>
-        }
-      >
-        <Menu.Item>Some Action</Menu.Item>
-        <Menu.Item>Another Action</Menu.Item>
-        <Menu.Divider />
-        <Menu.Item disabled>Disabled Action</Menu.Item>
-        <Menu.Item>Yet another action</Menu.Item>
+      <Menu topLeft>
+        {({ openMenu, menu, isOpen }) => (
+          <React.Fragment>
+            <WhiteButton
+              icon
+              onClick={openMenu}
+              aria-haspopup="true"
+              aria-owns={isOpen ? 'menu-list' : null}
+            >
+              <Icon name="more_vert" />
+            </WhiteButton>
+            {menu(
+              <Menu.List id="menu-list" role="menu">
+                <Menu.Item>Some Action</Menu.Item>
+                <Menu.Item>Another Action</Menu.Item>
+                <Menu.Divider />
+                <Menu.Item disabled>Disabled Action</Menu.Item>
+                <Menu.Item>Yet another action</Menu.Item>
+              </Menu.List>,
+            )}
+          </React.Fragment>
+        )}
       </Menu>
     </Bar>
   </Container>
